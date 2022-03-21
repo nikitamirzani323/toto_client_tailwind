@@ -18,6 +18,8 @@
     export let client_ipaddress = "0.0.0.0";
     export let client_timezone = "Asia/Jakarta";
     export let client_device = "";
+    let drodown_count = 0;
+    let drodown_close = "";
     let clockmachine = "";
     function updateClock() {
         let endtime = dayjs().tz(client_timezone).format("DD MMM YYYY | HH:mm:ss");
@@ -26,12 +28,25 @@
     $: {
         setInterval(updateClock, 100);
     }
+    const switchMenu = () => {
+        drodown_count = drodown_count + 1
+        if(drodown_count%2 == 0){
+            drodown_close = "hidden";
+        }else{
+            drodown_close = "";
+        }
+	};
 </script>
-<div class="fixed right-2 top-2 bg-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-lg p-2.5  z-50">
-    <Themeselet />
-</div>
+
 {#if client_device == "WEBSITE"}
-    <div class="navbar bg-base-100">
+    <div class="fixed right-2 top-20 
+        bg-gray-700 dark:text-gray-400 
+        hover:bg-gray-100 dark:hover:bg-gray-100 
+        focus:outline-none focus:ring-4 focus:ring-gray-200 
+        dark:focus:ring-gray-700 rounded-lg text-lg p-1.5 z-50">
+        <Themeselet />
+    </div>
+    <div class="navbar">
         <div class="navbar-start">
             <a href="/?token={client_token}" class="btn btn-ghost">
                 <img src="logo-green.svg" alt="">
@@ -48,7 +63,8 @@
         </div>
         <div class="navbar-end text-sm text-right">
             <p>
-                TIMEZONE : Asia/Jakarta {clockmachine} <br>
+                Asia/Jakarta <br> 
+                {clockmachine} WIB<br>
                 {client_username} ({client_ipaddress}) <br>
                 Credit : IDR <span class="link-accent">{new Intl.NumberFormat().format(client_credit)}</span>
             </p>
@@ -57,11 +73,15 @@
 {:else}
     <div class="navbar bg-base-200">
         <div class="navbar-start">
-            <div class="dropdown">
-              <label tabindex="0" class="btn btn-ghost btn-circle">
+            <div
+                on:click={() => {
+                    switchMenu();
+                }}  
+                class="dropdown">
+              <label tabindex="0" class="btn btn-ghost btn-circle" >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
               </label>
-              <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <ul class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52 {drodown_close}" >
                 <li><a>RESULT</a></li>
                 <li><a>INVOICE</a></li>
                 <li><a>PASARAN</a></li>
@@ -71,13 +91,23 @@
         </div>
         <div class="navbar-center text-center">
             <a href="/?token={client_token}" class="btn btn-ghost">
-                <img src="logo-green.svg" alt="">
+                <img class="w-36" src="logo-green.svg" alt="">
             </a>
         </div>
         <div class="navbar-end text-right">
             <Themeselet />
         </div>
     </div>
+    <div class="mt-2 mb-2 mx-2 p-0 card bg-base-300 shadow-xl rounded-none">
+        <div class="card-body p-3">
+            <p class="text-sm">
+                Asia/Jakarta {clockmachine} WIB<br>
+                {client_username} ({client_ipaddress}) <br>
+                Credit : IDR <span class="link-accent">{new Intl.NumberFormat().format(client_credit)}</span>
+            </p>
+        </div>
+    </div>
+    
 {/if}
 <input type="checkbox" id="my-modal-result" class="modal-toggle">
 <div class="modal">

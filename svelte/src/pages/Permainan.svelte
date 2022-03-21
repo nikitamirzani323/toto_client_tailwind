@@ -223,19 +223,19 @@
             </div>
         </div>
     {:else}
-        <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-none mx-2 my-2">
+        <div tabindex="0" class="collapse collapse-arrow border border-base-200 bg-base-200 rounded-none mx-2 my-2">
             <input type="checkbox" class="peer"> 
-            <div class="collapse-title text-lg font-medium">
+            <div class="collapse-title text-sm font-normal">
                 PILIH PERMAINAN DIBAWAH INI
             </div>
             <div class="collapse-content"> 
                 <div class="grid grid-cols-2 gap-2 px-2">
-                    <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">4D/3D/2D</button>
-                    <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">COLOK</button>
-                    <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">50-50</button>
-                    <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">KOMBINASI</button>
-                    <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">DASAR</button>
-                    <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">SHIO</button>
+                    <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">4D/3D/2D</button>
+                    <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">COLOK</button>
+                    <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">50-50</button>
+                    <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">KOMBINASI</button>
+                    <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">DASAR</button>
+                    <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">SHIO</button>
                 </div>
             </div>
         </div>

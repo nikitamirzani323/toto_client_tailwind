@@ -2,6 +2,7 @@
     import { createEventDispatcher } from "svelte";
     import Button_custom1 from "../component/Button_custom1.svelte";
     import Button_custom2 from "../component/Button_custom2.svelte";
+    import Button_custom3 from "../component/Button_custom3.svelte";
 
     export let keranjang = [];
     export let totalkeranjang = 0;
@@ -84,6 +85,7 @@
         count_line_2dd +
         count_line_2dt;
 </script>
+
 <div class="card bg-base-200 shadow-xl mt-5 rounded-md {card_custom}">
     <div class="card-body p-3">
         {#if client_device == "WEBSITE"}
@@ -108,7 +110,6 @@
                                 button_tipe="BELI"
                                 button_block="btn-sm rounded-sm"
                                 button_title="BELI" />
-                            
                         </div>
                     </div>
                 </div>
@@ -162,10 +163,6 @@
             <div class="place-content-center text-center">
                 <div class="flex">
                     <div class="flex-auto">
-                        <Button_custom2
-                            on:click={handleInformation}
-                            button_block="btn-sm rounded-sm"
-                            button_title="INFORMATION" />
                         <Button_custom1
                             on:click={handleRemoveKeranjang_all}
                             button_tipe="HAPUS"
@@ -381,6 +378,24 @@
         </div>
     </div>
 {:else}
+<div class="card bg-base-300 rounded-sm w-full fixed  bottom-0 z-50 block">
+    <div class="card-body p-2">
+        <div class="place-content-center text-center w-full ">
+            <div class="flex">
+                <div class="flex-auto">
+                    <Button_custom3
+                        on:click={handleInformation}
+                        button_block="btn-sm rounded-sm"
+                        button_title="HISTORY" />
+                    <Button_custom2
+                        on:click={handleInformation}
+                        button_block="btn-sm rounded-sm"
+                        button_title="INFORMATION" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
 <div class="modal " on:click|self={()=>isModalInformation = false}>
     <div class="modal-box relative w-11/12 max-w-4xl h-5/6 p-4 rounded-none">

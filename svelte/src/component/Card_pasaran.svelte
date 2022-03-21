@@ -6,16 +6,16 @@
     export let card_device = "WEBSITE"
     export let card_function = ""
     let dispatch = createEventDispatcher()
-    let card_background = "bg-base-200"
+    let card_background = "bg-base-300"
     let card_css_style = "cursor:pointer;"
-    let card_shadow = "shadow-green-500/20"
+    let card_shadow = "shadow-green-500/40"
     if(card_status == "OFFLINE"){
       card_background = "bg-base-100"
       card_css_style = ""
       card_shadow = ""
     }
 </script>
-<div on:click={() => dispatch('click',card_function)} class="card {card_background} shadow-xl {card_shadow} rounded-md" style="{card_css_style}">
+<div on:click={() => dispatch('click',card_function)} class="card {card_background} shadow-lg {card_shadow} rounded-md" style="{card_css_style}">
     {#if card_device == "WEBSITE"}
       <div class="card-body items-center text-center">
         <h2 class="card-title">{card_title}</h2>

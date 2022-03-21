@@ -18,26 +18,26 @@
 	export let pasaran_periode = 0;
 	export let permainan_title = "4D / 3D / 2D";
 
-  let class_tab_432 = "btn btn-sm rounded btn-outline btn-error";
-  let class_tab_432set = "";
-  let class_tab_432bolakbalik = "";
-  let class_tab_432wap = "";
-  let class_tab_432polatarung = "";
-  let class_tab_432quick2d = "";
-  let class_tab_4323DD = "";
-  let class_tab_4322DD = "";
-  let class_tab_4322DT = "";
-  let panel_form_432 = true;
-  let panel_form_432set = false;
-  let panel_form_432bolakbalik = false;
-  let panel_form_432wap = false;
-  let panel_form_432polatarung = false;
-  let panel_form_432quick2d = false;
-  let panel_form_4323dd = false;
-  let panel_form_4322dd = false;
-  let panel_form_4322dt = false;
+	let class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+	let class_tab_432set = "";
+	let class_tab_432bolakbalik = "";
+	let class_tab_432wap = "";
+	let class_tab_432polatarung = "";
+	let class_tab_432quick2d = "";
+	let class_tab_4323DD = "";
+	let class_tab_4322DD = "";
+	let class_tab_4322DT = "";
+	let panel_form_432 = true;
+	let panel_form_432set = false;
+	let panel_form_432bolakbalik = false;
+	let panel_form_432wap = false;
+	let panel_form_432polatarung = false;
+	let panel_form_432quick2d = false;
+	let panel_form_4323dd = false;
+	let panel_form_4322dd = false;
+	let panel_form_4322dt = false;
 
-  let keranjang = [];
+  	let keranjang = [];
 	let nomor_global = 0;
 	let totalkeranjang = 0;
 	let group_btn_beli = false;
@@ -103,7 +103,7 @@
 	let db_form4d_2d_count_temp = 0;
 	let db_form4d_2dd_count_temp = 0;
 	let db_form4d_2dt_count_temp = 0;
-  let generate2D = [];
+  	let generate2D = [];
 	let generate2DD = [];
 	let generate2DT = [];
 	let generate3D = [];
@@ -121,11 +121,11 @@
 	let delapan = 0;
 	let sembilan = 0;
 
-  //432 - INIT FORM
+	//432 - INIT FORM
 	let nomor_432 = "";
 	let nomor_432_input;
 	let bet_432 = "";
-  //SET - INIT FORM
+	//SET - INIT FORM
 	let nomorset = "";
 	let nomorset_input;
 	let betset_1 = "";
@@ -134,7 +134,7 @@
 	let betset_4 = "";
 	let betset_5 = "";
 	let betset_6 = "";
-  //BBFS - INIT FORM
+	//BBFS - INIT FORM
 	let nomorbbfs = "";
 	let nomorbbfs_input;
 	let bet_1 = "";
@@ -143,7 +143,7 @@
 	let bet_4 = "";
 	let bet_5 = "";
 	let bet_6 = "";
-  //WAP
+	//WAP
 	let nomorwap = "";
 	let nomorwap_input;
 	//pola tarung
@@ -189,7 +189,7 @@
   const changeTabs = (e) => {
     switch(e){
       case "432":
-        class_tab_432 = "btn btn-sm rounded btn-outline btn-error";
+    	class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_432set = "";
         class_tab_432bolakbalik = "";
         class_tab_432wap = "";
@@ -210,7 +210,7 @@
         clearField();
         break;
       case "432SET":
-        class_tab_432set = "btn btn-sm rounded btn-outline btn-error";
+        class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_432 = "";
         class_tab_432bolakbalik = "";
         class_tab_432wap = "";
@@ -231,7 +231,7 @@
         clearField();
         break;
       case "432BOLAKBALIK":
-        class_tab_432bolakbalik = "btn btn-sm rounded btn-outline btn-error";
+        class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_432 = "";
         class_tab_432set = "";
         class_tab_432wap = "";
@@ -252,7 +252,7 @@
         clearField();
         break;
       case "432WAP":
-        class_tab_432wap = "btn btn-sm rounded btn-outline btn-error";
+        class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_432 = "";
         class_tab_432set = "";
         class_tab_432bolakbalik = "";
@@ -273,7 +273,7 @@
         clearField();
         break;
       case "432POLATARUNG":
-        class_tab_432polatarung = "btn btn-sm rounded btn-outline btn-error";
+        class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_432 = "";
         class_tab_432set = "";
         class_tab_432bolakbalik = "";
@@ -294,7 +294,7 @@
         clearField();
         break;
       case "432QUICK2D":
-        class_tab_432quick2d = "btn btn-sm rounded btn-outline btn-error";
+        class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_4323DD = "";
         class_tab_4322DD = "";
         class_tab_4322DT = "";
@@ -315,7 +315,7 @@
         clearField();
         break;
       case "4323DD":
-        class_tab_4323DD = "btn btn-sm rounded btn-outline btn-error";
+        class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_4322DD = "";
         class_tab_4322DT = "";
         class_tab_432polatarung = "";
@@ -336,7 +336,7 @@
         clearField();
         break;
       case "4322DD":
-        class_tab_4322DD = "btn btn-sm rounded btn-outline btn-error";
+        class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_4323DD = "";
         class_tab_4322DT = "";
         class_tab_432polatarung = "";
@@ -357,7 +357,7 @@
         clearField();
         break;
       case "4322DT":
-        class_tab_4322DT = "btn btn-sm rounded btn-outline btn-error";
+        class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
         class_tab_4322DD = "";
         class_tab_4323DD = "";
         class_tab_432polatarung = "";
@@ -1346,7 +1346,7 @@
 	}
   function checkdata_432d(nomor, game, money) {
 		let flag = true;
-    msg_error = "";
+    	msg_error = "";
 		if (money == undefined) {
 			flag = false;
 		} else {
@@ -4287,59 +4287,59 @@
           </div>
         {/if}
       {:else}
-        <h2 class="card-title text-lg grid grid-cols-2 gap-2">
+        <h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-2">
           <div class="place-content-start text-left text-sm">
               {pasaran_name} <br> {permainan_title}
           </div>
-          <div class="place-content-end text-right text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
+          <div class="place-content-end text-right text-sm ">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
-        <div class="mt-6 md:flex md:items-center md:justify-between md:space-x-8">
+        <div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
           <div class="flex items-center space-x-2 overflow-y-auto md:max-w-lg xl:max-w-5xl 2xl:max-w-7xl lg:max-w-3xl whitespace-nowrap">
             <span
                 on:click={() => {
                   changeTabs("432");
                 }} 
-                class="{class_tab_432} px-3 py-1.5 cursor-pointer  ">4D/3D/2D</span> 
+                class="{class_tab_432} text-sm px-3 py-1.5 cursor-pointer  ">4D/3D/2D</span> 
             <span
               on:click={() => {
                 changeTabs("432SET");
               }}
-              class="{class_tab_432set} px-3 py-1.5 cursor-pointer ">4D/3D/2D SET</span> 
+              class="{class_tab_432set} text-sm px-3 py-1.5 cursor-pointer ">4D/3D/2D SET</span> 
             <span
               on:click={() => {
                 changeTabs("432BOLAKBALIK");
               }}
-              class="{class_tab_432bolakbalik} px-3 cursor-pointer  ">BOLAK BALIK</span> 
+              class="{class_tab_432bolakbalik} text-sm px-3 py-1.5 cursor-pointer  ">BOLAK BALIK</span> 
             <span 
               on:click={() => {
                 changeTabs("432WAP");
               }}
-              class="{class_tab_432wap} px-3 py-1.5 cursor-pointer ">WAP</span> 
+              class="{class_tab_432wap} text-sm px-3 py-1.5 cursor-pointer ">WAP</span> 
             <span 
               on:click={() => {
                 changeTabs("432POLATARUNG");
               }}
-              class="{class_tab_432polatarung} px-3 py-1.5 cursor-pointer ">POLA TARUNG</span> 
+              class="{class_tab_432polatarung} text-sm px-3 py-1.5 cursor-pointer ">POLA TARUNG</span> 
             <span 
               on:click={() => {
                 changeTabs("432QUICK2D");
               }}
-              class="{class_tab_432quick2d} px-3 py-1.5 cursor-pointer ">QUICK 2D</span>
+              class="{class_tab_432quick2d} text-sm px-3 py-1.5 cursor-pointer ">QUICK 2D</span>
             <span 
               on:click={() => {
                 changeTabs("4323DD");
               }}
-              class="{class_tab_4323DD} px-3 py-1.5 cursor-pointer ">3DD /3D DEPAN</span>
+              class="{class_tab_4323DD} text-sm px-3 py-1.5 cursor-pointer ">3DD /3D DEPAN</span>
             <span 
               on:click={() => {
                 changeTabs("4322DD");
               }}
-              class="{class_tab_4322DD} px-3 py-1.5 cursor-pointer ">2DD /2D DEPAN</span>
+              class="{class_tab_4322DD} text-sm px-3 py-1.5 cursor-pointer ">2DD /2D DEPAN</span>
             <span 
               on:click={() => {
                 changeTabs("4322DT");
               }}
-              class="{class_tab_4322DT} px-3 py-1.5 cursor-pointer ">2DT /2D TENGAH</span>
+              class="{class_tab_4322DT} text-sm px-3 py-1.5 cursor-pointer ">2DT /2D TENGAH</span>
           </div>
         </div>
         {#if panel_form_432}
@@ -4349,7 +4349,6 @@
                       <span class="label-text">Nomor (2-4)</span>
                   </label>
                   <input
-                    autofocus
                     bind:this={nomor_432_input}
                     bind:value={nomor_432}
                     on:keyup={handleKeyboard_format}
