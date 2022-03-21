@@ -223,7 +223,7 @@
             </div>
         </div>
     {:else}
-        <div tabindex="0" class="collapse collapse-arrow border border-base-200 bg-base-200 rounded-none mx-2 my-2">
+        <div tabindex="0" class="collapse collapse-arrow border border-base-200 bg-base-200 rounded-md mx-2 my-2">
             <input type="checkbox" class="peer"> 
             <div class="collapse-title text-sm font-normal">
                 PILIH PERMAINAN DIBAWAH INI

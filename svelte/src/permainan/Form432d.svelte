@@ -3673,8 +3673,8 @@
                     minlength="4"
                     maxlength="4"
                     type="text" 
-                    placeholder="Input 4D/3D/2D Digit" 
-                    class="input border-none text-center text-3xl placeholder:text-sm"> 
+                    placeholder="4D/3D/2D" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl"> 
               </div>
               <div class="form-control">
                   <label class="label">
@@ -3688,7 +3688,7 @@
                     minlength="3"
                     maxlength="7"
                     type="text" placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(bet_432)}</span>
@@ -3717,8 +3717,8 @@
                     on:keypress={handleKeyboard432set_checkenter} 
                     minlength="4"
                     maxlength="4"
-                    type="text" placeholder="Input 4D/3D/2D Digit" 
-                    class="input border-none text-center text-3xl placeholder:text-sm"> 
+                    type="text" placeholder="4D/3D/2D" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl"> 
               </div>
               <div class="form-control">
                   <label class="label">
@@ -3733,7 +3733,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(betset_1)}</span>
@@ -3751,7 +3751,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(betset_2)}</span>
@@ -3769,7 +3769,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(betset_6)}</span>
@@ -3789,7 +3789,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(betset_3)}</span>
@@ -3807,7 +3807,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(betset_4)}</span>
@@ -3825,7 +3825,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(betset_5)}</span>
@@ -3854,8 +3854,8 @@
                     on:keypress={handleKeyboardbbfs_checkenter} 
                     minlength="4"
                     maxlength={bbfs}
-                    type="text" placeholder="Input 4D/3D/2D Digit" 
-                    class="input border-none text-center text-3xl placeholder:text-sm">
+                    type="text" placeholder="4D/3D/2D" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl">
               </div>
               <div class="form-control">
                   <label class="label">
@@ -3870,7 +3870,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(bet_1)}</span>
@@ -3889,7 +3889,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(bet_2)}</span>
@@ -3908,7 +3908,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(bet_6)}</span>
@@ -3929,7 +3929,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(bet_3)}</span>
@@ -3948,7 +3948,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(bet_4)}</span>
@@ -3967,7 +3967,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(bet_5)}</span>
@@ -4019,7 +4019,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="AS" 
-                    class="input border-none text-center text-3xl placeholder:text-sm"> 
+                    class="input border-none text-center text-3xl placeholder:text-3xl"> 
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4033,7 +4033,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="KOP" 
-                    class="input border-none text-center text-3xl placeholder:text-sm">  
+                    class="input border-none text-center text-3xl placeholder:text-3xl">  
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4046,7 +4046,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="KEPALA" 
-                    class="input border-none text-center text-3xl placeholder:text-sm">
+                    class="input border-none text-center text-3xl placeholder:text-3xl">
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4059,7 +4059,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="EKOR" 
-                    class="input border-none text-center text-3xl placeholder:text-sm">
+                    class="input border-none text-center text-3xl placeholder:text-3xl">
               </div>
               <div class="form-control">
                   <label class="label">
@@ -4075,7 +4075,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(bet_tarung)}</span>
@@ -4141,7 +4141,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(quick_bet)}</span>
@@ -4171,8 +4171,8 @@
                   minlength="3"
                   maxlength="3"
                   type="text" 
-                  placeholder="Input 3D DEPAN Digit" 
-                  class="input border-none text-center text-3xl placeholder:text-sm"> 
+                  placeholder="3D DEPAN" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
             </div>
             <div class="form-control">
                 <label class="label">
@@ -4186,7 +4186,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(bet_3dd)}</span>
@@ -4216,8 +4216,8 @@
                   minlength="2"
                   maxlength="2"
                   type="text" 
-                  placeholder="Input 2D DEPAN Digit" 
-                  class="input border-none text-center text-3xl placeholder:text-sm"> 
+                  placeholder="2D DEPAN" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
             </div>
             <div class="form-control">
                 <label class="label">
@@ -4231,7 +4231,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(bet_2dd)}</span>
@@ -4261,8 +4261,8 @@
                   minlength="2"
                   maxlength="2"
                   type="text" 
-                  placeholder="Input 2D TENGAH Digit" 
-                  class="input border-none text-center text-3xl placeholder:text-sm"> 
+                  placeholder="2D TENGAH" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
             </div>
             <div class="form-control">
                 <label class="label">
@@ -4276,7 +4276,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(bet_2dt)}</span>
@@ -4294,10 +4294,10 @@
         {/if}
       {:else}
         <h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-2">
-          <div class="place-content-start text-left text-sm">
+          <div class="place-content-start text-left text-xs">
               {pasaran_name} <br> {permainan_title}
           </div>
-          <div class="place-content-end text-right text-sm -mt-3">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
+          <div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
         <div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
           <div class="relative flex items-center overflow-auto scrollbar-hide">
@@ -4382,12 +4382,12 @@
                     minlength="4"
                     maxlength="4"
                     type="text" 
-                    placeholder="Input 4D/3D/2D Digit" 
-                    class="input border-none text-center text-2xl placeholder:text-sm"> 
+                    placeholder="4D/3D/2D" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl"> 
               </div>
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                   </label>
                   <input
@@ -4397,9 +4397,9 @@
                     minlength="3"
                     maxlength="7"
                     type="text" placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_432)}</span>
                   </label>
               </div>
@@ -4427,14 +4427,14 @@
                 on:keypress={handleKeyboard432set_checkenter} 
                 minlength="4"
                 maxlength="4"
-                type="text" placeholder="Input 4D/3D/2D Digit" 
-                class="input border-none text-center text-3xl placeholder:text-sm"> 
+                type="text" placeholder="4D/3D/2D" 
+                class="input border-none text-center text-3xl placeholder:text-3xl"> 
             </div>
           </div>
           <div class="mt-1 gap-2 grid grid-cols-2">
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                   </label>
                   <input 
@@ -4445,15 +4445,15 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_1)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4463,15 +4463,15 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_2)}</span>
                 </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4481,16 +4481,16 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_6)}</span>
                 </label>
               </div>
               
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4500,15 +4500,15 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_3)}</span>
                 </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4518,15 +4518,15 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_4)}</span>
                 </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4536,9 +4536,9 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_5)}</span>
                 </label>
               </div>
@@ -4566,14 +4566,14 @@
                 on:keypress={handleKeyboardbbfs_checkenter} 
                 minlength="4"
                 maxlength={bbfs}
-                type="text" placeholder="Input 4D/3D/2D Digit" 
-                class="input border-none text-center text-3xl placeholder:text-sm">
+                type="text" placeholder="4D/3D/2D" 
+                class="input border-none text-center text-3xl placeholder:text-3xl">
             </div>
           </div>
           <div class="mt-1 gap-2 grid grid-cols-2">
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                   </label>
                   <input 
@@ -4584,15 +4584,15 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_1)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4603,15 +4603,15 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4622,15 +4622,15 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_6)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4641,15 +4641,15 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4660,15 +4660,15 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_4)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
@@ -4679,9 +4679,9 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-sm">
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
+                      <span class="label-text text-xs">&nbsp;</span>
                       <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_5)}</span>
                   </label>
               </div>
@@ -4733,7 +4733,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="AS" 
-                    class="input border-none text-center text-3xl placeholder:text-sm"> 
+                    class="input border-none text-center text-3xl placeholder:text-3xl"> 
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4747,7 +4747,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="KOP" 
-                    class="input border-none text-center text-3xl placeholder:text-sm">  
+                    class="input border-none text-center text-3xl placeholder:text-3xl">  
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4760,7 +4760,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="KEPALA" 
-                    class="input border-none text-center text-3xl placeholder:text-sm">
+                    class="input border-none text-center text-3xl placeholder:text-3xl">
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4773,12 +4773,12 @@
                     maxlength="4"
                     type="text" 
                     placeholder="EKOR" 
-                    class="input border-none text-center text-3xl placeholder:text-sm">
+                    class="input border-none text-center text-3xl placeholder:text-3xl">
               </div>
           </div>
           <div class="form-control">
             <label class="label">
-                <span class="label-text">&nbsp;</span>
+                <span class="label-text text-xs">&nbsp;</span>
                 <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
             </label>
             <input 
@@ -4790,9 +4790,9 @@
               maxlength="7"
               type="text" 
               placeholder="Bet" 
-              class="input border-none text-right text-3xl placeholder:text-sm">
+              class="input border-none text-right text-3xl placeholder:text-3xl">
             <label class="label">
-                <span class="label-text">&nbsp;</span>
+                <span class="label-text text-xs">&nbsp;</span>
                 <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_tarung)}</span>
             </label>
           </div>
@@ -4845,7 +4845,7 @@
           </div>
           <div class="form-control">
             <label class="label">
-                <span class="label-text">&nbsp;</span>
+                <span class="label-text text-xs">&nbsp;</span>
                 <span class="label-text-alt text-xs text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
             </label>
             <input 
@@ -4857,9 +4857,9 @@
               maxlength="7"
               type="text" 
               placeholder="Bet" 
-              class="input border-none text-right text-3xl placeholder:text-sm">
+              class="input border-none text-right text-3xl placeholder:text-3xl">
             <label class="label">
-                <span class="label-text">&nbsp;</span>
+                <span class="label-text text-xs">&nbsp;</span>
                 <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(quick_bet)}</span>
             </label>
           </div>
@@ -4887,12 +4887,12 @@
                   minlength="3"
                   maxlength="3"
                   type="text" 
-                  placeholder="Input 3D DEPAN Digit" 
-                  class="input border-none text-center text-3xl placeholder:text-sm"> 
+                  placeholder="3D DEPAN" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
             </div>
             <div class="form-control">
               <label class="label">
-                  <span class="label-text">&nbsp;</span>
+                  <span class="label-text text-xs">&nbsp;</span>
                   <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
               </label>
               <input
@@ -4902,9 +4902,9 @@
                 minlength="3"
                 maxlength="7"
                 type="text" placeholder="Bet" 
-                class="input border-none text-right text-3xl placeholder:text-sm">
+                class="input border-none text-right text-3xl placeholder:text-3xl">
               <label class="label">
-                  <span class="label-text">&nbsp;</span>
+                  <span class="label-text text-xs">&nbsp;</span>
                   <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3dd)}</span>
               </label>
             </div>
@@ -4933,12 +4933,12 @@
                   minlength="2"
                   maxlength="2"
                   type="text" 
-                  placeholder="Input 2D DEPAN Digit" 
-                  class="input border-none text-center text-3xl placeholder:text-sm"> 
+                  placeholder="2D DEPAN" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
             </div>
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input
@@ -4948,9 +4948,9 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dd)}</span>
                 </label>
             </div>
@@ -4979,12 +4979,12 @@
                   minlength="2"
                   maxlength="2"
                   type="text" 
-                  placeholder="Input 2D TENGAH Digit" 
-                  class="input border-none text-center text-3xl placeholder:text-sm"> 
+                  placeholder="2D TENGAH" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
             </div>
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input
@@ -4994,9 +4994,9 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-sm">
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
+                    <span class="label-text text-xs">&nbsp;</span>
                     <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dt)}</span>
                 </label>
             </div>

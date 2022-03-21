@@ -156,7 +156,6 @@
                 <div class="basis-1/4 text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
             </div>
         {:else}
-            
             <div class="grid grid-cols-4 gap-1">
                 <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -228,295 +227,300 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal" on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative w-11/12 max-w-4xl h-3/4">
+        <div class="modal-box relative w-11/12 max-w-4xl" style="height: 600px;">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-lg font-bold">INFORMASI</h3>
-            <div class="overflow-auto">
-                <table class="table table-compact w-full" >
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th class="text-sm text-right align-top">4D</th>
-                            <th class="text-sm text-right align-top">3D</th>
-                            <th class="text-sm text-right align-top">3DD <br> 3D DEPAN</th>
-                            <th class="text-sm text-right align-top">2D</th>
-                            <th class="text-sm text-right align-top">2DD <br> 2D DEPAN</th>
-                            <th class="text-sm text-right align-top">2DT <br> 2D TENGAH</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-sm text-left">MIN BET</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-sm text-left">MAX BET</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-sm text-left">DISKON</td>
-                            <td class="text-sm text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
-                            <td class="text-sm text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
-                            <td class="text-sm text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
-                            <td class="text-sm text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
-                            <td class="text-sm text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
-                            <td class="text-sm text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-sm text-left">HADIAH</td>
-                            <td class="text-sm text-right link-accent">{win4d_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win3d_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win3dd_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2d_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2dd_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2dt_bet}x</td>
-                        </tr>
-                        <tr>
-                            <td class="text-sm text-left">HADIAH FULL</td>
-                            <td class="text-sm text-right link-accent">{win4dnodiskon_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win3dnodiskon_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win3ddnodiskon_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2dnodiskon_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2ddnodiskon_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2dtnodiskon_bet}x</td>
-                        </tr>
-                        <tr>
-                            <td class="text-sm text-left">HADIAH BB KENA</td>
-                            <td class="text-sm text-right link-accent">{win4dbb_kena_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win3dbb_kena_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win3ddbb_kena_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2dbb_kena_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2ddbb_kena_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2dtbb_kena_bet}x</td>
-                        </tr>
-                        <tr>
-                            <td class="text-sm text-left">HADIAH BB</td>
-                            <td class="text-sm text-right link-accent">{win4dbb_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win3dbb_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win3ddbb_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2dbb_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2ddbb_bet}x</td>
-                            <td class="text-sm text-right link-accent">{win2dtbb_bet}x</td>
-                        </tr>
-                        <tr>
-                            <td class="text-sm text-left">LIMIT LINE</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2d)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2dd)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2dt)}</td>
-                        </tr>
-                    </tbody>
-                </table>    
+            <div class="h-[32rem] overflow-auto scrollbar-hide" >
+                <div class="overflow-auto">
+                    <table class="table table-compact w-full" >
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="text-sm text-right align-top">4D</th>
+                                <th class="text-sm text-right align-top">3D</th>
+                                <th class="text-sm text-right align-top">3DD <br> 3D DEPAN</th>
+                                <th class="text-sm text-right align-top">2D</th>
+                                <th class="text-sm text-right align-top">2DD <br> 2D DEPAN</th>
+                                <th class="text-sm text-right align-top">2DT <br> 2D TENGAH</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-sm text-left">MIN BET</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-sm text-left">MAX BET</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-sm text-left">DISKON</td>
+                                <td class="text-sm text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-sm text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-sm text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
+                                <td class="text-sm text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-sm text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
+                                <td class="text-sm text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-sm text-left">HADIAH</td>
+                                <td class="text-sm text-right link-accent">{win4d_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win3d_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win3dd_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2d_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2dd_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2dt_bet}x</td>
+                            </tr>
+                            <tr>
+                                <td class="text-sm text-left">HADIAH FULL</td>
+                                <td class="text-sm text-right link-accent">{win4dnodiskon_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win3dnodiskon_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win3ddnodiskon_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2dnodiskon_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2ddnodiskon_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2dtnodiskon_bet}x</td>
+                            </tr>
+                            <tr>
+                                <td class="text-sm text-left">HADIAH BB KENA</td>
+                                <td class="text-sm text-right link-accent">{win4dbb_kena_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win3dbb_kena_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win3ddbb_kena_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2dbb_kena_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2ddbb_kena_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2dtbb_kena_bet}x</td>
+                            </tr>
+                            <tr>
+                                <td class="text-sm text-left">HADIAH BB</td>
+                                <td class="text-sm text-right link-accent">{win4dbb_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win3dbb_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win3ddbb_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2dbb_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2ddbb_bet}x</td>
+                                <td class="text-sm text-right link-accent">{win2dtbb_bet}x</td>
+                            </tr>
+                            <tr>
+                                <td class="text-sm text-left">LIMIT LINE</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2d)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2dd)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2dt)}</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </div>
+                <p class="py-2 text-sm">
+                    <b>Contoh Penulisan 4D/3D/2D:</b><br />
+                    1234 : 4D<br /> 
+                    123 : 3D<br /> 
+                    *123 : 3D<br /> 
+                    123* : 3DD / 3D DEPAN<br /> 
+                    12 : 2D <br />
+                    **12 : 2D<br /> 
+                    12** : 2DD / 2D DEPAN<br /> 
+                    *12* : 2DT / 2D TENGAH
+                    <br><br>
+                    <b>CARA BERMAIN</b><br>
+                    Menebak 4 angka, 3 angka dan 2 angka
+                    <br />
+                    Struktur ABCD<br /><br />
+    
+                    Misalnya keluar : 4321<br />
+                    Berarti pemenang untuk<br />
+                    4D = 4321<br />
+                    3D = 321<br />
+                    3DD / 3D DEPAN = 432<br />
+                    2D = 21<br />
+                    2DD / 2D DEPAN = 43<br />
+                    2DT / 2D TENGAH = 32<br /><br />
+    
+                    Aturan permainan:<br />
+                    1. Jika anda membeli diluar dari nomor yang dikeluarkan, berarti
+                    anda kalah dan uang tidak dikembalikan sama sekali.<br />
+                    2. Jika anda membeli masing 100rb untuk angka :<br />
+                    4D = 4321<br />
+                    3D = 321<br />
+                    2D = 21<br /><br />
+                    Berarti kemenangan anda adalah :<br />
+                    4D = 100rb x [Indeks kemenangan untuk 4D]<br />
+                    3D = 100rb x [Indeks kemenangan untuk 3D]<br />
+                    2D = 100rb x [Indeks kemenangan untuk 2D]<br /><br />
+                    (Catatan: nilai bet 100rb tidak dikembalikan ke member)<br/>
+                    (Khusus untuk 4D,3D dan 2D diberikan diskon tambahan)<br /><br/>
+                    <b>3D Posisi</b><br>
+                    Struktur: ABCD<br/>
+                    Misalnya keluar nomor = 1234<br/>
+                    berati pemenang untuk 3D Depan / 3DD adalah = 123<br/>
+                    berati pemenang untuk 3D Belakang / 3D adalah = 234 <br/><br/>
+                    <b>2D Posisi</b><br>
+                    Struktur: ABCD<br/>
+                    Misalnya keluar nomor = 1234<br/>
+                    berati pemenang untuk 2D Depan / 2DD adalah = 12<br/>
+                    berati pemenang untuk 2D Tengah / 2DT adalah = 23<br/>
+                    berati pemenang untuk 2D Belakang / 2D adalah = 34 <br/>
+                </p>
             </div>
-            <p class="py-2 h-72 overflow-y-scroll text-sm">
-                <b>Contoh Penulisan 4D/3D/2D:</b><br />
-                1234 : 4D<br /> 
-                123 : 3D<br /> 
-                *123 : 3D<br /> 
-                123* : 3DD / 3D DEPAN<br /> 
-                12 : 2D <br />
-                **12 : 2D<br /> 
-                12** : 2DD / 2D DEPAN<br /> 
-                *12* : 2DT / 2D TENGAH
-                <br><br>
-                <b>CARA BERMAIN</b><br>
-                Menebak 4 angka, 3 angka dan 2 angka
-                <br />
-                Struktur ABCD<br /><br />
-
-                Misalnya keluar : 4321<br />
-                Berarti pemenang untuk<br />
-                4D = 4321<br />
-                3D = 321<br />
-                3DD / 3D DEPAN = 432<br />
-                2D = 21<br />
-                2DD / 2D DEPAN = 43<br />
-                2DT / 2D TENGAH = 32<br /><br />
-
-                Aturan permainan:<br />
-                1. Jika anda membeli diluar dari nomor yang dikeluarkan, berarti
-                anda kalah dan uang tidak dikembalikan sama sekali.<br />
-                2. Jika anda membeli masing 100rb untuk angka :<br />
-                4D = 4321<br />
-                3D = 321<br />
-                2D = 21<br /><br />
-                Berarti kemenangan anda adalah :<br />
-                4D = 100rb x [Indeks kemenangan untuk 4D]<br />
-                3D = 100rb x [Indeks kemenangan untuk 3D]<br />
-                2D = 100rb x [Indeks kemenangan untuk 2D]<br /><br />
-                (Catatan: nilai bet 100rb tidak dikembalikan ke member)<br/>
-                (Khusus untuk 4D,3D dan 2D diberikan diskon tambahan)<br /><br/>
-                <b>3D Posisi</b><br>
-                Struktur: ABCD<br/>
-                Misalnya keluar nomor = 1234<br/>
-                berati pemenang untuk 3D Depan / 3DD adalah = 123<br/>
-                berati pemenang untuk 3D Belakang / 3D adalah = 234 <br/><br/>
-                <b>2D Posisi</b><br>
-                Struktur: ABCD<br/>
-                Misalnya keluar nomor = 1234<br/>
-                berati pemenang untuk 2D Depan / 2DD adalah = 12<br/>
-                berati pemenang untuk 2D Tengah / 2DT adalah = 23<br/>
-                berati pemenang untuk 2D Belakang / 2D adalah = 34 <br/>
-            </p>
         </div>
     </div>
 {:else}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative w-11/12 max-w-4xl h-5/6 p-4 rounded-none">
+        <div class="modal-box relative w-11/12 max-w-4xl p-4 rounded-none" style="500px;">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-lg font-bold">INFORMASI</h3>
-            <div class="overflow-auto">
-                <table class="table-auto table table-compact w-full" >
-                    <thead>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th class="text-xs text-right align-top">4D</th>
-                            <th class="text-xs text-right align-top">3D</th>
-                            <th class="text-xs text-right align-top">3DD <br> 3D DEPAN</th>
-                            <th class="text-xs text-right align-top">2D</th>
-                            <th class="text-xs text-right align-top">2DD <br> 2D DEPAN</th>
-                            <th class="text-xs text-right align-top">2DT <br> 2D TENGAH</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-xs text-left">MIN BET</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-xs text-left">MAX BET</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-xs text-left">DISKON</td>
-                            <td class="text-xs text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
-                            <td class="text-xs text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
-                            <td class="text-xs text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
-                            <td class="text-xs text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
-                            <td class="text-xs text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
-                            <td class="text-xs text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
-                        </tr>
-                        <tr>
-                            <td class="text-xs text-left">HADIAH</td>
-                            <td class="text-xs text-right link-accent">{win4d_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win3d_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win3dd_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2d_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2dd_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2dt_bet}x</td>
-                        </tr>
-                        <tr>
-                            <td class="text-xs text-left">HADIAH FULL</td>
-                            <td class="text-xs text-right link-accent">{win4dnodiskon_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win3dnodiskon_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win3ddnodiskon_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2dnodiskon_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2ddnodiskon_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2dtnodiskon_bet}x</td>
-                        </tr>
-                        <tr>
-                            <td class="text-xs text-left">HADIAH BB KENA</td>
-                            <td class="text-xs text-right link-accent">{win4dbb_kena_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win3dbb_kena_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win3ddbb_kena_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2dbb_kena_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2ddbb_kena_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2dtbb_kena_bet}x</td>
-                        </tr>
-                        <tr>
-                            <td class="text-xs text-left">HADIAH BB</td>
-                            <td class="text-xs text-right link-accent">{win4dbb_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win3dbb_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win3ddbb_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2dbb_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2ddbb_bet}x</td>
-                            <td class="text-xs text-right link-accent">{win2dtbb_bet}x</td>
-                        </tr>
-                        <tr>
-                            <td class="text-xs text-left">LIMIT LINE</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2d)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dd)}</td>
-                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dt)}</td>
-                        </tr>
-                    </tbody>
-                </table>    
+            <h3 class="text-md font-bold">INFORMASI</h3>
+            <div class="h-[32rem] mt-5 overflow-auto scrollbar-hide">
+                <div class="overflow-auto">
+                    <table class="table-auto table table-compact w-full" >
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th class="text-xs text-right align-top">4D</th>
+                                <th class="text-xs text-right align-top">3D</th>
+                                <th class="text-xs text-right align-top">3DD <br> 3D DEPAN</th>
+                                <th class="text-xs text-right align-top">2D</th>
+                                <th class="text-xs text-right align-top">2DD <br> 2D DEPAN</th>
+                                <th class="text-xs text-right align-top">2DT <br> 2D TENGAH</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-xs text-left">MIN BET</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-xs text-left">MAX BET</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-xs text-left">DISKON</td>
+                                <td class="text-xs text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
+                            </tr>
+                            <tr>
+                                <td class="text-xs text-left">HADIAH</td>
+                                <td class="text-xs text-right link-accent">{win4d_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3d_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3dd_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2d_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dd_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dt_bet}x</td>
+                            </tr>
+                            <tr>
+                                <td class="text-xs text-left">HADIAH FULL</td>
+                                <td class="text-xs text-right link-accent">{win4dnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3dnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3ddnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2ddnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dtnodiskon_bet}x</td>
+                            </tr>
+                            <tr>
+                                <td class="text-xs text-left">HADIAH BB KENA</td>
+                                <td class="text-xs text-right link-accent">{win4dbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3dbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3ddbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2ddbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dtbb_kena_bet}x</td>
+                            </tr>
+                            <tr>
+                                <td class="text-xs text-left">HADIAH BB</td>
+                                <td class="text-xs text-right link-accent">{win4dbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3dbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3ddbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2ddbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dtbb_bet}x</td>
+                            </tr>
+                            <tr>
+                                <td class="text-xs text-left">LIMIT LINE</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2d)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dd)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dt)}</td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                </div>
+                <p class="py-4 text-xs">
+                    <b>Contoh Penulisan 4D/3D/2D:</b><br />
+                    1234 : 4D<br /> 
+                    123 : 3D<br /> 
+                    *123 : 3D<br /> 
+                    123* : 3DD / 3D DEPAN<br /> 
+                    12 : 2D <br />
+                    **12 : 2D<br /> 
+                    12** : 2DD / 2D DEPAN<br /> 
+                    *12* : 2DT / 2D TENGAH
+                    <br><br>
+                    <b>CARA BERMAIN</b><br>
+                    Menebak 4 angka, 3 angka dan 2 angka
+                    <br />
+                    Struktur ABCD<br /><br />
+    
+                    Misalnya keluar : 4321<br />
+                    Berarti pemenang untuk<br />
+                    4D = 4321<br />
+                    3D = 321<br />
+                    3DD / 3D DEPAN = 432<br />
+                    2D = 21<br />
+                    2DD / 2D DEPAN = 43<br />
+                    2DT / 2D TENGAH = 32<br /><br />
+    
+                    Aturan permainan:<br />
+                    1. Jika anda membeli diluar dari nomor yang dikeluarkan, berarti
+                    anda kalah dan uang tidak dikembalikan sama sekali.<br />
+                    2. Jika anda membeli masing 100rb untuk angka :<br />
+                    4D = 4321<br />
+                    3D = 321<br />
+                    2D = 21<br /><br />
+                    Berarti kemenangan anda adalah :<br />
+                    4D = 100rb x [Indeks kemenangan untuk 4D]<br />
+                    3D = 100rb x [Indeks kemenangan untuk 3D]<br />
+                    2D = 100rb x [Indeks kemenangan untuk 2D]<br /><br />
+                    (Catatan: nilai bet 100rb tidak dikembalikan ke member)<br/>
+                    (Khusus untuk 4D,3D dan 2D diberikan diskon tambahan)<br /><br/>
+                    <b>3D Posisi</b><br>
+                    Struktur: ABCD<br/>
+                    Misalnya keluar nomor = 1234<br/>
+                    berati pemenang untuk 3D Depan / 3DD adalah = 123<br/>
+                    berati pemenang untuk 3D Belakang / 3D adalah = 234 <br/><br/>
+                    <b>2D Posisi</b><br>
+                    Struktur: ABCD<br/>
+                    Misalnya keluar nomor = 1234<br/>
+                    berati pemenang untuk 2D Depan / 2DD adalah = 12<br/>
+                    berati pemenang untuk 2D Tengah / 2DT adalah = 23<br/>
+                    berati pemenang untuk 2D Belakang / 2D adalah = 34 <br/>
+                </p>
             </div>
-            <p class="py-4 text-xs">
-                <b>Contoh Penulisan 4D/3D/2D:</b><br />
-                1234 : 4D<br /> 
-                123 : 3D<br /> 
-                *123 : 3D<br /> 
-                123* : 3DD / 3D DEPAN<br /> 
-                12 : 2D <br />
-                **12 : 2D<br /> 
-                12** : 2DD / 2D DEPAN<br /> 
-                *12* : 2DT / 2D TENGAH
-                <br><br>
-                <b>CARA BERMAIN</b><br>
-                Menebak 4 angka, 3 angka dan 2 angka
-                <br />
-                Struktur ABCD<br /><br />
-
-                Misalnya keluar : 4321<br />
-                Berarti pemenang untuk<br />
-                4D = 4321<br />
-                3D = 321<br />
-                3DD / 3D DEPAN = 432<br />
-                2D = 21<br />
-                2DD / 2D DEPAN = 43<br />
-                2DT / 2D TENGAH = 32<br /><br />
-
-                Aturan permainan:<br />
-                1. Jika anda membeli diluar dari nomor yang dikeluarkan, berarti
-                anda kalah dan uang tidak dikembalikan sama sekali.<br />
-                2. Jika anda membeli masing 100rb untuk angka :<br />
-                4D = 4321<br />
-                3D = 321<br />
-                2D = 21<br /><br />
-                Berarti kemenangan anda adalah :<br />
-                4D = 100rb x [Indeks kemenangan untuk 4D]<br />
-                3D = 100rb x [Indeks kemenangan untuk 3D]<br />
-                2D = 100rb x [Indeks kemenangan untuk 2D]<br /><br />
-                (Catatan: nilai bet 100rb tidak dikembalikan ke member)<br/>
-                (Khusus untuk 4D,3D dan 2D diberikan diskon tambahan)<br /><br/>
-                <b>3D Posisi</b><br>
-                Struktur: ABCD<br/>
-                Misalnya keluar nomor = 1234<br/>
-                berati pemenang untuk 3D Depan / 3DD adalah = 123<br/>
-                berati pemenang untuk 3D Belakang / 3D adalah = 234 <br/><br/>
-                <b>2D Posisi</b><br>
-                Struktur: ABCD<br/>
-                Misalnya keluar nomor = 1234<br/>
-                berati pemenang untuk 2D Depan / 2DD adalah = 12<br/>
-                berati pemenang untuk 2D Tengah / 2DT adalah = 23<br/>
-                berati pemenang untuk 2D Belakang / 2D adalah = 34 <br/>
-            </p>
+            
         </div>
     </div>
 {/if}
