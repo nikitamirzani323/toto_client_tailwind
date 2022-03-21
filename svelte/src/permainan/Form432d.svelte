@@ -1,11 +1,10 @@
 <script>
- 
-  import Button_custom1 from "../component/Button_custom1.svelte";
-  import Tablekeranjang from "../permainan/Tablekeranjang.svelte";
-  import { createEventDispatcher } from "svelte";
+	import Button_custom1 from "../component/Button_custom1.svelte";
+	import Tablekeranjang from "../permainan/Tablekeranjang.svelte";
+	import { createEventDispatcher } from "svelte";
 
-  export let path_api = "";
-  export let idcomppasaran = "";
+	export let path_api = "";
+	export let idcomppasaran = "";
 	export let idtrxkeluaran = "";
 	export let client_token = "";
 	export let client_company = "";
@@ -175,221 +174,222 @@
 	let quick_pilihan2_input;
 	let quick_bet_input;
 
-  let dispatch = createEventDispatcher();
-  let isModalAlert = false
-  let isModalAPilihan = false
-  let flag_fulldiskon = "DISC"
-  let msg_error = ""
-  let path_432 = ""
+	let dispatch = createEventDispatcher();
+	let isModalAlert = false
+	let isModalAPilihan = false
+	let isModalLoading = false
+	let flag_fulldiskon = "DISC"
+	let msg_error = ""
+	let path_432 = ""
 
-  let card_custom = ""
-  if(client_device == "MOBILE"){
-    card_custom = "mx-2"
-  }
-  const changeTabs = (e) => {
-    switch(e){
-      case "432":
-    	class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_432set = "";
-        class_tab_432bolakbalik = "";
-        class_tab_432wap = "";
-        class_tab_432polatarung = "";
-        class_tab_432quick2d = "";
-        class_tab_4323DD = "";
-        class_tab_4322DD = "";
-        class_tab_4322DT = "";
-        panel_form_432 = true;
-        panel_form_432set = false;
-        panel_form_432bolakbalik = false;
-        panel_form_432wap = false;
-        panel_form_432polatarung = false;
-        panel_form_432quick2d = false;
-        panel_form_4323dd = false;
-        panel_form_4322dd = false;
-        panel_form_4322dt = false;
-        clearField();
-        break;
-      case "432SET":
-        class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_432 = "";
-        class_tab_432bolakbalik = "";
-        class_tab_432wap = "";
-        class_tab_432polatarung = "";
-        class_tab_432quick2d = "";
-        class_tab_4323DD = "";
-        class_tab_4322DD = "";
-        class_tab_4322DT = "";
-        panel_form_432set = true;
-        panel_form_432 = false;
-        panel_form_432bolakbalik = false;
-        panel_form_432wap = false;
-        panel_form_432polatarung = false;
-        panel_form_432quick2d = false;
-        panel_form_4323dd = false;
-        panel_form_4322dd = false;
-        panel_form_4322dt = false;
-        clearField();
-        break;
-      case "432BOLAKBALIK":
-        class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_432 = "";
-        class_tab_432set = "";
-        class_tab_432wap = "";
-        class_tab_432polatarung = "";
-        class_tab_432quick2d = "";
-        class_tab_4323DD = "";
-        class_tab_4322DD = "";
-        class_tab_4322DT = "";
-        panel_form_432bolakbalik = true;
-        panel_form_432set = false;
-        panel_form_432 = false;
-        panel_form_432wap = false;
-        panel_form_432polatarung = false;
-        panel_form_432quick2d = false;
-        panel_form_4323dd = false;
-        panel_form_4322dd = false;
-        panel_form_4322dt = false;
-        clearField();
-        break;
-      case "432WAP":
-        class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_432 = "";
-        class_tab_432set = "";
-        class_tab_432bolakbalik = "";
-        class_tab_432polatarung = "";
-        class_tab_432quick2d = "";
-        class_tab_4323DD = "";
-        class_tab_4322DD = "";
-        class_tab_4322DT = "";
-        panel_form_432wap = true;
-        panel_form_432bolakbalik = false;
-        panel_form_432set = false;
-        panel_form_432 = false;
-        panel_form_432polatarung = false;
-        panel_form_432quick2d = false;
-        panel_form_4323dd = false;
-        panel_form_4322dd = false;
-        panel_form_4322dt = false;
-        clearField();
-        break;
-      case "432POLATARUNG":
-        class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_432 = "";
-        class_tab_432set = "";
-        class_tab_432bolakbalik = "";
-        class_tab_432wap = "";
-        class_tab_432quick2d = "";
-        class_tab_4323DD = "";
-        class_tab_4322DD = "";
-        class_tab_4322DT = "";
-        panel_form_432polatarung = true;
-        panel_form_432wap = false;
-        panel_form_432bolakbalik = false;
-        panel_form_432set = false;
-        panel_form_432 = false;
-        panel_form_432quick2d = false;
-        panel_form_4323dd = false;
-        panel_form_4322dd = false;
-        panel_form_4322dt = false;
-        clearField();
-        break;
-      case "432QUICK2D":
-        class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_4323DD = "";
-        class_tab_4322DD = "";
-        class_tab_4322DT = "";
-        class_tab_432polatarung = "";
-        class_tab_432 = "";
-        class_tab_432set = "";
-        class_tab_432bolakbalik = "";
-        class_tab_432wap = "";
-        panel_form_432quick2d = true;
-        panel_form_432polatarung = false;
-        panel_form_432wap = false;
-        panel_form_432bolakbalik = false;
-        panel_form_432set = false;
-        panel_form_432 = false;
-        panel_form_4323dd = false;
-        panel_form_4322dd = false;
-        panel_form_4322dt = false;
-        clearField();
-        break;
-      case "4323DD":
-        class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_4322DD = "";
-        class_tab_4322DT = "";
-        class_tab_432polatarung = "";
-        class_tab_432 = "";
-        class_tab_432set = "";
-        class_tab_432bolakbalik = "";
-        class_tab_432wap = "";
-        class_tab_432quick2d = "";
-        panel_form_4323dd = true;
-        panel_form_432quick2d = false;
-        panel_form_432polatarung = false;
-        panel_form_432wap = false;
-        panel_form_432bolakbalik = false;
-        panel_form_432set = false;
-        panel_form_432 = false;
-        panel_form_4322dd = false;
-        panel_form_4322dt = false;
-        clearField();
-        break;
-      case "4322DD":
-        class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_4323DD = "";
-        class_tab_4322DT = "";
-        class_tab_432polatarung = "";
-        class_tab_432 = "";
-        class_tab_432set = "";
-        class_tab_432bolakbalik = "";
-        class_tab_432wap = "";
-        class_tab_432quick2d = "";
-        panel_form_4322dd = true;
-        panel_form_4323dd = false;
-        panel_form_432quick2d = false;
-        panel_form_432polatarung = false;
-        panel_form_432wap = false;
-        panel_form_432bolakbalik = false;
-        panel_form_432set = false;
-        panel_form_432 = false;
-        panel_form_4322dt = false;
-        clearField();
-        break;
-      case "4322DT":
-        class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-        class_tab_4322DD = "";
-        class_tab_4323DD = "";
-        class_tab_432polatarung = "";
-        class_tab_432 = "";
-        class_tab_432set = "";
-        class_tab_432bolakbalik = "";
-        class_tab_432wap = "";
-        class_tab_432quick2d = "";
-        panel_form_4322dt = true;
-        panel_form_4322dd = false;
-        panel_form_4323dd = false;
-        panel_form_432quick2d = false;
-        panel_form_432polatarung = false;
-        panel_form_432wap = false;
-        panel_form_432bolakbalik = false;
-        panel_form_432set = false;
-        panel_form_432 = false;
-        clearField();
-        break;
-    }     
-  };
-  const handleTambah = (e,path) => {
-    let flag = true;
-    switch (e) {
-      case "4-3-2":
+	let card_custom = ""
+	if(client_device == "MOBILE"){
+		card_custom = "mx-2"
+	}
+	const changeTabs = (e) => {
+		switch(e){
+			case "432":
+				class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_432set = "";
+				class_tab_432bolakbalik = "";
+				class_tab_432wap = "";
+				class_tab_432polatarung = "";
+				class_tab_432quick2d = "";
+				class_tab_4323DD = "";
+				class_tab_4322DD = "";
+				class_tab_4322DT = "";
+				panel_form_432 = true;
+				panel_form_432set = false;
+				panel_form_432bolakbalik = false;
+				panel_form_432wap = false;
+				panel_form_432polatarung = false;
+				panel_form_432quick2d = false;
+				panel_form_4323dd = false;
+				panel_form_4322dd = false;
+				panel_form_4322dt = false;
+				clearField();
+				break;
+			case "432SET":
+				class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_432 = "";
+				class_tab_432bolakbalik = "";
+				class_tab_432wap = "";
+				class_tab_432polatarung = "";
+				class_tab_432quick2d = "";
+				class_tab_4323DD = "";
+				class_tab_4322DD = "";
+				class_tab_4322DT = "";
+				panel_form_432set = true;
+				panel_form_432 = false;
+				panel_form_432bolakbalik = false;
+				panel_form_432wap = false;
+				panel_form_432polatarung = false;
+				panel_form_432quick2d = false;
+				panel_form_4323dd = false;
+				panel_form_4322dd = false;
+				panel_form_4322dt = false;
+				clearField();
+				break;
+			case "432BOLAKBALIK":
+				class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_432 = "";
+				class_tab_432set = "";
+				class_tab_432wap = "";
+				class_tab_432polatarung = "";
+				class_tab_432quick2d = "";
+				class_tab_4323DD = "";
+				class_tab_4322DD = "";
+				class_tab_4322DT = "";
+				panel_form_432bolakbalik = true;
+				panel_form_432set = false;
+				panel_form_432 = false;
+				panel_form_432wap = false;
+				panel_form_432polatarung = false;
+				panel_form_432quick2d = false;
+				panel_form_4323dd = false;
+				panel_form_4322dd = false;
+				panel_form_4322dt = false;
+				clearField();
+				break;
+			case "432WAP":
+				class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_432 = "";
+				class_tab_432set = "";
+				class_tab_432bolakbalik = "";
+				class_tab_432polatarung = "";
+				class_tab_432quick2d = "";
+				class_tab_4323DD = "";
+				class_tab_4322DD = "";
+				class_tab_4322DT = "";
+				panel_form_432wap = true;
+				panel_form_432bolakbalik = false;
+				panel_form_432set = false;
+				panel_form_432 = false;
+				panel_form_432polatarung = false;
+				panel_form_432quick2d = false;
+				panel_form_4323dd = false;
+				panel_form_4322dd = false;
+				panel_form_4322dt = false;
+				clearField();
+				break;
+			case "432POLATARUNG":
+				class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_432 = "";
+				class_tab_432set = "";
+				class_tab_432bolakbalik = "";
+				class_tab_432wap = "";
+				class_tab_432quick2d = "";
+				class_tab_4323DD = "";
+				class_tab_4322DD = "";
+				class_tab_4322DT = "";
+				panel_form_432polatarung = true;
+				panel_form_432wap = false;
+				panel_form_432bolakbalik = false;
+				panel_form_432set = false;
+				panel_form_432 = false;
+				panel_form_432quick2d = false;
+				panel_form_4323dd = false;
+				panel_form_4322dd = false;
+				panel_form_4322dt = false;
+				clearField();
+				break;
+			case "432QUICK2D":
+				class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_4323DD = "";
+				class_tab_4322DD = "";
+				class_tab_4322DT = "";
+				class_tab_432polatarung = "";
+				class_tab_432 = "";
+				class_tab_432set = "";
+				class_tab_432bolakbalik = "";
+				class_tab_432wap = "";
+				panel_form_432quick2d = true;
+				panel_form_432polatarung = false;
+				panel_form_432wap = false;
+				panel_form_432bolakbalik = false;
+				panel_form_432set = false;
+				panel_form_432 = false;
+				panel_form_4323dd = false;
+				panel_form_4322dd = false;
+				panel_form_4322dt = false;
+				clearField();
+				break;
+			case "4323DD":
+				class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_4322DD = "";
+				class_tab_4322DT = "";
+				class_tab_432polatarung = "";
+				class_tab_432 = "";
+				class_tab_432set = "";
+				class_tab_432bolakbalik = "";
+				class_tab_432wap = "";
+				class_tab_432quick2d = "";
+				panel_form_4323dd = true;
+				panel_form_432quick2d = false;
+				panel_form_432polatarung = false;
+				panel_form_432wap = false;
+				panel_form_432bolakbalik = false;
+				panel_form_432set = false;
+				panel_form_432 = false;
+				panel_form_4322dd = false;
+				panel_form_4322dt = false;
+				clearField();
+				break;
+			case "4322DD":
+				class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_4323DD = "";
+				class_tab_4322DT = "";
+				class_tab_432polatarung = "";
+				class_tab_432 = "";
+				class_tab_432set = "";
+				class_tab_432bolakbalik = "";
+				class_tab_432wap = "";
+				class_tab_432quick2d = "";
+				panel_form_4322dd = true;
+				panel_form_4323dd = false;
+				panel_form_432quick2d = false;
+				panel_form_432polatarung = false;
+				panel_form_432wap = false;
+				panel_form_432bolakbalik = false;
+				panel_form_432set = false;
+				panel_form_432 = false;
+				panel_form_4322dt = false;
+				clearField();
+				break;
+			case "4322DT":
+				class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_4322DD = "";
+				class_tab_4323DD = "";
+				class_tab_432polatarung = "";
+				class_tab_432 = "";
+				class_tab_432set = "";
+				class_tab_432bolakbalik = "";
+				class_tab_432wap = "";
+				class_tab_432quick2d = "";
+				panel_form_4322dt = true;
+				panel_form_4322dd = false;
+				panel_form_4323dd = false;
+				panel_form_432quick2d = false;
+				panel_form_432polatarung = false;
+				panel_form_432wap = false;
+				panel_form_432bolakbalik = false;
+				panel_form_432set = false;
+				panel_form_432 = false;
+				clearField();
+				break;
+		}     
+	};
+  	const handleTambah = (e,path) => {
+		let flag = true;
+		switch (e) {
+			case "4-3-2":
 				if (nomor_432 == "" && (parseInt(bet_432) < minimal_bet)) {
 					nomor_432_input.focus();
 				} else {
 					form4d_add();
 				}
-			  break;
-      case "432SET":
+				break;
+			case "432SET":
 				if (nomorset == "") {
 					nomorset_input.focus();
 				} else {
@@ -422,7 +422,7 @@
 					}
 				}
 				break;
-      case "BBFS":
+			case "BBFS":
 				if (nomorbbfs == "") {
 					nomorbbfs_input.focus();
 				} else {
@@ -455,14 +455,14 @@
 					}
 				}
 				break;
-      case "wap":
+			case "wap":
 				if (nomorwap == "") {
 					nomorwap_input.focus();
 				} else {
 					formwap_add();
 				}
 				break;
-      case "polatarung":
+			case "polatarung":
 				if (nomoras == "") {
 					nomoras_input.focus();
 					flag = false
@@ -475,7 +475,7 @@
 					formpolatarung_add();
 				}
 				break;
-      case "quick2D":
+			case "quick2D":
 				if (quick_bet == "" && parseInt(quick_bet) < minimal_bet) {
 					quick_bet_input.focus();
 				} else {
@@ -488,7 +488,7 @@
 					}
 				}
 				break;
-      case "3DD":
+			case "3DD":
 				if (nomor3dd == "" && parseInt(bet_3dd) < minimal_bet) {
 					nomor3dd_input.focus();
 				} else {
@@ -510,7 +510,7 @@
 					}
 				}
 				break;
-        case "2DD":
+			case "2DD":
 				if (nomor2dd == "" && parseInt(bet_2dd) < minimal_bet) {
 					nomor2dd_input.focus();
 				} else {
@@ -554,12 +554,12 @@
 					}
 				}
 				break;
-      case "pilihan":
+			case "pilihan":
 				path_432 = path
 				isModalAPilihan = true;
 				break;
-    }
-  };
+    	}
+  	};
   	const handlePilihan = (e) => {
 		flag_fulldiskon = e
 		switch (path_432) {
@@ -596,6 +596,7 @@
   	async function savetransaksi() {
     	msg_error = "";
 		group_btn_beli = false;
+		isModalLoading = true;
 		const res = await fetch(path_api+"api/savetransaksi", {
 			method: "POST",
 			headers: {
@@ -629,12 +630,14 @@
 			if(msg_error != ""){
         		isModalAlert = true;
       		}
+			isModalLoading = false;
 			dispatch("handleInvoice", "call");
 			reset();
 		} else {
 			if (json.status == "500" || json.status == "404") {
 				group_btn_beli = true;
 				isModalAlert = true;
+				isModalLoading = false;
 			}
 		}
 	}
@@ -3583,7 +3586,7 @@
             <div class="place-content-end text-right">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
 		<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
-			<div class="relative flex items-center overflow-auto scrollbar-hide">
+			<div class="relative flex items-center overflow-auto">
 				<ul class="flex items-center">
 					<li>
 					  <span
@@ -5007,8 +5010,6 @@
           </div>
         {/if}
       {/if}
-      
-      
   </div>
 </div>
 <Tablekeranjang
@@ -5073,27 +5074,27 @@
 
 {#if client_device == "WEBSITE"}
 	<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
-	<div class="modal" on:click|self={()=>isModalAPilihan = false}>
-	<div class="modal-box">
-		<h3 class="font-bold text-lg text-center">Pilih Permainan dibawah ini :</h3>
-		<div class="flex justify-center gap-2">
-		<button
-			on:click={() => {
-			handlePilihan("DISC");
-			}}  
-			class="btn btn-primary rounded-md">DISKON</button>
-		<button
-			on:click={() => {
-			handlePilihan("FULL");
-			}} 
-			class="btn btn-secondary rounded-md">NON DISKON / FULL</button>
-		<button
-			on:click={() => {
-			handlePilihan("BB");
-			}} 
-			class="btn btn-accent rounded-md">BOLAK BALIK / BB</button>
+	<div class="modal">
+		<div class="modal-box w-11/12 max-w-xl">
+			<h3 class="font-bold text-lg text-center">Pilih Permainan Dibawah ini :</h3>
+			<div class="grid grid-cols-3 gap-1">
+				<button
+					on:click={() => {
+					handlePilihan("DISC");
+					}}  
+					class="btn btn-primary rounded-md">DISKON</button>
+				<button
+					on:click={() => {
+					handlePilihan("FULL");
+					}} 
+					class="btn btn-secondary rounded-md">NON DISKON / FULL</button>
+				<button
+					on:click={() => {
+					handlePilihan("BB");
+					}} 
+					class="btn btn-accent rounded-md">BOLAK BALIK / BB</button>
+			</div>
 		</div>
-	</div>
 	</div>
 {:else}
 	<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
@@ -5126,5 +5127,23 @@
         <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-lg font-bold">INFORMASI</h3>
         <p class="py-4">{@html msg_error}</p>
+    </div>
+</div>
+
+<input type="checkbox" id="my-modal-loading" class="modal-toggle" bind:checked={isModalLoading}>
+<div class="modal">
+    <div class="modal-box w-auto grass opacity-70">
+		<svg class="lds-curve-bars" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(50,50)"><circle cx="0" cy="0" r="8.333333333333334" fill="none" stroke="#ffffcb" stroke-width="4" stroke-dasharray="26.179938779914945 26.179938779914945" transform="rotate(308.129)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="0" repeatCount="indefinite"></animateTransform>
+			</circle><circle cx="0" cy="0" r="16.666666666666668" fill="none" stroke="#fac090" stroke-width="4" stroke-dasharray="52.35987755982989 52.35987755982989" transform="rotate(360)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.2" repeatCount="indefinite"></animateTransform>
+			</circle><circle cx="0" cy="0" r="25" fill="none" stroke="#ff7c81" stroke-width="4" stroke-dasharray="78.53981633974483 78.53981633974483" transform="rotate(51.8709)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.4" repeatCount="indefinite"></animateTransform>
+			</circle><circle cx="0" cy="0" r="33.333333333333336" fill="none" stroke="#c0f6d2" stroke-width="4" stroke-dasharray="104.71975511965978 104.71975511965978" transform="rotate(135.238)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.6" repeatCount="indefinite"></animateTransform>
+			</circle><circle cx="0" cy="0" r="41.666666666666664" fill="none" stroke="#dae4bf" stroke-width="4" stroke-dasharray="130.89969389957471 130.89969389957471" transform="rotate(224.762)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
+			</circle></g>
+		</svg>
     </div>
 </div>

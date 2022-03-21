@@ -149,18 +149,18 @@
                         </a>
                     </div>
                     <div class="flex-auto mx-auto">
-                        <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">4D/3D/2D</button>
-                        <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">COLOK</button>
-                        <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">50-50</button>
-                        <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">KOMBINASI</button>
-                        <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">DASAR</button>
-                        <button type="button" class="modal-button shadow-lg btn btn-outline btn-error">SHIO</button>
+                        <button type="button" class="modal-button bg-base-200 grass w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</button>
+                        <button type="button" class="modal-button bg-base-200 grass w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</button>
+                        <button type="button" class="modal-button bg-base-200 grass w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</button>
+                        <button type="button" class="modal-button bg-base-200 grass w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</button>
+                        <button type="button" class="modal-button bg-base-200 grass w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</button>
+                        <button type="button" class="modal-button bg-base-200 grass w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-8 gap-3 grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-1 sm:grid-cols-1">
-            <div class="col-span-2">
+        <div class="mt-8 gap-3 grid grid-cols-1 lg:grid-cols-2 ">
+            <div>
                 {#if permainan == "4-3-2"}
                     <Form432d
                         on:handleInvoice={handleInvoice}
@@ -179,45 +179,43 @@
                 {/if}
             </div>
             
-            <div class="col-span-2">
-                <div class="card rounded-md  bg-base-200 shadow-xl" >
-                    <div class="card-body p-3">
-                        <h2 class="card-title text-lg grid grid-cols-2 gap-4">
-                            <div class="place-content-start text-left">
-                                TOTAL BET : <span class="text-md link-accent">{new Intl.NumberFormat().format(totalbet_invoice)}</span>
-                            </div>
-                            <div class="place-content-end text-right">
-                                TOTAL BAYAR : <span class="text-md link-accent">{new Intl.NumberFormat().format(totalbayar_invoice)}</span>
-                            </div>
-                        </h2>
-                        <div class="overflow-x-auto" style="height: 790px;">
-                            <table class="table-auto table table-zebra w-full" >
-                                <thead>
-                                    <tr>
-                                        <th class="text-sm text-center tracking-wide whitespace-nowrap">NOMOR</th>
-                                        <th class="text-sm text-center tracking-wide whitespace-nowrap">TIPE</th>
-                                        <th class="text-sm text-center tracking-wide whitespace-nowrap">PERMAINAN</th>
-                                        <th class="text-sm text-right tracking-wide whitespace-nowrap">BET</th>
-                                        <th class="text-sm text-right tracking-wide whitespace-nowrap">DIS(%)</th>
-                                        <th class="text-sm text-right tracking-wide whitespace-nowrap">KEI(%)</th>
-                                        <th class="text-sm text-right tracking-wide whitespace-nowrap">BAYAR</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {#each resultinvoice as rec}
-                                    <tr>
-                                        <td class="text-sm text-center">{rec.nomor}</td>
-                                        <td class="text-sm text-center">{rec.tipe_betinvoice}</td>
-                                        <td class="text-sm text-center">{rec.permainan}</td>
-                                        <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                        <td class="text-sm text-right link-accent">{rec.kei.toFixed(2)}</td>
-                                        <td class="text-sm text-right link-accent">{rec.diskon.toFixed(2)}</td>
-                                        <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
-                                    </tr>
-                                    {/each}
-                                </tbody>
-                            </table>
+            <div class="card rounded-md bg-base-200 shadow-xl" >
+                <div class="card-body p-3">
+                    <h2 class="card-title text-lg grid grid-cols-2 gap-4">
+                        <div class="place-content-start text-left">
+                            TOTAL BET : <span class="text-md link-accent">{new Intl.NumberFormat().format(totalbet_invoice)}</span>
                         </div>
+                        <div class="place-content-end text-right">
+                            TOTAL BAYAR : <span class="text-md link-accent">{new Intl.NumberFormat().format(totalbayar_invoice)}</span>
+                        </div>
+                    </h2>
+                    <div class="overflow-auto scrollbar-hide" style="height: 790px;">
+                        <table class="table-auto table table-zebra w-full" >
+                            <thead>
+                                <tr>
+                                    <th class="text-sm text-center tracking-wide whitespace-nowrap">NOMOR</th>
+                                    <th class="text-sm text-center tracking-wide whitespace-nowrap">TIPE</th>
+                                    <th class="text-sm text-center tracking-wide whitespace-nowrap">PERMAINAN</th>
+                                    <th class="text-sm text-right tracking-wide whitespace-nowrap">BET</th>
+                                    <th class="text-sm text-right tracking-wide whitespace-nowrap">DIS(%)</th>
+                                    <th class="text-sm text-right tracking-wide whitespace-nowrap">KEI(%)</th>
+                                    <th class="text-sm text-right tracking-wide whitespace-nowrap">BAYAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {#each resultinvoice as rec}
+                                <tr>
+                                    <td class="text-sm text-center">{rec.nomor}</td>
+                                    <td class="text-sm text-center">{rec.tipe_betinvoice}</td>
+                                    <td class="text-sm text-center">{rec.permainan}</td>
+                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                    <td class="text-sm text-right link-accent">{rec.kei.toFixed(2)}</td>
+                                    <td class="text-sm text-right link-accent">{rec.diskon.toFixed(2)}</td>
+                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                </tr>
+                                {/each}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

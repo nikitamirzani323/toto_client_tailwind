@@ -39,12 +39,19 @@
 </script>
 
 {#if client_device == "WEBSITE"}
-    <div class="fixed right-2 top-20 
-        bg-gray-700 dark:text-gray-400 
-        hover:bg-gray-100 dark:hover:bg-gray-100 
-        focus:outline-none focus:ring-4 focus:ring-gray-200 
-        dark:focus:ring-gray-700 rounded-lg text-lg p-1.5 z-50">
-        <Themeselet />
+    <div class="dropdown dropdown-left fixed right-2 top-20 z-50">
+        <label tabindex="0" class="btn m-1 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+        </label>
+        <ul data-choose-theme tabindex="0" class="dropdown-content menu p-3 shadow bg-base-200 rounded-box w-52">
+            <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Light</li>
+            <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Winter</li>
+            <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dark</li>
+            <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dracula</li>
+            <li data-set-theme="cyberpunk" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Cyberpunk</li>
+        </ul>
     </div>
     <div class="navbar">
         <div class="navbar-start">
@@ -55,13 +62,13 @@
         <div class="navbar-center hidden lg:flex">
             <div class="flex flex-row gap-2">
                 <!-- The button to open modal -->
-                <label for="my-modal-result" class="btn modal-button shadow-lg shadow-green-500/50 hover:bg-sky-700">RESULT</label>
-                <label for="my-modal-invoice" class="btn modal-button shadow-lg shadow-green-500/50 hover:bg-sky-700">INVOICE</label>
-                <label for="my-modal-pasaran" class="btn modal-button shadow-lg shadow-green-500/50 hover:bg-sky-700">PASARAN</label>
-                <label for="my-modal-bukumimpi" class="btn modal-button shadow-lg shadow-green-500/50 hover:bg-sky-700">BUKU MIMPI</label>
+                <label for="my-modal-result" class="btn modal-button shadow-lg shadow-green-500/50">RESULT</label>
+                <label for="my-modal-invoice" class="btn modal-button shadow-lg shadow-green-500/50">INVOICE</label>
+                <label for="my-modal-pasaran" class="btn modal-button shadow-lg shadow-green-500/50">PASARAN</label>
+                <label for="my-modal-bukumimpi" class="btn modal-button shadow-lg shadow-green-500/50">BUKU MIMPI</label>
             </div>
         </div>
-        <div class="navbar-end text-sm text-right">
+        <div class="navbar-end hidden text-xs lg:text-sm lg:inline-block text-right">
             <p>
                 Asia/Jakarta <br> 
                 {clockmachine} WIB<br>
@@ -95,7 +102,20 @@
             </a>
         </div>
         <div class="navbar-end text-right">
-            <Themeselet />
+            <div class="dropdown dropdown-left ">
+                <label tabindex="0" class="btn btn-ghost btn-circle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                    </svg>
+                </label>
+                <ul data-choose-theme tabindex="0" class="dropdown-content menu p-3 shadow bg-base-200 rounded-box w-52">
+                    <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Light</li>
+                    <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Winter</li>
+                    <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dark</li>
+                    <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dracula</li>
+                    <li data-set-theme="cyberpunk" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Cyberpunk</li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="mt-2 mb-2 mx-2 p-0 card bg-base-300 shadow-xl rounded-none">

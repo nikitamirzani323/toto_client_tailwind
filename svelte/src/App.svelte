@@ -5,6 +5,7 @@
   import timezone from "dayjs/plugin/timezone";
 
   import Navbar from './component/Navbar.svelte'
+  import Modal from './component/Modal.svelte'
   import Home from './pages/Home.svelte'
   import Permainan from './pages/Permainan.svelte'
  
@@ -154,6 +155,7 @@
     }
   }
   
+  
    
 </script>
 <svelte:head>
@@ -214,6 +216,11 @@
 {/if}
 
 
+<Modal
+  modal_title="Term Services"
+  modal_body_css="h-[23rem]"
+   />
+  
 <style global lang="postcss">
   @tailwind base;
   @tailwind components;
