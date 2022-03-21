@@ -93,25 +93,21 @@
                 <div class="place-content-start text-left">
                     TOTAL BAYAR : <span class="text-md link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
-                <div class="place-content-end text-right">
-                    <div class="flex">
-                        <div class="flex-auto">
-                            <Button_custom2
-                                on:click={handleInformation}
-                                button_block="btn-sm rounded-sm"
-                                button_title="INFORMATION" />
-                            <Button_custom1
-                                on:click={handleRemoveKeranjang_all}
-                                button_tipe="HAPUS"
-                                button_block="btn-sm rounded-sm"
-                                button_title="HAPUS" />
-                            <Button_custom1
-                                on:click={handleSave}
-                                button_tipe="BELI"
-                                button_block="btn-sm rounded-sm"
-                                button_title="BELI" />
-                        </div>
-                    </div>
+                <div class="grid grid-cols-3 gap-1">
+                    <Button_custom2
+                        on:click={handleInformation}
+                        button_block="btn-sm rounded-sm"
+                        button_title="INFORMASI" />
+                    <Button_custom1
+                        on:click={handleRemoveKeranjang_all}
+                        button_tipe="HAPUS"
+                        button_block="btn-sm rounded-sm"
+                        button_title="HAPUS" />
+                    <Button_custom1
+                        on:click={handleSave}
+                        button_tipe="BELI"
+                        button_block="btn-sm rounded-sm"
+                        button_title="BELI" />
                 </div>
             </h2>
             <div class="overflow-auto shadow" style="height: 450px;">
@@ -160,50 +156,44 @@
                 <div class="basis-1/4 text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
             </div>
         {:else}
-            <div class="place-content-center text-center">
-                <div class="flex">
-                    <div class="flex-auto">
-                        <Button_custom1
-                            on:click={handleRemoveKeranjang_all}
-                            button_tipe="HAPUS"
-                            button_block="btn-sm rounded-sm"
-                            button_title="HAPUS TRANSAKSI" />
-                        <Button_custom1
-                            on:click={handleSave}
-                            button_tipe="BELI"
-                            button_block="btn-sm rounded-sm"
-                            button_title="BELI" />
-                    </div>
+            
+            <div class="grid grid-cols-4 gap-1">
+                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    </svg>
+                    <h3 class="text-xs ">INFOMASI</h3>
                 </div>
+                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    </svg>
+                    <h3 class="text-xs ">HISTORY</h3>
+                </div>
+                <div on:click={handleRemoveKeranjang_all} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    <h3 class="text-xs ">HAPUS</h3>
+                </div>
+                <div on:click={handleSave} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <h3 class="text-xs ">BELI</h3>
+                </div>
+                
             </div>
             <h2 class="card-title text-lg mt-4">
                 <div class="place-content-start text-left text-sm">
                     TOTAL BAYAR : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
-            <div tabindex="0" class="collapse -mt-4">
-                <input type="checkbox"> 
-                <div class="collapse-title text-md font-bold  text-center">
-                    <div class="bg-base-300 p-3 rounded-full">Show Informasi Line</div>
-                </div>
-                <div class="collapse-content bg-base-300"> 
-                    <div class="text-xs">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
-                    <div class="grid grid-cols-2">
-                        <div class="text-xs">4D : <span class="text-xs link-accent">{count_line_4d}</span></div>
-                        <div class="text-xs">3D : <span class="text-xs link-accent">{count_line_3d}</span></div>
-                        <div class="text-xs">3D DEPAN : <span class="text-xs link-accent">{count_line_3dd}</span></div>
-                        <div class="text-xs">2D : <span class="text-xs link-accent">{count_line_2d}</span></div>
-                        <div class="text-xs">2D DEPAN : <span class="text-xs link-accent">{count_line_2dd}</span></div>
-                        <div class="text-xs">2D TENGAH : <span class="text-xs link-accent">{count_line_2dt}</span></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="overflow-auto scrollbar-hide" style="height: 300px;">
+            <div class="overflow-auto scrollbar-hide bg-base-300" style="height: 300px;">
                 {#each keranjang as rec}
                     <div class="bg-base-300 p-2 mb-1 relative">
                         <div class="grid grid-cols-2">
-                            <p class="text-xs italic font-si">
+                            <p class="text-xs italic ">
                                 <svg
                                     on:click={() => {
                                         handleRemoveKeranjang(rec.id, rec.bayar);
@@ -220,7 +210,17 @@
                     </div>
                 {/each}
             </div>
-           
+            <div class="bg-base-300 px-2 px-1">
+                <div class="text-sm">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
+                <div class="grid grid-cols-3">
+                    <div class="text-sm">4D : <span class="text-sm link-accent">{count_line_4d}</span></div>
+                    <div class="text-sm">3D : <span class="text-sm link-accent">{count_line_3d}</span></div>
+                    <div class="text-sm">3D DEPAN : <span class="text-sm link-accent">{count_line_3dd}</span></div>
+                    <div class="text-sm">2D : <span class="text-sm link-accent">{count_line_2d}</span></div>
+                    <div class="text-sm">2D DEPAN : <span class="text-sm link-accent">{count_line_2dd}</span></div>
+                    <div class="text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
+                </div>
+            </div>
         {/if}
     </div>
 </div>
@@ -230,7 +230,7 @@
     <div class="modal" on:click|self={()=>isModalInformation = false}>
         <div class="modal-box relative w-11/12 max-w-4xl h-3/4">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-lg font-bold">INFORMATION</h3>
+            <h3 class="text-lg font-bold">INFORMASI</h3>
             <div class="overflow-auto">
                 <table class="table table-compact w-full" >
                     <thead>
@@ -373,29 +373,11 @@
         </div>
     </div>
 {:else}
-    <div class="card bg-base-300 rounded-sm w-full fixed  bottom-0 z-50 block">
-        <div class="card-body p-2">
-            <div class="place-content-center text-center w-full ">
-                <div class="flex">
-                    <div class="flex-auto">
-                        <Button_custom3
-                            on:click={handleInformation}
-                            button_block="btn-sm rounded-sm"
-                            button_title="HISTORY" />
-                        <Button_custom2
-                            on:click={handleInformation}
-                            button_block="btn-sm rounded-sm"
-                            button_title="INFORMATION" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
         <div class="modal-box relative w-11/12 max-w-4xl h-5/6 p-4 rounded-none">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-lg font-bold">INFORMATION</h3>
+            <h3 class="text-lg font-bold">INFORMASI</h3>
             <div class="overflow-auto">
                 <table class="table-auto table table-compact w-full" >
                     <thead>

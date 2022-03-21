@@ -3587,55 +3587,76 @@
             </div>
             <div class="place-content-end text-right">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
-        <div class="mt-6 md:flex md:items-center md:justify-between md:space-x-8">
-          <div class="flex items-center space-x-2 overflow-auto scrollbar-hide md:max-w-lg xl:max-w-5xl 2xl:max-w-7xl lg:max-w-3xl whitespace-nowrap">
-            <span
-                on:click={() => {
-                  changeTabs("432");
-                }} 
-                class="{class_tab_432} px-3 py-1.5 cursor-pointer  ">4D/3D/2D</span> 
-            <span
-              on:click={() => {
-                changeTabs("432SET");
-              }}
-              class="{class_tab_432set} px-3 py-1.5 cursor-pointer ">4D/3D/2D SET</span> 
-            <span
-              on:click={() => {
-                changeTabs("432BOLAKBALIK");
-              }}
-              class="{class_tab_432bolakbalik} px-3 py-1.5 cursor-pointer  ">BOLAK BALIK</span> 
-            <span 
-              on:click={() => {
-                changeTabs("432WAP");
-              }}
-              class="{class_tab_432wap} px-3 py-1.5 cursor-pointer ">WAP</span> 
-            <span 
-              on:click={() => {
-                changeTabs("432POLATARUNG");
-              }}
-              class="{class_tab_432polatarung} px-3 py-1.5 cursor-pointer ">POLA TARUNG</span> 
-            <span 
-              on:click={() => {
-                changeTabs("432QUICK2D");
-              }}
-              class="{class_tab_432quick2d} px-3 py-1.5 cursor-pointer ">QUICK 2D</span>
-            <span 
-              on:click={() => {
-                changeTabs("4323DD");
-              }}
-              class="{class_tab_4323DD} px-3 py-1.5 cursor-pointer ">3DD /3D DEPAN</span>
-            <span 
-              on:click={() => {
-                changeTabs("4322DD");
-              }}
-              class="{class_tab_4322DD} px-3 py-1.5 cursor-pointer ">2DD /2D DEPAN</span>
-            <span 
-              on:click={() => {
-                changeTabs("4322DT");
-              }}
-              class="{class_tab_4322DT} px-3 py-1.5 cursor-pointer ">2DT /2D TENGAH</span>
-          </div>
-        </div>
+		<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
+			<div class="relative flex items-center overflow-auto scrollbar-hide">
+				<ul class="flex items-center">
+					<li>
+					  <span
+						  on:click={() => {
+						  changeTabs("432");
+						  }} 
+						  class="{class_tab_432} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer ">4D/3D/2D</span>
+					</li>
+					<li>
+					  <span
+						  on:click={() => {
+						  changeTabs("432SET");
+						  }}
+						  class="{class_tab_432set} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">4D/3D/2D SET</span>
+					</li>
+					<li>
+					  <span
+						  on:click={() => {
+							  changeTabs("432BOLAKBALIK");
+						  }}
+						  class="{class_tab_432bolakbalik} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer">BOLAK BALIK</span>
+					</li>
+					<li>
+					  <span 
+						  on:click={() => {
+							  changeTabs("432WAP");
+						  }}
+						  class="{class_tab_432wap} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">WAP</span>
+					</li>
+					<li>
+					  <span 
+						  on:click={() => {
+						  changeTabs("432POLATARUNG");
+						  }}
+						  class="{class_tab_432polatarung} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">POLA TARUNG</span>
+					</li>
+					<li>
+					  <span 
+						  on:click={() => {
+							  changeTabs("432QUICK2D");
+						  }}
+						  class="{class_tab_432quick2d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">QUICK 2D</span>
+					</li>
+					<li>
+					  <span 
+						  on:click={() => {
+							  changeTabs("4323DD");
+						  }}
+						  class="{class_tab_4323DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">3DD /3D DEPAN</span>
+					</li>
+					<li>
+					  <span 
+						  on:click={() => {
+							  changeTabs("4322DD");
+						  }}
+						  class="{class_tab_4322DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">2DD /2D DEPAN</span>
+					</li>
+					<li>
+					  <span 
+						  on:click={() => {
+							  changeTabs("4322DT");
+						  }}
+						  class="{class_tab_4322DT} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">2DT /2D TENGAH</span>
+					</li>
+				</ul>
+			</div>
+		  </div>
+        
         
         {#if panel_form_432}
           <div class="mt-1 gap-2 grid grid-cols-3">
@@ -4276,7 +4297,7 @@
           <div class="place-content-start text-left text-sm">
               {pasaran_name} <br> {permainan_title}
           </div>
-          <div class="place-content-end text-right text-sm ">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
+          <div class="place-content-end text-right text-sm -mt-3">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
         <div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
           <div class="relative flex items-center overflow-auto scrollbar-hide">
@@ -4345,15 +4366,6 @@
 						class="{class_tab_4322DT} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">2DT /2D TENGAH</span>
 				  </li>
 			  </ul>
-             
-             
-             
-             
-             
-            
-            
-            
-            
           </div>
         </div>
         {#if panel_form_432}
@@ -4398,6 +4410,7 @@
                 handleTambah("pilihan","4-3-2");
               }} 
             button_tipe=""
+            button_block="btn-sm "
             button_title="Tambah" />
           </div>
         {/if}
@@ -4530,13 +4543,14 @@
                 </label>
               </div>
           </div>
-          <div class="flex items-stretch">
+		  <div class="form-control mt-1">
             <Button_custom1 
-                on:click={() => {
-                  handleTambah("pilihan","432SET");
-                }} 
-              button_title="Tambah"
-              button_block="btn-block" />
+              on:click={() => {
+                handleTambah("pilihan","432SET");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
           </div>
         {/if}
         {#if panel_form_432bolakbalik}
@@ -4672,13 +4686,14 @@
                   </label>
               </div>
           </div>
-          <div class="flex items-stretch">
+		  <div class="form-control mt-1">
             <Button_custom1 
-                on:click={() => {
-                  handleTambah("pilihan","BBFS");
-                }} 
-              button_title="Tambah"
-              button_block="btn-block" />
+              on:click={() => {
+                handleTambah("pilihan","BBFS");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
           </div>
         {/if}
         {#if panel_form_432wap}
@@ -4690,13 +4705,14 @@
               maxlength=1000  
               class="textarea textarea-bordered h-24 resize-none" placeholder="Input Format"></textarea>
           </div>
-          <div class="flex items-stretch">
+		  <div class="form-control mt-1">
             <Button_custom1 
-                on:click={() => {
-                  handleTambah("pilihan","wap");
-                }} 
-              button_title="Tambah"
-              button_block="btn-block" />
+              on:click={() => {
+                handleTambah("pilihan","wap");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
           </div>
           <p class="text-left text-sm">
             <b>Contoh (WAP) :</b><br />
@@ -4780,13 +4796,14 @@
                 <span class="label-text-alt">{new Intl.NumberFormat().format(bet_tarung)}</span>
             </label>
           </div>
-          <div class="flex items-stretch">
+		  <div class="form-control mt-1">
             <Button_custom1 
               on:click={() => {
                 handleTambah("pilihan","polatarung");
               }} 
-            button_title="Tambah"
-            button_block="btn-block" />
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
           </div>
           <p class="text-left text-sm">
             POLA TARUNG : AS KOP KEPALA EKOR <br>
@@ -4800,7 +4817,7 @@
           <div class="mt-1 gap-2 grid grid-cols-2">
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text">Besar/Kecil/Genap/Ganjil</span>
+                      <span class="label-text text-xs">Besar/Kecil/Genap/Ganjil</span>
                   </label>
                   <select
                     bind:value={quick_pilihan1}
@@ -4814,7 +4831,7 @@
               </div>
               <div class="form-control">
                 <label class="label">
-                  <span class="label-text">2D/2DD/2DT</span>
+                  <span class="label-text text-xs">2D/2DD/2DT</span>
                 </label>
                 <select
                   bind:value={quick_pilihan2}
@@ -4829,7 +4846,7 @@
           <div class="form-control">
             <label class="label">
                 <span class="label-text">&nbsp;</span>
-                <span class="label-text-alt">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
             </label>
             <input 
               bind:value={quick_bet}
@@ -4846,13 +4863,14 @@
                 <span class="label-text-alt">{new Intl.NumberFormat().format(quick_bet)}</span>
             </label>
           </div>
-          <div class="flex items-stretch">
+		  <div class="form-control mt-1">
             <Button_custom1 
               on:click={() => {
                 handleTambah("pilihan","quick2D");
               }} 
-            button_title="Tambah"
-            button_block="btn-block" />
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
           </div>
         {/if}
         {#if panel_form_4323dd}
@@ -4891,13 +4909,14 @@
               </label>
             </div>
           </div>
-          <div class="flex items-stretch">
+		  <div class="form-control mt-1">
             <Button_custom1 
               on:click={() => {
                 handleTambah("pilihan","3DD");
               }} 
-            button_title="Tambah"
-            button_block="btn-block" />
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
           </div>
         {/if}
         {#if panel_form_4322dd}
@@ -4936,13 +4955,14 @@
                 </label>
             </div>
           </div>
-          <div class="flex items-stretch">
+		  <div class="form-control mt-1">
             <Button_custom1 
               on:click={() => {
                 handleTambah("pilihan","2DD");
               }} 
-            button_title="Tambah"
-            button_block="btn-block" />
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
           </div>
         {/if}
         {#if panel_form_4322dt}
@@ -4981,13 +5001,14 @@
                 </label>
             </div>
           </div>
-          <div class="flex items-stretch">
+		  <div class="form-control mt-1">
             <Button_custom1 
               on:click={() => {
                 handleTambah("pilihan","2DT");
               }} 
-            button_title="Tambah"
-            button_block="btn-block" />
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
           </div>
         {/if}
       {/if}
@@ -5080,39 +5101,35 @@
   </div>
 </div>
 {:else}
-<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
-<div class="modal" on:click|self={()=>isModalAPilihan = false}>
-  <div class="modal-box w-full rounded-none">
-    <h3 class="font-bold text-md text-center">Pilih Permainan Dibawah ini :</h3>
-	<div class="place-content-center text-center w-full ">
-		<div class="flex">
-			<div class="flex-auto">
-				<button
-					on:click={() => {
-					handlePilihan("DISC");
-					}}  
-					class="btn btn-sm btn-primary rounded-sm text-xs">DISKON</button>
-				<button
-					on:click={() => {
-					handlePilihan("FULL");
-					}} 
-					class="btn btn-sm btn-secondary rounded-sm text-xs">NON DISKON / FULL</button>
-				<button
-					on:click={() => {
-					handlePilihan("BB");
-					}} 
-					class="btn btn-sm btn-accent rounded-sm text-xs">BOLAK BALIK</button>
-			</div>
+	<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
+	<div class="modal" on:click|self={()=>isModalAPilihan = false}>
+	<div class="modal-box w-full rounded-none">
+		<h3 class="font-bold text-sm text-center">Pilih Permainan Dibawah ini :</h3>
+		<div class="grid grid-cols-3 gap-1">
+			<button
+				on:click={() => {
+				handlePilihan("DISC");
+				}}  
+				class="btn btn-sm btn-primary rounded-sm text-xs">DISKON</button>
+			<button
+				on:click={() => {
+				handlePilihan("FULL");
+				}} 
+				class="btn btn-sm btn-secondary rounded-sm text-xs">FULL</button>
+			<button
+				on:click={() => {
+				handlePilihan("BB");
+				}} 
+				class="btn btn-sm btn-accent rounded-sm text-xs">BOLAK BALIK</button>
 		</div>
 	</div>
-  </div>
-</div>
+	</div>
 {/if}
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <div class="modal" on:click|self={()=>isModalAlert = false}>
     <div class="modal-box relative">
         <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-lg font-bold">INFORMATION</h3>
+        <h3 class="text-lg font-bold">INFORMASI</h3>
         <p class="py-4">{@html msg_error}</p>
     </div>
 </div>
