@@ -4372,7 +4372,7 @@
           <div class="mt-1 gap-2 grid grid-cols-2">
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text">Nomor (2-4)</span>
+                      <span class="label-text text-xs">Nomor (2-4)</span>
                   </label>
                   <input
                     bind:this={nomor_432_input}
@@ -4388,7 +4388,7 @@
               <div class="form-control">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                      <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                   </label>
                   <input
                     bind:value={bet_432}
@@ -4400,7 +4400,7 @@
                     class="input border-none text-right text-3xl placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(bet_432)}</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_432)}</span>
                   </label>
               </div>
           </div>
@@ -4418,7 +4418,7 @@
           <div class="mt-1 gap-2 grid grid-cols-1">
             <div class="form-control">
               <label class="label">
-                  <span class="label-text">Nomor (2-4)</span>
+                  <span class="label-text text-xs">Nomor (2-4)</span>
               </label>
               <input
                 bind:this={nomorset_input}
@@ -4435,7 +4435,7 @@
               <div class="form-control">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                      <span class="label-text-alt text-xs">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                   </label>
                   <input 
                     bind:value={betset_1}
@@ -4448,13 +4448,13 @@
                     class="input border-none text-right text-3xl placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(betset_1)}</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_1)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                   bind:value={betset_2}
@@ -4466,13 +4466,13 @@
                   class="input border-none text-right text-3xl placeholder:text-sm">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(betset_2)}</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_2)}</span>
                 </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                   bind:value={betset_6}
@@ -4484,14 +4484,14 @@
                   class="input border-none text-right text-3xl placeholder:text-sm">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(betset_6)}</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_6)}</span>
                 </label>
               </div>
               
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                   bind:value={betset_3}
@@ -4503,13 +4503,13 @@
                   class="input border-none text-right text-3xl placeholder:text-sm">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(betset_3)}</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_3)}</span>
                 </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                   bind:value={betset_4}
@@ -4521,13 +4521,13 @@
                   class="input border-none text-right text-3xl placeholder:text-sm">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(betset_4)}</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_4)}</span>
                 </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                   bind:value={betset_5}
@@ -4539,7 +4539,7 @@
                   class="input border-none text-right text-3xl placeholder:text-sm">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(betset_5)}</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_5)}</span>
                 </label>
               </div>
           </div>
@@ -4557,7 +4557,7 @@
           <div class="mt-1 gap-2 grid grid-cols-1">
             <div class="form-control">
               <label class="label">
-                  <span class="label-text">Nomor (2-4)</span>
+                  <span class="label-text text-xs">Nomor (2-4)</span>
               </label>
               <input
                 bind:this={nomorbbfs_input}
@@ -4574,7 +4574,7 @@
               <div class="form-control">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                      <span class="label-text-alt text-xs">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                   </label>
                   <input 
                     bind:value={bet_1}
@@ -4587,13 +4587,13 @@
                     class="input border-none text-right text-3xl placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(bet_1)}</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_1)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                     bind:value={bet_2}
@@ -4606,13 +4606,13 @@
                     class="input border-none text-right text-3xl placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(bet_2)}</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                     bind:value={bet_6}
@@ -4625,13 +4625,13 @@
                     class="input border-none text-right text-3xl placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(bet_6)}</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_6)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                     bind:value={bet_3}
@@ -4644,13 +4644,13 @@
                     class="input border-none text-right text-3xl placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(bet_3)}</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                     bind:value={bet_4}
@@ -4663,13 +4663,13 @@
                     class="input border-none text-right text-3xl placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(bet_4)}</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_4)}</span>
                   </label>
               </div>
               <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input 
                     bind:value={bet_5}
@@ -4682,7 +4682,7 @@
                     class="input border-none text-right text-3xl placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(bet_5)}</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_5)}</span>
                   </label>
               </div>
           </div>
@@ -4723,7 +4723,7 @@
           <div class="mt-1 gap-2 grid grid-cols-2">
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text">Nomor AS</span>
+                      <span class="label-text text-xs">Nomor AS</span>
                   </label>
                   <input
                     bind:this={nomoras_input}
@@ -4737,7 +4737,7 @@
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">Nomor KOP</span>
+                    <span class="label-text text-xs">Nomor KOP</span>
                 </label>
                 <input
                     bind:this={nomorkop_input}
@@ -4751,7 +4751,7 @@
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">Nomor KEPALA</span>
+                    <span class="label-text text-xs">Nomor KEPALA</span>
                 </label>
                 <input
                     bind:value={nomorkepala}
@@ -4764,7 +4764,7 @@
               </div>
               <div class="form-control">
                 <label class="label">
-                    <span class="label-text">Nomor EKOR</span>
+                    <span class="label-text text-xs">Nomor EKOR</span>
                 </label>
                 <input
                     bind:value={nomorekor}
@@ -4779,7 +4779,7 @@
           <div class="form-control">
             <label class="label">
                 <span class="label-text">&nbsp;</span>
-                <span class="label-text-alt">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
             </label>
             <input 
               bind:this={bet_tarung_input}
@@ -4793,7 +4793,7 @@
               class="input border-none text-right text-3xl placeholder:text-sm">
             <label class="label">
                 <span class="label-text">&nbsp;</span>
-                <span class="label-text-alt">{new Intl.NumberFormat().format(bet_tarung)}</span>
+                <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_tarung)}</span>
             </label>
           </div>
 		  <div class="form-control mt-1">
@@ -4805,7 +4805,7 @@
             button_block="btn-sm "
             button_title="Tambah" />
           </div>
-          <p class="text-left text-sm">
+          <p class="text-left text-xs">
             POLA TARUNG : AS KOP KEPALA EKOR <br>
             <b>Contoh (POLA TARUNG) :</b><br />
             - AS:123 &nbsp;&nbsp;KOP:456 &nbsp;&nbsp;KEPALA:789 &nbsp;&nbsp;EKOR:012 => 4D<br>
@@ -4846,7 +4846,7 @@
           <div class="form-control">
             <label class="label">
                 <span class="label-text">&nbsp;</span>
-                <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                <span class="label-text-alt text-xs text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
             </label>
             <input 
               bind:value={quick_bet}
@@ -4860,7 +4860,7 @@
               class="input border-none text-right text-3xl placeholder:text-sm">
             <label class="label">
                 <span class="label-text">&nbsp;</span>
-                <span class="label-text-alt">{new Intl.NumberFormat().format(quick_bet)}</span>
+                <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(quick_bet)}</span>
             </label>
           </div>
 		  <div class="form-control mt-1">
@@ -4877,7 +4877,7 @@
           <div class="mt-1 gap-2 grid grid-cols-2">
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text">Nomor (3 Digit)</span>
+                    <span class="label-text text-xs">Nomor (3 Digit)</span>
                 </label>
                 <input
                   bind:this={nomor3dd_input}
@@ -4893,7 +4893,7 @@
             <div class="form-control">
               <label class="label">
                   <span class="label-text">&nbsp;</span>
-                  <span class="label-text-alt">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                  <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
               </label>
               <input
                 bind:value={bet_3dd}
@@ -4905,7 +4905,7 @@
                 class="input border-none text-right text-3xl placeholder:text-sm">
               <label class="label">
                   <span class="label-text">&nbsp;</span>
-                  <span class="label-text-alt">{new Intl.NumberFormat().format(bet_3dd)}</span>
+                  <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3dd)}</span>
               </label>
             </div>
           </div>
@@ -4923,7 +4923,7 @@
           <div class="mt-1 gap-2 grid grid-cols-2">
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text">Nomor (2 Digit)</span>
+                    <span class="label-text text-xs">Nomor (2 Digit)</span>
                 </label>
                 <input
                   bind:this={nomor2dd_input}
@@ -4939,7 +4939,7 @@
             <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input
                   bind:value={bet_2dd}
@@ -4951,7 +4951,7 @@
                   class="input border-none text-right text-3xl placeholder:text-sm">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(bet_2dd)}</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dd)}</span>
                 </label>
             </div>
           </div>
@@ -4969,7 +4969,7 @@
           <div class="mt-1 gap-2 grid grid-cols-2">
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text">Nomor (2 Digit)</span>
+                    <span class="label-text text-xs">Nomor (2 Digit)</span>
                 </label>
                 <input
                   bind:this={nomor2dt_input}
@@ -4985,7 +4985,7 @@
             <div class="form-control">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input
                   bind:value={bet_2dt}
@@ -4997,7 +4997,7 @@
                   class="input border-none text-right text-3xl placeholder:text-sm">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(bet_2dt)}</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dt)}</span>
                 </label>
             </div>
           </div>
@@ -5077,29 +5077,29 @@
 
 
 {#if client_device == "WEBSITE"}
-<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
-<div class="modal" on:click|self={()=>isModalAPilihan = false}>
-  <div class="modal-box">
-    <h3 class="font-bold text-lg text-center">Pilih Permainan dibawah ini :</h3>
-    <div class="flex justify-center gap-2">
-      <button
-        on:click={() => {
-          handlePilihan("DISC");
-        }}  
-        class="btn btn-primary rounded-md">DISKON</button>
-      <button
-        on:click={() => {
-          handlePilihan("FULL");
-        }} 
-        class="btn btn-secondary rounded-md">NON DISKON / FULL</button>
-      <button
-        on:click={() => {
-          handlePilihan("BB");
-        }} 
-        class="btn btn-accent rounded-md">BOLAK BALIK / BB</button>
-    </div>
-  </div>
-</div>
+	<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
+	<div class="modal" on:click|self={()=>isModalAPilihan = false}>
+	<div class="modal-box">
+		<h3 class="font-bold text-lg text-center">Pilih Permainan dibawah ini :</h3>
+		<div class="flex justify-center gap-2">
+		<button
+			on:click={() => {
+			handlePilihan("DISC");
+			}}  
+			class="btn btn-primary rounded-md">DISKON</button>
+		<button
+			on:click={() => {
+			handlePilihan("FULL");
+			}} 
+			class="btn btn-secondary rounded-md">NON DISKON / FULL</button>
+		<button
+			on:click={() => {
+			handlePilihan("BB");
+			}} 
+			class="btn btn-accent rounded-md">BOLAK BALIK / BB</button>
+		</div>
+	</div>
+	</div>
 {:else}
 	<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
 	<div class="modal" on:click|self={()=>isModalAPilihan = false}>
