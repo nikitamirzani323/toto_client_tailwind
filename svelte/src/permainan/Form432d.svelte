@@ -560,7 +560,7 @@
 				break;
     }
   };
-  const handlePilihan = (e) => {
+  	const handlePilihan = (e) => {
 		flag_fulldiskon = e
 		switch (path_432) {
 			case "4-3-2":
@@ -593,13 +593,8 @@
 		}
 		isModalAPilihan = false
 	};
-  async function savetransaksi() {
-		if (client_device == "WEBSITE") {
-			css_loader = "position:absolute;z-index: 1000;left: 50%;top: 35%;display:inline;";
-		} else {
-			css_loader = "position:absolute;z-index: 1000;left: 40%;top: 50%;display:inline;";
-		}
-    msg_error = "";
+  	async function savetransaksi() {
+    	msg_error = "";
 		group_btn_beli = false;
 		const res = await fetch(path_api+"api/savetransaksi", {
 			method: "POST",
@@ -632,8 +627,8 @@
 				msg_error += "Data telah berhasil disimpan, Total belanja : " +new Intl.NumberFormat().format(totalbayar_server)
 			}
 			if(msg_error != ""){
-        isModalAlert = true;
-      }
+        		isModalAlert = true;
+      		}
 			dispatch("handleInvoice", "call");
 			reset();
 		} else {

@@ -2,7 +2,6 @@
     import { createEventDispatcher } from "svelte";
     import Button_custom1 from "../component/Button_custom1.svelte";
     import Button_custom2 from "../component/Button_custom2.svelte";
-    import Button_custom3 from "../component/Button_custom3.svelte";
 
     export let keranjang = [];
     export let totalkeranjang = 0;
