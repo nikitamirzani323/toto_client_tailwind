@@ -20,6 +20,7 @@
     "daisyui": "^2.11.0",
     "dayjs": "^1.11.0",
     "svelte-themes": "^0.0.98",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "theme-change": "^2.0.2"
   }
 }

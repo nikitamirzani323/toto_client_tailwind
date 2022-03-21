@@ -1899,7 +1899,7 @@
 				msg_error += "Maximal Bet 2DD : " +new Intl.NumberFormat().format(max2dd_bet)+"<br>";
 			}
 			if (flag == true) {
-				if (game.toString() == "4" || game.toString() == "3" || game.toString() == "2") {
+				if (game.toString() == "4") {
 					switch(flag_fulldiskon){
 						case "FULL":
 							diskon = 0
@@ -1922,12 +1922,6 @@
 					if (checkLimitLine("2DD") == true) {
 						switch(game.toString()){
 							case "4":
-								nomor = nomorset[2]+nomorset[3];
-								break;
-							case "3":
-								nomor = nomorset[1]+nomorset[2];
-								break;
-							case "2":
 								nomor = nomorset[0]+nomorset[1];
 								break;
 						}
@@ -1963,7 +1957,7 @@
 				msg_error += "Maximal Bet 2DT : " +new Intl.NumberFormat().format(max2dt_bet)+"<b>";
 			}
 			if (flag == true) {
-				if (game.toString() == "4" || game.toString() == "3" || game.toString() == "2") {
+				if (game.toString() == "4") {
 					switch(flag_fulldiskon){
 						case "FULL":
 							diskon = 0
@@ -1986,13 +1980,7 @@
 					if (checkLimitLine("2DT") == true) {
 						switch(game.toString()){
 							case "4":
-								nomor = nomorset[2]+nomorset[3];
-								break;
-							case "3":
 								nomor = nomorset[1]+nomorset[2];
-								break;
-							case "2":
-								nomor = nomorset[0]+nomorset[1];
 								break;
 						}
 						totalkeranjang = bayar + totalkeranjang;
@@ -2027,7 +2015,7 @@
 				msg_error += "Maximal Bet 3DD : " +new Intl.NumberFormat().format(max3dd_bet)+"<br>";
 			}
 			if (flag == true) {
-				if (game.toString() == "4" || game.toString() == "3") {
+				if (game.toString() == "4") {
 					switch(flag_fulldiskon){
 						case "FULL":
 							diskon = 0
@@ -2049,9 +2037,6 @@
 					if (checkLimitLine("3DD") == true) {
 						switch(game.toString()){
 							case "4":
-								nomor = nomorset[0]+nomorset[1]+nomorset[2];
-								break;
-							case "3":
 								nomor = nomorset[0]+nomorset[1]+nomorset[2];
 								break;
 						}
@@ -3603,7 +3588,7 @@
             <div class="place-content-end text-right">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
         <div class="mt-6 md:flex md:items-center md:justify-between md:space-x-8">
-          <div class="flex items-center space-x-2 overflow-y-auto md:max-w-lg xl:max-w-5xl 2xl:max-w-7xl lg:max-w-3xl whitespace-nowrap">
+          <div class="flex items-center space-x-2 overflow-auto scrollbar-hide md:max-w-lg xl:max-w-5xl 2xl:max-w-7xl lg:max-w-3xl whitespace-nowrap">
             <span
                 on:click={() => {
                   changeTabs("432");
@@ -3618,7 +3603,7 @@
               on:click={() => {
                 changeTabs("432BOLAKBALIK");
               }}
-              class="{class_tab_432bolakbalik} px-3 cursor-pointer  ">BOLAK BALIK</span> 
+              class="{class_tab_432bolakbalik} px-3 py-1.5 cursor-pointer  ">BOLAK BALIK</span> 
             <span 
               on:click={() => {
                 changeTabs("432WAP");
@@ -4294,52 +4279,81 @@
           <div class="place-content-end text-right text-sm ">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
         <div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
-          <div class="flex items-center space-x-2 overflow-y-auto md:max-w-lg xl:max-w-5xl 2xl:max-w-7xl lg:max-w-3xl whitespace-nowrap">
-            <span
-                on:click={() => {
-                  changeTabs("432");
-                }} 
-                class="{class_tab_432} text-sm px-3 py-1.5 cursor-pointer  ">4D/3D/2D</span> 
-            <span
-              on:click={() => {
-                changeTabs("432SET");
-              }}
-              class="{class_tab_432set} text-sm px-3 py-1.5 cursor-pointer ">4D/3D/2D SET</span> 
-            <span
-              on:click={() => {
-                changeTabs("432BOLAKBALIK");
-              }}
-              class="{class_tab_432bolakbalik} text-sm px-3 py-1.5 cursor-pointer  ">BOLAK BALIK</span> 
-            <span 
-              on:click={() => {
-                changeTabs("432WAP");
-              }}
-              class="{class_tab_432wap} text-sm px-3 py-1.5 cursor-pointer ">WAP</span> 
-            <span 
-              on:click={() => {
-                changeTabs("432POLATARUNG");
-              }}
-              class="{class_tab_432polatarung} text-sm px-3 py-1.5 cursor-pointer ">POLA TARUNG</span> 
-            <span 
-              on:click={() => {
-                changeTabs("432QUICK2D");
-              }}
-              class="{class_tab_432quick2d} text-sm px-3 py-1.5 cursor-pointer ">QUICK 2D</span>
-            <span 
-              on:click={() => {
-                changeTabs("4323DD");
-              }}
-              class="{class_tab_4323DD} text-sm px-3 py-1.5 cursor-pointer ">3DD /3D DEPAN</span>
-            <span 
-              on:click={() => {
-                changeTabs("4322DD");
-              }}
-              class="{class_tab_4322DD} text-sm px-3 py-1.5 cursor-pointer ">2DD /2D DEPAN</span>
-            <span 
-              on:click={() => {
-                changeTabs("4322DT");
-              }}
-              class="{class_tab_4322DT} text-sm px-3 py-1.5 cursor-pointer ">2DT /2D TENGAH</span>
+          <div class="relative flex items-center overflow-auto scrollbar-hide">
+			  <ul class="flex items-center">
+				  <li>
+					<span
+						on:click={() => {
+						changeTabs("432");
+						}} 
+						class="{class_tab_432} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive  ">4D/3D/2D</span>
+				  </li>
+				  <li>
+					<span
+						on:click={() => {
+						changeTabs("432SET");
+						}}
+						class="{class_tab_432set} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">4D/3D/2D SET</span>
+				  </li>
+				  <li>
+					<span
+						on:click={() => {
+							changeTabs("432BOLAKBALIK");
+						}}
+						class="{class_tab_432bolakbalik} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive  ">BOLAK BALIK</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("432WAP");
+						}}
+						class="{class_tab_432wap} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">WAP</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+						changeTabs("432POLATARUNG");
+						}}
+						class="{class_tab_432polatarung} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">POLA TARUNG</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("432QUICK2D");
+						}}
+						class="{class_tab_432quick2d} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">QUICK 2D</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("4323DD");
+						}}
+						class="{class_tab_4323DD} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">3DD /3D DEPAN</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("4322DD");
+						}}
+						class="{class_tab_4322DD} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">2DD /2D DEPAN</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("4322DT");
+						}}
+						class="{class_tab_4322DT} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">2DT /2D TENGAH</span>
+				  </li>
+			  </ul>
+             
+             
+             
+             
+             
+            
+            
+            
+            
           </div>
         </div>
         {#if panel_form_432}
@@ -5041,6 +5055,7 @@
   {limitline_2dt}/>
 
 
+{#if client_device == "WEBSITE"}
 <input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
 <div class="modal" on:click|self={()=>isModalAPilihan = false}>
   <div class="modal-box">
@@ -5064,7 +5079,35 @@
     </div>
   </div>
 </div>
-
+{:else}
+<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
+<div class="modal" on:click|self={()=>isModalAPilihan = false}>
+  <div class="modal-box w-full rounded-none">
+    <h3 class="font-bold text-md text-center">Pilih Permainan Dibawah ini :</h3>
+	<div class="place-content-center text-center w-full ">
+		<div class="flex">
+			<div class="flex-auto">
+				<button
+					on:click={() => {
+					handlePilihan("DISC");
+					}}  
+					class="btn btn-sm btn-primary rounded-sm text-xs">DISKON</button>
+				<button
+					on:click={() => {
+					handlePilihan("FULL");
+					}} 
+					class="btn btn-sm btn-secondary rounded-sm text-xs">NON DISKON / FULL</button>
+				<button
+					on:click={() => {
+					handlePilihan("BB");
+					}} 
+					class="btn btn-sm btn-accent rounded-sm text-xs">BOLAK BALIK</button>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>
+{/if}
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <div class="modal" on:click|self={()=>isModalAlert = false}>
     <div class="modal-box relative">

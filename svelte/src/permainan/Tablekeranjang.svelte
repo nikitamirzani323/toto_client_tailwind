@@ -167,7 +167,7 @@
                             on:click={handleRemoveKeranjang_all}
                             button_tipe="HAPUS"
                             button_block="btn-sm rounded-sm"
-                            button_title="HAPUS" />
+                            button_title="HAPUS TRANSAKSI" />
                         <Button_custom1
                             on:click={handleSave}
                             button_tipe="BELI"
@@ -176,56 +176,51 @@
                     </div>
                 </div>
             </div>
-            <h2 class="card-title text-lg grid grid-cols-2 gap-4">
+            <h2 class="card-title text-lg mt-4">
                 <div class="place-content-start text-left text-sm">
                     TOTAL BAYAR : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
-            <div class="overflow-auto shadow" style="height: 350px;">
-                <table class="table-auto table table-zebra w-full" >
-                    <thead>
-                        <tr>
-                            <th width="1%"></th>
-                            <th width="*" class="text-sm text-center">NOMOR</th>
-                            <th width="10%" class="text-sm text-center">TIPE</th>
-                            <th width="10%" class="text-sm text-center">PERMAINAN</th>
-                            <th width="15%" class="text-sm text-right">BET</th>
-                            <th width="15%" class="text-sm text-right">DISKON</th>
-                            <th width="15%" class="text-sm text-right">BAYAR</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {#each keranjang as rec}
-                        <tr>
-                            <td 
-                                class="cursor-pointer"
-                                on:click={() => {
-                                    handleRemoveKeranjang(rec.id, rec.bayar);
-                                }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <div tabindex="0" class="collapse -mt-4">
+                <input type="checkbox"> 
+                <div class="collapse-title text-md font-bold  text-center">
+                    <div class="bg-base-300 p-3 rounded-full">Show Informasi Line</div>
+                </div>
+                <div class="collapse-content bg-base-300"> 
+                    <div class="text-xs">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
+                    <div class="grid grid-cols-2">
+                        <div class="text-xs">4D : <span class="text-xs link-accent">{count_line_4d}</span></div>
+                        <div class="text-xs">3D : <span class="text-xs link-accent">{count_line_3d}</span></div>
+                        <div class="text-xs">3D DEPAN : <span class="text-xs link-accent">{count_line_3dd}</span></div>
+                        <div class="text-xs">2D : <span class="text-xs link-accent">{count_line_2d}</span></div>
+                        <div class="text-xs">2D DEPAN : <span class="text-xs link-accent">{count_line_2dd}</span></div>
+                        <div class="text-xs">2D TENGAH : <span class="text-xs link-accent">{count_line_2dt}</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="overflow-auto scrollbar-hide" style="height: 300px;">
+                {#each keranjang as rec}
+                    <div class="bg-base-300 p-2 mb-1 relative">
+                        <div class="grid grid-cols-2">
+                            <p class="text-xs italic font-si">
+                                <svg
+                                    on:click={() => {
+                                        handleRemoveKeranjang(rec.id, rec.bayar);
+                                    }} 
+                                    xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute right-2 top-2 cursor-pointer bg-base-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
-                            </td>
-                            <td class="text-sm text-center">{rec.nomor}</td>
-                            <td class="text-sm text-center">{rec.tipetoto}</td>
-                            <td class="text-sm text-center">{rec.permainan}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
-                        </tr>
-                        {/each}
-                    </tbody>
-                </table>    
+                                NOMOR : {rec.nomor} - {rec.tipetoto} - {rec.permainan} <br>
+                                BET : {new Intl.NumberFormat().format(rec.bet)} <br>
+                                DISKON : {new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%) <br>
+                                BAYAR : {new Intl.NumberFormat().format(rec.bayar)} <br>
+                            </p>
+                        </div>
+                    </div>
+                {/each}
             </div>
-            <div class="text-sm">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
-            <div class="grid grid-cols-2">
-                <div class="text-sm">4D : <span class="text-sm link-accent">{count_line_4d}</span></div>
-                <div class="text-sm">3D : <span class="text-sm link-accent">{count_line_3d}</span></div>
-                <div class="text-sm">3D DEPAN : <span class="text-sm link-accent">{count_line_3dd}</span></div>
-                <div class="text-sm">2D : <span class="text-sm link-accent">{count_line_2d}</span></div>
-                <div class="text-sm">2D DEPAN : <span class="text-sm link-accent">{count_line_2dd}</span></div>
-                <div class="text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
-            </div>
+           
         {/if}
     </div>
 </div>
@@ -378,168 +373,168 @@
         </div>
     </div>
 {:else}
-<div class="card bg-base-300 rounded-sm w-full fixed  bottom-0 z-50 block">
-    <div class="card-body p-2">
-        <div class="place-content-center text-center w-full ">
-            <div class="flex">
-                <div class="flex-auto">
-                    <Button_custom3
-                        on:click={handleInformation}
-                        button_block="btn-sm rounded-sm"
-                        button_title="HISTORY" />
-                    <Button_custom2
-                        on:click={handleInformation}
-                        button_block="btn-sm rounded-sm"
-                        button_title="INFORMATION" />
+    <div class="card bg-base-300 rounded-sm w-full fixed  bottom-0 z-50 block">
+        <div class="card-body p-2">
+            <div class="place-content-center text-center w-full ">
+                <div class="flex">
+                    <div class="flex-auto">
+                        <Button_custom3
+                            on:click={handleInformation}
+                            button_block="btn-sm rounded-sm"
+                            button_title="HISTORY" />
+                        <Button_custom2
+                            on:click={handleInformation}
+                            button_block="btn-sm rounded-sm"
+                            button_title="INFORMATION" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
-<div class="modal " on:click|self={()=>isModalInformation = false}>
-    <div class="modal-box relative w-11/12 max-w-4xl h-5/6 p-4 rounded-none">
-        <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-lg font-bold">INFORMATION</h3>
-        <div class="overflow-auto">
-            <table class="table-auto table table-compact w-full" >
-                <thead>
-                    <tr>
-                        <th>&nbsp;</th>
-                        <th class="text-xs text-right align-top">4D</th>
-                        <th class="text-xs text-right align-top">3D</th>
-                        <th class="text-xs text-right align-top">3DD <br> 3D DEPAN</th>
-                        <th class="text-xs text-right align-top">2D</th>
-                        <th class="text-xs text-right align-top">2DD <br> 2D DEPAN</th>
-                        <th class="text-xs text-right align-top">2DT <br> 2D TENGAH</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-xs text-left">MIN BET</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs text-left">MAX BET</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs text-left">DISKON</td>
-                        <td class="text-xs text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
-                        <td class="text-xs text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
-                        <td class="text-xs text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
-                        <td class="text-xs text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
-                        <td class="text-xs text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
-                        <td class="text-xs text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs text-left">HADIAH</td>
-                        <td class="text-xs text-right link-accent">{win4d_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win3d_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win3dd_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2d_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2dd_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2dt_bet}x</td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs text-left">HADIAH FULL</td>
-                        <td class="text-xs text-right link-accent">{win4dnodiskon_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win3dnodiskon_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win3ddnodiskon_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2dnodiskon_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2ddnodiskon_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2dtnodiskon_bet}x</td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs text-left">HADIAH BB KENA</td>
-                        <td class="text-xs text-right link-accent">{win4dbb_kena_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win3dbb_kena_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win3ddbb_kena_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2dbb_kena_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2ddbb_kena_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2dtbb_kena_bet}x</td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs text-left">HADIAH BB</td>
-                        <td class="text-xs text-right link-accent">{win4dbb_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win3dbb_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win3ddbb_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2dbb_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2ddbb_bet}x</td>
-                        <td class="text-xs text-right link-accent">{win2dtbb_bet}x</td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs text-left">LIMIT LINE</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2d)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dd)}</td>
-                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dt)}</td>
-                    </tr>
-                </tbody>
-            </table>    
+    <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
+    <div class="modal " on:click|self={()=>isModalInformation = false}>
+        <div class="modal-box relative w-11/12 max-w-4xl h-5/6 p-4 rounded-none">
+            <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-lg font-bold">INFORMATION</h3>
+            <div class="overflow-auto">
+                <table class="table-auto table table-compact w-full" >
+                    <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th class="text-xs text-right align-top">4D</th>
+                            <th class="text-xs text-right align-top">3D</th>
+                            <th class="text-xs text-right align-top">3DD <br> 3D DEPAN</th>
+                            <th class="text-xs text-right align-top">2D</th>
+                            <th class="text-xs text-right align-top">2DD <br> 2D DEPAN</th>
+                            <th class="text-xs text-right align-top">2DT <br> 2D TENGAH</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-xs text-left">MIN BET</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-xs text-left">MAX BET</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-xs text-left">DISKON</td>
+                            <td class="text-xs text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
+                            <td class="text-xs text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
+                            <td class="text-xs text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
+                            <td class="text-xs text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
+                            <td class="text-xs text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
+                            <td class="text-xs text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
+                        </tr>
+                        <tr>
+                            <td class="text-xs text-left">HADIAH</td>
+                            <td class="text-xs text-right link-accent">{win4d_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win3d_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win3dd_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2d_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2dd_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2dt_bet}x</td>
+                        </tr>
+                        <tr>
+                            <td class="text-xs text-left">HADIAH FULL</td>
+                            <td class="text-xs text-right link-accent">{win4dnodiskon_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win3dnodiskon_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win3ddnodiskon_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2dnodiskon_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2ddnodiskon_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2dtnodiskon_bet}x</td>
+                        </tr>
+                        <tr>
+                            <td class="text-xs text-left">HADIAH BB KENA</td>
+                            <td class="text-xs text-right link-accent">{win4dbb_kena_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win3dbb_kena_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win3ddbb_kena_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2dbb_kena_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2ddbb_kena_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2dtbb_kena_bet}x</td>
+                        </tr>
+                        <tr>
+                            <td class="text-xs text-left">HADIAH BB</td>
+                            <td class="text-xs text-right link-accent">{win4dbb_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win3dbb_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win3ddbb_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2dbb_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2ddbb_bet}x</td>
+                            <td class="text-xs text-right link-accent">{win2dtbb_bet}x</td>
+                        </tr>
+                        <tr>
+                            <td class="text-xs text-left">LIMIT LINE</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2d)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dd)}</td>
+                            <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dt)}</td>
+                        </tr>
+                    </tbody>
+                </table>    
+            </div>
+            <p class="py-4 text-xs">
+                <b>Contoh Penulisan 4D/3D/2D:</b><br />
+                1234 : 4D<br /> 
+                123 : 3D<br /> 
+                *123 : 3D<br /> 
+                123* : 3DD / 3D DEPAN<br /> 
+                12 : 2D <br />
+                **12 : 2D<br /> 
+                12** : 2DD / 2D DEPAN<br /> 
+                *12* : 2DT / 2D TENGAH
+                <br><br>
+                <b>CARA BERMAIN</b><br>
+                Menebak 4 angka, 3 angka dan 2 angka
+                <br />
+                Struktur ABCD<br /><br />
+
+                Misalnya keluar : 4321<br />
+                Berarti pemenang untuk<br />
+                4D = 4321<br />
+                3D = 321<br />
+                3DD / 3D DEPAN = 432<br />
+                2D = 21<br />
+                2DD / 2D DEPAN = 43<br />
+                2DT / 2D TENGAH = 32<br /><br />
+
+                Aturan permainan:<br />
+                1. Jika anda membeli diluar dari nomor yang dikeluarkan, berarti
+                anda kalah dan uang tidak dikembalikan sama sekali.<br />
+                2. Jika anda membeli masing 100rb untuk angka :<br />
+                4D = 4321<br />
+                3D = 321<br />
+                2D = 21<br /><br />
+                Berarti kemenangan anda adalah :<br />
+                4D = 100rb x [Indeks kemenangan untuk 4D]<br />
+                3D = 100rb x [Indeks kemenangan untuk 3D]<br />
+                2D = 100rb x [Indeks kemenangan untuk 2D]<br /><br />
+                (Catatan: nilai bet 100rb tidak dikembalikan ke member)<br/>
+                (Khusus untuk 4D,3D dan 2D diberikan diskon tambahan)<br /><br/>
+                <b>3D Posisi</b><br>
+                Struktur: ABCD<br/>
+                Misalnya keluar nomor = 1234<br/>
+                berati pemenang untuk 3D Depan / 3DD adalah = 123<br/>
+                berati pemenang untuk 3D Belakang / 3D adalah = 234 <br/><br/>
+                <b>2D Posisi</b><br>
+                Struktur: ABCD<br/>
+                Misalnya keluar nomor = 1234<br/>
+                berati pemenang untuk 2D Depan / 2DD adalah = 12<br/>
+                berati pemenang untuk 2D Tengah / 2DT adalah = 23<br/>
+                berati pemenang untuk 2D Belakang / 2D adalah = 34 <br/>
+            </p>
         </div>
-        <p class="py-4 text-xs">
-            <b>Contoh Penulisan 4D/3D/2D:</b><br />
-            1234 : 4D<br /> 
-            123 : 3D<br /> 
-            *123 : 3D<br /> 
-            123* : 3DD / 3D DEPAN<br /> 
-            12 : 2D <br />
-            **12 : 2D<br /> 
-            12** : 2DD / 2D DEPAN<br /> 
-            *12* : 2DT / 2D TENGAH
-            <br><br>
-            <b>CARA BERMAIN</b><br>
-            Menebak 4 angka, 3 angka dan 2 angka
-            <br />
-            Struktur ABCD<br /><br />
-
-            Misalnya keluar : 4321<br />
-            Berarti pemenang untuk<br />
-            4D = 4321<br />
-            3D = 321<br />
-            3DD / 3D DEPAN = 432<br />
-            2D = 21<br />
-            2DD / 2D DEPAN = 43<br />
-            2DT / 2D TENGAH = 32<br /><br />
-
-            Aturan permainan:<br />
-            1. Jika anda membeli diluar dari nomor yang dikeluarkan, berarti
-            anda kalah dan uang tidak dikembalikan sama sekali.<br />
-            2. Jika anda membeli masing 100rb untuk angka :<br />
-            4D = 4321<br />
-            3D = 321<br />
-            2D = 21<br /><br />
-            Berarti kemenangan anda adalah :<br />
-            4D = 100rb x [Indeks kemenangan untuk 4D]<br />
-            3D = 100rb x [Indeks kemenangan untuk 3D]<br />
-            2D = 100rb x [Indeks kemenangan untuk 2D]<br /><br />
-            (Catatan: nilai bet 100rb tidak dikembalikan ke member)<br/>
-            (Khusus untuk 4D,3D dan 2D diberikan diskon tambahan)<br /><br/>
-            <b>3D Posisi</b><br>
-            Struktur: ABCD<br/>
-            Misalnya keluar nomor = 1234<br/>
-            berati pemenang untuk 3D Depan / 3DD adalah = 123<br/>
-            berati pemenang untuk 3D Belakang / 3D adalah = 234 <br/><br/>
-            <b>2D Posisi</b><br>
-            Struktur: ABCD<br/>
-            Misalnya keluar nomor = 1234<br/>
-            berati pemenang untuk 2D Depan / 2DD adalah = 12<br/>
-            berati pemenang untuk 2D Tengah / 2DT adalah = 23<br/>
-            berati pemenang untuk 2D Belakang / 2D adalah = 34 <br/>
-        </p>
     </div>
-</div>
 {/if}
