@@ -4291,727 +4291,724 @@
           </div>
         {/if}
       {:else}
-        <h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
+        <h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-2">
           <div class="place-content-start text-left text-xs">
               {pasaran_name} <br> {permainan_title}
           </div>
           <div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
-		<div class="grid grid-cols-3 gap-2 px-2">
-			<label for="my-modal-432d" class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">4D/3D/2D</label>
-			<label for="my-modal-432set" class="modal-button flex items-center justify-center font-semibold text-center text-xs  m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">4D/3D/2D SET</label>
-			<label for="my-modal-432bb" class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">BOLAK BALIK</label>
-			<label for="my-modal-432wap" class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">WAP</label>
-			<label for="my-modal-432polatarung" class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">POLA TARUNG</label>
-			<label for="my-modal-432quick24" class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">QUICK2D</label>
-			<label for="my-modal-4323dd" class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">3D DEPAN</label>
-			<label for="my-modal-4322dd" class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">2D DEPAN</label>
-			<label for="my-modal-4322dt" class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">2D TENGAH</label>
-		</div>
-        
-		<input type="checkbox" id="my-modal-432d" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-432d" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				<div class="mt-1 gap-2 grid grid-cols-1">
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor (2-4)</span>
-						</label>
-						<input
-							bind:this={nomor_432_input}
-							bind:value={nomor_432}
-							on:keyup={handleKeyboard_format}
-							on:keypress={handleKeyboard_checkenter} 
-							minlength="4"
-							maxlength="4"
-							type="text" 
-							placeholder="4D/3D/2D" 
-							class="input border-none text-center text-3xl placeholder:text-3xl"> 
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input
-							bind:value={bet_432}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboard_checkenter} 
-							minlength="3"
-							maxlength="7"
-							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_432)}</span>
-						</label>
-					</div>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","4-3-2");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-			</div>
-		</div>
-
-		<input type="checkbox" id="my-modal-432set" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-432set" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				
-				<div class="mt-1 gap-2 grid grid-cols-1">
-					<div class="form-control">
-					<label class="label">
-						<span class="label-text text-xs">Nomor (2-4)</span>
-					</label>
-					<input
-						bind:this={nomorset_input}
-						bind:value={nomorset}
-						on:keyup={handleKeyboard_format}
-						on:keypress={handleKeyboard432set_checkenter} 
-						minlength="4"
-						maxlength="4"
-						type="text" placeholder="4D/3D/2D" 
-						class="input border-none text-center text-3xl placeholder:text-3xl"> 
-					</div>
-				</div>
-				<div class="mt-1 gap-2 grid grid-cols-2">
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-							bind:value={betset_1}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboard432set_checkenter}
-							minlength="3"
-							maxlength="7"
-							type="text" 
-							placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_1)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-						bind:value={betset_2}
-						on:keyup={handleKeyboard_number}
-						on:keypress={handleKeyboard432set_checkenter}
-						minlength="3"
-						maxlength="7"
-						type="text" placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_2)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-						bind:value={betset_6}
-						on:keyup={handleKeyboard_number}
-						on:keypress={handleKeyboard432set_checkenter}
-						minlength="3"
-						maxlength="7"
-						type="text" placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_6)}</span>
-						</label>
-					</div>
-					
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-						bind:value={betset_3}
-						on:keyup={handleKeyboard_number}
-						on:keypress={handleKeyboard432set_checkenter}
-						minlength="3"
-						maxlength="7"
-						type="text" placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_3)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-						bind:value={betset_4}
-						on:keyup={handleKeyboard_number}
-						on:keypress={handleKeyboard432set_checkenter}
-						minlength="3"
-						maxlength="7"
-						type="text" placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_4)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-						bind:value={betset_5}
-						on:keyup={handleKeyboard_number}
-						on:keypress={handleKeyboard432set_checkenter}
-						minlength="3"
-						maxlength="7"
-						type="text" placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_5)}</span>
-						</label>
-					</div>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","432SET");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-				
-			</div>
-		</div>
-
-		<input type="checkbox" id="my-modal-432bb" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-432bb" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				
-				<div class="mt-1 gap-2 grid grid-cols-1">
-					<div class="form-control">
-					<label class="label">
-						<span class="label-text text-xs">Nomor (2-4)</span>
-					</label>
-					<input
-						bind:this={nomorbbfs_input}
-						bind:value={nomorbbfs}
-						on:keyup={handleKeyboard_format}
-						on:keypress={handleKeyboardbbfs_checkenter} 
-						minlength="4"
-						maxlength={bbfs}
-						type="text" placeholder="4D/3D/2D" 
-						class="input border-none text-center text-3xl placeholder:text-3xl">
-					</div>
-				</div>
-				<div class="mt-1 gap-2 grid grid-cols-2">
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-							bind:value={bet_1}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboardbbfs_checkenter}
-							minlength="3"
-							maxlength="7"
-							type="text" 
-							placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_1)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-							bind:value={bet_2}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboardbbfs_checkenter}
-							minlength="3"
-							maxlength="7"
-							type="text" 
-							placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-							bind:value={bet_6}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboardbbfs_checkenter}
-							minlength="3"
-							maxlength="7"
-							type="text" 
-							placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_6)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-							bind:value={bet_3}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboardbbfs_checkenter}
-							minlength="3"
-							maxlength="7"
-							type="text" 
-							placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-							bind:value={bet_4}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboardbbfs_checkenter}
-							minlength="3"
-							maxlength="7"
-							type="text" 
-							placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_4)}</span>
-						</label>
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input 
-							bind:value={bet_5}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboardbbfs_checkenter}
-							minlength="3"
-							maxlength="7"
-							type="text" 
-							placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_5)}</span>
-						</label>
-					</div>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","BBFS");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-				
-			</div>
-		</div>
-		
-		<input type="checkbox" id="my-modal-432wap" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-432wap" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				
-				<div class="mt-3 grid grid-cols-1">
-					<textarea
-					bind:this={nomorwap_input}
-					bind:value={nomorwap}
-					rows="100" cols="100"
-					maxlength=1000  
-					class="textarea textarea-bordered h-24 resize-none" placeholder="Input Format"></textarea>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","wap");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-				<p class="text-left text-sm">
-					<b>Contoh (WAP) :</b><br />
-						1234*234*34#1000,34*235*35#5000<br />
-				</p>
-				
-			</div>
-		</div>
-		
-		<input type="checkbox" id="my-modal-432polatarung" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-432polatarung" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				
-				<div class="mt-1 gap-2 grid grid-cols-2">
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor AS</span>
-						</label>
-						<input
-							bind:this={nomoras_input}
-							bind:value={nomoras}
-							on:keyup={handleKeyboard_number}
-							minlength="4"
-							maxlength="4"
-							type="text" 
-							placeholder="AS" 
-							class="input border-none text-center text-3xl placeholder:text-3xl"> 
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor KOP</span>
-						</label>
-						<input
-							bind:this={nomorkop_input}
-							bind:value={nomorkop}
-							on:keyup={handleKeyboard_number}
-							minlength="4"
-							maxlength="4"
-							type="text" 
-							placeholder="KOP" 
-							class="input border-none text-center text-3xl placeholder:text-3xl">  
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor KEPALA</span>
-						</label>
-						<input
-							bind:value={nomorkepala}
-							on:keyup={handleKeyboard_number}
-							minlength="4"
-							maxlength="4"
-							type="text" 
-							placeholder="KEPALA" 
-							class="input border-none text-center text-3xl placeholder:text-3xl">
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor EKOR</span>
-						</label>
-						<input
-							bind:value={nomorekor}
-							on:keyup={handleKeyboard_number}
-							minlength="4"
-							maxlength="4"
-							type="text" 
-							placeholder="EKOR" 
-							class="input border-none text-center text-3xl placeholder:text-3xl">
-					</div>
-				</div>
-				<div class="form-control">
-					<label class="label">
-						<span class="label-text text-xs">&nbsp;</span>
-						<span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-					</label>
-					<input 
-					bind:this={bet_tarung_input}
-					bind:value={bet_tarung}
-					on:keyup={handleKeyboard_number}
-					on:keypress={handleKeyboardpolatarung_checkenter}
-					minlength="3"
-					maxlength="7"
-					type="text" 
-					placeholder="Bet" 
-					class="input border-none text-right text-3xl placeholder:text-3xl">
-					<label class="label">
-						<span class="label-text text-xs">&nbsp;</span>
-						<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_tarung)}</span>
-					</label>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","polatarung");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-				<p class="text-left text-xs">
-					POLA TARUNG : AS KOP KEPALA EKOR <br>
-					<b>Contoh (POLA TARUNG) :</b><br />
-					- AS:123 &nbsp;&nbsp;KOP:456 &nbsp;&nbsp;KEPALA:789 &nbsp;&nbsp;EKOR:012 => 4D<br>
-					- AS:12 &nbsp;&nbsp;KOP:45 &nbsp;&nbsp;KEPALA:78 => 3D<br>
-					- AS:12 &nbsp;&nbsp;KOP:45  => 2D<br>
-				</p>
-				
-			</div>
-		</div>
-
-		<input type="checkbox" id="my-modal-432quick24" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-432quick24" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				
-				<div class="mt-1 gap-2 grid grid-cols-2">
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Besar/Kecil/Genap/Ganjil</span>
-						</label>
-						<select
-							bind:value={quick_pilihan1}
-							bind:this={quick_pilihan1_input} 
-							class="select w-full max-w-xs">
-							<option value="BESAR">BESAR</option>
-							<option value="KECIL">KECIL</option>
-							<option value="GENAP">GENAP</option>
-							<option value="GANJIL">GANJIL</option>
-						</select> 
-					</div>
-					<div class="form-control">
-						<label class="label">
-						<span class="label-text text-xs">2D/2DD/2DT</span>
-						</label>
-						<select
-						bind:value={quick_pilihan2}
-						bind:this={quick_pilihan2_input}
-						class="select w-full max-w-xs">
-						<option value="2D">2D</option>
-						<option value="2DD">2D DEPAN</option>
-						<option value="2DT">2D TENGAH</option>
-						</select> 
-					</div>
-				</div>
-				<div class="form-control">
-					<label class="label">
-						<span class="label-text text-xs">&nbsp;</span>
-						<span class="label-text-alt text-xs text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-					</label>
-					<input 
-					bind:value={quick_bet}
-					bind:this={quick_bet_input}
-					on:keyup={handleKeyboard_number}
-					on:keypress={handleKeyboardquick2d_checkenter}
-					minlength="3"
-					maxlength="7"
-					type="text" 
-					placeholder="Bet" 
-					class="input border-none text-right text-3xl placeholder:text-3xl">
-					<label class="label">
-						<span class="label-text text-xs">&nbsp;</span>
-						<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(quick_bet)}</span>
-					</label>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","quick2D");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-				
-			</div>
-		</div>
-
-		<input type="checkbox" id="my-modal-4323dd" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-4323dd" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				
-				<div class="mt-1 gap-2 grid grid-cols-1">
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor (3 Digit)</span>
-						</label>
-						<input
-						bind:this={nomor3dd_input}
-						bind:value={nomor3dd}
-						on:keyup={handleKeyboard_format}
-						on:keypress={handleKeyboard3dd_checkenter}
-						minlength="3"
-						maxlength="3"
-						type="text" 
-						placeholder="3D DEPAN" 
-						class="input border-none text-center text-3xl placeholder:text-3xl"> 
-					</div>
-					<div class="form-control">
-					<label class="label">
-						<span class="label-text text-xs">&nbsp;</span>
-						<span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-					</label>
-					<input
-						bind:value={bet_3dd}
-						on:keyup={handleKeyboard_number}
-						on:keypress={handleKeyboard3dd_checkenter}
-						minlength="3"
-						maxlength="7"
-						type="text" placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
-					<label class="label">
-						<span class="label-text text-xs">&nbsp;</span>
-						<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3dd)}</span>
-					</label>
-					</div>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","3DD");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-				
-			</div>
-		</div>
-
-		<input type="checkbox" id="my-modal-4322dd" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-4322dd" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				
-				<div class="mt-1 gap-2 grid grid-cols-1">
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor (2 Digit)</span>
-						</label>
-						<input
-						bind:this={nomor2dd_input}
-						bind:value={nomor2dd}
-						on:keyup={handleKeyboard_format}
-						on:keypress={handleKeyboard2dd_checkenter}
-						minlength="2"
-						maxlength="2"
-						type="text" 
-						placeholder="2D DEPAN" 
-						class="input border-none text-center text-3xl placeholder:text-3xl"> 
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input
-						bind:value={bet_2dd}
-						on:keyup={handleKeyboard_number}
-						on:keypress={handleKeyboard2dd_checkenter}
-						minlength="3"
-						maxlength="7"
-						type="text" placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dd)}</span>
-						</label>
-					</div>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","2DD");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-				
-			</div>
-		</div>
-
-		<input type="checkbox" id="my-modal-4322dt" class="modal-toggle">
-		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
-				<label for="my-modal-4322dt" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				
-				<div class="mt-1 gap-2 grid grid-cols-1">
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor (2 Digit)</span>
-						</label>
-						<input
-						bind:this={nomor2dt_input}
-						bind:value={nomor2dt}
-						on:keyup={handleKeyboard_format}
-						on:keypress={handleKeyboard2dt_checkenter}
-						minlength="2"
-						maxlength="2"
-						type="text" 
-						placeholder="2D TENGAH" 
-						class="input border-none text-center text-3xl placeholder:text-3xl"> 
-					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-						</label>
-						<input
-						bind:value={bet_2dt}
-						on:keyup={handleKeyboard_number}
-						on:keypress={handleKeyboard2dt_checkenter}
-						minlength="3"
-						maxlength="7"
-						type="text" placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
-						<label class="label">
-							<span class="label-text text-xs">&nbsp;</span>
-							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dt)}</span>
-						</label>
-					</div>
-				</div>
-				<div class="form-control mt-1">
-					<Button_custom1 
-					on:click={() => {
-						handleTambah("pilihan","2DT");
-					}} 
-					button_tipe=""
-					button_block="btn-sm "
-					button_title="Tambah" />
-				</div>
-				
-			</div>
-		</div>
+        <div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
+          <div class="relative flex items-center overflow-auto scrollbar-hide">
+			  <ul class="flex items-center">
+				  <li>
+					<span
+						on:click={() => {
+						changeTabs("432");
+						}} 
+						class="{class_tab_432} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive  ">4D/3D/2D</span>
+				  </li>
+				  <li>
+					<span
+						on:click={() => {
+						changeTabs("432SET");
+						}}
+						class="{class_tab_432set} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">4D/3D/2D SET</span>
+				  </li>
+				  <li>
+					<span
+						on:click={() => {
+							changeTabs("432BOLAKBALIK");
+						}}
+						class="{class_tab_432bolakbalik} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive  ">BOLAK BALIK</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("432WAP");
+						}}
+						class="{class_tab_432wap} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">WAP</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+						changeTabs("432POLATARUNG");
+						}}
+						class="{class_tab_432polatarung} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">POLA TARUNG</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("432QUICK2D");
+						}}
+						class="{class_tab_432quick2d} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">QUICK 2D</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("4323DD");
+						}}
+						class="{class_tab_4323DD} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">3DD /3D DEPAN</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("4322DD");
+						}}
+						class="{class_tab_4322DD} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">2DD /2D DEPAN</span>
+				  </li>
+				  <li>
+					<span 
+						on:click={() => {
+							changeTabs("4322DT");
+						}}
+						class="{class_tab_4322DT} inline-flex items-center transition text-sm px-3 py-1.5 whitespace-nowrap inactive ">2DT /2D TENGAH</span>
+				  </li>
+			  </ul>
+          </div>
+        </div>
+        {#if panel_form_432}
+          <div class="mt-1 gap-2 grid grid-cols-1">
+              <div class="form-control">
+                  <label class="label">
+                      <span class="label-text text-xs">Nomor (2-4)</span>
+                  </label>
+                  <input
+                    bind:this={nomor_432_input}
+                    bind:value={nomor_432}
+                    on:keyup={handleKeyboard_format}
+                    on:keypress={handleKeyboard_checkenter} 
+                    minlength="4"
+                    maxlength="4"
+                    type="text" 
+                    placeholder="4D/3D/2D" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl"> 
+              </div>
+              <div class="form-control">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                  </label>
+                  <input
+                    bind:value={bet_432}
+                    on:keyup={handleKeyboard_number}
+                    on:keypress={handleKeyboard_checkenter} 
+                    minlength="3"
+                    maxlength="7"
+                    type="text" placeholder="Bet" 
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_432)}</span>
+                  </label>
+              </div>
+          </div>
+          <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","4-3-2");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+        {/if}
+        {#if panel_form_432set}
+          <div class="mt-1 gap-2 grid grid-cols-1">
+            <div class="form-control">
+              <label class="label">
+                  <span class="label-text text-xs">Nomor (2-4)</span>
+              </label>
+              <input
+                bind:this={nomorset_input}
+                bind:value={nomorset}
+                on:keyup={handleKeyboard_format}
+                on:keypress={handleKeyboard432set_checkenter} 
+                minlength="4"
+                maxlength="4"
+                type="text" placeholder="4D/3D/2D" 
+                class="input border-none text-center text-3xl placeholder:text-3xl"> 
+            </div>
+          </div>
+          <div class="mt-1 gap-2 grid grid-cols-2">
+              <div class="form-control">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                  </label>
+                  <input 
+                    bind:value={betset_1}
+                    on:keyup={handleKeyboard_number}
+                    on:keypress={handleKeyboard432set_checkenter}
+                    minlength="3"
+                    maxlength="7"
+                    type="text" 
+                    placeholder="Bet" 
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_1)}</span>
+                  </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                  bind:value={betset_2}
+                  on:keyup={handleKeyboard_number}
+                  on:keypress={handleKeyboard432set_checkenter}
+                  minlength="3"
+                  maxlength="7"
+                  type="text" placeholder="Bet" 
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_2)}</span>
+                </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                  bind:value={betset_6}
+                  on:keyup={handleKeyboard_number}
+                  on:keypress={handleKeyboard432set_checkenter}
+                  minlength="3"
+                  maxlength="7"
+                  type="text" placeholder="Bet" 
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_6)}</span>
+                </label>
+              </div>
+              
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                  bind:value={betset_3}
+                  on:keyup={handleKeyboard_number}
+                  on:keypress={handleKeyboard432set_checkenter}
+                  minlength="3"
+                  maxlength="7"
+                  type="text" placeholder="Bet" 
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_3)}</span>
+                </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                  bind:value={betset_4}
+                  on:keyup={handleKeyboard_number}
+                  on:keypress={handleKeyboard432set_checkenter}
+                  minlength="3"
+                  maxlength="7"
+                  type="text" placeholder="Bet" 
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_4)}</span>
+                </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                  bind:value={betset_5}
+                  on:keyup={handleKeyboard_number}
+                  on:keypress={handleKeyboard432set_checkenter}
+                  minlength="3"
+                  maxlength="7"
+                  type="text" placeholder="Bet" 
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_5)}</span>
+                </label>
+              </div>
+          </div>
+		  <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","432SET");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+        {/if}
+        {#if panel_form_432bolakbalik}
+          <div class="mt-1 gap-2 grid grid-cols-1">
+            <div class="form-control">
+              <label class="label">
+                  <span class="label-text text-xs">Nomor (2-4)</span>
+              </label>
+              <input
+                bind:this={nomorbbfs_input}
+                bind:value={nomorbbfs}
+                on:keyup={handleKeyboard_format}
+                on:keypress={handleKeyboardbbfs_checkenter} 
+                minlength="4"
+                maxlength={bbfs}
+                type="text" placeholder="4D/3D/2D" 
+                class="input border-none text-center text-3xl placeholder:text-3xl">
+            </div>
+          </div>
+          <div class="mt-1 gap-2 grid grid-cols-2">
+              <div class="form-control">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                  </label>
+                  <input 
+                    bind:value={bet_1}
+                    on:keyup={handleKeyboard_number}
+                    on:keypress={handleKeyboardbbfs_checkenter}
+                    minlength="3"
+                    maxlength="7"
+                    type="text" 
+                    placeholder="Bet" 
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_1)}</span>
+                  </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                    bind:value={bet_2}
+                    on:keyup={handleKeyboard_number}
+                    on:keypress={handleKeyboardbbfs_checkenter}
+                    minlength="3"
+                    maxlength="7"
+                    type="text" 
+                    placeholder="Bet" 
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2)}</span>
+                  </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                    bind:value={bet_6}
+                    on:keyup={handleKeyboard_number}
+                    on:keypress={handleKeyboardbbfs_checkenter}
+                    minlength="3"
+                    maxlength="7"
+                    type="text" 
+                    placeholder="Bet" 
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_6)}</span>
+                  </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                    bind:value={bet_3}
+                    on:keyup={handleKeyboard_number}
+                    on:keypress={handleKeyboardbbfs_checkenter}
+                    minlength="3"
+                    maxlength="7"
+                    type="text" 
+                    placeholder="Bet" 
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3)}</span>
+                  </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                    bind:value={bet_4}
+                    on:keyup={handleKeyboard_number}
+                    on:keypress={handleKeyboardbbfs_checkenter}
+                    minlength="3"
+                    maxlength="7"
+                    type="text" 
+                    placeholder="Bet" 
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_4)}</span>
+                  </label>
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input 
+                    bind:value={bet_5}
+                    on:keyup={handleKeyboard_number}
+                    on:keypress={handleKeyboardbbfs_checkenter}
+                    minlength="3"
+                    maxlength="7"
+                    type="text" 
+                    placeholder="Bet" 
+                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                  <label class="label">
+                      <span class="label-text text-xs">&nbsp;</span>
+                      <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_5)}</span>
+                  </label>
+              </div>
+          </div>
+		  <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","BBFS");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+        {/if}
+        {#if panel_form_432wap}
+          <div class="mt-1 grid grid-cols-1">
+            <textarea
+              bind:this={nomorwap_input}
+              bind:value={nomorwap}
+              rows="100" cols="100"
+              maxlength=1000  
+              class="textarea textarea-bordered h-24 resize-none" placeholder="Input Format"></textarea>
+          </div>
+		  <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","wap");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+          <p class="text-left text-sm">
+            <b>Contoh (WAP) :</b><br />
+                1234*234*34#1000,34*235*35#5000<br />
+          </p>
+        {/if}
+        {#if panel_form_432polatarung}
+          <div class="mt-1 gap-2 grid grid-cols-2">
+              <div class="form-control">
+                  <label class="label">
+                      <span class="label-text text-xs">Nomor AS</span>
+                  </label>
+                  <input
+                    bind:this={nomoras_input}
+                    bind:value={nomoras}
+                    on:keyup={handleKeyboard_number}
+                    minlength="4"
+                    maxlength="4"
+                    type="text" 
+                    placeholder="AS" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl"> 
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">Nomor KOP</span>
+                </label>
+                <input
+                    bind:this={nomorkop_input}
+                    bind:value={nomorkop}
+                    on:keyup={handleKeyboard_number}
+                    minlength="4"
+                    maxlength="4"
+                    type="text" 
+                    placeholder="KOP" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl">  
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">Nomor KEPALA</span>
+                </label>
+                <input
+                    bind:value={nomorkepala}
+                    on:keyup={handleKeyboard_number}
+                    minlength="4"
+                    maxlength="4"
+                    type="text" 
+                    placeholder="KEPALA" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl">
+              </div>
+              <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">Nomor EKOR</span>
+                </label>
+                <input
+                    bind:value={nomorekor}
+                    on:keyup={handleKeyboard_number}
+                    minlength="4"
+                    maxlength="4"
+                    type="text" 
+                    placeholder="EKOR" 
+                    class="input border-none text-center text-3xl placeholder:text-3xl">
+              </div>
+          </div>
+          <div class="form-control">
+            <label class="label">
+                <span class="label-text text-xs">&nbsp;</span>
+                <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+            </label>
+            <input 
+              bind:this={bet_tarung_input}
+              bind:value={bet_tarung}
+              on:keyup={handleKeyboard_number}
+              on:keypress={handleKeyboardpolatarung_checkenter}
+              minlength="3"
+              maxlength="7"
+              type="text" 
+              placeholder="Bet" 
+              class="input border-none text-right text-3xl placeholder:text-3xl">
+            <label class="label">
+                <span class="label-text text-xs">&nbsp;</span>
+                <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_tarung)}</span>
+            </label>
+          </div>
+		  <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","polatarung");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+          <p class="text-left text-xs">
+            POLA TARUNG : AS KOP KEPALA EKOR <br>
+            <b>Contoh (POLA TARUNG) :</b><br />
+            - AS:123 &nbsp;&nbsp;KOP:456 &nbsp;&nbsp;KEPALA:789 &nbsp;&nbsp;EKOR:012 => 4D<br>
+            - AS:12 &nbsp;&nbsp;KOP:45 &nbsp;&nbsp;KEPALA:78 => 3D<br>
+            - AS:12 &nbsp;&nbsp;KOP:45  => 2D<br>
+          </p>
+        {/if}
+        {#if panel_form_432quick2d}
+          <div class="mt-1 gap-2 grid grid-cols-2">
+              <div class="form-control">
+                  <label class="label">
+                      <span class="label-text text-xs">Besar/Kecil/Genap/Ganjil</span>
+                  </label>
+                  <select
+                    bind:value={quick_pilihan1}
+                    bind:this={quick_pilihan1_input} 
+                    class="select w-full max-w-xs">
+                    <option value="BESAR">BESAR</option>
+                    <option value="KECIL">KECIL</option>
+                    <option value="GENAP">GENAP</option>
+                    <option value="GANJIL">GANJIL</option>
+                  </select> 
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text text-xs">2D/2DD/2DT</span>
+                </label>
+                <select
+                  bind:value={quick_pilihan2}
+                  bind:this={quick_pilihan2_input}
+                  class="select w-full max-w-xs">
+                  <option value="2D">2D</option>
+                  <option value="2DD">2D DEPAN</option>
+                  <option value="2DT">2D TENGAH</option>
+                </select> 
+              </div>
+          </div>
+          <div class="form-control">
+            <label class="label">
+                <span class="label-text text-xs">&nbsp;</span>
+                <span class="label-text-alt text-xs text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+            </label>
+            <input 
+              bind:value={quick_bet}
+              bind:this={quick_bet_input}
+              on:keyup={handleKeyboard_number}
+              on:keypress={handleKeyboardquick2d_checkenter}
+              minlength="3"
+              maxlength="7"
+              type="text" 
+              placeholder="Bet" 
+              class="input border-none text-right text-3xl placeholder:text-3xl">
+            <label class="label">
+                <span class="label-text text-xs">&nbsp;</span>
+                <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(quick_bet)}</span>
+            </label>
+          </div>
+		  <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","quick2D");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+        {/if}
+        {#if panel_form_4323dd}
+          <div class="mt-1 gap-2 grid grid-cols-1">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">Nomor (3 Digit)</span>
+                </label>
+                <input
+                  bind:this={nomor3dd_input}
+                  bind:value={nomor3dd}
+                  on:keyup={handleKeyboard_format}
+                  on:keypress={handleKeyboard3dd_checkenter}
+                  minlength="3"
+                  maxlength="3"
+                  type="text" 
+                  placeholder="3D DEPAN" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
+            </div>
+            <div class="form-control">
+              <label class="label">
+                  <span class="label-text text-xs">&nbsp;</span>
+                  <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+              </label>
+              <input
+                bind:value={bet_3dd}
+                on:keyup={handleKeyboard_number}
+                on:keypress={handleKeyboard3dd_checkenter}
+                minlength="3"
+                maxlength="7"
+                type="text" placeholder="Bet" 
+                class="input border-none text-right text-3xl placeholder:text-3xl">
+              <label class="label">
+                  <span class="label-text text-xs">&nbsp;</span>
+                  <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3dd)}</span>
+              </label>
+            </div>
+          </div>
+		  <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","3DD");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+        {/if}
+        {#if panel_form_4322dd}
+          <div class="mt-1 gap-2 grid grid-cols-1">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">Nomor (2 Digit)</span>
+                </label>
+                <input
+                  bind:this={nomor2dd_input}
+                  bind:value={nomor2dd}
+                  on:keyup={handleKeyboard_format}
+                  on:keypress={handleKeyboard2dd_checkenter}
+                  minlength="2"
+                  maxlength="2"
+                  type="text" 
+                  placeholder="2D DEPAN" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input
+                  bind:value={bet_2dd}
+                  on:keyup={handleKeyboard_number}
+                  on:keypress={handleKeyboard2dd_checkenter}
+                  minlength="3"
+                  maxlength="7"
+                  type="text" placeholder="Bet" 
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dd)}</span>
+                </label>
+            </div>
+          </div>
+		  <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","2DD");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+        {/if}
+        {#if panel_form_4322dt}
+          <div class="mt-1 gap-2 grid grid-cols-1">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">Nomor (2 Digit)</span>
+                </label>
+                <input
+                  bind:this={nomor2dt_input}
+                  bind:value={nomor2dt}
+                  on:keyup={handleKeyboard_format}
+                  on:keypress={handleKeyboard2dt_checkenter}
+                  minlength="2"
+                  maxlength="2"
+                  type="text" 
+                  placeholder="2D TENGAH" 
+                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
+            </div>
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                </label>
+                <input
+                  bind:value={bet_2dt}
+                  on:keyup={handleKeyboard_number}
+                  on:keypress={handleKeyboard2dt_checkenter}
+                  minlength="3"
+                  maxlength="7"
+                  type="text" placeholder="Bet" 
+                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                <label class="label">
+                    <span class="label-text text-xs">&nbsp;</span>
+                    <span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dt)}</span>
+                </label>
+            </div>
+          </div>
+		  <div class="form-control mt-1">
+            <Button_custom1 
+              on:click={() => {
+                handleTambah("pilihan","2DT");
+              }} 
+            button_tipe=""
+            button_block="btn-sm "
+            button_title="Tambah" />
+          </div>
+        {/if}
       {/if}
   </div>
 </div>

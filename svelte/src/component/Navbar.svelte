@@ -113,7 +113,6 @@
                     <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Winter</li>
                     <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dark</li>
                     <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dracula</li>
-                    <li data-set-theme="cyberpunk" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Cyberpunk</li>
                 </ul>
             </div>
         </div>

@@ -155,41 +155,15 @@
                 <div class="basis-1/4 text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
             </div>
         {:else}
-            <div class="grid grid-cols-4 gap-1">
-                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                    </svg>
-                    <h3 class="text-xs ">INFOMASI</h3>
-                </div>
-                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                    </svg>
-                    <h3 class="text-xs ">HISTORY</h3>
-                </div>
-                <div on:click={handleRemoveKeranjang_all} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    <h3 class="text-xs ">HAPUS</h3>
-                </div>
-                <div on:click={handleSave} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                    <h3 class="text-xs ">BELI</h3>
-                </div>
-                
-            </div>
-            <h2 class="card-title text-lg mt-4">
+            
+            <h2 class="card-title text-lg mt-1">
                 <div class="place-content-start text-left text-sm">
                     TOTAL BAYAR : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
             <div class="overflow-auto scrollbar-hide bg-base-300" style="height: 300px;">
                 {#each keranjang as rec}
-                    <div class="bg-base-300 p-2 mb-1 relative">
+                    <div class="bg-base-300 shadow-md shadow-base-200-500/40 rounded-md  p-2 mb-2 relative divide-y-2">
                         <div class="grid grid-cols-2">
                             <p class="text-xs italic ">
                                 <svg
@@ -218,6 +192,33 @@
                     <div class="text-sm">2D DEPAN : <span class="text-sm link-accent">{count_line_2dd}</span></div>
                     <div class="text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
                 </div>
+            </div>
+            <div class="grid grid-cols-4 gap-1">
+                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    </svg>
+                    <h3 class="text-xs ">INFOMASI</h3>
+                </div>
+                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    </svg>
+                    <h3 class="text-xs ">HISTORY</h3>
+                </div>
+                <div on:click={handleRemoveKeranjang_all} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                    <h3 class="text-xs ">HAPUS</h3>
+                </div>
+                <div on:click={handleSave} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <h3 class="text-xs ">BELI</h3>
+                </div>
+                
             </div>
         {/if}
     </div>
