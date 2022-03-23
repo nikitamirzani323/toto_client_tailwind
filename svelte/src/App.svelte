@@ -166,7 +166,6 @@
 </svelte:head>
 
 {#if client_website_status == "ONLINE"}
-
   <div class="container mx-auto lg:px-20"> 
     {#if token_browser != "" || client_token != ""}
         <Navbar
@@ -208,6 +207,12 @@
       {:else}
         TOKEN NOT FOUND
       {/if}
+      <footer class="footer footer-center p-4 text-base-content mt-4 text-center">
+        <div>
+          <p class="text-sm text-center">
+            Copyright © 2022 - Power by <br><img class="w-28" src="https://isbtoto.net/logo-green.svg" alt="SDSB"></p>
+        </div>
+      </footer>
   </div>
 {:else}
   <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
