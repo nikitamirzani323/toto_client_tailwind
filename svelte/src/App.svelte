@@ -153,25 +153,31 @@
       }
     }
   }
-  
+  let css_background = localStorage.getItem("background");
+  if(css_background == "" || css_background == null){
+    css_background = "https://isbtoto.net/bg-light.svg";
+  }
   
    
 </script>
 <svelte:head>
   <title>APP TOTO</title>
+  <meta name="theme-color" content="#2b2a33" />
 </svelte:head>
 
 {#if client_website_status == "ONLINE"}
-  <div class="container mx-auto"> 
+
+  <div class="container mx-auto lg:px-20"> 
     {#if token_browser != "" || client_token != ""}
         <Navbar
+          {path_api}
           {client_token}
           {client_company}
           {client_username}
           {client_credit}
           {client_ipaddress}
           {client_timezone}
-          {client_device}/>
+          {client_device} {listkeluaran}/>
           {#if pasaran_code != ""}
             <Permainan
               {path_api}

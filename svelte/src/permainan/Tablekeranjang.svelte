@@ -1,5 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
+    import { fade, fly } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
     import Button_custom1 from "../component/Button_custom1.svelte";
     import Button_custom2 from "../component/Button_custom2.svelte";
 
@@ -59,21 +61,80 @@
     export let limitline_2dt = 0;
     let count_line = 0;
     let isModalInformation = false;
+    let isModalAlert = false;
+    let isModalAlert2 = false;
+    let isModalAlert_belanja = false;
+    let temp_idkeranjang = ""
+    let temp_bayar = 0
+    let temp_nomor = ""
+    let temp_tipe = ""
+    let temp_permainan = ""
+    let temp_bet = 0
+    let temp_diskon = 0
+    let temp_diskonpercen = 0
     let dispatch = createEventDispatcher();
     const handleInformation = () => {
         isModalInformation = true
     };
-    const handleRemoveKeranjang = (idkeranjang, bayar) => {
-        dispatch("removekeranjang", {
-            idkeranjang,
-            bayar,
-        });
+    const handleRemoveKeranjang = (idkeranjang, bayar,nomor,tipe,permainan,bet,diskon,diskoonpercen) => {
+        isModalAlert = true;
+        temp_idkeranjang = idkeranjang
+        temp_bayar = bayar
+        temp_nomor = nomor
+        temp_tipe = tipe
+        temp_permainan = permainan
+        temp_bet = bet
+        temp_diskon = diskon
+        temp_diskonpercen = diskoonpercen
     };
+    const handleAlertRemove = (e) => {
+        if(e == 'Y'){
+            let idkeranjang = temp_idkeranjang 
+            let bayar = temp_bayar 
+            dispatch("removekeranjang", {
+                idkeranjang,
+                bayar,
+            });
+        }
+        temp_idkeranjang = ""
+        temp_bayar = 0
+        temp_nomor = ""
+        temp_tipe = ""
+        temp_permainan = ""
+        temp_bet = 0
+        temp_diskon = 0
+        temp_diskonpercen = 0
+        isModalAlert = false;
+    }
     const handleRemoveKeranjang_all = () => {
-        dispatch("removekeranjangall", "all");
+        if (keranjang.length > 0) {
+			isModalAlert2 = true;
+		}
     };
+    const handleAlertRemoveAll = (e) => {
+        if(e == 'Y'){
+            dispatch("removekeranjangall", "all");
+        }
+        temp_idkeranjang = ""
+        temp_bayar = 0
+        temp_nomor = ""
+        temp_tipe = ""
+        temp_permainan = ""
+        temp_bet = 0
+        temp_diskon = 0
+        temp_diskonpercen = 0
+        isModalAlert2 = false;
+    }
     const handleSave = () => {
-        dispatch("handleSave", "save");
+        if (keranjang.length > 0) {
+			isModalAlert_belanja = true;
+		}
+    };
+    const handleSaveLanjut = (e) => {
+        if(e == "Y"){
+            dispatch("handleSave", "save");
+        }
+        isModalAlert_belanja = false;
     };
     
     $: count_line =
@@ -89,31 +150,15 @@
     <div class="card-body p-3">
         {#if client_device == "WEBSITE"}
             <h2 class="card-title text-lg grid grid-cols-2 gap-4">
-                <div class="place-content-start text-left">
-                    TOTAL BAYAR : <span class="text-md link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-                </div>
-                <div class="grid grid-cols-3 gap-1">
-                    <Button_custom2
-                        on:click={handleInformation}
-                        button_block="btn-sm rounded-sm"
-                        button_title="INFORMASI" />
-                    <Button_custom1
-                        on:click={handleRemoveKeranjang_all}
-                        button_tipe="HAPUS"
-                        button_block="btn-sm rounded-sm"
-                        button_title="HAPUS" />
-                    <Button_custom1
-                        on:click={handleSave}
-                        button_tipe="BELI"
-                        button_block="btn-sm rounded-sm"
-                        button_title="BELI" />
+                <div class="place-content-start text-left text-sm lg:text-lg">
+                    TOTAL BAYAR : <span class="text-sm lg:text-lg link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
-            <div class="overflow-auto shadow" style="height: 450px;">
-                <table class="table-auto table table-zebra w-full" >
+            <div class="overflow-auto shadow-lg scrollbar-thin scrollbar-thumb-green-100" style="height: 450px;">
+                <table class="table table-zebra w-full" >
                     <thead>
                         <tr>
-                            <th width="1%"></th>
+                            <th width="1%" class="text-sm text-center">#</th>
                             <th width="*" class="text-sm text-center">NOMOR</th>
                             <th width="10%" class="text-sm text-center">TIPE</th>
                             <th width="10%" class="text-sm text-center">PERMAINAN</th>
@@ -123,102 +168,127 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {#each keranjang as rec}
-                        <tr>
-                            <td 
-                                class="cursor-pointer"
-                                on:click={() => {
-                                    handleRemoveKeranjang(rec.id, rec.bayar);
-                                }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                            </td>
-                            <td class="text-sm text-center">{rec.nomor}</td>
-                            <td class="text-sm text-center">{rec.tipetoto}</td>
-                            <td class="text-sm text-center">{rec.permainan}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                            <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
-                        </tr>
+                        {#each keranjang as rec (rec)}
+                            <tr animate:flip>
+                                <th 
+                                    class="cursor-pointer"
+                                    on:click={() => {
+                                        handleRemoveKeranjang(rec.id, rec.bayar,rec.nomor,rec.tipetoto,rec.permainan,rec.bet,rec.diskon,rec.diskonpercen);
+                                    }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </th>
+                                <td class="text-sm text-center">{rec.nomor}</td>
+                                <td class="text-sm text-center">{rec.tipetoto}</td>
+                                <td class="text-sm text-center">{rec.permainan}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
+                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                            </tr>
                         {/each}
                     </tbody>
                 </table>    
             </div>
-            <div class="text-sm">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
-            <div class="flex flex-row">
-                <div class="basis-1/4 text-sm">4D : <span class="text-sm link-accent">{count_line_4d}</span></div>
-                <div class="basis-1/4 text-sm">3D : <span class="text-sm link-accent">{count_line_3d}</span></div>
-                <div class="basis-1/4 text-sm">3D DEPAN : <span class="text-sm link-accent">{count_line_3dd}</span></div>
-                <div class="basis-1/4 text-sm">2D : <span class="text-sm link-accent">{count_line_2d}</span></div>
-                <div class="basis-1/4 text-sm">2D DEPAN : <span class="text-sm link-accent">{count_line_2dd}</span></div>
-                <div class="basis-1/4 text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
+            <div class="grid grid-cols-3 gap-1">
+                <Button_custom2
+                    on:click={handleInformation}
+                    button_block="btn-sm rounded-sm"
+                    button_title="INFORMASI" />
+                <Button_custom1
+                    on:click={handleRemoveKeranjang_all}
+                    button_tipe="HAPUS"
+                    button_block="btn-sm rounded-sm"
+                    button_title="HAPUS SEMUA" />
+                <Button_custom1
+                    on:click={handleSave}
+                    button_tipe="BELI"
+                    button_block="btn-sm rounded-sm"
+                    button_title="PEMBAYARAN" />
+            </div>
+            <div class="bg-base-200 shadow-lg p-2">
+                <div class="text-sm">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
+                <div class="grid grid-cols-3">
+                    <div class="basis-1/4 text-sm">4D : <span class="text-sm link-accent">{count_line_4d}</span></div>
+                    <div class="basis-1/4 text-sm">3D : <span class="text-sm link-accent">{count_line_3d}</span></div>
+                    <div class="basis-1/4 text-sm">3D DEPAN : <span class="text-sm link-accent">{count_line_3dd}</span></div>
+                    <div class="basis-1/4 text-sm">2D : <span class="text-sm link-accent">{count_line_2d}</span></div>
+                    <div class="basis-1/4 text-sm">2D DEPAN : <span class="text-sm link-accent">{count_line_2dd}</span></div>
+                    <div class="basis-1/4 text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
+                </div>
             </div>
         {:else}
-            
             <h2 class="card-title text-lg mt-1">
                 <div class="place-content-start text-left text-sm">
                     TOTAL BAYAR : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
             <div class="overflow-auto scrollbar-hide bg-base-300" style="height: 300px;">
-                {#each keranjang as rec}
-                    <div class="bg-base-300 shadow-md shadow-base-200-500/40 rounded-md  p-2 mb-2 relative divide-y-2">
-                        <div class="grid grid-cols-2">
-                            <p class="text-xs italic ">
-                                <svg
+                <table class="table table-zebra w-full" >
+                    <thead>
+                        <tr>
+                            <th width="1%" class="text-xs text-center">#</th>
+                            <th width="*" class="text-xs text-center">NOMOR</th>
+                            <th width="10%" class="text-xs text-center">TIPE</th>
+                            <th width="10%" class="text-xs text-center">PERMAINAN</th>
+                            <th width="15%" class="text-xs text-right">BET</th>
+                            <th width="15%" class="text-xs text-right">DISKON</th>
+                            <th width="15%" class="text-xs text-right">BAYAR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each keranjang as rec (rec)}
+                            <tr animate:flip>
+                                <th 
+                                    class="cursor-pointer"
                                     on:click={() => {
-                                        handleRemoveKeranjang(rec.id, rec.bayar);
-                                    }} 
-                                    xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute right-2 top-2 cursor-pointer bg-base-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                                NOMOR : {rec.nomor} - {rec.tipetoto} - {rec.permainan} <br>
-                                BET : {new Intl.NumberFormat().format(rec.bet)} <br>
-                                DISKON : {new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%) <br>
-                                BAYAR : {new Intl.NumberFormat().format(rec.bayar)} <br>
-                            </p>
-                        </div>
-                    </div>
-                {/each}
+                                        handleRemoveKeranjang(rec.id, rec.bayar,rec.nomor,rec.tipetoto,rec.permainan,rec.bet,rec.diskon,rec.diskonpercen);
+                                    }}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </th>
+                                <td class="text-xs text-center">{rec.nomor}</td>
+                                <td class="text-xs text-center">{rec.tipetoto}</td>
+                                <td class="text-xs text-center">{rec.permainan}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>    
             </div>
-            <div class="bg-base-300 px-2 px-1">
-                <div class="text-sm">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
+            <div class="bg-base-300 px-2 shadow-lg">
+                <div class="text-xs">TOTAL LINE : <span class="text-xs link-accent">{count_line}</span></div>
                 <div class="grid grid-cols-3">
-                    <div class="text-sm">4D : <span class="text-sm link-accent">{count_line_4d}</span></div>
-                    <div class="text-sm">3D : <span class="text-sm link-accent">{count_line_3d}</span></div>
-                    <div class="text-sm">3D DEPAN : <span class="text-sm link-accent">{count_line_3dd}</span></div>
-                    <div class="text-sm">2D : <span class="text-sm link-accent">{count_line_2d}</span></div>
-                    <div class="text-sm">2D DEPAN : <span class="text-sm link-accent">{count_line_2dd}</span></div>
-                    <div class="text-sm">2D TENGAH : <span class="text-sm link-accent">{count_line_2dt}</span></div>
+                    <div class="text-xs">4D : <span class="text-xs link-accent">{count_line_4d}</span></div>
+                    <div class="text-xs">3D : <span class="text-xs link-accent">{count_line_3d}</span></div>
+                    <div class="text-xs">3D DEPAN : <span class="text-xs link-accent">{count_line_3dd}</span></div>
+                    <div class="text-xs">2D : <span class="text-xs link-accent">{count_line_2d}</span></div>
+                    <div class="text-xs">2D DEPAN : <span class="text-xs link-accent">{count_line_2dd}</span></div>
+                    <div class="text-xs">2D TENGAH : <span class="text-xs link-accent">{count_line_2dt}</span></div>
                 </div>
             </div>
-            <div class="grid grid-cols-4 gap-1">
-                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+            <div class="flex justify-center items-center flex-nowrap gap-1">
+                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex basis-full flex-col justify-center items-center rounded-md shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                     </svg>
-                    <h3 class="text-xs ">INFOMASI</h3>
+                    <h3 class="text-xs ">INFORMASI</h3>
                 </div>
-                <div on:click={handleInformation} class="p-1 cursor-pointer glass bg-accent hover:bg-accent  outline-blue-700 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                    </svg>
-                    <h3 class="text-xs ">HISTORY</h3>
-                </div>
-                <div on:click={handleRemoveKeranjang_all} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                <div on:click={handleRemoveKeranjang_all} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex basis-full flex-col justify-center items-center rounded-md shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                     <h3 class="text-xs ">HAPUS</h3>
                 </div>
-                <div on:click={handleSave} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex flex-col justify-center items-center rounded-md shadow-lg">
+                <div on:click={handleSave} class="p-1 cursor-pointer glass bg-green-700 hover:bg-green-700 border-green-500 outline-green-500 text-white flex basis-full flex-col justify-center items-center rounded-md shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <h3 class="text-xs ">BELI</h3>
+                    <h3 class="text-xs ">PEMBAYARAN</h3>
                 </div>
-                
             </div>
         {/if}
     </div>
@@ -229,13 +299,13 @@
     <div class="modal" on:click|self={()=>isModalInformation = false}>
         <div class="modal-box relative w-11/12 max-w-4xl" style="height: 600px;">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-lg font-bold">INFORMASI</h3>
+            <h3 class="text-2xl font-bold">INFORMASI</h3>
             <div class="h-[32rem] overflow-auto scrollbar-hide" >
                 <div class="overflow-auto">
                     <table class="table table-compact w-full" >
                         <thead>
                             <tr>
-                                <th>&nbsp;</th>
+                                <th class="text-sm text-left align-top">#</th>
                                 <th class="text-sm text-right align-top">4D</th>
                                 <th class="text-sm text-right align-top">3D</th>
                                 <th class="text-sm text-right align-top">3DD <br> 3D DEPAN</th>
@@ -395,7 +465,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-xs text-left">MIN BET</td>
+                                <th class="text-xs text-left">MIN BET</th>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
@@ -404,7 +474,7 @@
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">MAX BET</td>
+                                <th class="text-xs text-left">MAX BET</th>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
@@ -413,7 +483,7 @@
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">DISKON</td>
+                                <th class="text-xs text-left">DISKON</th>
                                 <td class="text-xs text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
                                 <td class="text-xs text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
                                 <td class="text-xs text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
@@ -422,7 +492,7 @@
                                 <td class="text-xs text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">HADIAH</td>
+                                <th class="text-xs text-left">HADIAH</th>
                                 <td class="text-xs text-right link-accent">{win4d_bet}x</td>
                                 <td class="text-xs text-right link-accent">{win3d_bet}x</td>
                                 <td class="text-xs text-right link-accent">{win3dd_bet}x</td>
@@ -431,7 +501,7 @@
                                 <td class="text-xs text-right link-accent">{win2dt_bet}x</td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">HADIAH FULL</td>
+                                <th class="text-xs text-left">HADIAH FULL</th>
                                 <td class="text-xs text-right link-accent">{win4dnodiskon_bet}x</td>
                                 <td class="text-xs text-right link-accent">{win3dnodiskon_bet}x</td>
                                 <td class="text-xs text-right link-accent">{win3ddnodiskon_bet}x</td>
@@ -440,7 +510,7 @@
                                 <td class="text-xs text-right link-accent">{win2dtnodiskon_bet}x</td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">HADIAH BB KENA</td>
+                                <th class="text-xs text-left">HADIAH BB KENA</th>
                                 <td class="text-xs text-right link-accent">{win4dbb_kena_bet}x</td>
                                 <td class="text-xs text-right link-accent">{win3dbb_kena_bet}x</td>
                                 <td class="text-xs text-right link-accent">{win3ddbb_kena_bet}x</td>
@@ -449,7 +519,7 @@
                                 <td class="text-xs text-right link-accent">{win2dtbb_kena_bet}x</td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">HADIAH BB</td>
+                                <th class="text-xs text-left">HADIAH BB</th>
                                 <td class="text-xs text-right link-accent">{win4dbb_bet}x</td>
                                 <td class="text-xs text-right link-accent">{win3dbb_bet}x</td>
                                 <td class="text-xs text-right link-accent">{win3ddbb_bet}x</td>
@@ -458,7 +528,7 @@
                                 <td class="text-xs text-right link-accent">{win2dtbb_bet}x</td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">LIMIT LINE</td>
+                                <th class="text-xs text-left">LIMIT LINE</th>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
@@ -524,3 +594,70 @@
         </div>
     </div>
 {/if}
+
+<input type="checkbox" id="my-modal-informationalert" class="modal-toggle" bind:checked={isModalAlert}>
+<div class="modal" >
+    <div class="modal-box relative max-w-lg">
+        <h3 class="text-sm font-bold capitalize text-center">Apakah Anda Ingin Hapus Transaksi Ini :</h3>
+        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
+            Nomor : {temp_nomor} <br>
+            Tipe : {temp_tipe} <br>
+            Permainan : {temp_permainan} <br>
+            Bet : <span class="text-sm link-accent">{new Intl.NumberFormat().format(temp_bet)}</span> <br>
+            Diskon : <span class="text-sm link-accent">{new Intl.NumberFormat().format( Math.ceil(temp_diskon))} ({(temp_diskonpercen * 100).toFixed(2)}%)</span> <br>
+            Bayar : <span class="text-sm link-accent">{new Intl.NumberFormat().format(temp_bayar)}</span>
+        </p>
+        <div class="grid grid-cols-2 gap-1">
+            <button
+                on:click={() => {
+                    handleAlertRemove("Y");
+                }}
+                class="btn btn-success rounded-md">Ya</button>
+            <button
+                on:click={() => {
+                    handleAlertRemove("N");
+                }}
+                class="btn btn-accent rounded-md">Tidak</button>
+        </div>
+    </div>
+</div>
+<input type="checkbox" id="my-modal-informationalert2" class="modal-toggle" bind:checked={isModalAlert2}>
+<div class="modal" >
+    <div class="modal-box relative max-w-lg">
+        <h3 class="text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Hapus Semua Transaksi :</h3>
+        <div class="grid grid-cols-2 gap-1">
+            <button
+                on:click={() => {
+                    handleAlertRemoveAll("Y");
+                }}
+                class="btn btn-success rounded-md">Ya</button>
+            <button
+                on:click={() => {
+                    handleAlertRemoveAll("N");
+                }}
+                class="btn btn-accent rounded-md">Tidak</button>
+        </div>
+    </div>
+</div>
+
+<input type="checkbox" id="my-modal-informationalertbelanja" class="modal-toggle" bind:checked={isModalAlert_belanja}>
+<div class="modal" >
+    <div class="modal-box relative max-w-lg">
+        <h3 class="text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Melanjutkan Transaksi :</h3>
+        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
+            Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+        </p>
+        <div class="grid grid-cols-2 gap-1">
+            <button
+                on:click={() => {
+                    handleSaveLanjut("Y");
+                }}
+                class="btn btn-success rounded-md">Ya</button>
+            <button
+                on:click={() => {
+                    handleSaveLanjut("N");
+                }}
+                class="btn btn-accent rounded-md">Tidak</button>
+        </div>
+    </div>
+</div>
