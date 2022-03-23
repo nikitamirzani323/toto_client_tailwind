@@ -1313,7 +1313,7 @@
         <div class="modal-box relative max-w-xl h-full rounded-none p-1">
             <label for="my-modal-bukumimpi" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-md font-bold mt-2">BUKU MIMPI</h3>
-            <div class="flex flex-col justify-start mt-4 overflow-auto h-[75%] scrollbar-thin scrollbar-thumb-green-100 bg-base-200 p-4">
+            <div class="flex flex-col justify-start mt-4 overflow-auto h-[68%] scrollbar-thin scrollbar-thumb-green-100 bg-base-200 p-4">
                 {#each filterBukuMimpi as rec}
                     <div class="flex flex-row mb-4 border-b-2 border-b-base-300">
                         <div class="flex w-[3rem] text-center text-sm self-center link-accent">{rec.bukumimpi_tipe}</div>
