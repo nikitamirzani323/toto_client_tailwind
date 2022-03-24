@@ -176,6 +176,7 @@
 
 	let dispatch = createEventDispatcher();
 	let isModalAlert = false
+	let isModalAlertTabPermainan = false
 	let isModalAPilihan = false
 	let isModalLoading = false
 	let flag_fulldiskon = "DISC"
@@ -187,197 +188,399 @@
 		card_custom = "mx-2"
 	}
 	const changeTabs = (e) => {
-		switch(e){
-			case "432":
-				class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_432set = "";
-				class_tab_432bolakbalik = "";
-				class_tab_432wap = "";
-				class_tab_432polatarung = "";
-				class_tab_432quick2d = "";
-				class_tab_4323DD = "";
-				class_tab_4322DD = "";
-				class_tab_4322DT = "";
-				panel_form_432 = true;
-				panel_form_432set = false;
-				panel_form_432bolakbalik = false;
-				panel_form_432wap = false;
-				panel_form_432polatarung = false;
-				panel_form_432quick2d = false;
-				panel_form_4323dd = false;
-				panel_form_4322dd = false;
-				panel_form_4322dt = false;
-				clearField();
-				break;
-			case "432SET":
-				class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_432 = "";
-				class_tab_432bolakbalik = "";
-				class_tab_432wap = "";
-				class_tab_432polatarung = "";
-				class_tab_432quick2d = "";
-				class_tab_4323DD = "";
-				class_tab_4322DD = "";
-				class_tab_4322DT = "";
-				panel_form_432set = true;
-				panel_form_432 = false;
-				panel_form_432bolakbalik = false;
-				panel_form_432wap = false;
-				panel_form_432polatarung = false;
-				panel_form_432quick2d = false;
-				panel_form_4323dd = false;
-				panel_form_4322dd = false;
-				panel_form_4322dt = false;
-				clearField();
-				break;
-			case "432BOLAKBALIK":
-				class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_432 = "";
-				class_tab_432set = "";
-				class_tab_432wap = "";
-				class_tab_432polatarung = "";
-				class_tab_432quick2d = "";
-				class_tab_4323DD = "";
-				class_tab_4322DD = "";
-				class_tab_4322DT = "";
-				panel_form_432bolakbalik = true;
-				panel_form_432set = false;
-				panel_form_432 = false;
-				panel_form_432wap = false;
-				panel_form_432polatarung = false;
-				panel_form_432quick2d = false;
-				panel_form_4323dd = false;
-				panel_form_4322dd = false;
-				panel_form_4322dt = false;
-				clearField();
-				break;
-			case "432WAP":
-				class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_432 = "";
-				class_tab_432set = "";
-				class_tab_432bolakbalik = "";
-				class_tab_432polatarung = "";
-				class_tab_432quick2d = "";
-				class_tab_4323DD = "";
-				class_tab_4322DD = "";
-				class_tab_4322DT = "";
-				panel_form_432wap = true;
-				panel_form_432bolakbalik = false;
-				panel_form_432set = false;
-				panel_form_432 = false;
-				panel_form_432polatarung = false;
-				panel_form_432quick2d = false;
-				panel_form_4323dd = false;
-				panel_form_4322dd = false;
-				panel_form_4322dt = false;
-				clearField();
-				break;
-			case "432POLATARUNG":
-				class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_432 = "";
-				class_tab_432set = "";
-				class_tab_432bolakbalik = "";
-				class_tab_432wap = "";
-				class_tab_432quick2d = "";
-				class_tab_4323DD = "";
-				class_tab_4322DD = "";
-				class_tab_4322DT = "";
-				panel_form_432polatarung = true;
-				panel_form_432wap = false;
-				panel_form_432bolakbalik = false;
-				panel_form_432set = false;
-				panel_form_432 = false;
-				panel_form_432quick2d = false;
-				panel_form_4323dd = false;
-				panel_form_4322dd = false;
-				panel_form_4322dt = false;
-				clearField();
-				break;
-			case "432QUICK2D":
-				class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_4323DD = "";
-				class_tab_4322DD = "";
-				class_tab_4322DT = "";
-				class_tab_432polatarung = "";
-				class_tab_432 = "";
-				class_tab_432set = "";
-				class_tab_432bolakbalik = "";
-				class_tab_432wap = "";
-				panel_form_432quick2d = true;
-				panel_form_432polatarung = false;
-				panel_form_432wap = false;
-				panel_form_432bolakbalik = false;
-				panel_form_432set = false;
-				panel_form_432 = false;
-				panel_form_4323dd = false;
-				panel_form_4322dd = false;
-				panel_form_4322dt = false;
-				clearField();
-				break;
-			case "4323DD":
-				class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_4322DD = "";
-				class_tab_4322DT = "";
-				class_tab_432polatarung = "";
-				class_tab_432 = "";
-				class_tab_432set = "";
-				class_tab_432bolakbalik = "";
-				class_tab_432wap = "";
-				class_tab_432quick2d = "";
-				panel_form_4323dd = true;
-				panel_form_432quick2d = false;
-				panel_form_432polatarung = false;
-				panel_form_432wap = false;
-				panel_form_432bolakbalik = false;
-				panel_form_432set = false;
-				panel_form_432 = false;
-				panel_form_4322dd = false;
-				panel_form_4322dt = false;
-				clearField();
-				break;
-			case "4322DD":
-				class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_4323DD = "";
-				class_tab_4322DT = "";
-				class_tab_432polatarung = "";
-				class_tab_432 = "";
-				class_tab_432set = "";
-				class_tab_432bolakbalik = "";
-				class_tab_432wap = "";
-				class_tab_432quick2d = "";
-				panel_form_4322dd = true;
-				panel_form_4323dd = false;
-				panel_form_432quick2d = false;
-				panel_form_432polatarung = false;
-				panel_form_432wap = false;
-				panel_form_432bolakbalik = false;
-				panel_form_432set = false;
-				panel_form_432 = false;
-				panel_form_4322dt = false;
-				clearField();
-				break;
-			case "4322DT":
-				class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_4322DD = "";
-				class_tab_4323DD = "";
-				class_tab_432polatarung = "";
-				class_tab_432 = "";
-				class_tab_432set = "";
-				class_tab_432bolakbalik = "";
-				class_tab_432wap = "";
-				class_tab_432quick2d = "";
-				panel_form_4322dt = true;
-				panel_form_4322dd = false;
-				panel_form_4323dd = false;
-				panel_form_432quick2d = false;
-				panel_form_432polatarung = false;
-				panel_form_432wap = false;
-				panel_form_432bolakbalik = false;
-				panel_form_432set = false;
-				panel_form_432 = false;
-				clearField();
-				break;
-		}     
+		if(client_device == "WEBSITE"){
+			switch(e){
+				case "432":
+					class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					class_tab_432set = "";
+					class_tab_432bolakbalik = "";
+					class_tab_432wap = "";
+					class_tab_432polatarung = "";
+					class_tab_432quick2d = "";
+					class_tab_4323DD = "";
+					class_tab_4322DD = "";
+					class_tab_4322DT = "";
+					panel_form_432 = true;
+					panel_form_432set = false;
+					panel_form_432bolakbalik = false;
+					panel_form_432wap = false;
+					panel_form_432polatarung = false;
+					panel_form_432quick2d = false;
+					panel_form_4323dd = false;
+					panel_form_4322dd = false;
+					panel_form_4322dt = false;
+					clearField();
+					break;
+				case "432SET":
+					class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					class_tab_432 = "";
+					class_tab_432bolakbalik = "";
+					class_tab_432wap = "";
+					class_tab_432polatarung = "";
+					class_tab_432quick2d = "";
+					class_tab_4323DD = "";
+					class_tab_4322DD = "";
+					class_tab_4322DT = "";
+					panel_form_432set = true;
+					panel_form_432 = false;
+					panel_form_432bolakbalik = false;
+					panel_form_432wap = false;
+					panel_form_432polatarung = false;
+					panel_form_432quick2d = false;
+					panel_form_4323dd = false;
+					panel_form_4322dd = false;
+					panel_form_4322dt = false;
+					clearField();
+					break;
+				case "432BOLAKBALIK":
+					class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					panel_form_432bolakbalik = true;
+					class_tab_432 = "";
+					class_tab_432set = "";
+					class_tab_432wap = "";
+					class_tab_432polatarung = "";
+					class_tab_432quick2d = "";
+					class_tab_4323DD = "";
+					class_tab_4322DD = "";
+					class_tab_4322DT = "";
+					
+					panel_form_432set = false;
+					panel_form_432 = false;
+					panel_form_432wap = false;
+					panel_form_432polatarung = false;
+					panel_form_432quick2d = false;
+					panel_form_4323dd = false;
+					panel_form_4322dd = false;
+					panel_form_4322dt = false;
+					clearField();
+					break;
+				case "432WAP":
+					class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					class_tab_432 = "";
+					class_tab_432set = "";
+					class_tab_432bolakbalik = "";
+					class_tab_432polatarung = "";
+					class_tab_432quick2d = "";
+					class_tab_4323DD = "";
+					class_tab_4322DD = "";
+					class_tab_4322DT = "";
+					panel_form_432wap = true;
+					panel_form_432bolakbalik = false;
+					panel_form_432set = false;
+					panel_form_432 = false;
+					panel_form_432polatarung = false;
+					panel_form_432quick2d = false;
+					panel_form_4323dd = false;
+					panel_form_4322dd = false;
+					panel_form_4322dt = false;
+					clearField();
+					break;
+				case "432POLATARUNG":
+					class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					class_tab_432 = "";
+					class_tab_432set = "";
+					class_tab_432bolakbalik = "";
+					class_tab_432wap = "";
+					class_tab_432quick2d = "";
+					class_tab_4323DD = "";
+					class_tab_4322DD = "";
+					class_tab_4322DT = "";
+					panel_form_432polatarung = true;
+					panel_form_432wap = false;
+					panel_form_432bolakbalik = false;
+					panel_form_432set = false;
+					panel_form_432 = false;
+					panel_form_432quick2d = false;
+					panel_form_4323dd = false;
+					panel_form_4322dd = false;
+					panel_form_4322dt = false;
+					clearField();
+					break;
+				case "432QUICK2D":
+					class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					class_tab_4323DD = "";
+					class_tab_4322DD = "";
+					class_tab_4322DT = "";
+					class_tab_432polatarung = "";
+					class_tab_432 = "";
+					class_tab_432set = "";
+					class_tab_432bolakbalik = "";
+					class_tab_432wap = "";
+					panel_form_432quick2d = true;
+					panel_form_432polatarung = false;
+					panel_form_432wap = false;
+					panel_form_432bolakbalik = false;
+					panel_form_432set = false;
+					panel_form_432 = false;
+					panel_form_4323dd = false;
+					panel_form_4322dd = false;
+					panel_form_4322dt = false;
+					clearField();
+					break;
+				case "4323DD":
+					class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					class_tab_4322DD = "";
+					class_tab_4322DT = "";
+					class_tab_432polatarung = "";
+					class_tab_432 = "";
+					class_tab_432set = "";
+					class_tab_432bolakbalik = "";
+					class_tab_432wap = "";
+					class_tab_432quick2d = "";
+					panel_form_4323dd = true;
+					panel_form_432quick2d = false;
+					panel_form_432polatarung = false;
+					panel_form_432wap = false;
+					panel_form_432bolakbalik = false;
+					panel_form_432set = false;
+					panel_form_432 = false;
+					panel_form_4322dd = false;
+					panel_form_4322dt = false;
+					clearField();
+					break;
+				case "4322DD":
+					class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					class_tab_4323DD = "";
+					class_tab_4322DT = "";
+					class_tab_432polatarung = "";
+					class_tab_432 = "";
+					class_tab_432set = "";
+					class_tab_432bolakbalik = "";
+					class_tab_432wap = "";
+					class_tab_432quick2d = "";
+					panel_form_4322dd = true;
+					panel_form_4323dd = false;
+					panel_form_432quick2d = false;
+					panel_form_432polatarung = false;
+					panel_form_432wap = false;
+					panel_form_432bolakbalik = false;
+					panel_form_432set = false;
+					panel_form_432 = false;
+					panel_form_4322dt = false;
+					clearField();
+					break;
+				case "4322DT":
+					class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+					class_tab_4322DD = "";
+					class_tab_4323DD = "";
+					class_tab_432polatarung = "";
+					class_tab_432 = "";
+					class_tab_432set = "";
+					class_tab_432bolakbalik = "";
+					class_tab_432wap = "";
+					class_tab_432quick2d = "";
+					panel_form_4322dt = true;
+					panel_form_4322dd = false;
+					panel_form_4323dd = false;
+					panel_form_432quick2d = false;
+					panel_form_432polatarung = false;
+					panel_form_432wap = false;
+					panel_form_432bolakbalik = false;
+					panel_form_432set = false;
+					panel_form_432 = false;
+					clearField();
+					break;
+			} 
+		}else{
+			if (keranjang.length > 0) {
+				isModalAlertTabPermainan = true;
+			}else{
+				switch(e){
+					case "432":
+						class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432polatarung = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						panel_form_432 = true;
+						panel_form_432set = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432wap = false;
+						panel_form_432polatarung = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432SET":
+						class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432 = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432polatarung = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						panel_form_432set = true;
+						panel_form_432 = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432wap = false;
+						panel_form_432polatarung = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432BOLAKBALIK":
+						class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						panel_form_432bolakbalik = true;
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432wap = "";
+						class_tab_432polatarung = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_432wap = false;
+						panel_form_432polatarung = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432WAP":
+						class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432polatarung = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						panel_form_432wap = true;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_432polatarung = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432POLATARUNG":
+						class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						panel_form_432polatarung = true;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432QUICK2D":
+						class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						class_tab_432polatarung = "";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						panel_form_432quick2d = true;
+						panel_form_432polatarung = false;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "4323DD":
+						class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						class_tab_432polatarung = "";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432quick2d = "";
+						panel_form_4323dd = true;
+						panel_form_432quick2d = false;
+						panel_form_432polatarung = false;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "4322DD":
+						class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4323DD = "";
+						class_tab_4322DT = "";
+						class_tab_432polatarung = "";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432quick2d = "";
+						panel_form_4322dd = true;
+						panel_form_4323dd = false;
+						panel_form_432quick2d = false;
+						panel_form_432polatarung = false;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "4322DT":
+						class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4322DD = "";
+						class_tab_4323DD = "";
+						class_tab_432polatarung = "";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432quick2d = "";
+						panel_form_4322dt = true;
+						panel_form_4322dd = false;
+						panel_form_4323dd = false;
+						panel_form_432quick2d = false;
+						panel_form_432polatarung = false;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						clearField();
+						break;
+				} 
+			}
+		}
+		
+		    
 	};
   	const handleTambah = (e,path) => {
 		let flag = true;
@@ -562,6 +765,7 @@
   	};
   	const handlePilihan = (e) => {
 		flag_fulldiskon = e
+		isModalAPilihan = false
 		switch (path_432) {
 			case "4-3-2":
 				handleTambah('4-3-2')
@@ -591,7 +795,6 @@
 				handleTambah('quick2D');
 				break;
 		}
-		isModalAPilihan = false
 	};
   	async function savetransaksi() {
     	msg_error = "";
@@ -2066,6 +2269,7 @@
 		}
 	}
   function formbbfs_add() {
+		isModalLoading = true
 		generate4D = [];
 		generate3D = [];
 		generate3DD = [];
@@ -2097,7 +2301,7 @@
 		let kei = 0;
 		let kei_percen = 0;
 		let bayar = 0;
-    msg_error = ""
+    	msg_error = ""
 		data_bbfs = [];
 		if (nomorbbfs == "") {
 			nomorbbfs_input.focus();
@@ -2564,6 +2768,7 @@
 				}
 			}
 		}
+		isModalLoading = false
 		clearField();
 	}
   function formwap_add() {
@@ -4564,7 +4769,7 @@
 					<div class="mt-1 gap-2 grid grid-cols-1">
 						<div class="form-control">
 						<label class="label">
-							<span class="label-text text-xs">Nomor (2-4)</span>
+							<span class="label-text text-xs">Bolak Balik - {bbfs} Digit</span>
 						</label>
 						<input
 							bind:this={nomorbbfs_input}
@@ -5292,5 +5497,17 @@
 			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
 			</circle></g>
 		</svg>
+    </div>
+</div>
+
+<input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
+<div class="modal" >
+    <div class="modal-box relative max-w-lg">
+		<label for="my-modal-alertbbfs" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
+        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
+            Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+			Harap selesaikan Transaksi Diatas, Sebelum Anda Mengakses Halaman Lainnya
+        </p>
     </div>
 </div>

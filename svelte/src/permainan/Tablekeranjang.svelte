@@ -1,7 +1,5 @@
 <script>
     import { createEventDispatcher } from "svelte";
-    import { fade, fly } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
     import Button_custom1 from "../component/Button_custom1.svelte";
     import Button_custom2 from "../component/Button_custom2.svelte";
 
@@ -91,10 +89,13 @@
         if(e == 'Y'){
             let idkeranjang = temp_idkeranjang 
             let bayar = temp_bayar 
+            isModalAlert = false;
             dispatch("removekeranjang", {
                 idkeranjang,
                 bayar,
             });
+        }else{
+            isModalAlert = false;
         }
         temp_idkeranjang = ""
         temp_bayar = 0
@@ -104,7 +105,7 @@
         temp_bet = 0
         temp_diskon = 0
         temp_diskonpercen = 0
-        isModalAlert = false;
+        
     }
     const handleRemoveKeranjang_all = () => {
         if (keranjang.length > 0) {
@@ -113,7 +114,10 @@
     };
     const handleAlertRemoveAll = (e) => {
         if(e == 'Y'){
+            isModalAlert2 = false;
             dispatch("removekeranjangall", "all");
+        }else{
+            isModalAlert2 = false;
         }
         temp_idkeranjang = ""
         temp_bayar = 0
@@ -123,7 +127,7 @@
         temp_bet = 0
         temp_diskon = 0
         temp_diskonpercen = 0
-        isModalAlert2 = false;
+        
     }
     const handleSave = () => {
         if (keranjang.length > 0) {
@@ -169,7 +173,7 @@
                     </thead>
                     <tbody>
                         {#each keranjang as rec (rec)}
-                            <tr animate:flip>
+                            <tr>
                                 <th 
                                     class="cursor-pointer"
                                     on:click={() => {
@@ -238,7 +242,7 @@
                     </thead>
                     <tbody>
                         {#each keranjang as rec (rec)}
-                            <tr animate:flip>
+                            <tr>
                                 <th 
                                     class="cursor-pointer"
                                     on:click={() => {
