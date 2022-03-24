@@ -4,7 +4,6 @@
     import dayjs from "dayjs";
     import utc from "dayjs/plugin/utc";
     import timezone from "dayjs/plugin/timezone";
-    import Modal_custom from '../component/Modal.svelte'
 
     dayjs.extend(utc);
     dayjs.extend(timezone);
@@ -19,7 +18,7 @@
     export let client_ipaddress = "0.0.0.0";
     export let client_timezone = "Asia/Jakarta";
     export let client_device = "";
-    export let client_device_height_custom = "";
+    export let client_device_height_custom = 0;
     export let listkeluaran = [];
     let listhasilkeluaran = [];
     let listhasilinvoice = [];
@@ -28,7 +27,6 @@
     let listBukumimpi = [];
     let resulttogel = [];
     let drodown_count = 0;
-    let drodown_close = "";
     let idinvoiceall = "";
     let detailslipheader = "";
     let detailslipheaderpermainan = "";
@@ -77,7 +75,7 @@
     let tab_bookdream_3d = ""
     let tab_bookdream_2d = ""
     function updateClock() {
-        let endtime = dayjs().tz(client_timezone).format("DD MMM YYYY | HH:mm:ss");
+        let endtime = dayjs().tz(client_timezone).format("DD MMM YYYY | HH:mm");
         clockmachine = endtime;
     }
     
@@ -462,11 +460,7 @@
                         call_bukumimpi();
                     }}
                     class="btn bg-base-300 border-none shadow-lg shadow-green-500/50">BUKU MIMPI</label>
-                <label
-                    on:click={() => {
-                        handleModalCustom();
-                    }}
-                    class="btn bg-base-300 border-none shadow-lg shadow-green-500/50">CUSTOM</label>
+                
             </div>
         </div>
         <div class="navbar-end hidden text-xs lg:text-sm lg:inline-block text-right">
@@ -482,18 +476,18 @@
     <div class="
         sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-80 backdrop-blur transition-all duration-100 
          text-base-content shadow-sm">
-        <div class="navbar ">
+        <div class="navbar w-full">
             <div class="navbar-start">
             </div>
             <div class="navbar-center text-center">
                 <a href="/?token={client_token}" class="btn btn-ghost">
-                    <img class="w-36" src="logo-green.svg" alt="">
+                    <img class="w-32 lg:w-36" src="logo-green.svg" alt="">
                 </a>
             </div>
             <div class="navbar-end text-right">
                 <div class="dropdown dropdown-left ">
                     <label tabindex="0" class="btn btn-ghost btn-circle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                         </svg>
                     </label>
@@ -507,14 +501,14 @@
             </div>
         </div>
     </div>
-    <div class="mt-2 mb-2 mx-2 p-0 card bg-base-300 shadow-xl rounded-none">
+    <div class="mt-1 mb-2 mx-2 p-0 card bg-base-300 shadow-xl rounded-none">
         <div class="card-body p-3">
-            <p class="text-sm">
+            <p class="text-xs lg:text-sm">
                 Asia/Jakarta<br>{clockmachine} WIB (+7)<br>
                 {client_username} ({client_ipaddress}) <br>
                 Credit : IDR <span class="link-accent">{new Intl.NumberFormat().format(client_credit)}</span>
             </p>
-            <div class="flex flex-row justify-center text-center gap-2">
+            <div class="flex flex-row justify-center text-center gap-1">
                 <!-- The button to open modal -->
                 <label
                     on:click={() => {
@@ -539,10 +533,10 @@
 
 <input type="checkbox" id="my-modal-resulttogel" class="modal-toggle" bind:checked={isModal_result}>
 <div class="modal" on:click|self={()=>isModal_result = false}>
-    <div class="modal-box relative max-w-full lg:max-w-xl h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4">
-        <label for="my-modal-resulttogel" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold">RESULT</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
+    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <label for="my-modal-resulttogel" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-xs lg:text-sm font-bold mt-1">RESULT</h3>
+        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-base-300 lg:scrollbar-thumb-green-100  mt-4">
             {#if client_device == "WEBSITE"}
             <table class="table table-zebra w-full" >
                 <thead>
@@ -608,11 +602,11 @@
 
 <input type="checkbox" id="my-modal-resulttogel_bypasaran" class="modal-toggle" bind:checked={isModal_result_bypasaran}>
 <div class="modal" on:click|self={()=>isModal_result_bypasaran = false}>
-    <div class="modal-box relative max-w-full lg:max-w-xl h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4">
-        <label for="my-modal-resulttogel_bypasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold">PASARAN : {nmpasaran}</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
-            <table class="table-auto table table-zebra w-full" >
+    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <label for="my-modal-resulttogel_bypasaran" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-xs lg:text-sm font-bold mt-1">PASARAN : {nmpasaran}</h3>
+        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+            <table class="table table-zebra w-full">
                 <thead>
                     <tr>
                         <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
@@ -636,9 +630,9 @@
 <input type="checkbox" id="my-modal-allinvoice" class="modal-toggle" bind:checked={isModal_allinvoice}>
 <div class="modal" on:click|self={()=>isModal_allinvoice = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-2xl h-2/3 rounded-none lg:rounded-lg">
+    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-allinvoice" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold">INVOICE</h3>
+        <h3 class="text-xs lg:text-sm font-bold -mt-1">INVOICE</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full" >
                 <thead>
@@ -674,10 +668,10 @@
         </div>
     </div>
     {:else}
-    <div class="modal-box relative max-w-2xl h-full rounded-none p-1">
-        <label for="my-modal-allinvoice" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold px-4 mt-2">INVOICE</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <label for="my-modal-allinvoice" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-xs lg:text-sm font-bold mt-4">INVOICE</h3>
+        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
             <table class="table table-zebra w-full" >
                 <thead>
                     <tr>
@@ -691,8 +685,8 @@
                 <tbody>
                     {#each listhasilinvoice as rec}
                     <tr>
-                        <th class="text-sm text-center whitespace-nowrap">
-                            <span class="{rec.invoice_status_background} p-1.5 text-xs lg:text-sm  uppercase tracking-wider rounded-lg ">{rec.invoice_status}</span>
+                        <th class="text-xs text-center whitespace-nowrap">
+                            <span class="{rec.invoice_status_background} p-1 text-[10px] lg:text-sm  uppercase rounded-lg ">{rec.invoice_status}</span>
                         </th>
                         <td class="text-xs text-center whitespace-nowrap">{rec.invoice_tglkeluaran}</td>
                         <td class="text-xs text-left whitespace-nowrap">{rec.invoice_pasaran}</td>
@@ -716,9 +710,9 @@
 <input type="checkbox" id="my-modal-invoicedetail" class="modal-toggle" bind:checked={isModal_invoicedetail}>
 <div class="modal" on:click|self={()=>isModal_invoicedetail = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-2xl h-2/3 rounded-none lg:rounded-lg">
+    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-invoicedetail" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold">PASARAN : {detailslipheader}</h3>
+        <h3 class="text-xs lg:text-sm font-bold -mt-1">PASARAN : {detailslipheader}</h3>
         <div class="overflow-auto h-[73%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full" >
                 <thead>
@@ -923,14 +917,13 @@
         </div>
     </div>
     {:else}
-    <div class="modal-box relative max-w-2xl h-full rounded-none p-1">
-        <label for="my-modal-invoicedetail" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold px-4 mt-2">PASARAN : {detailslipheader}</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <label for="my-modal-invoicedetail" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-xs lg:text-sm font-bold mt-2">PASARAN : {detailslipheader}</h3>
+        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
             <table class="table table-zebra w-full" >
                 <thead>
                     <tr>
-                        <th width="1%" class="text-xs lg:text-sm text-center">NO</th>
                         <th width="*" class="text-xs lg:text-sm text-left">PERMAINAN</th>
                         <th width="25%" class="text-xs lg:text-sm text-right">BAYAR</th>
                         <th width="25%" class="text-xs lg:text-sm text-right">MENANG</th>
@@ -938,7 +931,6 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">1</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -951,7 +943,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">2</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -964,7 +955,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">3</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -977,7 +967,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">4</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -990,7 +979,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">5</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -1003,7 +991,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">6</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -1016,7 +1003,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">7</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -1029,7 +1015,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">8</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -1042,7 +1027,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">9</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -1062,13 +1046,11 @@
                                     total5050kombinasi_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-center whitespace-nowrap">10</th>
-                        <th class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 KOMBINASI</th>
+                            class="text-xs lg:text-sm text-center whitespace-nowrap">50 - 50 KOMBINASI</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">11</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -1081,7 +1063,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">12</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -1094,7 +1075,6 @@
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">13</th>
                         <th 
                             on:click={() => {
                                 fetch_invoicealldetailpermainan(
@@ -1115,9 +1095,9 @@
 <input type="checkbox" id="my-modal-detailbyid" class="modal-toggle" bind:checked={isModal_detailbyid}>
 <div class="modal" on:click|self={()=>isModal_detailbyid = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-5xl h-2/3 rounded-none lg:rounded-lg">
+    <div class="modal-box relative max-w-5xl h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-detailbyid" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold">PERMAINAN : {detailslipheaderpermainan}</h3>
+        <h3 class="text-xs lg:text-sm font-bold -mt-1">PERMAINAN : {detailslipheaderpermainan}</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full" >
                 <thead>
@@ -1156,10 +1136,10 @@
         </div>
     </div>
     {:else}
-    <div class="modal-box relative max-w-2xl h-full rounded-none p-1">
-        <label for="my-modal-detailbyid" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold px-4 mt-2">PERMAINAN : {detailslipheaderpermainan}</h3>
-        <div class="overflow-auto h-[80%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <label for="my-modal-detailbyid" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-xs lg:text-sm font-bold mt-1">PERMAINAN : {detailslipheaderpermainan}</h3>
+        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full" >
                 <thead>
                     <tr>
@@ -1179,8 +1159,8 @@
                     {#each listhasilinvoicebet as rec}
                     <tr>
                         <th class="text-xs text-center whitespace-nowrap">{rec.bet_no}</th>
-                        <th class="text-sm text-center whitespace-nowrap">
-                            <span class="{rec.bet_background} p-1.5 text-xs uppercase tracking-wider rounded-lg ">{rec.bet_status}</span>
+                        <th class="text-xs text-center whitespace-nowrap">
+                            <span class="{rec.bet_background} p-1.5 text-[11px] uppercase tracking-wider rounded-lg ">{rec.bet_status}</span>
                         </th>
                         <th class="text-xs text-center whitespace-nowrap">{rec.bet_tipe}</th>
                         <th class="text-xs text-center whitespace-nowrap">{rec.bet_permainan}</th>
@@ -1201,10 +1181,10 @@
 <input type="checkbox" id="my-modal-pasaran" class="modal-toggle">
 <div class="modal">
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-2xl h-2/3 rounded-none lg:rounded-lg" >
+    <div class="modal-box relative max-w-2xl h-full lg:h-2/3 rounded-none lg:rounded-lg overflow-hidden" >
         <label for="my-modal-pasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold">INFORMASI</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-1">
+        <h3 class="text-xs lg:text-sm font-bold -mt-1">INFORMASI</h3>
+        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table-normal table-zebra  w-full" >
                 <thead>
                     <tr>
@@ -1234,10 +1214,10 @@
         </div>
     </div>
     {:else}
-    <div class="modal-box relative max-w-2xl h-2/3 rounded-none lg:rounded-lg p-2" >
-        <label for="my-modal-pasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-md font-bold">INFORMASI</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-1">
+    <div class="modal-box relative max-w-full h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <label for="my-modal-pasaran" class="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
+        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full" >
                 <thead>
                     <tr>
@@ -1272,7 +1252,7 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-bukumimpi" class="modal-toggle" bind:checked={isModal_bukumimpi}>
     <div class="modal" on:click|self={()=>isModal_bukumimpi = false}>
-        <div class="modal-box relative max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg">
+        <div class="modal-box relative max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg overflow-hidden">
             <label for="my-modal-bukumimpi" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold -mt-2">BUKU MIMPI</h3>
             <div class="hidden lg:flex justify-start items-center mt-4 ">
@@ -1311,33 +1291,59 @@
                         <div class="flex w-[3rem] text-center text-sm self-center link-accent">{rec.bukumimpi_tipe}</div>
                         <div class="flex flex-1">
                             <p class="p-1 text-sm text-justify">
-                                {rec.bukumimpi_nama}<br>{client_device_height_custom}
+                                {rec.bukumimpi_nama}<br>
                                 <span class="link-accent text-sm ">{rec.bukumimpi_nomor}</span>
                             </p>
-                            
                         </div>
                     </div>
                 {/each}
             </div>
-            <div class="footer">
-
+            <div class="flex justify-start items-center mt-4 lg:hidden 2xl:hidden xl:hidden md:hidden sm:hidden ">
+                <ul class="flex flex-1 gap-2">
+                    <li 
+                        on:click={() => {
+                            handleClickBukuMimpi("ALL");
+                        }}
+                        class="{tab_bookdream_all} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">ALL</li>
+                    <li 
+                        on:click={() => {
+                            handleClickBukuMimpi("4D");
+                        }}
+                        class="{tab_bookdream_4d} inline-flex items-center  px-2 py-1.5text-xs lg:text-sm   cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">4D</li>
+                    <li 
+                        on:click={() => {
+                            handleClickBukuMimpi("3D");
+                        }}
+                        class="{tab_bookdream_3d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm  cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">3D</li>
+                    <li 
+                        on:click={() => {
+                            handleClickBukuMimpi("2D");
+                        }}
+                        class="{tab_bookdream_2d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm  cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">2D</li>
+                </ul>
+                <div class="flex flex-1 h-full ">
+                    <input
+                        bind:value={searchbukumimpi}
+                        on:keypress={handleKeyboardbukumimpi_checkenter} 
+                        type="text" placeholder="Ketik Apa Yang Kamu Mimpikan" class="input mt-1 bg-base-300 rounded-sm input-sm w-full max-w-4xl">
+                </div>
             </div>
         </div>
     </div>
 {:else}
     <input type="checkbox" id="my-modal-bukumimpi" class="modal-toggle" bind:checked={isModal_bukumimpi}>
     <div class="modal" on:click|self={()=>isModal_bukumimpi = false}>
-        <div class="modal-box relative max-w-xl h-full rounded-none p-1">
-            <label for="my-modal-bukumimpi" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-md font-bold mt-2">BUKU MIMPI</h3>
-            <div class="flex flex-col justify-start mt-4 overflow-auto h-[68%] scrollbar-thin scrollbar-thumb-green-100 bg-base-200 p-4">
+        <div class="modal-box relative max-w-xl max-h-full rounded-none p-1 overflow-hidden">
+            <label for="my-modal-bukumimpi" class="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-xs lg:text-md font-bold mt-1">BUKU MIMPI</h3>
+            <div class="flex flex-col justify-start mt-4 overflow-auto scrollbar-thin scrollbar-thumb-green-100 bg-base-200 p-4" style="height:{client_device_height_custom-200}px">
                 {#each filterBukuMimpi as rec}
                     <div class="flex flex-row mb-4 border-b-2 border-b-base-300">
                         <div class="flex w-[3rem] text-center text-sm self-center link-accent">{rec.bukumimpi_tipe}</div>
                         <div class="flex flex-1">
-                            <p class="p-1 text-sm text-justify">
-                                {rec.bukumimpi_nama}<br>
-                                <span class="link-accent text-sm ">{rec.bukumimpi_nomor}</span>
+                            <p class="p-1 text-xs text-justify">
+                                {rec.bukumimpi_nama}<br>{client_device_height_custom-200}
+                                <span class="link-accent text-xs ">{rec.bukumimpi_nomor}</span>
                             </p>
                             
                         </div>
@@ -1351,29 +1357,29 @@
                             on:click={() => {
                                 handleClickBukuMimpi("ALL");
                             }}
-                            class="{tab_bookdream_all} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">ALL</li>
+                            class="{tab_bookdream_all} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">ALL</li>
                         <li 
                             on:click={() => {
                                 handleClickBukuMimpi("4D");
                             }}
-                            class="{tab_bookdream_4d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">4D</li>
+                            class="{tab_bookdream_4d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">4D</li>
                         <li 
                             on:click={() => {
                                 handleClickBukuMimpi("3D");
                             }}
-                            class="{tab_bookdream_3d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">3D</li>
+                            class="{tab_bookdream_3d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">3D</li>
                         <li 
                             on:click={() => {
                                 handleClickBukuMimpi("2D");
                             }}
-                            class="{tab_bookdream_2d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">2D</li>
+                            class="{tab_bookdream_2d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">2D</li>
                     </ul>
                 </div>
                 <div class="flex">
                     <input
                     bind:value={searchbukumimpi}
                     on:keypress={handleKeyboardbukumimpi_checkenter} 
-                    type="text" placeholder="Ketik apa yang kamu mimpikan + Enter" class="input mt-1 bg-base-300 rounded-sm input-md w-full max-w-lg md">
+                    type="text" placeholder="Ketik apa yang kamu mimpikan + Enter" class="input input-sm  bg-base-300 rounded-sm input-md w-full max-w-lg min-w-full">
                 </div>
             </div>
             
@@ -1381,64 +1387,9 @@
     </div>
 {/if}
 
-<Modal_custom
-    on:closeModal={closeModal_Custom} 
-    isOpenModal={isModal_bukumimpi_2} 
-    modal_footer_flag = {true} 
-    modal_heading_class = "p-2 "
-    modal_body_class = "p-2 space-y-6 overflow-auto scrollbar-thin scrollbar-thumb-green-100"
-    modal_body_css = "{client_device_height_custom}" 
-    modal_footer_class = "justify-center items-center p-2 "
-    modal_footer_css = "">
-    <slot:template slot="modal_heading">
-      <h3 class="text-md font-bold px-4 mt-2">
-        BUKU MIMPI
-      </h3>
-    </slot:template>
-    <slot:template slot="modal_body">
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400 border-base ">
-        {client_device_height_custom}  
-        With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-      </p>
-    </slot:template>
-    <slot:template slot="modal_footer">
-      <button class="btn btn-outline btn-secondary">Button</button>
-      <input 
-        class="input mt-1 bg-base-300 rounded-sm max-h-full basis-36 "
-        type="text" placeholder="Ketik apa yang kamu mimpikan + Enter">
-      
-    </slot:template>
-</Modal_custom>
+<style>
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+</style>

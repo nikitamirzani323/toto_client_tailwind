@@ -10,6 +10,7 @@
     export let client_ipaddress = "";
     export let client_timezone = "Asia/Jakarta";
     export let client_device = "";
+    export let client_device_height_custom = "";
     export let pasaran_code = "";
     export let pasaran_name = "";
     export let pasaran_periode = 0;
@@ -191,7 +192,7 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 gap-3 grid grid-cols-1 lg:grid-cols-2 ">
+        <div class="mt-8 gap-2 grid grid-cols-1 lg:grid-cols-2 ">
             <div>
                 {#if permainan == "4-3-2"}
                     <Form432d
@@ -210,8 +211,8 @@
                         {pasaran_periode}/>
                 {/if}
             </div>
-            <div class="card rounded-md bg-base-200 shadow-xl" >
-                <div class="card-body p-3">
+            <div class="card rounded-md bg-base-200 shadow-xl">
+                <div class="card-body p-3 overflow-hidden">
                     <h2 class="card-title text-sm lg:text-lg grid grid-cols-2 gap-4">
                         <div class="place-content-start text-left">
                             TOTAL BET : <span class="text-sm lg:text-lg link-accent">{new Intl.NumberFormat().format(totalbet_invoice)}</span>
@@ -226,29 +227,29 @@
                         placeholder="Search Nomor" 
                         type="text" name="" id="">
                         
-                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-[50rem]">
-                        <table class="table-auto table table-zebra w-full" >
+                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-100" style="height:{client_device_height_custom-100}px;">
+                        <table class="table table-zebra w-full " >
                             <thead>
                                 <tr>
-                                    <th class="text-sm text-center tracking-wide whitespace-nowrap">NOMOR</th>
-                                    <th class="text-sm text-center tracking-wide whitespace-nowrap">TIPE</th>
-                                    <th class="text-sm text-center tracking-wide whitespace-nowrap">PERMAINAN</th>
-                                    <th class="text-sm text-right tracking-wide whitespace-nowrap">BET</th>
-                                    <th class="text-sm text-right tracking-wide whitespace-nowrap">DISKON(%)</th>
-                                    <th class="text-sm text-right tracking-wide whitespace-nowrap">KEI(%)</th>
-                                    <th class="text-sm text-right tracking-wide whitespace-nowrap">BAYAR</th>
+                                    <th class="text-xs lg:text-sm text-center tracking-wide whitespace-nowrap">NOMOR</th>
+                                    <th class="text-xs lg:text-sm text-center tracking-wide whitespace-nowrap">TIPE</th>
+                                    <th class="text-xs lg:text-sm text-center tracking-wide whitespace-nowrap">PERMAINAN</th>
+                                    <th class="text-xs lg:text-sm text-right tracking-wide whitespace-nowrap">BET</th>
+                                    <th class="text-xs lg:text-sm text-right tracking-wide whitespace-nowrap">DISC(%)</th>
+                                    <th class="text-xs lg:text-sm text-right tracking-wide whitespace-nowrap">KEI(%)</th>
+                                    <th class="text-xs lg:text-sm text-right tracking-wide whitespace-nowrap">BAYAR</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {#each filterTransaksi as rec}
                                     <tr>
-                                        <td class="text-sm text-center">{rec.nomor}</td>
-                                        <td class="text-sm text-center">{rec.tipe_betinvoice}</td>
-                                        <td class="text-sm text-center">{rec.permainan}</td>
-                                        <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                        <td class="text-sm text-right link-accent">{rec.kei.toFixed(2)}</td>
-                                        <td class="text-sm text-right link-accent">{rec.diskon.toFixed(2)}</td>
-                                        <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                        <th class="text-sm lg:text-sm text-center">{rec.nomor}</th>
+                                        <td class="text-sm lg:text-sm text-center">{rec.tipe_betinvoice}</td>
+                                        <td class="text-sm lg:text-sm text-center">{rec.permainan}</td>
+                                        <td class="text-sm lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                        <td class="text-sm lg:text-sm text-right link-accent">{rec.kei.toFixed(2)}</td>
+                                        <td class="text-sm lg:text-sm text-right link-accent">{rec.diskon.toFixed(2)}</td>
+                                        <td class="text-sm lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                                     </tr>
                                 {/each}
                             </tbody>
@@ -263,12 +264,12 @@
                 on:click={() => {
                     handleTabBet("Y");
                 }} 
-                class="{tab_bet_pasangan_class} p-2">KERANJANG</div>
+                class="{tab_bet_pasangan_class} p-2 text-xs lg:text-sm">KERANJANG</div>
             <div
                 on:click={() => {
                     handleTabBet("N");
                 }}
-                class="{tab_bet_history_class} p-2">BET HISTORY</div>
+                class="{tab_bet_history_class} p-2 text-xs lg:text-sm">BET HISTORY</div>
         </div>
         
         {#if tab_bet_pasangan}
@@ -278,13 +279,13 @@
                     PILIH PERMAINAN DIBAWAH INI
                 </div>
                 <div class="collapse-content"> 
-                    <div class="grid grid-cols-2 gap-2 px-2">
-                        <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">4D/3D/2D</button>
-                        <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">COLOK</button>
-                        <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">50-50</button>
-                        <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">KOMBINASI</button>
-                        <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">DASAR</button>
-                        <button class="modal-button py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">SHIO</button>
+                    <div class="grid grid-cols-3 gap-2 px-2">
+                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">4D/3D/2D</button>
+                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">COLOK</button>
+                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">50-50</button>
+                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">KOMBINASI</button>
+                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">DASAR</button>
+                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">SHIO</button>
                     </div>
                 </div>
             </div>

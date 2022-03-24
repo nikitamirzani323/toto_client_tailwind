@@ -155,20 +155,20 @@
         {#if client_device == "WEBSITE"}
             <h2 class="card-title text-lg grid grid-cols-2 gap-4">
                 <div class="place-content-start text-left text-sm lg:text-lg">
-                    TOTAL BAYAR : <span class="text-sm lg:text-lg link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+                    TOTAL BAYAR : <span class="text-xs lg:text-lg link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
-            <div class="overflow-auto shadow-lg scrollbar-thin scrollbar-thumb-green-100" style="height: 450px;">
+            <div class="overflow-auto shadow-lg scrollbar-thin scrollbar-thumb-green-100 h-[500px]">
                 <table class="table table-zebra w-full" >
                     <thead>
                         <tr>
-                            <th width="1%" class="text-sm text-center">#</th>
-                            <th width="*" class="text-sm text-center">NOMOR</th>
-                            <th width="10%" class="text-sm text-center">TIPE</th>
-                            <th width="10%" class="text-sm text-center">PERMAINAN</th>
-                            <th width="15%" class="text-sm text-right">BET</th>
-                            <th width="15%" class="text-sm text-right">DISKON</th>
-                            <th width="15%" class="text-sm text-right">BAYAR</th>
+                            <th width="1%" class="text-xs lg:text-sm text-center">#</th>
+                            <th width="*" class="text-xs text-center">NOMOR</th>
+                            <th width="10%" class="text-xs lg:text-sm text-center">TIPE</th>
+                            <th width="10%" class="text-xs lg:text-sm text-center">PERMAINAN</th>
+                            <th width="15%" class="text-xs lg:text-sm text-right">BET</th>
+                            <th width="15%" class="text-xs lg:text-sm text-right">DISKON</th>
+                            <th width="15%" class="text-xs lg:text-sm text-right">BAYAR</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -183,12 +183,12 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
                                 </th>
-                                <td class="text-sm text-center">{rec.nomor}</td>
-                                <td class="text-sm text-center">{rec.tipetoto}</td>
-                                <td class="text-sm text-center">{rec.permainan}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                <td class="text-xs lg:text-sm text-center">{rec.nomor}</td>
+                                <td class="text-xs lg:text-sm text-center">{rec.tipetoto}</td>
+                                <td class="text-xs lg:text-sm text-center">{rec.permainan}</td>
+                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
+                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                             </tr>
                         {/each}
                     </tbody>
@@ -227,7 +227,7 @@
                     TOTAL BAYAR : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
-            <div class="overflow-auto scrollbar-hide bg-base-300" style="height: 300px;">
+            <div class="overflow-auto scrollbar-hide bg-base-300 h-[350px]">
                 <table class="table table-zebra w-full" >
                     <thead>
                         <tr>
@@ -450,10 +450,10 @@
 {:else}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative w-11/12 max-w-4xl p-4 rounded-none" style="500px;">
+        <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-md font-bold">INFORMASI</h3>
-            <div class="h-[32rem] mt-5 overflow-auto scrollbar-hide">
+            <h3 class="text-xs lg:text-sm font-bold mt-4">INFORMASI</h3>
+            <div class="h-[32rem] mt-5 overflow-auto scrollbar-thin scrollbar-thumb-green-100">
                 <div class="overflow-auto">
                     <table class="table-auto table table-compact w-full" >
                         <thead>
@@ -665,3 +665,10 @@
         </div>
     </div>
 </div>
+
+<style>
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+</style>

@@ -3780,6 +3780,7 @@
     bet_2dt = "";
     isModalAlert = false
   }
+  
 </script>
 <div class="card bg-base-200 shadow-xl rounded-md {card_custom}">
   <div class="card-body p-3">
@@ -4504,78 +4505,78 @@
         </h2>
 		<label for="my-modal-inputbet" 
 			class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">
-			Click Area Ini Untuk Melakukan Input
+			Klik Area Ini Untuk Melakukan Transaksi
 		</label>
 		
 		<input type="checkbox" id="my-modal-inputbet" class="modal-toggle">
 		<div class="modal modal-bottom sm:modal-middle">
-			<div class="modal-box bg-base-200 relative">
+			<div class="modal-box bg-base-200 relative rounded-sm">
 				<label for="my-modal-inputbet" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 				<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
-					<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-16">
+					<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-12">
 						<ul class="flex items-center">
 							<li>
 							  <span
 								  on:click={() => {
 								  changeTabs("432");
 								  }} 
-								  class="{class_tab_432} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer ">4D/3D/2D</span>
+								  class="{class_tab_432} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer ">4D/3D/2D</span>
 							</li>
 							<li>
 							  <span
 								  on:click={() => {
 								  changeTabs("432SET");
 								  }}
-								  class="{class_tab_432set} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">4D/3D/2D SET</span>
+								  class="{class_tab_432set} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">4D/3D/2D SET</span>
 							</li>
 							<li>
 							  <span
 								  on:click={() => {
 									  changeTabs("432BOLAKBALIK");
 								  }}
-								  class="{class_tab_432bolakbalik} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer">BOLAK BALIK</span>
+								  class="{class_tab_432bolakbalik} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer">BOLAK BALIK</span>
 							</li>
 							<li>
 							  <span 
 								  on:click={() => {
 									  changeTabs("432WAP");
 								  }}
-								  class="{class_tab_432wap} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">WAP</span>
+								  class="{class_tab_432wap} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">WAP</span>
 							</li>
 							<li>
 							  <span 
 								  on:click={() => {
 								  changeTabs("432POLATARUNG");
 								  }}
-								  class="{class_tab_432polatarung} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">POLA TARUNG</span>
+								  class="{class_tab_432polatarung} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">POLA TARUNG</span>
 							</li>
 							<li>
 							  <span 
 								  on:click={() => {
 									  changeTabs("432QUICK2D");
 								  }}
-								  class="{class_tab_432quick2d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">QUICK 2D</span>
+								  class="{class_tab_432quick2d} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">QUICK 2D</span>
 							</li>
 							<li>
 							  <span 
 								  on:click={() => {
 									  changeTabs("4323DD");
 								  }}
-								  class="{class_tab_4323DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">3DD /3D DEPAN</span>
+								  class="{class_tab_4323DD} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">3DD /3D DEPAN</span>
 							</li>
 							<li>
 							  <span 
 								  on:click={() => {
 									  changeTabs("4322DD");
 								  }}
-								  class="{class_tab_4322DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">2DD /2D DEPAN</span>
+								  class="{class_tab_4322DD} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">2DD /2D DEPAN</span>
 							</li>
 							<li>
 							  <span 
 								  on:click={() => {
 									  changeTabs("4322DT");
 								  }}
-								  class="{class_tab_4322DT} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">2DT /2D TENGAH</span>
+								  class="{class_tab_4322DT} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">2DT /2D TENGAH</span>
 							</li>
 						</ul>
 					</div>
@@ -4595,7 +4596,7 @@
 								maxlength="4"
 								type="text" 
 								placeholder="4D/3D/2D" 
-								class="input border-none text-center text-3xl placeholder:text-3xl"> 
+								class="input border-none text-center text-lg placeholder:text-lg"> 
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -4609,7 +4610,7 @@
 								minlength="3"
 								maxlength="7"
 								type="text" placeholder="Bet" 
-								class="input border-none text-right text-3xl placeholder:text-3xl">
+								class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_432)}</span>
@@ -4640,7 +4641,7 @@
 							minlength="4"
 							maxlength="4"
 							type="text" placeholder="4D/3D/2D" 
-							class="input border-none text-center text-3xl placeholder:text-3xl"> 
+							class="input border-none text-center text-lg placeholder:text-lg"> 
 						</div>
 					</div>
 					<div class="mt-1 gap-2 grid grid-cols-2">
@@ -4657,7 +4658,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-3xl placeholder:text-3xl">
+								class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_1)}</span>
@@ -4675,7 +4676,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
+							class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_2)}</span>
@@ -4693,7 +4694,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
+							class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_6)}</span>
@@ -4712,7 +4713,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
+							class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_3)}</span>
@@ -4730,7 +4731,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
+							class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_4)}</span>
@@ -4748,7 +4749,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
+							class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_5)}</span>
@@ -4779,7 +4780,7 @@
 							minlength="4"
 							maxlength={bbfs}
 							type="text" placeholder="4D/3D/2D" 
-							class="input border-none text-center text-3xl placeholder:text-3xl">
+							class="input border-none text-center text-lg placeholder:text-lg">
 						</div>
 					</div>
 					<div class="mt-1 gap-2 grid grid-cols-2">
@@ -4796,7 +4797,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-3xl placeholder:text-3xl">
+								class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_1)}</span>
@@ -4815,7 +4816,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-3xl placeholder:text-3xl">
+								class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2)}</span>
@@ -4834,7 +4835,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-3xl placeholder:text-3xl">
+								class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_6)}</span>
@@ -4853,7 +4854,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-3xl placeholder:text-3xl">
+								class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3)}</span>
@@ -4872,7 +4873,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-3xl placeholder:text-3xl">
+								class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_4)}</span>
@@ -4891,7 +4892,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-3xl placeholder:text-3xl">
+								class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_5)}</span>
@@ -4945,7 +4946,7 @@
 								maxlength="4"
 								type="text" 
 								placeholder="AS" 
-								class="input border-none text-center text-3xl placeholder:text-3xl"> 
+								class="input border-none text-center text-lg placeholder:text-lg"> 
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -4959,7 +4960,7 @@
 								maxlength="4"
 								type="text" 
 								placeholder="KOP" 
-								class="input border-none text-center text-3xl placeholder:text-3xl">  
+								class="input border-none text-center text-lg placeholder:text-lg">  
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -4972,7 +4973,7 @@
 								maxlength="4"
 								type="text" 
 								placeholder="KEPALA" 
-								class="input border-none text-center text-3xl placeholder:text-3xl">
+								class="input border-none text-center text-lg placeholder:text-lg">
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -4985,7 +4986,7 @@
 								maxlength="4"
 								type="text" 
 								placeholder="EKOR" 
-								class="input border-none text-center text-3xl placeholder:text-3xl">
+								class="input border-none text-center text-lg placeholder:text-lg">
 						</div>
 					</div>
 					<div class="form-control">
@@ -5002,7 +5003,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-lg placeholder:text-lg">
 						<label class="label">
 							<span class="label-text text-xs">&nbsp;</span>
 							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_tarung)}</span>
@@ -5069,7 +5070,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-lg placeholder:text-lg">
 						<label class="label">
 							<span class="label-text text-xs">&nbsp;</span>
 							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(quick_bet)}</span>
@@ -5100,7 +5101,7 @@
 							maxlength="3"
 							type="text" 
 							placeholder="3D DEPAN" 
-							class="input border-none text-center text-3xl placeholder:text-3xl"> 
+							class="input border-none text-center text-lg placeholder:text-lg"> 
 						</div>
 						<div class="form-control">
 						<label class="label">
@@ -5114,7 +5115,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
+							class="input border-none text-right text-lg placeholder:text-lg">
 						<label class="label">
 							<span class="label-text text-xs">&nbsp;</span>
 							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3dd)}</span>
@@ -5146,7 +5147,7 @@
 							maxlength="2"
 							type="text" 
 							placeholder="2D DEPAN" 
-							class="input border-none text-center text-3xl placeholder:text-3xl"> 
+							class="input border-none text-center text-lg placeholder:text-lg"> 
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -5160,7 +5161,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
+							class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dd)}</span>
@@ -5192,7 +5193,7 @@
 							maxlength="2"
 							type="text" 
 							placeholder="2D TENGAH" 
-							class="input border-none text-center text-3xl placeholder:text-3xl"> 
+							class="input border-none text-center text-lg placeholder:text-lg"> 
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -5206,7 +5207,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-3xl placeholder:text-3xl">
+							class="input border-none text-right text-lg placeholder:text-lg">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dt)}</span>
@@ -5311,10 +5312,10 @@
 					class="btn btn-accent rounded-md">BOLAK BALIK / BB</button>
 			</div>
 			<p class="text-xs p-2">
-				<strong>NOTE</strong> : <br>
-				<strong>DISKON</strong> => Setiap transaksi menggunakan diskon <br>
-				<strong>NON DISKON</strong> => Setiap transaksi tidak menggunakan diskon <br>
-				<strong>BOLAK BALIK / BB</strong> => Setiap transaksi tidak menggunakan diskon
+				<b>NOTE</b> : <br>
+				<b>DISKON</b> => Setiap transaksi menggunakan diskon <br>
+				<b>NON DISKON</b> => Setiap transaksi tidak menggunakan diskon <br>
+				<b>BOLAK BALIK / BB</b> => Setiap transaksi tidak menggunakan diskon
 			</p>
 			<div class="overflow-auto">
 				<table class="table-auto table table-compact w-full" >
@@ -5474,7 +5475,7 @@
 	</div>
 {/if}
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
-<div class="modal" on:click|self={()=>isModalAlert = false}>
+<div class="modal " on:click|self={()=>isModalAlert = false}>
     <div class="modal-box relative">
         <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-lg font-bold">INFORMASI</h3>
@@ -5511,3 +5512,10 @@
         </p>
     </div>
 </div>
+
+<style>
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+</style>

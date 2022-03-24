@@ -21,6 +21,7 @@
   let client_device = "";
   let client_device_height = Viewport.Height
   let client_device_width = Viewport.Width
+  let container_class = "container mx-auto lg:px-2 text-base-content glass xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5"
   if (token_browser === null) {
     console.log("TOKEN NOT FOUND");
   } else {
@@ -28,8 +29,10 @@
   }
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     client_device = "MOBILE";
+    container_class = "container mx-auto";
   } else {
     client_device = "WEBSITE";
+    container_class = "container mx-auto lg:px-2 text-base-content glass xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5";
   }
   let listkeluaran = [];
   let pasaran_name = "";
@@ -80,7 +83,6 @@
       throw new Error(initMessage);
     } else {
       const initJson = await resInit.json();
-      console.log(initJson)
       if (initJson.status === 200) {
         switch (initJson.company) {
           case "":
@@ -136,10 +138,10 @@
                 pasaran_code: record[i]["pasaran_id"],
                 pasaran: record[i]["pasaran_togel"],
                 pasaran_periode: record[i]["pasaran_periode"],
-                pasaran_tgl: dayjs(record[i]["pasaran_marketclose"]).tz(client_timezone).format("DD MMM YYYY | HH:mm:ss"),
-                pasaran_tglclose: dayjs(record[i]["pasaran_marketclose"]).tz(client_timezone).format("HH:mm:ss"),
-                pasaran_tglschedule: dayjs(record[i]["pasaran_marketschedule"]).tz(client_timezone).format("HH:mm:ss"),
-                pasaran_tglopen: dayjs(record[i]["pasaran_marketopen"]).tz(client_timezone).format("HH:mm:ss"),
+                pasaran_tgl: dayjs(record[i]["pasaran_marketclose"]).tz(client_timezone).format("DD MMM YYYY | HH:mm"),
+                pasaran_tglclose: dayjs(record[i]["pasaran_marketclose"]).tz(client_timezone).format("HH:mm"),
+                pasaran_tglschedule: dayjs(record[i]["pasaran_marketschedule"]).tz(client_timezone).format("HH:mm"),
+                pasaran_tglopen: dayjs(record[i]["pasaran_marketopen"]).tz(client_timezone).format("HH:mm"),
                 pasaran_url: record[i]["pasaran_url"],
                 pasaran_note: record[i]["pasaran_note"],
                 pasaran_status: record[i]["pasaran_status"],
@@ -154,8 +156,7 @@
       }
     }
   }
-  let temp_height = parseInt(client_device_height)-160 + "px;"
-  let client_device_height_custom = "height:"+temp_height;
+  let client_device_height_custom =  parseInt(client_device_height);
   
 </script>
 <svelte:head>
@@ -164,10 +165,9 @@
 </svelte:head>
 <svelte:body
   on:viewportchanged={() => {
-    temp_height = (parseInt(Viewport.Height)-160) + "px;"
-    client_device_height_custom = "height:"+temp_height
-    console.log('HEIGHT Size changed to: ',temp_height)
-    console.log('HEIGHT Size2 changed to: ',Viewport.Height)
+    client_device_height_custom = parseInt(Viewport.Height)
+    console.log('HEIGHT Size changed to: ',client_device_height_custom)
+    // console.log('HEIGHT Size2 changed to: ',Viewport.Height)
     // console.log('Viewport Size changed to: ',Viewport.Width+'x'+Viewport.Height)
   }}
   on:orientationchangeend={() => { console.log(
@@ -179,7 +179,7 @@
   ) }}
 />
 {#if client_website_status == "ONLINE"}
-  <div class="container mx-auto lg:px-20"> 
+  <div class="{container_class} "> 
     {#if token_browser != "" || client_token != ""}
         <Navbar
           {path_api}
@@ -194,6 +194,7 @@
           {listkeluaran}/>
           {#if pasaran_code != ""}
             <Permainan
+              {client_device_height_custom}
               {path_api}
               {client_token}
               {client_company}
@@ -233,13 +234,12 @@
       </div>
   </div>
 {/if}
-
-<footer class=" footer footer-center p-4 text-base-content mt-10 text-center">
-  <div class="fixed bottom-1 -z-10 ">
-    <p class="text-sm text-center">
+<footer class=" footer footer-center p-4 text-base-content mt-2 text-center">
+  <div class="">
+    <p class="text-xs lg:text-sm text-center">
       Copyright © 2022 - Powerby
     </p>
-    <img class="w-28" src="https://isbtoto.net/logo-green.svg" alt="SDSB">
+    <img class="w-24 lg:w-28" src="https://isbtoto.net/logo-green.svg" alt="SDSB">
   </div>
 </footer>
   

@@ -18,8 +18,8 @@
 <div on:click={() => dispatch('click',card_function)} class="card {card_background} shadow-lg {card_shadow} rounded-md" style="{card_css_style}">
     {#if card_device == "WEBSITE"}
       <div class="card-body items-center text-center">
-        <h2 class="card-title">{card_title}</h2>
-        <p style="font-size: 12px;">
+        <h2 class="card-title text-xs lg:text-sm font-bold">{card_title}</h2>
+        <p class="text-xs lg:text-sm">
           {@html card_description}
         </p>
         <div class="card-actions justify-end">
@@ -50,7 +50,7 @@
               <span class="px-2 py-1 rounded-md border-green-50 bg-green-500/50 text-white text-xs">{card_status}</span>
             </span>
             {:else}
-            <div class="badge rounded-md">{card_status}</div>
+            <div class="badge rounded-md text-xs">{card_status}</div>
           {/if}
         </div>
       </div>

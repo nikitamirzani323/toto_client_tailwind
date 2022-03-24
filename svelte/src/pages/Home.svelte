@@ -60,7 +60,7 @@
     
   </div>
 {:else}
-  <div class="mt-1 gap-2 grid grid-cols-2 px-1">
+  <div class="mt-1 gap-1 grid grid-cols-2 px-1">
     {#each listkeluaran as rec}
       <Card_pasaran
           on:click={() => {
@@ -73,8 +73,8 @@
           }}
           card_device="{client_device}"
           card_title="{rec.pasaran}"
-          card_description="PERIODE: {rec.pasaran_periode} <br>
-          {rec.pasaran_tgl} WIB"
+          card_description="{rec.pasaran_periode} <br>
+          {rec.pasaran_tgl}"
           card_status="{rec.pasaran_status}"/>
     {/each}
     
