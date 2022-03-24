@@ -4,6 +4,7 @@
     import dayjs from "dayjs";
     import utc from "dayjs/plugin/utc";
     import timezone from "dayjs/plugin/timezone";
+    import Modal_custom from '../component/Modal.svelte'
 
     dayjs.extend(utc);
     dayjs.extend(timezone);
@@ -18,6 +19,7 @@
     export let client_ipaddress = "0.0.0.0";
     export let client_timezone = "Asia/Jakarta";
     export let client_device = "";
+    export let client_device_height_custom = "";
     export let listkeluaran = [];
     let listhasilkeluaran = [];
     let listhasilinvoice = [];
@@ -69,6 +71,7 @@
     let isModal_invoicedetail = false
     let isModal_detailbyid = false
     let isModal_bukumimpi = false
+    let isModal_bukumimpi_2 = false
     let tab_bookdream_all = "bg-green-600 text-black"
     let tab_bookdream_4d = ""
     let tab_bookdream_3d = ""
@@ -318,6 +321,9 @@
             alert("Error");
         }
     }
+    const handleModalCustom = () => {
+        isModal_bukumimpi_2 = !isModal_bukumimpi_2;
+    }
     const handleClickBukuMimpi = (e) => {
         filterBukuMimpi = [];
         listBukumimpi = [];
@@ -412,6 +418,9 @@
             filterBukuMimpi = [...listBukumimpi];
         }
     }
+    function closeModal_Custom() {
+        isModal_bukumimpi_2 = false;
+    }
 </script>
 
 {#if client_device == "WEBSITE"}
@@ -453,6 +462,11 @@
                         call_bukumimpi();
                     }}
                     class="btn bg-base-300 border-none shadow-lg shadow-green-500/50">BUKU MIMPI</label>
+                <label
+                    on:click={() => {
+                        handleModalCustom();
+                    }}
+                    class="btn bg-base-300 border-none shadow-lg shadow-green-500/50">CUSTOM</label>
             </div>
         </div>
         <div class="navbar-end hidden text-xs lg:text-sm lg:inline-block text-right">
@@ -1258,52 +1272,55 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-bukumimpi" class="modal-toggle" bind:checked={isModal_bukumimpi}>
     <div class="modal" on:click|self={()=>isModal_bukumimpi = false}>
-        <div class="modal-box relative max-w-xl h-2/3 rounded-none lg:rounded-lg">
+        <div class="modal-box relative max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg">
             <label for="my-modal-bukumimpi" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-md font-bold">BUKU MIMPI</h3>
-            <div class="flex justify-start items-center mt-4">
+            <h3 class="text-xs lg:text-sm font-bold -mt-2">BUKU MIMPI</h3>
+            <div class="hidden lg:flex justify-start items-center mt-4 ">
                 <ul class="flex flex-1 gap-2">
                     <li 
                         on:click={() => {
                             handleClickBukuMimpi("ALL");
                         }}
-                        class="{tab_bookdream_all} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">ALL</li>
+                        class="{tab_bookdream_all} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">ALL</li>
                     <li 
                         on:click={() => {
                             handleClickBukuMimpi("4D");
                         }}
-                        class="{tab_bookdream_4d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">4D</li>
+                        class="{tab_bookdream_4d} inline-flex items-center  px-2 py-1.5text-xs lg:text-sm   cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">4D</li>
                     <li 
                         on:click={() => {
                             handleClickBukuMimpi("3D");
                         }}
-                        class="{tab_bookdream_3d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">3D</li>
+                        class="{tab_bookdream_3d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm  cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">3D</li>
                     <li 
                         on:click={() => {
                             handleClickBukuMimpi("2D");
                         }}
-                        class="{tab_bookdream_2d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">2D</li>
+                        class="{tab_bookdream_2d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm  cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">2D</li>
                 </ul>
-                <div class="flex justify-end">
+                <div class="flex flex-1 h-full ">
                     <input
                         bind:value={searchbukumimpi}
                         on:keypress={handleKeyboardbukumimpi_checkenter} 
-                        type="text" placeholder="Ketik + Enter" class="input mt-1 bg-base-300 rounded-sm input-sm w-full max-w-2xl">
+                        type="text" placeholder="Ketik Apa Yang Kamu Mimpikan" class="input mt-1 bg-base-300 rounded-sm input-sm w-full max-w-4xl">
                 </div>
             </div>
-            <div class="flex flex-col justify-start mt-4 overflow-auto h-[80%] scrollbar-thin scrollbar-thumb-green-100">
+            <div class="flex flex-col justify-start mt-4 overflow-auto h-[80%] scrollbar-thin scrollbar-thumb-green-100 max-w-full" >
                 {#each filterBukuMimpi as rec}
                     <div class="flex flex-row mb-4 border-b-2 border-b-base-300">
                         <div class="flex w-[3rem] text-center text-sm self-center link-accent">{rec.bukumimpi_tipe}</div>
                         <div class="flex flex-1">
                             <p class="p-1 text-sm text-justify">
-                                {rec.bukumimpi_nama}<br>
+                                {rec.bukumimpi_nama}<br>{client_device_height_custom}
                                 <span class="link-accent text-sm ">{rec.bukumimpi_nomor}</span>
                             </p>
                             
                         </div>
                     </div>
                 {/each}
+            </div>
+            <div class="footer">
+
             </div>
         </div>
     </div>
@@ -1363,3 +1380,65 @@
         </div>
     </div>
 {/if}
+
+<Modal_custom
+    on:closeModal={closeModal_Custom} 
+    isOpenModal={isModal_bukumimpi_2} 
+    modal_footer_flag = {true} 
+    modal_heading_class = "p-2 "
+    modal_body_class = "p-2 space-y-6 overflow-auto scrollbar-thin scrollbar-thumb-green-100"
+    modal_body_css = "{client_device_height_custom}" 
+    modal_footer_class = "justify-center items-center p-2 "
+    modal_footer_css = "">
+    <slot:template slot="modal_heading">
+      <h3 class="text-md font-bold px-4 mt-2">
+        BUKU MIMPI
+      </h3>
+    </slot:template>
+    <slot:template slot="modal_body">
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400 border-base ">
+        {client_device_height_custom}  
+        With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
+      </p>
+      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
+      </p>
+    </slot:template>
+    <slot:template slot="modal_footer">
+      <button class="btn btn-outline btn-secondary">Button</button>
+      <input 
+        class="input mt-1 bg-base-300 rounded-sm max-h-full basis-36 "
+        type="text" placeholder="Ketik apa yang kamu mimpikan + Enter">
+      
+    </slot:template>
+</Modal_custom>

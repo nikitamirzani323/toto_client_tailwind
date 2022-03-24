@@ -3,7 +3,7 @@
   import dayjs from "dayjs";
   import utc from "dayjs/plugin/utc";
   import timezone from "dayjs/plugin/timezone";
-
+  import Viewport from 'svelte-viewport-info'
   import Navbar from './component/Navbar.svelte'
   import Home from './pages/Home.svelte'
   import Permainan from './pages/Permainan.svelte'
@@ -12,11 +12,15 @@
   dayjs.extend(timezone);
   
   export let path_api = "";
-
+  console.log('Viewport Width x Height:     ',Viewport.Width+'x'+Viewport.Height)
+  console.log('standard Screen Orientation: ',Viewport.Orientation)
+  console.log('detailled Screen Orientation:',Viewport.detailledOrientation)
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const token_browser = urlParams.get("token");
   let client_device = "";
+  let client_device_height = Viewport.Height
+  let client_device_width = Viewport.Width
   if (token_browser === null) {
     console.log("TOKEN NOT FOUND");
   } else {
@@ -47,8 +51,8 @@
   };
   let record = "";
   let isModalAlert = false;
+  let isModalCustom = false;
   let message_err = "";
-  let css_err = "display:none;";
   async function initTimezone() {
     const res = await fetch(path_api+"api/healthz");
     if (!res.ok) {
@@ -60,9 +64,6 @@
       client_timezone = "Asia/Jakarta";
     }
     initapp(token_browser);
-    console.log(token_browser)
-    console.log(client_ipaddress)
-    console.log(client_device)
   }
   async function initapp(e) {
     const resInit = await fetch(path_api+"api/init", {
@@ -153,18 +154,30 @@
       }
     }
   }
-  let css_background = localStorage.getItem("background");
-  if(css_background == "" || css_background == null){
-    css_background = "https://isbtoto.net/bg-light.svg";
-  }
+  let temp_height = parseInt(client_device_height)-160 + "px;"
+  let client_device_height_custom = "height:"+temp_height;
   
-   
 </script>
 <svelte:head>
   <title>APP TOTO</title>
   <meta name="theme-color" content="#2b2a33" />
 </svelte:head>
-
+<svelte:body
+  on:viewportchanged={() => {
+    temp_height = (parseInt(Viewport.Height)-160) + "px;"
+    client_device_height_custom = "height:"+temp_height
+    console.log('HEIGHT Size changed to: ',temp_height)
+    console.log('HEIGHT Size2 changed to: ',Viewport.Height)
+    // console.log('Viewport Size changed to: ',Viewport.Width+'x'+Viewport.Height)
+  }}
+  on:orientationchangeend={() => { console.log(
+    'Screen Orientation changed to: ', Viewport.Orientation + (
+      Viewport.detailledOrientation == null
+      ? ''
+      : '(' + Viewport.detailledOrientation + ')'
+    )
+  ) }}
+/>
 {#if client_website_status == "ONLINE"}
   <div class="container mx-auto lg:px-20"> 
     {#if token_browser != "" || client_token != ""}
@@ -176,7 +189,9 @@
           {client_credit}
           {client_ipaddress}
           {client_timezone}
-          {client_device} {listkeluaran}/>
+          {client_device} 
+          {client_device_height_custom} 
+          {listkeluaran}/>
           {#if pasaran_code != ""}
             <Permainan
               {path_api}
@@ -207,12 +222,6 @@
       {:else}
         TOKEN NOT FOUND
       {/if}
-      <footer class="footer footer-center p-4 text-base-content mt-4 text-center">
-        <div>
-          <p class="text-sm text-center">
-            Copyright © 2022 - Power by <br><img class="w-28" src="https://isbtoto.net/logo-green.svg" alt="SDSB"></p>
-        </div>
-      </footer>
   </div>
 {:else}
   <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
@@ -225,8 +234,14 @@
   </div>
 {/if}
 
-
-
+<footer class=" footer footer-center p-4 text-base-content mt-10 text-center">
+  <div class="fixed bottom-1 -z-10 ">
+    <p class="text-sm text-center">
+      Copyright © 2022 - Powerby
+    </p>
+    <img class="w-28" src="https://isbtoto.net/logo-green.svg" alt="SDSB">
+  </div>
+</footer>
   
 <style global lang="postcss">
   @tailwind base;

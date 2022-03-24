@@ -748,6 +748,11 @@
   "resolved" "https://registry.npmjs.org/svelte-themes/-/svelte-themes-0.0.98.tgz"
   "version" "0.0.98"
 
+"svelte-viewport-info@^1.0.0":
+  "integrity" "sha512-h2qhIWa3qh/UCdDsdAWgFBvSFtgyIpPgHeWmyy6TzAz9WNNdvajqFMPbkVQUgDq5WZpV8otMoEZnqz85HkKpsw=="
+  "resolved" "https://registry.npmjs.org/svelte-viewport-info/-/svelte-viewport-info-1.0.0.tgz"
+  "version" "1.0.0"
+
 "svelte@^3.44.0", "svelte@>=3.19.0":
   "integrity" "sha512-qKJzw6DpA33CIa+C/rGp4AUdSfii0DOTCzj/2YpSKKayw5WGSS624Et9L1nU1k2OVRS9vaENQXp2CVZNU+xvIg=="
   "resolved" "https://registry.npmjs.org/svelte/-/svelte-3.46.4.tgz"
