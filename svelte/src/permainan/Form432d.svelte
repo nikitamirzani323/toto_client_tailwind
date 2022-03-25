@@ -3792,7 +3792,7 @@
             <div class="place-content-end text-right text-md">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
 		<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
-			<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-16">
+			<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-16 cursor-pointer">
 				<ul class="flex items-center">
 					<li>
 					  <span
@@ -3878,7 +3878,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="4D/3D/2D" 
-                    class="input border-none text-center text-3xl placeholder:text-3xl"> 
+                    class="input border-none text-center text-sm placeholder:text-sm"> 
               </div>
               <div class="form-control">
                   <label class="label">
@@ -3892,7 +3892,7 @@
                     minlength="3"
                     maxlength="7"
                     type="text" placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                    class="input border-none text-right text-sm placeholder:text-sm">
                   <label class="label">
                       <span class="label-text text-sm">&nbsp;</span>
                       <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_432)}</span>
@@ -3921,7 +3921,7 @@
 				minlength="4"
 				maxlength="4"
 				type="text" placeholder="4D/3D/2D" 
-				class="input border-none text-center text-3xl placeholder:text-2xl"> 
+				class="input border-none text-center text-sm placeholder:text-sm"> 
 			</div>
 			<div class="mt-1 gap-2 grid grid-cols-3">
 				<div class="form-control">
@@ -3937,7 +3937,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_1)}</span>
@@ -3955,7 +3955,7 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-3xl placeholder:text-3xl">
+					class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_2)}</span>
@@ -3973,7 +3973,7 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-3xl placeholder:text-3xl">
+					class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_6)}</span>
@@ -3991,7 +3991,7 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-3xl placeholder:text-3xl">
+					class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text">&nbsp;</span>
 						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_3)}</span>
@@ -4009,7 +4009,7 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-3xl placeholder:text-3xl">
+					class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text">&nbsp;</span>
 						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_4)}</span>
@@ -4027,7 +4027,7 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-3xl placeholder:text-3xl">
+					class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text">&nbsp;</span>
 						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_5)}</span>
@@ -4056,7 +4056,7 @@
 				minlength="4"
 				maxlength={bbfs}
 				type="text" placeholder="4D/3D/2D" 
-				class="input border-none text-center text-3xl placeholder:text-2xl">
+				class="input border-none text-center text-sm placeholder:text-sm">
 			</div>
 			<div class="mt-1 gap-2 grid grid-cols-3">
 				<div class="form-control">
@@ -4072,7 +4072,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_1)}</span>
@@ -4091,7 +4091,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_2)}</span>
@@ -4110,7 +4110,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_6)}</span>
@@ -4129,7 +4129,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_3)}</span>
@@ -4148,7 +4148,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_4)}</span>
@@ -4167,7 +4167,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-3xl placeholder:text-3xl">
+						class="input border-none text-right text-sm placeholder:text-sm">
 					<label class="label">
 						<span class="label-text text-sm">&nbsp;</span>
 						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_5)}</span>
@@ -4219,7 +4219,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="AS" 
-                    class="input border-none text-center text-3xl placeholder:text-2xl"> 
+                    class="input border-none text-center text-sm placeholder:text-sm"> 
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4233,7 +4233,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="KOP" 
-                    class="input border-none text-center text-3xl placeholder:text-2xl">  
+                    class="input border-none text-center text-sm placeholder:text-sm">  
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4246,7 +4246,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="KEPALA" 
-                    class="input border-none text-center text-3xl placeholder:text-2xl">
+                    class="input border-none text-center text-sm placeholder:text-sm">
               </div>
               <div class="form-control">
                 <label class="label">
@@ -4259,7 +4259,7 @@
                     maxlength="4"
                     type="text" 
                     placeholder="EKOR" 
-                    class="input border-none text-center text-3xl placeholder:text-2xl">
+                    class="input border-none text-center text-sm placeholder:text-sm">
               </div>
           </div>
 		  <div class="form-control">
@@ -4276,7 +4276,7 @@
 				maxlength="7"
 				type="text" 
 				placeholder="Bet" 
-				class="input border-none text-right text-3xl placeholder:text-3xl">
+				class="input border-none text-right text-sm placeholder:text-sm">
 				<label class="label">
 					<span class="label-text">&nbsp;</span>
 					<span class="label-text-alt">{new Intl.NumberFormat().format(bet_tarung)}</span>
@@ -4302,12 +4302,12 @@
           <div class="mt-1 gap-2 grid grid-cols-4">
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text text-sm">Besar/Kecil/Genap/Ganjil</span>
+                      <span class="label-text text-sm">&nbsp;</span>
                   </label>
                   <select
                     bind:value={quick_pilihan1}
                     bind:this={quick_pilihan1_input} 
-                    class="select w-full max-w-xs text-3xl">
+                    class="select w-full max-w-xs text-sm">
                     <option value="BESAR">BESAR</option>
                     <option value="KECIL">KECIL</option>
                     <option value="GENAP">GENAP</option>
@@ -4316,12 +4316,12 @@
               </div>
               <div class="form-control">
                 <label class="label">
-                  <span class="label-text text-sm">2D/2DD/2DT</span>
+                  <span class="label-text text-sm">&nbsp;</span>
                 </label>
                 <select
                   bind:value={quick_pilihan2}
                   bind:this={quick_pilihan2_input}
-                  class="select w-full max-w-xs text-3xl">
+                  class="select w-full max-w-xs text-sm">
                   <option value="2D">2D</option>
                   <option value="2DD">2D DEPAN</option>
                   <option value="2DT">2D TENGAH</option>
@@ -4341,7 +4341,7 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
+                    class="input border-none text-right text-sm placeholder:text-sm">
                   <label class="label">
                       <span class="label-text">&nbsp;</span>
                       <span class="label-text-alt">{new Intl.NumberFormat().format(quick_bet)}</span>
@@ -4372,7 +4372,7 @@
                   maxlength="3"
                   type="text" 
                   placeholder="3D DEPAN" 
-                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
+                  class="input border-none text-center text-sm placeholder:text-sm"> 
             </div>
             <div class="form-control">
                 <label class="label">
@@ -4386,7 +4386,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                  class="input border-none text-right text-sm placeholder:text-sm">
                 <label class="label">
                     <span class="label-text text-sm">&nbsp;</span>
                     <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_3dd)}</span>
@@ -4417,7 +4417,7 @@
                   maxlength="2"
                   type="text" 
                   placeholder="2D DEPAN" 
-                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
+                  class="input border-none text-center text-sm placeholder:text-sm"> 
             </div>
             <div class="form-control">
                 <label class="label">
@@ -4431,7 +4431,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                  class="input border-none text-right text-sm placeholder:text-sm">
                 <label class="label">
                     <span class="label-text text-sm">&nbsp;</span>
                     <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_2dd)}</span>
@@ -4462,7 +4462,7 @@
                   maxlength="2"
                   type="text" 
                   placeholder="2D TENGAH" 
-                  class="input border-none text-center text-3xl placeholder:text-3xl"> 
+                  class="input border-none text-center text-sm placeholder:text-sm"> 
             </div>
             <div class="form-control">
                 <label class="label">
@@ -4476,7 +4476,7 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-3xl">
+                  class="input border-none text-right text-sm placeholder:text-sm">
                 <label class="label">
                     <span class="label-text">&nbsp;</span>
                     <span class="label-text-alt">{new Intl.NumberFormat().format(bet_2dt)}</span>
@@ -4578,11 +4578,8 @@
 					</div>
 				  </div>
 				{#if panel_form_432}
-					<div class="mt-1 gap-2 grid grid-cols-1">
+					<div class="mt-1 gap-1 grid grid-cols-1">
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Nomor (2-4)</span>
-							</label>
 							<input
 								bind:this={nomor_432_input}
 								bind:value={nomor_432}
@@ -4591,8 +4588,8 @@
 								minlength="4"
 								maxlength="4"
 								type="text" 
-								placeholder="4D/3D/2D" 
-								class="input border-none text-center text-lg placeholder:text-lg"> 
+								placeholder="Input 2-4 Digits" 
+								class="input border-none text-center text-sm placeholder:text-sm"> 
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -4606,7 +4603,7 @@
 								minlength="3"
 								maxlength="7"
 								type="text" placeholder="Bet" 
-								class="input border-none text-right text-lg placeholder:text-lg">
+								class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_432)}</span>
@@ -4626,9 +4623,6 @@
 				{#if panel_form_432set}
 					<div class="mt-1 gap-2 grid grid-cols-1">
 						<div class="form-control">
-						<label class="label">
-							<span class="label-text text-xs">Nomor (2-4)</span>
-						</label>
 						<input
 							bind:this={nomorset_input}
 							bind:value={nomorset}
@@ -4636,8 +4630,8 @@
 							on:keypress={handleKeyboard432set_checkenter} 
 							minlength="4"
 							maxlength="4"
-							type="text" placeholder="4D/3D/2D" 
-							class="input border-none text-center text-lg placeholder:text-lg"> 
+							type="text" placeholder="Input 2-4 Digit" 
+							class="input border-none text-center text-sm placeholder:text-sm"> 
 						</div>
 					</div>
 					<div class="mt-1 gap-2 grid grid-cols-2">
@@ -4654,7 +4648,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-lg placeholder:text-lg">
+								class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_1)}</span>
@@ -4672,7 +4666,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-lg placeholder:text-lg">
+							class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_2)}</span>
@@ -4690,7 +4684,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-lg placeholder:text-lg">
+							class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_6)}</span>
@@ -4709,7 +4703,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-lg placeholder:text-lg">
+							class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_3)}</span>
@@ -4727,7 +4721,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-lg placeholder:text-lg">
+							class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_4)}</span>
@@ -4745,7 +4739,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-lg placeholder:text-lg">
+							class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(betset_5)}</span>
@@ -4776,7 +4770,7 @@
 							minlength="4"
 							maxlength={bbfs}
 							type="text" placeholder="4D/3D/2D" 
-							class="input border-none text-center text-lg placeholder:text-lg">
+							class="input border-none text-center text-sm placeholder:text-sm">
 						</div>
 					</div>
 					<div class="mt-1 gap-2 grid grid-cols-2">
@@ -4793,7 +4787,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-lg placeholder:text-lg">
+								class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_1)}</span>
@@ -4812,7 +4806,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-lg placeholder:text-lg">
+								class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2)}</span>
@@ -4831,7 +4825,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-lg placeholder:text-lg">
+								class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_6)}</span>
@@ -4850,7 +4844,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-lg placeholder:text-lg">
+								class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3)}</span>
@@ -4869,7 +4863,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-lg placeholder:text-lg">
+								class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_4)}</span>
@@ -4888,7 +4882,7 @@
 								maxlength="7"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right text-lg placeholder:text-lg">
+								class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_5)}</span>
@@ -4931,9 +4925,6 @@
 				{#if panel_form_432polatarung}
 					<div class="mt-1 gap-2 grid grid-cols-2">
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Nomor AS</span>
-							</label>
 							<input
 								bind:this={nomoras_input}
 								bind:value={nomoras}
@@ -4942,12 +4933,9 @@
 								maxlength="4"
 								type="text" 
 								placeholder="AS" 
-								class="input border-none text-center text-lg placeholder:text-lg"> 
+								class="input border-none text-center text-sm placeholder:text-sm"> 
 						</div>
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Nomor KOP</span>
-							</label>
 							<input
 								bind:this={nomorkop_input}
 								bind:value={nomorkop}
@@ -4956,12 +4944,9 @@
 								maxlength="4"
 								type="text" 
 								placeholder="KOP" 
-								class="input border-none text-center text-lg placeholder:text-lg">  
+								class="input border-none text-center text-sm placeholder:text-sm">  
 						</div>
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Nomor KEPALA</span>
-							</label>
 							<input
 								bind:value={nomorkepala}
 								on:keyup={handleKeyboard_number}
@@ -4969,12 +4954,9 @@
 								maxlength="4"
 								type="text" 
 								placeholder="KEPALA" 
-								class="input border-none text-center text-lg placeholder:text-lg">
+								class="input border-none text-center text-sm placeholder:text-sm">
 						</div>
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Nomor EKOR</span>
-							</label>
 							<input
 								bind:value={nomorekor}
 								on:keyup={handleKeyboard_number}
@@ -4982,7 +4964,7 @@
 								maxlength="4"
 								type="text" 
 								placeholder="EKOR" 
-								class="input border-none text-center text-lg placeholder:text-lg">
+								class="input border-none text-center text-sm placeholder:text-sm">
 						</div>
 					</div>
 					<div class="form-control">
@@ -4999,7 +4981,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-lg placeholder:text-lg">
+						class="input border-none text-right text-sm placeholder:text-sm">
 						<label class="label">
 							<span class="label-text text-xs">&nbsp;</span>
 							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_tarung)}</span>
@@ -5025,9 +5007,6 @@
 				{#if panel_form_432quick2d}
 					<div class="mt-1 gap-2 grid grid-cols-2">
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Besar/Kecil/Genap/Ganjil</span>
-							</label>
 							<select
 								bind:value={quick_pilihan1}
 								bind:this={quick_pilihan1_input} 
@@ -5039,16 +5018,13 @@
 							</select> 
 						</div>
 						<div class="form-control">
-							<label class="label">
-							<span class="label-text text-xs">2D/2DD/2DT</span>
-							</label>
 							<select
-							bind:value={quick_pilihan2}
-							bind:this={quick_pilihan2_input}
-							class="select w-full max-w-xs">
-							<option value="2D">2D</option>
-							<option value="2DD">2D DEPAN</option>
-							<option value="2DT">2D TENGAH</option>
+								bind:value={quick_pilihan2}
+								bind:this={quick_pilihan2_input}
+								class="select w-full max-w-xs">
+								<option value="2D">2D</option>
+								<option value="2DD">2D DEPAN</option>
+								<option value="2DT">2D TENGAH</option>
 							</select> 
 						</div>
 					</div>
@@ -5066,7 +5042,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-lg placeholder:text-lg">
+						class="input border-none text-right text-sm placeholder:text-sm">
 						<label class="label">
 							<span class="label-text text-xs">&nbsp;</span>
 							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(quick_bet)}</span>
@@ -5085,9 +5061,6 @@
 				{#if panel_form_4323dd}
 					<div class="mt-1 gap-2 grid grid-cols-1">
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Nomor (3 Digit)</span>
-							</label>
 							<input
 							bind:this={nomor3dd_input}
 							bind:value={nomor3dd}
@@ -5096,8 +5069,8 @@
 							minlength="3"
 							maxlength="3"
 							type="text" 
-							placeholder="3D DEPAN" 
-							class="input border-none text-center text-lg placeholder:text-lg"> 
+							placeholder="Input 3 Digit" 
+							class="input border-none text-center text-sm placeholder:text-sm"> 
 						</div>
 						<div class="form-control">
 						<label class="label">
@@ -5111,7 +5084,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-lg placeholder:text-lg">
+							class="input border-none text-right text-sm placeholder:text-sm">
 						<label class="label">
 							<span class="label-text text-xs">&nbsp;</span>
 							<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_3dd)}</span>
@@ -5131,9 +5104,6 @@
 				{#if panel_form_4322dd}
 					<div class="mt-1 gap-2 grid grid-cols-1">
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Nomor (2 Digit)</span>
-							</label>
 							<input
 							bind:this={nomor2dd_input}
 							bind:value={nomor2dd}
@@ -5142,8 +5112,8 @@
 							minlength="2"
 							maxlength="2"
 							type="text" 
-							placeholder="2D DEPAN" 
-							class="input border-none text-center text-lg placeholder:text-lg"> 
+							placeholder="Input 2 Digit" 
+							class="input border-none text-center text-sm placeholder:text-sm"> 
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -5157,7 +5127,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-lg placeholder:text-lg">
+							class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dd)}</span>
@@ -5177,19 +5147,16 @@
 				{#if panel_form_4322dt}
 					<div class="mt-1 gap-2 grid grid-cols-1">
 						<div class="form-control">
-							<label class="label">
-								<span class="label-text text-xs">Nomor (2 Digit)</span>
-							</label>
 							<input
-							bind:this={nomor2dt_input}
-							bind:value={nomor2dt}
-							on:keyup={handleKeyboard_format}
-							on:keypress={handleKeyboard2dt_checkenter}
-							minlength="2"
-							maxlength="2"
-							type="text" 
-							placeholder="2D TENGAH" 
-							class="input border-none text-center text-lg placeholder:text-lg"> 
+								bind:this={nomor2dt_input}
+								bind:value={nomor2dt}
+								on:keyup={handleKeyboard_format}
+								on:keypress={handleKeyboard2dt_checkenter}
+								minlength="2"
+								maxlength="2"
+								type="text" 
+								placeholder="Input 2 Digit" 
+								class="input border-none text-center text-sm placeholder:text-sm"> 
 						</div>
 						<div class="form-control">
 							<label class="label">
@@ -5203,7 +5170,7 @@
 							minlength="3"
 							maxlength="7"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right text-lg placeholder:text-lg">
+							class="input border-none text-right text-sm placeholder:text-sm">
 							<label class="label">
 								<span class="label-text text-xs">&nbsp;</span>
 								<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_2dt)}</span>
@@ -5224,6 +5191,44 @@
 		</div>
       {/if}
   </div>
+</div>
+<input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
+<div class="modal " on:click|self={()=>isModalAlert = false}>
+    <div class="modal-box relative">
+        <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-lg font-bold">INFORMASI</h3>
+        <p class="py-4">{@html msg_error}</p>
+    </div>
+</div>
+
+<input type="checkbox" id="my-modal-loading" class="modal-toggle" bind:checked={isModalLoading}>
+<div class="modal">
+    <div class="modal-box w-auto grass opacity-70">
+		<svg class="lds-curve-bars" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(50,50)"><circle cx="0" cy="0" r="8.333333333333334" fill="none" stroke="#ffffcb" stroke-width="4" stroke-dasharray="26.179938779914945 26.179938779914945" transform="rotate(308.129)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="0" repeatCount="indefinite"></animateTransform>
+			</circle><circle cx="0" cy="0" r="16.666666666666668" fill="none" stroke="#fac090" stroke-width="4" stroke-dasharray="52.35987755982989 52.35987755982989" transform="rotate(360)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.2" repeatCount="indefinite"></animateTransform>
+			</circle><circle cx="0" cy="0" r="25" fill="none" stroke="#ff7c81" stroke-width="4" stroke-dasharray="78.53981633974483 78.53981633974483" transform="rotate(51.8709)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.4" repeatCount="indefinite"></animateTransform>
+			</circle><circle cx="0" cy="0" r="33.333333333333336" fill="none" stroke="#c0f6d2" stroke-width="4" stroke-dasharray="104.71975511965978 104.71975511965978" transform="rotate(135.238)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.6" repeatCount="indefinite"></animateTransform>
+			</circle><circle cx="0" cy="0" r="41.666666666666664" fill="none" stroke="#dae4bf" stroke-width="4" stroke-dasharray="130.89969389957471 130.89969389957471" transform="rotate(224.762)">
+			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
+			</circle></g>
+		</svg>
+    </div>
+</div>
+
+<input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
+<div class="modal" >
+    <div class="modal-box relative max-w-lg">
+		<label for="my-modal-alertbbfs" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
+        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
+            Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
+        </p>
+    </div>
 </div>
 <Tablekeranjang
   on:removekeranjang={removekeranjang}
@@ -5470,44 +5475,7 @@
 		</div>
 	</div>
 {/if}
-<input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
-<div class="modal " on:click|self={()=>isModalAlert = false}>
-    <div class="modal-box relative">
-        <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-lg font-bold">INFORMASI</h3>
-        <p class="py-4">{@html msg_error}</p>
-    </div>
-</div>
 
-<input type="checkbox" id="my-modal-loading" class="modal-toggle" bind:checked={isModalLoading}>
-<div class="modal">
-    <div class="modal-box w-auto grass opacity-70">
-		<svg class="lds-curve-bars" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(50,50)"><circle cx="0" cy="0" r="8.333333333333334" fill="none" stroke="#ffffcb" stroke-width="4" stroke-dasharray="26.179938779914945 26.179938779914945" transform="rotate(308.129)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="0" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="16.666666666666668" fill="none" stroke="#fac090" stroke-width="4" stroke-dasharray="52.35987755982989 52.35987755982989" transform="rotate(360)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.2" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="25" fill="none" stroke="#ff7c81" stroke-width="4" stroke-dasharray="78.53981633974483 78.53981633974483" transform="rotate(51.8709)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.4" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="33.333333333333336" fill="none" stroke="#c0f6d2" stroke-width="4" stroke-dasharray="104.71975511965978 104.71975511965978" transform="rotate(135.238)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.6" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="41.666666666666664" fill="none" stroke="#dae4bf" stroke-width="4" stroke-dasharray="130.89969389957471 130.89969389957471" transform="rotate(224.762)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
-			</circle></g>
-		</svg>
-    </div>
-</div>
-
-<input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg">
-		<label for="my-modal-alertbbfs" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
-        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
-        </p>
-    </div>
-</div>
 
 <style>
     .scrollbar-thin::-webkit-scrollbar {

@@ -69,7 +69,6 @@
     let isModal_invoicedetail = false
     let isModal_detailbyid = false
     let isModal_bukumimpi = false
-    let isModal_bukumimpi_2 = false
     let tab_bookdream_all = "bg-green-600 text-black"
     let tab_bookdream_4d = ""
     let tab_bookdream_3d = ""
@@ -282,9 +281,7 @@
             } else {
                 alert("Error");
             }
-        } else {
-            alert("Data Not Found");
-        }
+        } 
     }
     async function fetch_bukumimpi() {
         listBukumimpi = [];
@@ -318,9 +315,6 @@
         } else {
             // alert("Error");
         }
-    }
-    const handleModalCustom = () => {
-        isModal_bukumimpi_2 = !isModal_bukumimpi_2;
     }
     const handleClickBukuMimpi = (e) => {
         filterBukuMimpi = [];
@@ -704,12 +698,12 @@
     {/if}
 </div>
 <input type="checkbox" id="my-modal-invoicedetail" class="modal-toggle" bind:checked={isModal_invoicedetail}>
-<div class="modal" on:click|self={()=>isModal_invoicedetail = false}>
+<div class="modal top-0 right-0 left-0" on:click|self={()=>isModal_invoicedetail = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-4/5 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-invoicedetail" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold -mt-1">PASARAN : {detailslipheader}</h3>
-        <div class="overflow-auto h-[80%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+        <div class="overflow-auto h-3/4 scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full" >
                 <thead>
                     <tr>
@@ -729,7 +723,7 @@
                                     total4d_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">4D</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {total4d_bayar>0 ? 'cursor-pointer underline':''}">4D</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
                     </tr>
@@ -742,7 +736,7 @@
                                     total3d_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">3D</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {total3d_bayar>0 ? 'cursor-pointer underline':''}">3D</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
                     </tr>
@@ -755,7 +749,7 @@
                                     total2d_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">2D</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {total2d_bayar>0 ? 'cursor-pointer underline':''}">2D</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
                     </tr>
@@ -768,7 +762,7 @@
                                     totalcolokbebas_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK BEBAS</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokbebas_bayar>0 ? 'cursor-pointer underline':''}">COLOK BEBAS</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
                     </tr>
@@ -781,7 +775,7 @@
                                     totalcolokmacau_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK MACAU</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokmacau_bayar>0 ? 'cursor-pointer underline':''}">COLOK MACAU</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
                     </tr>
@@ -794,7 +788,7 @@
                                     totalcoloknaga_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK NAGA</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalcoloknaga_bayar>0 ? 'cursor-pointer underline':''}">COLOK NAGA</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
                     </tr>
@@ -807,7 +801,7 @@
                                     totalcolokjitu_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK JITU</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokjitu_bayar>0 ? 'cursor-pointer underline':''}">COLOK JITU</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
                     </tr>
@@ -820,7 +814,7 @@
                                     total5050umum_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 UMUM</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {total5050umum_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 UMUM</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
                     </tr>
@@ -833,7 +827,7 @@
                                     total5050special_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 SPECIAL</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {total5050special_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 SPECIAL</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
                     </tr>
@@ -846,7 +840,7 @@
                                 );
                             }}
                             class="text-xs lg:text-sm text-center whitespace-nowrap">10</th>
-                        <th class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 KOMBINASI</th>
+                        <th class="text-xs lg:text-sm text-left whitespace-nowrap {total5050kombinasi_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 KOMBINASI</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
                     </tr>
@@ -859,7 +853,7 @@
                                     totalmacaukombinasi_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">MACAU / KOMBINASI</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalmacaukombinasi_bayar>0 ? 'cursor-pointer underline':''}">MACAU / KOMBINASI</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
                     </tr>
@@ -872,7 +866,7 @@
                                     totaldasar_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">DASAR</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {totaldasar_bayar>0 ? 'cursor-pointer underline':''}">DASAR</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
                     </tr>
@@ -885,7 +879,7 @@
                                     totalshio_bayar
                                 );
                             }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">SHIO</th>
+                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalshio_bayar>0 ? 'cursor-pointer underline':''}">SHIO</th>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
                         <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
                     </tr>

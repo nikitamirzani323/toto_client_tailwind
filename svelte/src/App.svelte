@@ -51,7 +51,6 @@
     pasaran_code = e.detail.code;
     pasaran_name = e.detail.name;
     pasaran_periode = e.detail.periode;
-    isPlaceholder = false
   };
   let record = "";
   let isModalAlert = false;
