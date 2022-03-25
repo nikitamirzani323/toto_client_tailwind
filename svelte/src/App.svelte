@@ -51,10 +51,11 @@
     pasaran_code = e.detail.code;
     pasaran_name = e.detail.name;
     pasaran_periode = e.detail.periode;
+    isPlaceholder = false
   };
   let record = "";
   let isModalAlert = false;
-  let isModalCustom = false;
+  
   let message_err = "";
   async function initTimezone() {
     const res = await fetch(path_api+"api/healthz");

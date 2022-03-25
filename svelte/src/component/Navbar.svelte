@@ -457,7 +457,6 @@
                         call_bukumimpi();
                     }}
                     class="btn bg-base-300 border-none shadow-lg shadow-green-500/50">BUKU MIMPI</label>
-                
             </div>
         </div>
         <div class="navbar-end hidden text-xs lg:text-sm lg:inline-block text-right">
@@ -489,10 +488,10 @@
                         </svg>
                     </label>
                     <ul data-choose-theme tabindex="0" class="dropdown-content menu p-3 shadow bg-base-200 rounded-box w-52">
-                        <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Light</li>
-                        <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Winter</li>
-                        <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dark</li>
-                        <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dracula</li>
+                        <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Light</li>
+                        <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Winter</li>
+                        <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Dark</li>
+                        <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Dracula</li>
                     </ul>
                 </div>
             </div>
@@ -710,7 +709,7 @@
     <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-invoicedetail" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold -mt-1">PASARAN : {detailslipheader}</h3>
-        <div class="overflow-auto h-[73%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+        <div class="overflow-auto h-[80%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full" >
                 <thead>
                     <tr>
@@ -1279,22 +1278,28 @@
                     <input
                         bind:value={searchbukumimpi}
                         on:keypress={handleKeyboardbukumimpi_checkenter} 
-                        type="text" placeholder="Ketik Apa Yang Kamu Mimpikan" class="input mt-1 bg-base-300 rounded-sm input-sm w-full max-w-4xl">
+                        type="text" placeholder="Search Buku Mimpi + Enter" class="input mt-1 bg-base-300 rounded-sm input-sm w-full max-w-4xl">
                 </div>
             </div>
-            <div class="flex flex-col justify-start mt-4 overflow-auto h-[80%] scrollbar-thin scrollbar-thumb-green-100 max-w-full" >
-                {#each filterBukuMimpi as rec}
-                    <div class="flex flex-row mb-4 border-b-2 border-b-base-300">
-                        <div class="flex w-[3rem] text-center text-sm self-center link-accent">{rec.bukumimpi_tipe}</div>
-                        <div class="flex flex-1">
-                            <p class="p-1 text-sm text-justify">
-                                {rec.bukumimpi_nama}<br>
-                                <span class="link-accent text-sm ">{rec.bukumimpi_nomor}</span>
-                            </p>
+            {#if filterBukuMimpi != ""}
+                <div class="flex flex-col justify-start mt-4 overflow-auto h-[80%] scrollbar-thin scrollbar-thumb-green-100 max-w-full" >
+                    {#each filterBukuMimpi as rec}
+                        <div class="flex flex-row mb-4 border-b-2 border-b-base-300">
+                            <div class="flex w-[3rem] text-center text-sm self-center link-accent">{rec.bukumimpi_tipe}</div>
+                            <div class="flex flex-1">
+                                <p class="p-1 text-sm text-justify">
+                                    {rec.bukumimpi_nama}<br>
+                                    <span class="link-accent text-sm ">{rec.bukumimpi_nomor}</span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                {/each}
-            </div>
+                    {/each}
+                </div>
+            {:else}
+                <div class="flex mt-4 text-center justify-center p-4">
+                    No results "{searchbukumimpi}"
+                </div>
+            {/if}
         </div>
     </div>
 {:else}
@@ -1346,7 +1351,7 @@
                     <input
                     bind:value={searchbukumimpi}
                     on:keypress={handleKeyboardbukumimpi_checkenter} 
-                    type="text" placeholder="Ketik apa yang kamu mimpikan + Enter" class="input input-sm  bg-base-300 rounded-sm input-md w-full max-w-lg min-w-full">
+                    type="text" placeholder="Search Buku Mimpi + Enter" class="input input-sm  bg-base-300 rounded-sm input-md w-full max-w-lg min-w-full">
                 </div>
             </div>
             

@@ -301,15 +301,15 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal" on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative w-11/12 max-w-4xl" style="height: 600px;">
+        <div class="modal-box relative w-11/12 max-w-4xl h-[600px] overflow-hidden">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-2xl font-bold">INFORMASI</h3>
+            <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="h-[32rem] overflow-auto scrollbar-hide" >
                 <div class="overflow-auto">
                     <table class="table table-compact w-full" >
                         <thead>
                             <tr>
-                                <th class="text-sm text-left align-top">#</th>
+                                <th class="text-sm text-left align-top"></th>
                                 <th class="text-sm text-right align-top">4D</th>
                                 <th class="text-sm text-right align-top">3D</th>
                                 <th class="text-sm text-right align-top">3DD <br> 3D DEPAN</th>
@@ -320,7 +320,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-sm text-left">MIN BET</td>
+                                <th class="text-sm text-left">MIN BET</th>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
@@ -329,7 +329,7 @@
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
                             </tr>
                             <tr>
-                                <td class="text-sm text-left">MAX BET</td>
+                                <th class="text-sm text-left">MAX BET</th>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
@@ -338,7 +338,7 @@
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
                             </tr>
                             <tr>
-                                <td class="text-sm text-left">DISKON</td>
+                                <th class="text-sm text-left">DISKON</th>
                                 <td class="text-sm text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
                                 <td class="text-sm text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
                                 <td class="text-sm text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
@@ -347,7 +347,7 @@
                                 <td class="text-sm text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
                             </tr>
                             <tr>
-                                <td class="text-sm text-left">HADIAH</td>
+                                <th class="text-sm text-left">HADIAH</th>
                                 <td class="text-sm text-right link-accent">{win4d_bet}x</td>
                                 <td class="text-sm text-right link-accent">{win3d_bet}x</td>
                                 <td class="text-sm text-right link-accent">{win3dd_bet}x</td>
@@ -356,7 +356,7 @@
                                 <td class="text-sm text-right link-accent">{win2dt_bet}x</td>
                             </tr>
                             <tr>
-                                <td class="text-sm text-left">HADIAH FULL</td>
+                                <th class="text-sm text-left">HADIAH FULL</th>
                                 <td class="text-sm text-right link-accent">{win4dnodiskon_bet}x</td>
                                 <td class="text-sm text-right link-accent">{win3dnodiskon_bet}x</td>
                                 <td class="text-sm text-right link-accent">{win3ddnodiskon_bet}x</td>
@@ -365,7 +365,7 @@
                                 <td class="text-sm text-right link-accent">{win2dtnodiskon_bet}x</td>
                             </tr>
                             <tr>
-                                <td class="text-sm text-left">HADIAH BB KENA</td>
+                                <th class="text-sm text-left">HADIAH BB KENA</th>
                                 <td class="text-sm text-right link-accent">{win4dbb_kena_bet}x</td>
                                 <td class="text-sm text-right link-accent">{win3dbb_kena_bet}x</td>
                                 <td class="text-sm text-right link-accent">{win3ddbb_kena_bet}x</td>
@@ -374,7 +374,7 @@
                                 <td class="text-sm text-right link-accent">{win2dtbb_kena_bet}x</td>
                             </tr>
                             <tr>
-                                <td class="text-sm text-left">HADIAH BB</td>
+                                <th class="text-sm text-left">HADIAH BB</th>
                                 <td class="text-sm text-right link-accent">{win4dbb_bet}x</td>
                                 <td class="text-sm text-right link-accent">{win3dbb_bet}x</td>
                                 <td class="text-sm text-right link-accent">{win3ddbb_bet}x</td>
@@ -383,7 +383,7 @@
                                 <td class="text-sm text-right link-accent">{win2dtbb_bet}x</td>
                             </tr>
                             <tr>
-                                <td class="text-sm text-left">LIMIT LINE</td>
+                                <th class="text-sm text-left">LIMIT LINE</th>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
                                 <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
@@ -601,8 +601,8 @@
 <input type="checkbox" id="my-modal-informationalert" class="modal-toggle" bind:checked={isModalAlert}>
 <div class="modal" >
     <div class="modal-box relative max-w-lg">
-        <h3 class="text-sm font-bold capitalize text-center">Apakah Anda Ingin Hapus Transaksi Ini :</h3>
-        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
+        <h3 class="text-xs lg:text-sm font-bold capitalize text-center">Apakah Anda Ingin Menghapus Transaksi Ini :</h3>
+        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
             Nomor : {temp_nomor} <br>
             Tipe : {temp_tipe} <br>
             Permainan : {temp_permainan} <br>
@@ -627,7 +627,7 @@
 <input type="checkbox" id="my-modal-informationalert2" class="modal-toggle" bind:checked={isModalAlert2}>
 <div class="modal" >
     <div class="modal-box relative max-w-lg">
-        <h3 class="text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Hapus Semua Transaksi :</h3>
+        <h3 class="text-xs lg:text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Menghapus Semua Transaksi :</h3>
         <div class="grid grid-cols-2 gap-1">
             <button
                 on:click={() => {

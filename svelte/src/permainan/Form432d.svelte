@@ -3909,283 +3909,279 @@
           </div>
         {/if}
         {#if panel_form_432set}
-          <div class="mt-1 gap-2 grid grid-cols-4">
-              <div class="form-control">
-                  <label class="label">
-                      <span class="label-text text-sm">Nomor (2-4)</span>
-                  </label>
-                  <input
-                    bind:this={nomorset_input}
-                    bind:value={nomorset}
-                    on:keyup={handleKeyboard_format}
-                    on:keypress={handleKeyboard432set_checkenter} 
-                    minlength="4"
-                    maxlength="4"
-                    type="text" placeholder="4D/3D/2D" 
-                    class="input border-none text-center text-3xl placeholder:text-2xl"> 
-              </div>
-              <div class="form-control">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                  </label>
-                  <input 
-                    bind:value={betset_1}
-                    on:keyup={handleKeyboard_number}
-                    on:keypress={handleKeyboard432set_checkenter}
-                    minlength="3"
-                    maxlength="7"
-                    type="text" 
-                    placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_1)}</span>
-                  </label>
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                  bind:value={betset_2}
-                  on:keyup={handleKeyboard_number}
-                  on:keypress={handleKeyboard432set_checkenter}
-                  minlength="3"
-                  maxlength="7"
-                  type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-3xl">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_2)}</span>
-                </label>
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                  bind:value={betset_6}
-                  on:keyup={handleKeyboard_number}
-                  on:keypress={handleKeyboard432set_checkenter}
-                  minlength="3"
-                  maxlength="7"
-                  type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-3xl">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_6)}</span>
-                </label>
-              </div>
-              <div class="form-control">&nbsp;
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                  bind:value={betset_3}
-                  on:keyup={handleKeyboard_number}
-                  on:keypress={handleKeyboard432set_checkenter}
-                  minlength="3"
-                  maxlength="7"
-                  type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-3xl">
-                <label class="label">
-                    <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(betset_3)}</span>
-                </label>
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                  bind:value={betset_4}
-                  on:keyup={handleKeyboard_number}
-                  on:keypress={handleKeyboard432set_checkenter}
-                  minlength="3"
-                  maxlength="7"
-                  type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-3xl">
-                <label class="label">
-                    <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(betset_4)}</span>
-                </label>
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                  bind:value={betset_5}
-                  on:keyup={handleKeyboard_number}
-                  on:keypress={handleKeyboard432set_checkenter}
-                  minlength="3"
-                  maxlength="7"
-                  type="text" placeholder="Bet" 
-                  class="input border-none text-right text-3xl placeholder:text-3xl">
-                <label class="label">
-                    <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(betset_5)}</span>
-                </label>
-              </div>
-          </div>
-          <div class="flex items-stretch">
-            <Button_custom1 
-                on:click={() => {
-                  handleTambah("pilihan","432SET");
-                }} 
-              button_title="Tambah"
-              button_block="btn-block" />
-          </div>
+			<div class="form-control">
+				<label class="label">
+					<span class="label-text text-sm">Nomor (2-4)</span>
+				</label>
+				<input
+				bind:this={nomorset_input}
+				bind:value={nomorset}
+				on:keyup={handleKeyboard_format}
+				on:keypress={handleKeyboard432set_checkenter} 
+				minlength="4"
+				maxlength="4"
+				type="text" placeholder="4D/3D/2D" 
+				class="input border-none text-center text-3xl placeholder:text-2xl"> 
+			</div>
+			<div class="mt-1 gap-2 grid grid-cols-3">
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+						bind:value={betset_1}
+						on:keyup={handleKeyboard_number}
+						on:keypress={handleKeyboard432set_checkenter}
+						minlength="3"
+						maxlength="7"
+						type="text" 
+						placeholder="Bet" 
+						class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_1)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+					bind:value={betset_2}
+					on:keyup={handleKeyboard_number}
+					on:keypress={handleKeyboard432set_checkenter}
+					minlength="3"
+					maxlength="7"
+					type="text" placeholder="Bet" 
+					class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_2)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+					bind:value={betset_6}
+					on:keyup={handleKeyboard_number}
+					on:keypress={handleKeyboard432set_checkenter}
+					minlength="3"
+					maxlength="7"
+					type="text" placeholder="Bet" 
+					class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_6)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text">&nbsp;</span>
+						<span class="label-text-alt">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+					bind:value={betset_3}
+					on:keyup={handleKeyboard_number}
+					on:keypress={handleKeyboard432set_checkenter}
+					minlength="3"
+					maxlength="7"
+					type="text" placeholder="Bet" 
+					class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text">&nbsp;</span>
+						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_3)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text">&nbsp;</span>
+						<span class="label-text-alt">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+					bind:value={betset_4}
+					on:keyup={handleKeyboard_number}
+					on:keypress={handleKeyboard432set_checkenter}
+					minlength="3"
+					maxlength="7"
+					type="text" placeholder="Bet" 
+					class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text">&nbsp;</span>
+						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_4)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text">&nbsp;</span>
+						<span class="label-text-alt">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+					bind:value={betset_5}
+					on:keyup={handleKeyboard_number}
+					on:keypress={handleKeyboard432set_checkenter}
+					minlength="3"
+					maxlength="7"
+					type="text" placeholder="Bet" 
+					class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text">&nbsp;</span>
+						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_5)}</span>
+					</label>
+				</div>
+			</div>
+			<div class="flex items-stretch">
+				<Button_custom1 
+					on:click={() => {
+					handleTambah("pilihan","432SET");
+					}} 
+				button_title="Tambah"
+				button_block="btn-block" />
+			</div>
         {/if}
         {#if panel_form_432bolakbalik}
-          <div class="mt-1 gap-2 grid grid-cols-4">
-              <div class="form-control">
-                  <label class="label">
-                      <span class="label-text text-sm">Bolak Balik - {bbfs} Digit</span>
-                  </label>
-                  <input
-                    bind:this={nomorbbfs_input}
-                    bind:value={nomorbbfs}
-                    on:keyup={handleKeyboard_format}
-                    on:keypress={handleKeyboardbbfs_checkenter} 
-                    minlength="4"
-                    maxlength={bbfs}
-                    type="text" placeholder="4D/3D/2D" 
-                    class="input border-none text-center text-3xl placeholder:text-2xl">
-              </div>
-              <div class="form-control">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                  </label>
-                  <input 
-                    bind:value={bet_1}
-                    on:keyup={handleKeyboard_number}
-                    on:keypress={handleKeyboardbbfs_checkenter}
-                    minlength="3"
-                    maxlength="7"
-                    type="text" 
-                    placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_1)}</span>
-                  </label>
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                    bind:value={bet_2}
-                    on:keyup={handleKeyboard_number}
-                    on:keypress={handleKeyboardbbfs_checkenter}
-                    minlength="3"
-                    maxlength="7"
-                    type="text" 
-                    placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_2)}</span>
-                  </label>
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                    bind:value={bet_6}
-                    on:keyup={handleKeyboard_number}
-                    on:keypress={handleKeyboardbbfs_checkenter}
-                    minlength="3"
-                    maxlength="7"
-                    type="text" 
-                    placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_6)}</span>
-                  </label>
-              </div>
-              <div class="form-control">&nbsp;
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                    bind:value={bet_3}
-                    on:keyup={handleKeyboard_number}
-                    on:keypress={handleKeyboardbbfs_checkenter}
-                    minlength="3"
-                    maxlength="7"
-                    type="text" 
-                    placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_3)}</span>
-                  </label>
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                    bind:value={bet_4}
-                    on:keyup={handleKeyboard_number}
-                    on:keypress={handleKeyboardbbfs_checkenter}
-                    minlength="3"
-                    maxlength="7"
-                    type="text" 
-                    placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_4)}</span>
-                  </label>
-              </div>
-              <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
-                </label>
-                <input 
-                    bind:value={bet_5}
-                    on:keyup={handleKeyboard_number}
-                    on:keypress={handleKeyboardbbfs_checkenter}
-                    minlength="3"
-                    maxlength="7"
-                    type="text" 
-                    placeholder="Bet" 
-                    class="input border-none text-right text-3xl placeholder:text-3xl">
-                  <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_5)}</span>
-                  </label>
-              </div>
-          </div>
-          <div class="flex items-stretch">
-            <Button_custom1 
-                on:click={() => {
-                  handleTambah("pilihan","BBFS");
-                }} 
-              button_title="Tambah"
-              button_block="btn-block" />
-          </div>
+			<div class="form-control">
+				<label class="label">
+					<span class="label-text text-sm">Bolak Balik - {bbfs} Digit</span>
+				</label>
+				<input
+				bind:this={nomorbbfs_input}
+				bind:value={nomorbbfs}
+				on:keyup={handleKeyboard_format}
+				on:keypress={handleKeyboardbbfs_checkenter} 
+				minlength="4"
+				maxlength={bbfs}
+				type="text" placeholder="4D/3D/2D" 
+				class="input border-none text-center text-3xl placeholder:text-2xl">
+			</div>
+			<div class="mt-1 gap-2 grid grid-cols-3">
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+						bind:value={bet_1}
+						on:keyup={handleKeyboard_number}
+						on:keypress={handleKeyboardbbfs_checkenter}
+						minlength="3"
+						maxlength="7"
+						type="text" 
+						placeholder="Bet" 
+						class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_1)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+						bind:value={bet_2}
+						on:keyup={handleKeyboard_number}
+						on:keypress={handleKeyboardbbfs_checkenter}
+						minlength="3"
+						maxlength="7"
+						type="text" 
+						placeholder="Bet" 
+						class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_2)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+						bind:value={bet_6}
+						on:keyup={handleKeyboard_number}
+						on:keypress={handleKeyboardbbfs_checkenter}
+						minlength="3"
+						maxlength="7"
+						type="text" 
+						placeholder="Bet" 
+						class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_6)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+						bind:value={bet_3}
+						on:keyup={handleKeyboard_number}
+						on:keypress={handleKeyboardbbfs_checkenter}
+						minlength="3"
+						maxlength="7"
+						type="text" 
+						placeholder="Bet" 
+						class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_3)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+						bind:value={bet_4}
+						on:keyup={handleKeyboard_number}
+						on:keypress={handleKeyboardbbfs_checkenter}
+						minlength="3"
+						maxlength="7"
+						type="text" 
+						placeholder="Bet" 
+						class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_4)}</span>
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					</label>
+					<input 
+						bind:value={bet_5}
+						on:keyup={handleKeyboard_number}
+						on:keypress={handleKeyboardbbfs_checkenter}
+						minlength="3"
+						maxlength="7"
+						type="text" 
+						placeholder="Bet" 
+						class="input border-none text-right text-3xl placeholder:text-3xl">
+					<label class="label">
+						<span class="label-text text-sm">&nbsp;</span>
+						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_5)}</span>
+					</label>
+				</div>
+			</div>
+			<div class="flex items-stretch">
+				<Button_custom1 
+					on:click={() => {
+					handleTambah("pilihan","BBFS");
+					}} 
+				button_title="Tambah"
+				button_block="btn-block" />
+			</div>
         {/if}
         {#if panel_form_432wap}
           <div class="mt-1 grid grid-cols-1">
@@ -5508,7 +5504,7 @@
         <h3 class="text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
         <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
             Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-			Harap selesaikan Transaksi Diatas, Sebelum Anda Mengakses Halaman Lainnya
+			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
         </p>
     </div>
 </div>

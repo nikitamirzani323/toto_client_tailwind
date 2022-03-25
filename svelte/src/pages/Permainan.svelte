@@ -1,7 +1,6 @@
 <script>
 
     import Form432d from "../permainan/Form432d.svelte";
-    import Card_placeholder_table from "../component/Placeholder_table.svelte";
 
     export let path_api = "";
     export let client_token = "";
@@ -241,7 +240,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {#if filterTransaksi != ""}
+                                
                                 {#each filterTransaksi as rec}
                                     <tr>
                                         <th class="text-sm lg:text-sm text-center">{rec.nomor}</th>
@@ -253,11 +252,7 @@
                                         <td class="text-sm lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                                     </tr>
                                 {/each}
-                                {:else}
-                                <Card_placeholder_table 
-                                    total_colpan=7
-                                    total_placeholder=1 />
-                                {/if}
+                               
                             </tbody>
                         </table>
                     </div>
@@ -270,7 +265,7 @@
                 on:click={() => {
                     handleTabBet("Y");
                 }} 
-                class="{tab_bet_pasangan_class} p-2 text-xs lg:text-sm">KERANJANG</div>
+                class="{tab_bet_pasangan_class} p-2 text-xs lg:text-sm">TRANSAKSI</div>
             <div
                 on:click={() => {
                     handleTabBet("N");
@@ -286,12 +281,12 @@
                 </div>
                 <div class="collapse-content"> 
                     <div class="grid grid-cols-3 gap-2 px-2">
-                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">4D/3D/2D</button>
-                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">COLOK</button>
-                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">50-50</button>
-                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">KOMBINASI</button>
-                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">DASAR</button>
-                        <button class="modal-button py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">SHIO</button>
+                        <button class="modal-button w-full py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">4D/3D/2D</button>
+                        <button class="modal-button w-full py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">COLOK</button>
+                        <button class="modal-button w-full py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">50-50</button>
+                        <button class="modal-button w-full py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">KOMBINASI</button>
+                        <button class="modal-button w-full py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">DASAR</button>
+                        <button class="modal-button w-full py-2 m-2 text-xs lg:text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600 ">SHIO</button>
                     </div>
                 </div>
             </div>
@@ -373,3 +368,26 @@
         </div>
     </div>
 </div>
+<style>
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+    .collapse-arrow .collapse-title:after {
+        position: absolute;
+        display: block;
+        height: 0.5rem/* 8px */;
+        width: 0.5rem/* 8px */;
+        transition-property: all;
+        transition-duration: 150ms;
+        transition-duration: 0.2s;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        top: 1.1rem/* 22.4px */;
+        right: 1.4rem/* 22.4px */;
+        content: "";
+        transform-origin: 75% 75%;
+        transform: rotate(45deg);
+        box-shadow: 2px 2px;
+        pointer-events: none;
+}
+</style>
