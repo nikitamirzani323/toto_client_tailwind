@@ -313,10 +313,10 @@
                     ];
                 }
             } else {
-                alert("Error");
+                // alert("Error");
             }
         } else {
-            alert("Error");
+            // alert("Error");
         }
     }
     const handleModalCustom = () => {
@@ -416,23 +416,20 @@
             filterBukuMimpi = [...listBukumimpi];
         }
     }
-    function closeModal_Custom() {
-        isModal_bukumimpi_2 = false;
-    }
 </script>
 
 {#if client_device == "WEBSITE"}
     <div class="dropdown dropdown-left fixed right-2 top-20 z-50">
-        <label tabindex="0" class="btn m-1 rounded-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <label tabindex="0" class="btn btn-sm m-1 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
             </svg>
         </label>
         <ul data-choose-theme tabindex="0" class="dropdown-content menu p-3 shadow bg-base-200 rounded-box w-52">
-            <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Light</li>
-            <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Winter</li>
-            <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dark</li>
-            <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3" data-act-class="ACTIVECLASS">Dracula</li>
+            <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Light</li>
+            <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Winter</li>
+            <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Dark</li>
+            <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Dracula</li>
         </ul>
     </div>
     <div class="navbar">
@@ -630,7 +627,7 @@
 <input type="checkbox" id="my-modal-allinvoice" class="modal-toggle" bind:checked={isModal_allinvoice}>
 <div class="modal" on:click|self={()=>isModal_allinvoice = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+    <div class="modal-box relative  lg:max-w-2xl h-full lg:max-h-[600px] rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-allinvoice" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold -mt-1">INVOICE</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
@@ -1181,7 +1178,7 @@
 <input type="checkbox" id="my-modal-pasaran" class="modal-toggle">
 <div class="modal">
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-2xl h-full lg:h-2/3 rounded-none lg:rounded-lg overflow-hidden" >
+    <div class="modal-box relative max-w-2xl h-full lg:h-[500px] rounded-none lg:rounded-lg overflow-hidden" >
         <label for="my-modal-pasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold -mt-1">INFORMASI</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
@@ -1237,9 +1234,9 @@
                             </a>
                         </th>
                         <td class="text-xs text-left whitespace-nowrap">{rec.pasaran_note}</td>
-                        <td class="text-xs text-left">{rec.pasaran_tglclose}</td>
-                        <td class="text-xs text-left">{rec.pasaran_tglschedule}</td>
-                        <td class="text-xs text-left">{rec.pasaran_tglopen}</td>
+                        <td class="text-xs text-center">{rec.pasaran_tglclose}</td>
+                        <td class="text-xs text-center">{rec.pasaran_tglschedule}</td>
+                        <td class="text-xs text-center">{rec.pasaran_tglopen}</td>
                     </tr>
                     {/each}
                 </tbody>
@@ -1252,7 +1249,7 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-bukumimpi" class="modal-toggle" bind:checked={isModal_bukumimpi}>
     <div class="modal" on:click|self={()=>isModal_bukumimpi = false}>
-        <div class="modal-box relative max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg overflow-hidden">
+        <div class="modal-box relative max-w-xl h-full lg:h-[600px] rounded-none lg:rounded-lg overflow-hidden">
             <label for="my-modal-bukumimpi" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold -mt-2">BUKU MIMPI</h3>
             <div class="hidden lg:flex justify-start items-center mt-4 ">
@@ -1297,36 +1294,6 @@
                         </div>
                     </div>
                 {/each}
-            </div>
-            <div class="flex justify-start items-center mt-4 lg:hidden 2xl:hidden xl:hidden md:hidden sm:hidden ">
-                <ul class="flex flex-1 gap-2">
-                    <li 
-                        on:click={() => {
-                            handleClickBukuMimpi("ALL");
-                        }}
-                        class="{tab_bookdream_all} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">ALL</li>
-                    <li 
-                        on:click={() => {
-                            handleClickBukuMimpi("4D");
-                        }}
-                        class="{tab_bookdream_4d} inline-flex items-center  px-2 py-1.5text-xs lg:text-sm   cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">4D</li>
-                    <li 
-                        on:click={() => {
-                            handleClickBukuMimpi("3D");
-                        }}
-                        class="{tab_bookdream_3d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm  cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">3D</li>
-                    <li 
-                        on:click={() => {
-                            handleClickBukuMimpi("2D");
-                        }}
-                        class="{tab_bookdream_2d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm  cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">2D</li>
-                </ul>
-                <div class="flex flex-1 h-full ">
-                    <input
-                        bind:value={searchbukumimpi}
-                        on:keypress={handleKeyboardbukumimpi_checkenter} 
-                        type="text" placeholder="Ketik Apa Yang Kamu Mimpikan" class="input mt-1 bg-base-300 rounded-sm input-sm w-full max-w-4xl">
-                </div>
             </div>
         </div>
     </div>

@@ -452,10 +452,10 @@
     <div class="modal " on:click|self={()=>isModalInformation = false}>
         <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-xs lg:text-sm font-bold mt-4">INFORMASI</h3>
-            <div class="h-[32rem] mt-5 overflow-auto scrollbar-thin scrollbar-thumb-green-100">
+            <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
+            <div class="h-full mt-5 overflow-auto scrollbar-thin scrollbar-thumb-green-100">
                 <div class="overflow-auto">
-                    <table class="table-auto table table-compact w-full" >
+                    <table class="table table-compact w-full" >
                         <thead>
                             <tr>
                                 <th>&nbsp;</th>
@@ -594,7 +594,6 @@
                     berati pemenang untuk 2D Belakang / 2D adalah = 34 <br/>
                 </p>
             </div>
-            
         </div>
     </div>
 {/if}

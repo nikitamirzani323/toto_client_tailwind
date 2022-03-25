@@ -1,6 +1,7 @@
 <script>
     import { createEventDispatcher } from "svelte";
     import Card_pasaran from '../component/Card_pasaran.svelte'
+    import Card_placeholder from '../component/Placeholder.svelte'
 
     export let client_token = "";
     export let client_company = "";
@@ -32,8 +33,9 @@
 </script>
 {#if client_device == "WEBSITE"}
   <div class="mt-5 gap-4 grid grid-cols-2  xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2">
+    {#if listkeluaran != ""}
     {#each listkeluaran as rec}
-      <Card_pasaran
+        <Card_pasaran
           on:click={() => {
               handleClick(
                   rec.pasaran_code,
@@ -47,7 +49,9 @@
           {rec.pasaran_tgl} WIB"
           card_status="{rec.pasaran_status}"/>
     {/each}
-    
+    {:else}
+        <Card_placeholder total_placeholder=12 />
+    {/if}
     <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
     <div class="modal" on:click|self={()=>isModalAlert = false}>
         <div class="modal-box relative">
@@ -56,11 +60,10 @@
             <p class="py-4">{@html msg_error}</p>
         </div>
     </div>
-    
-    
   </div>
 {:else}
   <div class="mt-1 gap-1 grid grid-cols-2 px-1">
+    {#if listkeluaran != ""}
     {#each listkeluaran as rec}
       <Card_pasaran
           on:click={() => {
@@ -77,7 +80,9 @@
           {rec.pasaran_tgl}"
           card_status="{rec.pasaran_status}"/>
     {/each}
-    
+    {:else}
+        <Card_placeholder total_placeholder=6 />
+    {/if}
     <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
     <div class="modal" on:click|self={()=>isModalAlert = false}>
         <div class="modal-box relative">

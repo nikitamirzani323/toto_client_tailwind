@@ -1,6 +1,7 @@
 <script>
 
     import Form432d from "../permainan/Form432d.svelte";
+    import Card_placeholder_table from "../component/Placeholder_table.svelte";
 
     export let path_api = "";
     export let client_token = "";
@@ -226,7 +227,6 @@
                         class="input w-full max-w-full rounded-sm"
                         placeholder="Search Nomor" 
                         type="text" name="" id="">
-                        
                     <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-100" style="height:{client_device_height_custom-100}px;">
                         <table class="table table-zebra w-full " >
                             <thead>
@@ -241,6 +241,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {#if filterTransaksi != ""}
                                 {#each filterTransaksi as rec}
                                     <tr>
                                         <th class="text-sm lg:text-sm text-center">{rec.nomor}</th>
@@ -252,6 +253,11 @@
                                         <td class="text-sm lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                                     </tr>
                                 {/each}
+                                {:else}
+                                <Card_placeholder_table 
+                                    total_colpan=7
+                                    total_placeholder=1 />
+                                {/if}
                             </tbody>
                         </table>
                     </div>

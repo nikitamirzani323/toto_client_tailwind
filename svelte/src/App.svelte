@@ -12,9 +12,9 @@
   dayjs.extend(timezone);
   
   export let path_api = "";
-  console.log('Viewport Width x Height:     ',Viewport.Width+'x'+Viewport.Height)
-  console.log('standard Screen Orientation: ',Viewport.Orientation)
-  console.log('detailled Screen Orientation:',Viewport.detailledOrientation)
+  // console.log('Viewport Width x Height:     ',Viewport.Width+'x'+Viewport.Height)
+  // console.log('standard Screen Orientation: ',Viewport.Orientation)
+  // console.log('detailled Screen Orientation:',Viewport.detailledOrientation)
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const token_browser = urlParams.get("token");
@@ -234,6 +234,7 @@
       </div>
   </div>
 {/if}
+{#if listkeluaran != ""}
 <footer class=" footer footer-center p-4 text-base-content mt-2 text-center">
   <div class="">
     <p class="text-xs lg:text-sm text-center">
@@ -242,6 +243,7 @@
     <img class="w-24 lg:w-28" src="https://isbtoto.net/logo-green.svg" alt="SDSB">
   </div>
 </footer>
+{/if}
   
 <style global lang="postcss">
   @tailwind base;
