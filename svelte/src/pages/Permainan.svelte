@@ -3,6 +3,8 @@
     import Form432d from "../permainan/Form432d.svelte";
     import Formcolok from "../permainan/Formcolok.svelte";
     import Form5050 from "../permainan/Form5050.svelte";
+    import Formmacau from "../permainan/Formmacau.svelte";
+    import Formdasar from "../permainan/Formdasar.svelte";
 
     export let path_api = "";
     export let client_token = "";
@@ -20,7 +22,6 @@
     export let listkeluaran = [];
 
     let resultinvoice = [];
-    let resultslipbet = [];
     let totalbayar_invoice = 0;
     let totalbet_invoice = 0;
     let isModalAlert = false;
@@ -109,44 +110,10 @@
             }
         }
     }
-    async function slipbet() {
-        const res = await fetch(path_api+"api/slipperiode", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                company: client_company,
-                username: client_username,
-                pasaran_code: pasaran_code,
-            }),
-        });
-        const json = await res.json();
-        let record = json.record;
-        if (json.status == 200) {
-            record = json.record;
-            if (record != null) {
-                for (var i = 0; i < record.length; i++) {
-                    resultslipbet = [
-                        ...resultslipbet,
-                        {
-                            status: record[i]["status"],
-                            tglkeluaran: record[i]["tglkeluaran"],
-                            idinvoice: record[i]["idinvoice"],
-                            periode: record[i]["periode"],
-                            totallose: record[i]["totallose"],
-                            backgroundstatus: record[i]["background"],
-                        },
-                    ];
-                }
-            }
-        }
-    }
+    
     const handleInvoice = (e) => {
         resultinvoice = [];
-        resultslipbet = [];
         invoicebet("all");
-        // slipbet();
     };
     const handleTabBet = (e) => {
         if(e == "Y"){
@@ -337,6 +304,40 @@
                         {pasaran_periode} 
                         {permainan_title}/>
                 {/if}
+                {#if permainan == "kombinasi"}
+                    <Formmacau
+                        on:handleInvoice={handleInvoice}
+                        {path_api}
+                        {idcomppasaran}
+                        {idtrxkeluaran}
+                        {client_token}
+                        {client_company}
+                        {client_username}
+                        {client_timezone}
+                        {client_ipaddress}
+                        {client_device}
+                        {pasaran_name}
+                        {pasaran_code}
+                        {pasaran_periode} 
+                        {permainan_title}/>
+                {/if}
+                {#if permainan == "dasar"}
+                    <Formdasar
+                        on:handleInvoice={handleInvoice}
+                        {path_api}
+                        {idcomppasaran}
+                        {idtrxkeluaran}
+                        {client_token}
+                        {client_company}
+                        {client_username}
+                        {client_timezone}
+                        {client_ipaddress}
+                        {client_device}
+                        {pasaran_name}
+                        {pasaran_code}
+                        {pasaran_periode} 
+                        {permainan_title}/>
+                {/if}
             </div>
             <div class="card rounded-md bg-base-200 shadow-xl">
                 <div class="card-body p-3 overflow-hidden">
@@ -374,8 +375,8 @@
                                         <td class="text-sm lg:text-sm text-center">{rec.tipe_betinvoice}</td>
                                         <td class="text-sm lg:text-sm text-center">{rec.permainan}</td>
                                         <td class="text-sm lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                        <td class="text-sm lg:text-sm text-right link-accent">{rec.kei.toFixed(2)}</td>
                                         <td class="text-sm lg:text-sm text-right link-accent">{rec.diskon.toFixed(2)}</td>
+                                        <td class="text-sm lg:text-sm text-right link-accent">{rec.kei.toFixed(2)}</td>
                                         <td class="text-sm lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                                     </tr>
                                 {/each}
@@ -477,6 +478,40 @@
             {/if}
             {#if permainan == "5050"}
                 <Form5050
+                    on:handleInvoice={handleInvoice}
+                    {path_api}
+                    {idcomppasaran}
+                    {idtrxkeluaran}
+                    {client_token}
+                    {client_company}
+                    {client_username}
+                    {client_timezone}
+                    {client_ipaddress}
+                    {client_device}
+                    {pasaran_name}
+                    {pasaran_code}
+                    {pasaran_periode} 
+                    {permainan_title}/>
+            {/if}
+            {#if permainan == "kombinasi"}
+                <Formmacau
+                    on:handleInvoice={handleInvoice}
+                    {path_api}
+                    {idcomppasaran}
+                    {idtrxkeluaran}
+                    {client_token}
+                    {client_company}
+                    {client_username}
+                    {client_timezone}
+                    {client_ipaddress}
+                    {client_device}
+                    {pasaran_name}
+                    {pasaran_code}
+                    {pasaran_periode} 
+                    {permainan_title}/>
+            {/if}
+            {#if permainan == "dasar"}
+                <Formdasar
                     on:handleInvoice={handleInvoice}
                     {path_api}
                     {idcomppasaran}
