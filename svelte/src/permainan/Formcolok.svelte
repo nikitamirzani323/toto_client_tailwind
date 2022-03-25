@@ -1718,7 +1718,7 @@
 								<option value="KECIL">KOP</option>
 								<option value="KEPALA">KEPALA</option>
 								<option value="EKOR">EKOR</option>
-						</select> 
+							</select> 
 						</div>
 					</div>
 					<div class="form-control">

@@ -2,6 +2,7 @@
 
     import Form432d from "../permainan/Form432d.svelte";
     import Formcolok from "../permainan/Formcolok.svelte";
+    import Form5050 from "../permainan/Form5050.svelte";
 
     export let path_api = "";
     export let client_token = "";
@@ -319,6 +320,23 @@
                         {pasaran_periode} 
                         {permainan_title}/>
                 {/if}
+                {#if permainan == "5050"}
+                    <Form5050
+                        on:handleInvoice={handleInvoice}
+                        {path_api}
+                        {idcomppasaran}
+                        {idtrxkeluaran}
+                        {client_token}
+                        {client_company}
+                        {client_username}
+                        {client_timezone}
+                        {client_ipaddress}
+                        {client_device}
+                        {pasaran_name}
+                        {pasaran_code}
+                        {pasaran_periode} 
+                        {permainan_title}/>
+                {/if}
             </div>
             <div class="card rounded-md bg-base-200 shadow-xl">
                 <div class="card-body p-3 overflow-hidden">
@@ -442,6 +460,23 @@
             {/if}
             {#if permainan == "colok"}
                 <Formcolok
+                    on:handleInvoice={handleInvoice}
+                    {path_api}
+                    {idcomppasaran}
+                    {idtrxkeluaran}
+                    {client_token}
+                    {client_company}
+                    {client_username}
+                    {client_timezone}
+                    {client_ipaddress}
+                    {client_device}
+                    {pasaran_name}
+                    {pasaran_code}
+                    {pasaran_periode} 
+                    {permainan_title}/>
+            {/if}
+            {#if permainan == "5050"}
+                <Form5050
                     on:handleInvoice={handleInvoice}
                     {path_api}
                     {idcomppasaran}
