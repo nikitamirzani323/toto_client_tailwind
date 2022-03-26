@@ -182,207 +182,225 @@
 	let flag_fulldiskon = "DISC"
 	let msg_error = ""
 	let path_432 = ""
-
+	let temp_permainan_tab = "";
 	let card_custom = ""
+	let barWidth = 0;
 	if(client_device == "MOBILE"){
 		card_custom = "mx-2"
 	}
+  	const animate = () => {
+		barWidth++;
+  	}
 	const changeTabs = (e) => {
+		let total_keranjang = keranjang.length
 		if(client_device == "WEBSITE"){
-			switch(e){
-				case "432":
-					class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					class_tab_432set = "";
-					class_tab_432bolakbalik = "";
-					class_tab_432wap = "";
-					class_tab_432polatarung = "";
-					class_tab_432quick2d = "";
-					class_tab_4323DD = "";
-					class_tab_4322DD = "";
-					class_tab_4322DT = "";
-					panel_form_432 = true;
-					panel_form_432set = false;
-					panel_form_432bolakbalik = false;
-					panel_form_432wap = false;
-					panel_form_432polatarung = false;
-					panel_form_432quick2d = false;
-					panel_form_4323dd = false;
-					panel_form_4322dd = false;
-					panel_form_4322dt = false;
-					clearField();
-					break;
-				case "432SET":
-					class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					class_tab_432 = "";
-					class_tab_432bolakbalik = "";
-					class_tab_432wap = "";
-					class_tab_432polatarung = "";
-					class_tab_432quick2d = "";
-					class_tab_4323DD = "";
-					class_tab_4322DD = "";
-					class_tab_4322DT = "";
-					panel_form_432set = true;
-					panel_form_432 = false;
-					panel_form_432bolakbalik = false;
-					panel_form_432wap = false;
-					panel_form_432polatarung = false;
-					panel_form_432quick2d = false;
-					panel_form_4323dd = false;
-					panel_form_4322dd = false;
-					panel_form_4322dt = false;
-					clearField();
-					break;
-				case "432BOLAKBALIK":
-					class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					panel_form_432bolakbalik = true;
-					class_tab_432 = "";
-					class_tab_432set = "";
-					class_tab_432wap = "";
-					class_tab_432polatarung = "";
-					class_tab_432quick2d = "";
-					class_tab_4323DD = "";
-					class_tab_4322DD = "";
-					class_tab_4322DT = "";
-					
-					panel_form_432set = false;
-					panel_form_432 = false;
-					panel_form_432wap = false;
-					panel_form_432polatarung = false;
-					panel_form_432quick2d = false;
-					panel_form_4323dd = false;
-					panel_form_4322dd = false;
-					panel_form_4322dt = false;
-					clearField();
-					break;
-				case "432WAP":
-					class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					class_tab_432 = "";
-					class_tab_432set = "";
-					class_tab_432bolakbalik = "";
-					class_tab_432polatarung = "";
-					class_tab_432quick2d = "";
-					class_tab_4323DD = "";
-					class_tab_4322DD = "";
-					class_tab_4322DT = "";
-					panel_form_432wap = true;
-					panel_form_432bolakbalik = false;
-					panel_form_432set = false;
-					panel_form_432 = false;
-					panel_form_432polatarung = false;
-					panel_form_432quick2d = false;
-					panel_form_4323dd = false;
-					panel_form_4322dd = false;
-					panel_form_4322dt = false;
-					clearField();
-					break;
-				case "432POLATARUNG":
-					class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					class_tab_432 = "";
-					class_tab_432set = "";
-					class_tab_432bolakbalik = "";
-					class_tab_432wap = "";
-					class_tab_432quick2d = "";
-					class_tab_4323DD = "";
-					class_tab_4322DD = "";
-					class_tab_4322DT = "";
-					panel_form_432polatarung = true;
-					panel_form_432wap = false;
-					panel_form_432bolakbalik = false;
-					panel_form_432set = false;
-					panel_form_432 = false;
-					panel_form_432quick2d = false;
-					panel_form_4323dd = false;
-					panel_form_4322dd = false;
-					panel_form_4322dt = false;
-					clearField();
-					break;
-				case "432QUICK2D":
-					class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					class_tab_4323DD = "";
-					class_tab_4322DD = "";
-					class_tab_4322DT = "";
-					class_tab_432polatarung = "";
-					class_tab_432 = "";
-					class_tab_432set = "";
-					class_tab_432bolakbalik = "";
-					class_tab_432wap = "";
-					panel_form_432quick2d = true;
-					panel_form_432polatarung = false;
-					panel_form_432wap = false;
-					panel_form_432bolakbalik = false;
-					panel_form_432set = false;
-					panel_form_432 = false;
-					panel_form_4323dd = false;
-					panel_form_4322dd = false;
-					panel_form_4322dt = false;
-					clearField();
-					break;
-				case "4323DD":
-					class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					class_tab_4322DD = "";
-					class_tab_4322DT = "";
-					class_tab_432polatarung = "";
-					class_tab_432 = "";
-					class_tab_432set = "";
-					class_tab_432bolakbalik = "";
-					class_tab_432wap = "";
-					class_tab_432quick2d = "";
-					panel_form_4323dd = true;
-					panel_form_432quick2d = false;
-					panel_form_432polatarung = false;
-					panel_form_432wap = false;
-					panel_form_432bolakbalik = false;
-					panel_form_432set = false;
-					panel_form_432 = false;
-					panel_form_4322dd = false;
-					panel_form_4322dt = false;
-					clearField();
-					break;
-				case "4322DD":
-					class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					class_tab_4323DD = "";
-					class_tab_4322DT = "";
-					class_tab_432polatarung = "";
-					class_tab_432 = "";
-					class_tab_432set = "";
-					class_tab_432bolakbalik = "";
-					class_tab_432wap = "";
-					class_tab_432quick2d = "";
-					panel_form_4322dd = true;
-					panel_form_4323dd = false;
-					panel_form_432quick2d = false;
-					panel_form_432polatarung = false;
-					panel_form_432wap = false;
-					panel_form_432bolakbalik = false;
-					panel_form_432set = false;
-					panel_form_432 = false;
-					panel_form_4322dt = false;
-					clearField();
-					break;
-				case "4322DT":
-					class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-					class_tab_4322DD = "";
-					class_tab_4323DD = "";
-					class_tab_432polatarung = "";
-					class_tab_432 = "";
-					class_tab_432set = "";
-					class_tab_432bolakbalik = "";
-					class_tab_432wap = "";
-					class_tab_432quick2d = "";
-					panel_form_4322dt = true;
-					panel_form_4322dd = false;
-					panel_form_4323dd = false;
-					panel_form_432quick2d = false;
-					panel_form_432polatarung = false;
-					panel_form_432wap = false;
-					panel_form_432bolakbalik = false;
-					panel_form_432set = false;
-					panel_form_432 = false;
-					clearField();
-					break;
-			} 
+			if (total_keranjang>100) {
+				isModalAlertTabPermainan = true;
+			}else{
+				switch(e){
+					case "432":
+						temp_permainan_tab = "432";
+						class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432polatarung = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						panel_form_432 = true;
+						panel_form_432set = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432wap = false;
+						panel_form_432polatarung = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432SET":
+						temp_permainan_tab = "432SET";
+						class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432 = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432polatarung = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						panel_form_432set = true;
+						panel_form_432 = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432wap = false;
+						panel_form_432polatarung = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432BOLAKBALIK":
+						temp_permainan_tab = "432BOLAKBALIK";
+						class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						panel_form_432bolakbalik = true;
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432wap = "";
+						class_tab_432polatarung = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_432wap = false;
+						panel_form_432polatarung = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432WAP":
+						temp_permainan_tab = "432WAP";
+						class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432polatarung = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						panel_form_432wap = true;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_432polatarung = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432POLATARUNG":
+						temp_permainan_tab = "432POLATARUNG";
+						class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432quick2d = "";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						panel_form_432polatarung = true;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_432quick2d = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "432QUICK2D":
+						temp_permainan_tab = "432QUICK2D";
+						class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4323DD = "";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						class_tab_432polatarung = "";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						panel_form_432quick2d = true;
+						panel_form_432polatarung = false;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_4323dd = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "4323DD":
+						temp_permainan_tab = "4323DD";
+						class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4322DD = "";
+						class_tab_4322DT = "";
+						class_tab_432polatarung = "";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432quick2d = "";
+						panel_form_4323dd = true;
+						panel_form_432quick2d = false;
+						panel_form_432polatarung = false;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_4322dd = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "4322DD":
+						temp_permainan_tab = "4322DD";
+						class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4323DD = "";
+						class_tab_4322DT = "";
+						class_tab_432polatarung = "";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432quick2d = "";
+						panel_form_4322dd = true;
+						panel_form_4323dd = false;
+						panel_form_432quick2d = false;
+						panel_form_432polatarung = false;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						panel_form_4322dt = false;
+						clearField();
+						break;
+					case "4322DT":
+						temp_permainan_tab = "4322DD";
+						class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4322DD = "";
+						class_tab_4323DD = "";
+						class_tab_432polatarung = "";
+						class_tab_432 = "";
+						class_tab_432set = "";
+						class_tab_432bolakbalik = "";
+						class_tab_432wap = "";
+						class_tab_432quick2d = "";
+						panel_form_4322dt = true;
+						panel_form_4322dd = false;
+						panel_form_4323dd = false;
+						panel_form_432quick2d = false;
+						panel_form_432polatarung = false;
+						panel_form_432wap = false;
+						panel_form_432bolakbalik = false;
+						panel_form_432set = false;
+						panel_form_432 = false;
+						clearField();
+						break;
+				} 
+			}
 		}else{
-			if (keranjang.length > 0) {
+			if (total_keranjang > 0) {
 				isModalAlertTabPermainan = true;
 			}else{
 				switch(e){
@@ -832,6 +850,7 @@
 			}
 			if(msg_error != ""){
         		isModalAlert = true;
+				loader_timeout();
       		}
 			isModalLoading = false;
 			dispatch("handleInvoice", "call");
@@ -844,7 +863,7 @@
 			}
 		}
 	}
-  function addKeranjang(
+  	function addKeranjang(
 		nomor,game,
 		bet,diskon_percen,diskon,bayar,win,kei,
 		kei_percen,tipetoto) {
@@ -868,7 +887,6 @@
 							msg_error = "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 4D<br />";
 							flag_data = true;
 						}
-            console.log("Limit Total :",limittotal4d_bet)
 					}
 					break;
 				case "3D":
@@ -973,8 +991,9 @@
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
 		}
-    if (msg_error != "") {
+   		if (msg_error != "") {
 			isModalAlert = true
+			loader_timeout();
 		}
 	}
   const removekeranjang = (e) => {
@@ -1604,6 +1623,7 @@
 		let win = 0;
 		let bayar = 0;
 		let nmgame = "";
+		let msg_error_format = "<br>Contoh Penulisan:<br>4D: 1234<br>3D: 123<br>3DD: 123*<br>2D: 12 atau **10<br>2DD: 10**<br>2DT: *10*<br><br>";
 		msg_error = "";
 		if (nomor_432 == "") {
 			nomor_432_input.focus();
@@ -1623,9 +1643,8 @@
 		
 		if (tempbintang > 2) {
 			flag = false;
-			clearField();
 			nomor_input.focus();
-			msg_error += "Format Salah<br>Contoh:<br>4D: 1234<br>3D: 123<br>3DD: 123*<br>2D: 12 atau **10<br>2DD: 10**<br>2DT: *10*<br>";
+			msg_error += "Format Penulisan Salah"+msg_error_format;
 		}
 		if (nomor_432[3] == "*" && parseInt(tempnumber) == 3) {
 			nomor_432 = String(nomor_432[0]) + String(nomor_432[1])+ String(nomor_432[2]);
@@ -1651,11 +1670,11 @@
 			flag = false;
 			nomor_432_input.focus();
 			nomor_432 = "";
-			msg_error += "Minimal Nomor 2 Digit<br>";
+			msg_error += "Minimal Nomor 2 Digit"+msg_error_format;
 		}
 		if (bet_432 == "") {
 			flag = false;
-			msg_error += "Bet tidak boleh kosong<br>";
+			msg_error += "Bet wajib diisi<br>";
 		}
 		if (parseInt(bet_432) < parseInt(minimal_bet)) {
 			bet_432 = minimal_bet;
@@ -1671,7 +1690,6 @@
 			if (checkLimitLine("4D") == false) {
 				flag = false;
 				msg_error += "Maximal Line 4D : " + limitline_4d+"<br>";
-				clearField();
 			}
 		}
 		if (game.toString() == "3") {
@@ -1683,12 +1701,10 @@
 			if (checkLimitLine("3D") == false) {
 				flag = false;
 				msg_error += "Maximal Line 3D : " + limitline_3d+"<br>";
-				clearField();
 			}
 			if(parseInt(tempnumber) != 3){
 				flag = false;
-				msg_error += "Format Nomor 3D Salah \n";
-				clearField();
+				msg_error += "Format Nomor 3D Salah"+msg_error_format;
 			}
 		}
 		if (game.toString() == "3DD") {
@@ -1700,12 +1716,10 @@
 			if (checkLimitLine("3DD") == false) {
 				flag = false;
 				msg_error += "Maximal Line 3DD : " + limitline_3dd+"<br>";
-				clearField();
 			}
 			if(parseInt(tempnumber) != 3){
 				flag = false;
-				msg_error += "Format Nomor 3D Salah <br>";
-				clearField();
+				msg_error += "Format Nomor 3D Salah"+msg_error_format;
 			}
 		}
 		if (game.toString() == "2") {
@@ -1717,12 +1731,10 @@
 			if (checkLimitLine("2D") == false) {
 				flag = false;
 				msg_error +="Maximal Line 2D : " + limitline_2d+"<br>";
-				clearField();
 			}
 			if(parseInt(tempnumber) != 2){
 				flag = false;
-				msg_error += "Format Nomor 2D Salah <br>";
-				clearField();
+				msg_error += "Format Nomor 2D Salah"+msg_error_format;
 			}
 		}
 		if (game.toString() == "2DD") {
@@ -1734,12 +1746,10 @@
 			if (checkLimitLine("2DD") == false) {
 				flag = false;
 				msg_error += "Maximal Line 2DD : " + limitline_2dd;
-				clearField();
 			}
 			if(parseInt(tempnumber) != 2){
 				flag = false;
-				msg_error += "Format Nomor 2D Salah <br>";
-				clearField();
+				msg_error += "Format Nomor 2D Salah"+msg_error_format;
 			}
 		}
 		if (game.toString() == "2DT") {
@@ -1751,7 +1761,6 @@
 			if (checkLimitLine("2DT") == false) {
 				flag = false;
 				msg_error += "Maximal Line 2DT : " + limitline_2dt+"<br>";
-				clearField();
 			}
 		}
 		if (flag) {
@@ -1892,8 +1901,9 @@
 			);
 			clearField();
 		}
-    if (msg_error != "") {
+    	if (msg_error != "") {
 			isModalAlert = true
+			loader_timeout();
 		}
 	}
   function form4dset_add() {
@@ -2263,13 +2273,13 @@
 		}
 		if(msg_error != ""){
 			isModalAlert = true
+			loader_timeout();
 		}
 		if(flagfinish){
 			clearField();
 		}
 	}
   function formbbfs_add() {
-		isModalLoading = true
 		generate4D = [];
 		generate3D = [];
 		generate3DD = [];
@@ -2768,7 +2778,9 @@
 				}
 			}
 		}
-		isModalLoading = false
+		if(msg_error != ""){
+			loader_timeout();
+		}
 		clearField();
 	}
   function formwap_add() {
@@ -2777,7 +2789,7 @@
 		let totalpemisah = pemisah.length;
 		let totalres_money = res_money.length;
 		let flag_checkdata = true;
-    msg_error = "";
+    	msg_error = "";
 		for (let i = 0; i < nomorwap.length; i++) {
 			let numbera = parseInt(nomorwap[i]);
 			if (isNaN(numbera)) {
@@ -2805,6 +2817,7 @@
 		}
 		if (msg_error != "") {
 			isModalAlert = true;
+			loader_timeout();
 		}
 	}
   function formpolatarung_add() {
@@ -2820,7 +2833,7 @@
 		let win = 0;
 		let bayar = 0;
 		let msg = "";
-    msg_error = "";
+    	msg_error = "";
 		if (nomoras == "") {
 			nomoras_input.focus();
 			flag = false;
@@ -2997,6 +3010,7 @@
 		}
 		if(msg_error != ""){
 			isModalAlert = true;
+			loader_timeout();
 			clearField();
 		}
 	}
@@ -3237,11 +3251,12 @@
 						}
 						break;
 				}
-        if (msg_error != "") {
-          isModalAlert = true;
-        }
 				clearField();
 			}
+		}
+		if (msg_error != "") {
+			isModalAlert = true;
+			loader_timeout();
 		}
 	}
   function form3dd_add() {
@@ -3258,7 +3273,7 @@
 		if (nomor3dd == "") {
 			nomor3dd_input.focus();
 			flag = false;
-      msg_error += "Nomor tidak boleh kosong <br>";
+      		msg_error += "Nomor tidak boleh kosong <br>";
 		}
 		if (bet_3dd == "") {
 			flag = false;
@@ -3330,6 +3345,7 @@
 		}
 		if(msg_error != ""){
 			isModalAlert = true;
+			loader_timeout();
 		}
 	}
   function form2dd_add() {
@@ -3344,7 +3360,7 @@
 		let bayar = 0;
 		let nmgame = "";
 		let nomor = "";
-	  msg_error = "";
+	  	msg_error = "";
 		if (nomor2dd == "") {
 			nomor2dd_input.focus();
 			flag = false;
@@ -3362,15 +3378,15 @@
 			if (parseInt(bet_2dd) > parseInt(max2dd_bet)) {
 				bet_2dd = minimal_bet;
 				flag = false;
-        msg_error += "Maximal Bet 2D Depan : " + max2dd_bet + "<br>";
+        		msg_error += "Maximal Bet 2D Depan : " + max2dd_bet + "<br>";
 			}
 			if (checkLimitLine("2DD") == false) {
 				flag = false;
-        msg_error += "Maximal Line 2D Depan : " + limitline_2dd + "<br>";
+        		msg_error += "Maximal Line 2D Depan : " + limitline_2dd + "<br>";
 			}
 		}else{
 			flag = false;
-      msg_error += "Minimal 2 Digit<br>";
+      		msg_error += "Minimal 2 Digit<br>";
 		}
 		for (var i = 0; i < nomor2dd.length; i++) {
 			let numbera = parseInt(nomor2dd[i]);
@@ -3418,6 +3434,7 @@
 		}
 		if (msg_error != "") {
 			isModalAlert = true;
+			loader_timeout();
 		}
 	}
 	function form2dt_add() {
@@ -3781,109 +3798,128 @@
     isModalAlert = false
   }
   
+	let form_font_sizelabel_default = "text-xs"
+	let form_font_sizeinput_default = "text-lg"
+	function loader_timeout(){
+		setTimeout(function () {
+			let intervalID = setInterval(() => {
+				if (barWidth === 100) {
+					clearInterval(intervalID);
+					isModalAlert = false
+					barWidth = 0;
+				} else {
+					animate();
+				}
+			}, 100);
+		}, 500);
+	}
+	$:{
+		let row_keranjang = keranjang.length;
+		dispatch("handleKeranjang", {
+			row_keranjang,
+			totalkeranjang
+		});
+	}
 </script>
 <div class="card bg-base-200 shadow-xl rounded-md {card_custom}">
   <div class="card-body p-3">
       {#if client_device == "WEBSITE"}
         <h2 class="card-title text-lg grid grid-cols-2 gap-2">
-            <div class="place-content-start text-left text-md">
+            <div class="text-left text-xs lg:text-lg md:text-sm">
                 {pasaran_name} - {permainan_title}
             </div>
-            <div class="place-content-end text-right text-md">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
+            <div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
         </h2>
-		<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
-			<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-16 cursor-pointer">
-				<ul class="flex items-center">
-					<li>
-					  <span
-						  on:click={() => {
-						  changeTabs("432");
-						  }} 
-						  class="{class_tab_432} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer ">4D/3D/2D</span>
-					</li>
-					<li>
-					  <span
-						  on:click={() => {
-						  changeTabs("432SET");
-						  }}
-						  class="{class_tab_432set} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">4D/3D/2D SET</span>
-					</li>
-					<li>
-					  <span
-						  on:click={() => {
-							  changeTabs("432BOLAKBALIK");
-						  }}
-						  class="{class_tab_432bolakbalik} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer">BOLAK BALIK</span>
-					</li>
-					<li>
-					  <span 
-						  on:click={() => {
-							  changeTabs("432WAP");
-						  }}
-						  class="{class_tab_432wap} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">WAP</span>
-					</li>
-					<li>
-					  <span 
-						  on:click={() => {
-						  changeTabs("432POLATARUNG");
-						  }}
-						  class="{class_tab_432polatarung} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">POLA TARUNG</span>
-					</li>
-					<li>
-					  <span 
-						  on:click={() => {
-							  changeTabs("432QUICK2D");
-						  }}
-						  class="{class_tab_432quick2d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">QUICK 2D</span>
-					</li>
-					<li>
-					  <span 
-						  on:click={() => {
-							  changeTabs("4323DD");
-						  }}
-						  class="{class_tab_4323DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">3DD /3D DEPAN</span>
-					</li>
-					<li>
-					  <span 
-						  on:click={() => {
-							  changeTabs("4322DD");
-						  }}
-						  class="{class_tab_4322DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">2DD /2D DEPAN</span>
-					</li>
-					<li>
-					  <span 
-						  on:click={() => {
-							  changeTabs("4322DT");
-						  }}
-						  class="{class_tab_4322DT} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">2DT /2D TENGAH</span>
-					</li>
-				</ul>
-			</div>
-		  </div>
-        
+		<div class="relative flex scrollbar-thin hover:scrollbar-thumb-green-300 hover:scrollbar-track-green-100 overflow-y-scroll h-16 cursor-pointer">
+			<ul class="flex items-center select-none">
+				<li>
+				<span
+					on:click={() => {
+					changeTabs("432");
+					}} 
+					class="{class_tab_432} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">4D/3D/2D</span>
+				</li>
+				<li>
+				<span
+					on:click={() => {
+					changeTabs("432SET");
+					}}
+					class="{class_tab_432set} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">4D/3D/2D SET</span>
+				</li>
+				<li>
+				<span
+					on:click={() => {
+						changeTabs("432BOLAKBALIK");
+					}}
+					class="{class_tab_432bolakbalik} transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer text-sm">BOLAK BALIK</span>
+				</li>
+				<li>
+				<span 
+					on:click={() => {
+						changeTabs("432WAP");
+					}}
+					class="{class_tab_432wap} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">WAP</span>
+				</li>
+				<li>
+				<span 
+					on:click={() => {
+					changeTabs("432POLATARUNG");
+					}}
+					class="{class_tab_432polatarung} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">POLA TARUNG</span>
+				</li>
+				<li>
+				<span 
+					on:click={() => {
+						changeTabs("432QUICK2D");
+					}}
+					class="{class_tab_432quick2d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">QUICK 2D</span>
+				</li>
+				<li>
+				<span 
+					on:click={() => {
+						changeTabs("4323DD");
+					}}
+					class="{class_tab_4323DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">3DD /3D DEPAN</span>
+				</li>
+				<li>
+				<span 
+					on:click={() => {
+						changeTabs("4322DD");
+					}}
+					class="{class_tab_4322DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">2DD /2D DEPAN</span>
+				</li>
+				<li>
+				<span 
+					on:click={() => {
+						changeTabs("4322DT");
+					}}
+					class="{class_tab_4322DT} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">2DT /2D TENGAH</span>
+				</li>
+			</ul>
+		</div>
         
         {#if panel_form_432}
-          <div class="mt-1 gap-2 grid grid-cols-3">
+          <div class="gap-3 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
               <div class="form-control">
-                  <label class="label">
-                      <span class="label-text text-sm">Nomor (2-4)</span>
-                  </label>
-                  <input
-                    autofocus
-                    bind:this={nomor_432_input}
-                    bind:value={nomor_432}
-                    on:keyup={handleKeyboard_format}
-                    on:keypress={handleKeyboard_checkenter} 
-                    minlength="4"
-                    maxlength="4"
-                    type="text" 
-                    placeholder="4D/3D/2D" 
-                    class="input border-none text-center text-sm placeholder:text-sm"> 
+				<label class="label">
+					<span class="label-text {form_font_sizelabel_default}">Nomor (2-4)</span>
+				</label>
+				<input
+					autofocus
+					bind:value={nomor_432}
+					bind:this={nomor_432_input}
+					on:keyup={handleKeyboard_format}
+					on:keypress={handleKeyboard_checkenter} 
+					minlength="4"
+					maxlength="4"
+					type="text" 
+					placeholder="4D/3D/2D" 
+					class="input border-none text-center  {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
               </div>
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                      <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                      <span class="label-text-alt {form_font_sizelabel_default}">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                   </label>
                   <input
                     bind:value={bet_432}
@@ -3892,18 +3928,21 @@
                     minlength="3"
                     maxlength="7"
                     type="text" placeholder="Bet" 
-                    class="input border-none text-right text-sm placeholder:text-sm">
+                    class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
                   <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_432)}</span>
+                      <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                      <span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_432)}</span>
                   </label>
               </div>
-              <div class="form-control mt-9">
+              <div class="form-control lg:col-span-1 md:col-span-2">
+				<label class="label hidden lg:inline-grid ">
+					<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+				</label>
                   <Button_custom1 
                     on:click={() => {
                       handleTambah("pilihan","4-3-2");
                     }} 
-                  button_tipe=""
+                  button_block="btn-block"
                   button_title="Tambah" />
               </div>
           </div>
@@ -3911,7 +3950,7 @@
         {#if panel_form_432set}
 			<div class="form-control">
 				<label class="label">
-					<span class="label-text text-sm">Nomor (2-4)</span>
+					<span class="label-text {form_font_sizelabel_default}">Nomor (2-4)</span>
 				</label>
 				<input
 				bind:this={nomorset_input}
@@ -3921,13 +3960,13 @@
 				minlength="4"
 				maxlength="4"
 				type="text" placeholder="4D/3D/2D" 
-				class="input border-none text-center text-sm placeholder:text-sm"> 
+				class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 			</div>
-			<div class="mt-1 gap-2 grid grid-cols-3">
+			<div class="gap-2 grid grid-cols-2 lg:grid-cols-3">
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 						bind:value={betset_1}
@@ -3937,16 +3976,16 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-sm placeholder:text-sm">
+						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_1)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_1)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 					bind:value={betset_2}
@@ -3955,16 +3994,16 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-sm placeholder:text-sm">
+					class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_2)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_2)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 					bind:value={betset_6}
@@ -3973,16 +4012,16 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-sm placeholder:text-sm">
+					class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(betset_6)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_6)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text">&nbsp;</span>
-						<span class="label-text-alt">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 					bind:value={betset_3}
@@ -3991,16 +4030,16 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-sm placeholder:text-sm">
+					class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text">&nbsp;</span>
-						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_3)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_3)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text">&nbsp;</span>
-						<span class="label-text-alt">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 					bind:value={betset_4}
@@ -4009,16 +4048,16 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-sm placeholder:text-sm">
+					class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text">&nbsp;</span>
-						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_4)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_4)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text">&nbsp;</span>
-						<span class="label-text-alt">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 					bind:value={betset_5}
@@ -4027,26 +4066,24 @@
 					minlength="3"
 					maxlength="7"
 					type="text" placeholder="Bet" 
-					class="input border-none text-right text-sm placeholder:text-sm">
+					class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text">&nbsp;</span>
-						<span class="label-text-alt">{new Intl.NumberFormat().format(betset_5)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_5)}</span>
 					</label>
 				</div>
 			</div>
-			<div class="flex items-stretch">
-				<Button_custom1 
-					on:click={() => {
-					handleTambah("pilihan","432SET");
-					}} 
-				button_title="Tambah"
-				button_block="btn-block" />
-			</div>
+			<Button_custom1 
+				on:click={() => {
+				handleTambah("pilihan","432SET");
+				}} 
+			button_title="Tambah"
+			button_block="btn-block" />
         {/if}
         {#if panel_form_432bolakbalik}
 			<div class="form-control">
 				<label class="label">
-					<span class="label-text text-sm">Bolak Balik - {bbfs} Digit</span>
+					<span class="label-text {form_font_sizelabel_default}">Bolak Balik - {bbfs} Digit</span>
 				</label>
 				<input
 				bind:this={nomorbbfs_input}
@@ -4056,13 +4093,13 @@
 				minlength="4"
 				maxlength={bbfs}
 				type="text" placeholder="4D/3D/2D" 
-				class="input border-none text-center text-sm placeholder:text-sm">
+				class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 			</div>
-			<div class="mt-1 gap-2 grid grid-cols-3">
+			<div class="gap-2 grid grid-cols-2 lg:grid-cols-3">
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">4D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 						bind:value={bet_1}
@@ -4072,16 +4109,16 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-sm placeholder:text-sm">
+						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_1)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_1)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 						bind:value={bet_2}
@@ -4091,16 +4128,16 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-sm placeholder:text-sm">
+						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_2)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_2)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 						bind:value={bet_6}
@@ -4110,16 +4147,16 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-sm placeholder:text-sm">
+						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_6)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_6)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">2D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 						bind:value={bet_3}
@@ -4129,16 +4166,16 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-sm placeholder:text-sm">
+						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_3)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_3)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 						bind:value={bet_4}
@@ -4148,16 +4185,16 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-sm placeholder:text-sm">
+						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_4)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_4)}</span>
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 					</label>
 					<input 
 						bind:value={bet_5}
@@ -4167,21 +4204,19 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Bet" 
-						class="input border-none text-right text-sm placeholder:text-sm">
+						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_5)}</span>
+						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5)}</span>
 					</label>
 				</div>
 			</div>
-			<div class="flex items-stretch">
-				<Button_custom1 
-					on:click={() => {
-					handleTambah("pilihan","BBFS");
-					}} 
-				button_title="Tambah"
-				button_block="btn-block" />
-			</div>
+			<Button_custom1 
+				on:click={() => {
+				handleTambah("pilihan","BBFS");
+				}} 
+			button_title="Tambah"
+			button_block="btn-block" />
         {/if}
         {#if panel_form_432wap}
           <div class="mt-1 grid grid-cols-1">
@@ -4200,17 +4235,14 @@
               button_title="Tambah"
               button_block="btn-block" />
           </div>
-          <p class="text-left text-xs lg:text-sm">
+          <p class="text-left text-xs">
             <b>Contoh (WAP) :</b><br />
                 1234*234*34#1000,34*235*35#5000
           </p>
         {/if}
         {#if panel_form_432polatarung}
-          <div class="mt-1 gap-2 grid grid-cols-4">
+          <div class="gap-2 grid grid-cols-2 lg:grid-cols-4">
               <div class="form-control">
-                  <label class="label">
-                      <span class="label-text text-sm">Nomor AS</span>
-                  </label>
                   <input
                     bind:this={nomoras_input}
                     bind:value={nomoras}
@@ -4219,12 +4251,9 @@
                     maxlength="4"
                     type="text" 
                     placeholder="AS" 
-                    class="input border-none text-center text-sm placeholder:text-sm"> 
+                    class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
               </div>
               <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">Nomor KOP</span>
-                </label>
                 <input
                     bind:this={nomorkop_input}
                     bind:value={nomorkop}
@@ -4233,12 +4262,9 @@
                     maxlength="4"
                     type="text" 
                     placeholder="KOP" 
-                    class="input border-none text-center text-sm placeholder:text-sm">  
+                    class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">  
               </div>
               <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">Nomor KEPALA</span>
-                </label>
                 <input
                     bind:value={nomorkepala}
                     on:keyup={handleKeyboard_number}
@@ -4246,12 +4272,9 @@
                     maxlength="4"
                     type="text" 
                     placeholder="KEPALA" 
-                    class="input border-none text-center text-sm placeholder:text-sm">
+                    class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
               </div>
               <div class="form-control">
-                <label class="label">
-                    <span class="label-text text-sm">Nomor EKOR</span>
-                </label>
                 <input
                     bind:value={nomorekor}
                     on:keyup={handleKeyboard_number}
@@ -4259,13 +4282,13 @@
                     maxlength="4"
                     type="text" 
                     placeholder="EKOR" 
-                    class="input border-none text-center text-sm placeholder:text-sm">
+                    class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
               </div>
           </div>
 		  <div class="form-control">
 				<label class="label">
-					<span class="label-text text-sm">&nbsp;</span>
-					<span class="label-text-alt text-sm">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+					<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+					<span class="label-text-alt {form_font_sizelabel_default}">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 				</label>
 				<input 
 				bind:this={bet_tarung_input}
@@ -4276,21 +4299,19 @@
 				maxlength="7"
 				type="text" 
 				placeholder="Bet" 
-				class="input border-none text-right text-sm placeholder:text-sm">
+				class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 				<label class="label">
-					<span class="label-text">&nbsp;</span>
-					<span class="label-text-alt">{new Intl.NumberFormat().format(bet_tarung)}</span>
+					<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+					<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_tarung)}</span>
 				</label>
 			</div>
-          <div class="flex items-stretch">
-            <Button_custom1 
+          <Button_custom1 
               on:click={() => {
                 handleTambah("pilihan","polatarung");
               }} 
             button_title="Tambah"
             button_block="btn-block" />
-          </div>
-          <p class="text-left text-sm">
+          <p class="text-left text-xs">
             POLA TARUNG : AS KOP KEPALA EKOR <br>
             <b>Contoh (POLA TARUNG) :</b><br />
             - AS:123 &nbsp;&nbsp;KOP:456 &nbsp;&nbsp;KEPALA:789 &nbsp;&nbsp;EKOR:012 => 4D<br>
@@ -4299,15 +4320,15 @@
           </p>
         {/if}
         {#if panel_form_432quick2d}
-          <div class="mt-1 gap-2 grid grid-cols-4">
+          <div class="gap-2 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 ">
               <div class="form-control">
                   <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
+                      <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
                   </label>
                   <select
                     bind:value={quick_pilihan1}
                     bind:this={quick_pilihan1_input} 
-                    class="select w-full max-w-xs text-sm">
+                    class="select w-full max-w-full {form_font_sizeinput_default}">
                     <option value="BESAR">BESAR</option>
                     <option value="KECIL">KECIL</option>
                     <option value="GENAP">GENAP</option>
@@ -4316,21 +4337,21 @@
               </div>
               <div class="form-control">
                 <label class="label">
-                  <span class="label-text text-sm">&nbsp;</span>
+                  <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
                 </label>
                 <select
                   bind:value={quick_pilihan2}
                   bind:this={quick_pilihan2_input}
-                  class="select w-full max-w-xs text-sm">
+                  class="select w-full max-w-full {form_font_sizeinput_default}">
                   <option value="2D">2D</option>
                   <option value="2DD">2D DEPAN</option>
                   <option value="2DT">2D TENGAH</option>
                 </select> 
               </div>
-              <div class="form-control">
+              <div class="form-control col-span-2 lg:col-span-1 md:col-span-1">
                   <label class="label">
-                      <span class="label-text text-sm">&nbsp;</span>
-                      <span class="label-text-alt text-sm">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                      <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                      <span class="label-text-alt {form_font_sizelabel_default}">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                   </label>
                   <input 
                     bind:value={quick_bet}
@@ -4341,27 +4362,25 @@
                     maxlength="7"
                     type="text" 
                     placeholder="Bet" 
-                    class="input border-none text-right text-sm placeholder:text-sm">
+                    class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
                   <label class="label">
-                      <span class="label-text">&nbsp;</span>
-                      <span class="label-text-alt">{new Intl.NumberFormat().format(quick_bet)}</span>
+                      <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                      <span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(quick_bet)}</span>
                   </label>
               </div>
-              <div class="form-control mt-9">
-                <Button_custom1 
-                  on:click={() => {
-                    handleTambah("pilihan","quick2D");
-                  }} 
-                button_tipe=""
-                button_title="Tambah" />
-            </div>
           </div>
+		  <Button_custom1 
+				on:click={() => {
+				handleTambah("pilihan","quick2D");
+				}} 
+			button_block="btn-block"
+			button_title="Tambah" />
         {/if}
         {#if panel_form_4323dd}
-          <div class="mt-1 gap-2 grid grid-cols-3">
+          <div class="gap-2 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text text-sm">Nomor (3 Digit)</span>
+                    <span class="label-text {form_font_sizelabel_default}">Nomor (3 Digit)</span>
                 </label>
                 <input
                   bind:this={nomor3dd_input}
@@ -4372,12 +4391,12 @@
                   maxlength="3"
                   type="text" 
                   placeholder="3D DEPAN" 
-                  class="input border-none text-center text-sm placeholder:text-sm"> 
+                  class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
             </div>
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                    <span class="label-text-alt {form_font_sizelabel_default}">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input
                   bind:value={bet_3dd}
@@ -4386,13 +4405,16 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-sm placeholder:text-sm">
+                  class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
                 <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_3dd)}</span>
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                    <span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_3dd)}</span>
                 </label>
             </div>
-            <div class="form-control mt-9">
+            <div class="form-control col-span-1 lg:col-span-1 md:col-span-2">
+				<label class="label hidden lg:inline-grid">
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                </label>
                 <Button_custom1 
                   on:click={() => {
                     handleTambah("pilihan","3DD");
@@ -4403,10 +4425,10 @@
           </div>
         {/if}
         {#if panel_form_4322dd}
-          <div class="mt-1 gap-2 grid grid-cols-3">
+          <div class="gap-2 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text text-sm">Nomor (2 Digit)</span>
+                    <span class="label-text {form_font_sizelabel_default}">Nomor (2 Digit)</span>
                 </label>
                 <input
                   bind:this={nomor2dd_input}
@@ -4417,12 +4439,12 @@
                   maxlength="2"
                   type="text" 
                   placeholder="2D DEPAN" 
-                  class="input border-none text-center text-sm placeholder:text-sm"> 
+                  class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
             </div>
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                    <span class="label-text-alt {form_font_sizelabel_default}">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input
                   bind:value={bet_2dd}
@@ -4431,13 +4453,16 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-sm placeholder:text-sm">
+                  class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
                 <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_2dd)}</span>
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                    <span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_2dd)}</span>
                 </label>
             </div>
-            <div class="form-control mt-9">
+			<div class="form-control col-span-1 lg:col-span-1 md:col-span-2">
+				<label class="label hidden lg:inline-grid">
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                </label>
                 <Button_custom1 
                   on:click={() => {
                     handleTambah("pilihan","2DD");
@@ -4448,10 +4473,10 @@
           </div>
         {/if}
         {#if panel_form_4322dt}
-          <div class="mt-1 gap-2 grid grid-cols-3">
+          <div class="gap-2 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text text-sm">Nomor (2 Digit)</span>
+                    <span class="label-text {form_font_sizelabel_default}">Nomor (2 Digit)</span>
                 </label>
                 <input
                   bind:this={nomor2dt_input}
@@ -4462,12 +4487,12 @@
                   maxlength="2"
                   type="text" 
                   placeholder="2D TENGAH" 
-                  class="input border-none text-center text-sm placeholder:text-sm"> 
+                  class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
             </div>
             <div class="form-control">
                 <label class="label">
-                    <span class="label-text text-sm">&nbsp;</span>
-                    <span class="label-text-alt text-sm">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                    <span class="label-text-alt {form_font_sizelabel_default}">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
                 </label>
                 <input
                   bind:value={bet_2dt}
@@ -4476,13 +4501,16 @@
                   minlength="3"
                   maxlength="7"
                   type="text" placeholder="Bet" 
-                  class="input border-none text-right text-sm placeholder:text-sm">
+                  class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
                 <label class="label">
-                    <span class="label-text">&nbsp;</span>
-                    <span class="label-text-alt">{new Intl.NumberFormat().format(bet_2dt)}</span>
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                    <span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_2dt)}</span>
                 </label>
             </div>
-            <div class="form-control mt-9">
+            <div class="form-control col-span-2 lg:col-span-1">
+				<label class="label hidden lg:inline-grid">
+                    <span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+                </label>
                 <Button_custom1 
                   on:click={() => {
                     handleTambah("pilihan","2DT");
@@ -5192,12 +5220,16 @@
       {/if}
   </div>
 </div>
+
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <div class="modal " on:click|self={()=>isModalAlert = false}>
-    <div class="modal-box relative">
+    <div class="modal-box relative bg-content">
         <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-lg font-bold">INFORMASI</h3>
-        <p class="py-4">{@html msg_error}</p>
+		<progress class="progress w-full" value="{barWidth}" max="100"></progress>
+        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
+			{@html msg_error}
+		</p>
     </div>
 </div>
 
@@ -5236,7 +5268,7 @@
   on:handleSave={handleSave}
   {card_custom}
   {client_device}
-  {group_btn_beli}
+  {temp_permainan_tab}
   {count_line_4d}
   {count_line_3d}
   {count_line_3dd}
@@ -5293,24 +5325,24 @@
 {#if client_device == "WEBSITE"}
 	<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
 	<div class="modal">
-		<div class="modal-box w-11/12 max-w-xl">
-			<h3 class="font-bold text-lg text-center">Pilih Permainan Dibawah ini :</h3>
+		<div class="modal-box w-11/12 max-w-xl select-none">
+			<h3 class="font-bold text-sm lg:text-lg text-center">Pilih Permainan Dibawah ini :</h3>
 			<div class="grid grid-cols-3 gap-1">
 				<button
 					on:click={() => {
 					handlePilihan("DISC");
 					}}  
-					class="btn btn-primary rounded-md">DISKON</button>
+					class="btn btn-sm btn-primary rounded-md">DISKON</button>
 				<button
 					on:click={() => {
 					handlePilihan("FULL");
 					}} 
-					class="btn btn-secondary rounded-md">NON DISKON / FULL</button>
+					class="btn btn-sm btn-secondary rounded-md">NON DISKON / FULL</button>
 				<button
 					on:click={() => {
 					handlePilihan("BB");
 					}} 
-					class="btn btn-accent rounded-md">BOLAK BALIK / BB</button>
+					class="btn btn-sm btn-accent rounded-md">BOLAK BALIK / BB</button>
 			</div>
 			<p class="text-xs p-2">
 				<b>NOTE</b> : <br>
@@ -5476,10 +5508,3 @@
 	</div>
 {/if}
 
-
-<style>
-    .scrollbar-thin::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-</style>

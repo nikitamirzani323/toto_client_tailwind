@@ -7,7 +7,7 @@
     export let totalkeranjang = 0;
     export let card_custom = "";
     export let client_device = "";
-    export let group_btn_beli = false;
+    export let temp_permainan_tab = "";
     export let count_line_4d = 0;
     export let count_line_3d = 0;
     export let count_line_3dd = 0;
@@ -87,9 +87,9 @@
     };
     const handleAlertRemove = (e) => {
         if(e == 'Y'){
+            isModalAlert = false;
             let idkeranjang = temp_idkeranjang 
             let bayar = temp_bayar 
-            isModalAlert = false;
             dispatch("removekeranjang", {
                 idkeranjang,
                 bayar,
@@ -141,54 +141,55 @@
         isModalAlert_belanja = false;
     };
     
-    $: count_line =
-        count_line_4d +
-        count_line_3d +
-        count_line_3dd +
-        count_line_2d +
-        count_line_2dd +
-        count_line_2dt;
+    $: {
+        count_line = count_line_4d +count_line_3d +count_line_3dd +count_line_2d +count_line_2dd +count_line_2dt;
+    }
+    
 </script>
 
 <div class="card bg-base-200 shadow-xl mt-5 rounded-md {card_custom}">
-    <div class="card-body p-3">
+    <div class="card-body p-3 select-none">
         {#if client_device == "WEBSITE"}
             <h2 class="card-title text-lg grid grid-cols-2 gap-4">
                 <div class="place-content-start text-left text-sm lg:text-lg">
                     TOTAL BAYAR : <span class="text-xs lg:text-lg link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
-            <div class="overflow-auto shadow-lg scrollbar-thin scrollbar-thumb-green-100 h-[500px]">
+            <div class="overflow-auto shadow-lg scrollbar-thin scrollbar-thumb-green-300  h-[500px] cursor-pointer">
                 <table class="table table-zebra w-full" >
                     <thead>
                         <tr>
-                            <th width="1%" class="text-xs lg:text-sm text-center">#</th>
+                            {#if temp_permainan_tab != '432BOLAKBALIK'}
+                            <th width="1%" class="text-xs text-center">#</th>
+                            {/if}
                             <th width="*" class="text-xs text-center">NOMOR</th>
-                            <th width="10%" class="text-xs lg:text-sm text-center">TIPE</th>
-                            <th width="10%" class="text-xs lg:text-sm text-center">PERMAINAN</th>
-                            <th width="15%" class="text-xs lg:text-sm text-right">BET</th>
-                            <th width="15%" class="text-xs lg:text-sm text-right">DISKON</th>
-                            <th width="15%" class="text-xs lg:text-sm text-right">BAYAR</th>
+                            <th width="10%" class="text-xs text-center">TIPE</th>
+                            <th width="10%" class="text-xs text-center">PERMAINAN</th>
+                            <th width="15%" class="text-xs text-right">BET</th>
+                            <th width="15%" class="text-xs text-right">DISKON</th>
+                            <th width="15%" class="text-xs text-right">BAYAR</th>
                         </tr>
                     </thead>
                     <tbody>
                         {#each keranjang as rec (rec)}
                             <tr>
-                                <th 
-                                    class="cursor-pointer"
-                                    on:click={() => {
-                                        handleRemoveKeranjang(rec.id, rec.bayar,rec.nomor,rec.tipetoto,rec.permainan,rec.bet,rec.diskon,rec.diskonpercen);
-                                    }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </th>
-                                <td class="text-xs lg:text-sm text-center">{rec.nomor}</td>
-                                <td class="text-xs lg:text-sm text-center">{rec.tipetoto}</td>
-                                <td class="text-xs lg:text-sm text-center">{rec.permainan}</td>
-                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                {#if temp_permainan_tab != '432BOLAKBALIK'}
+                                    <th 
+                                        class="cursor-pointer"
+                                        on:click={() => {
+                                            handleRemoveKeranjang(rec.id, rec.bayar,rec.nomor,rec.tipetoto,rec.permainan,rec.bet,rec.diskon,rec.diskonpercen);
+                                        }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </th>
+                                {/if}
+                                <td class="text-xs text-center">{rec.nomor}</td>
+                                <td class="text-xs text-center">{rec.tipetoto}</td>
+                                <td class="text-xs text-center">{rec.permainan}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                             </tr>
                         {/each}
                     </tbody>
@@ -231,7 +232,9 @@
                 <table class="table table-zebra w-full" >
                     <thead>
                         <tr>
+                            {#if temp_permainan_tab != '432BOLAKBALIK'}
                             <th width="1%" class="text-xs text-center">#</th>
+                            {/if}
                             <th width="*" class="text-xs text-center">NOMOR</th>
                             <th width="10%" class="text-xs text-center">TIPE</th>
                             <th width="10%" class="text-xs text-center">PERMAINAN</th>
@@ -242,16 +245,18 @@
                     </thead>
                     <tbody>
                         {#each keranjang as rec (rec)}
-                            <tr>
-                                <th 
-                                    class="cursor-pointer"
-                                    on:click={() => {
-                                        handleRemoveKeranjang(rec.id, rec.bayar,rec.nomor,rec.tipetoto,rec.permainan,rec.bet,rec.diskon,rec.diskonpercen);
-                                    }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </th>
+                            <tr >
+                                {#if temp_permainan_tab != '432BOLAKBALIK'}
+                                    <th 
+                                        class="cursor-pointer"
+                                        on:click={() => {
+                                            handleRemoveKeranjang(rec.id, rec.bayar,rec.nomor,rec.tipetoto,rec.permainan,rec.bet,rec.diskon,rec.diskonpercen);
+                                        }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </th>
+                                {/if}
                                 <td class="text-xs text-center">{rec.nomor}</td>
                                 <td class="text-xs text-center">{rec.tipetoto}</td>
                                 <td class="text-xs text-center">{rec.permainan}</td>
@@ -301,100 +306,100 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal" on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative w-11/12 max-w-4xl h-[600px] overflow-hidden">
+        <div class="modal-box relative w-11/12 max-w-xl h-[600px] overflow-hidden select-none">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="h-[32rem] overflow-auto scrollbar-hide" >
-                <div class="overflow-auto">
+                <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-300">
                     <table class="table table-compact w-full" >
                         <thead>
                             <tr>
-                                <th class="text-sm text-left align-top"></th>
-                                <th class="text-sm text-right align-top">4D</th>
-                                <th class="text-sm text-right align-top">3D</th>
-                                <th class="text-sm text-right align-top">3DD <br> 3D DEPAN</th>
-                                <th class="text-sm text-right align-top">2D</th>
-                                <th class="text-sm text-right align-top">2DD <br> 2D DEPAN</th>
-                                <th class="text-sm text-right align-top">2DT <br> 2D TENGAH</th>
+                                <th class="text-xs text-left align-top"></th>
+                                <th class="text-xs text-right align-top">4D</th>
+                                <th class="text-xs text-right align-top">3D</th>
+                                <th class="text-xs text-right align-top">3DD <br> 3D DEPAN</th>
+                                <th class="text-xs text-right align-top">2D</th>
+                                <th class="text-xs text-right align-top">2DD <br> 2D DEPAN</th>
+                                <th class="text-xs text-right align-top">2DT <br> 2D TENGAH</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="text-sm text-left">MIN BET</th>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <th class="text-xs text-left">MIN BET</th>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
                             </tr>
                             <tr>
-                                <th class="text-sm text-left">MAX BET</th>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
+                                <th class="text-xs text-left">MAX BET</th>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
                             </tr>
                             <tr>
-                                <th class="text-sm text-left">DISKON</th>
-                                <td class="text-sm text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
-                                <td class="text-sm text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
-                                <td class="text-sm text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
-                                <td class="text-sm text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
-                                <td class="text-sm text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
-                                <td class="text-sm text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
+                                <th class="text-xs text-left">DISKON</th>
+                                <td class="text-xs text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
+                                <td class="text-xs text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
                             </tr>
                             <tr>
-                                <th class="text-sm text-left">HADIAH</th>
-                                <td class="text-sm text-right link-accent">{win4d_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win3d_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win3dd_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2d_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2dd_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2dt_bet}x</td>
+                                <th class="text-xs text-left">HADIAH</th>
+                                <td class="text-xs text-right link-accent">{win4d_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3d_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3dd_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2d_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dd_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dt_bet}x</td>
                             </tr>
                             <tr>
-                                <th class="text-sm text-left">HADIAH FULL</th>
-                                <td class="text-sm text-right link-accent">{win4dnodiskon_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win3dnodiskon_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win3ddnodiskon_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2dnodiskon_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2ddnodiskon_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2dtnodiskon_bet}x</td>
+                                <th class="text-xs text-left">HADIAH FULL</th>
+                                <td class="text-xs text-right link-accent">{win4dnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3dnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3ddnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2ddnodiskon_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dtnodiskon_bet}x</td>
                             </tr>
                             <tr>
-                                <th class="text-sm text-left">HADIAH BB KENA</th>
-                                <td class="text-sm text-right link-accent">{win4dbb_kena_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win3dbb_kena_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win3ddbb_kena_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2dbb_kena_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2ddbb_kena_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2dtbb_kena_bet}x</td>
+                                <th class="text-xs text-left">HADIAH BB KENA</th>
+                                <td class="text-xs text-right link-accent">{win4dbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3dbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3ddbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2ddbb_kena_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dtbb_kena_bet}x</td>
                             </tr>
                             <tr>
-                                <th class="text-sm text-left">HADIAH BB</th>
-                                <td class="text-sm text-right link-accent">{win4dbb_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win3dbb_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win3ddbb_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2dbb_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2ddbb_bet}x</td>
-                                <td class="text-sm text-right link-accent">{win2dtbb_bet}x</td>
+                                <th class="text-xs text-left">HADIAH BB</th>
+                                <td class="text-xs text-right link-accent">{win4dbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3dbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win3ddbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2ddbb_bet}x</td>
+                                <td class="text-xs text-right link-accent">{win2dtbb_bet}x</td>
                             </tr>
                             <tr>
-                                <th class="text-sm text-left">LIMIT LINE</th>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2d)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2dd)}</td>
-                                <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(limitline_2dt)}</td>
+                                <th class="text-xs text-left">LIMIT LINE</th>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_4d)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3d)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_3dd)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2d)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dd)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(limitline_2dt)}</td>
                             </tr>
                         </tbody>
                     </table>    
                 </div>
-                <p class="py-2 text-sm">
+                <p class="py-2 text-xs">
                     <b>Contoh Penulisan 4D/3D/2D:</b><br />
                     1234 : 4D<br /> 
                     123 : 3D<br /> 
@@ -600,7 +605,7 @@
 
 <input type="checkbox" id="my-modal-informationalert" class="modal-toggle" bind:checked={isModalAlert}>
 <div class="modal" >
-    <div class="modal-box relative max-w-lg">
+    <div class="modal-box relative max-w-lg select-none">
         <h3 class="text-xs lg:text-sm font-bold capitalize text-center">Apakah Anda Ingin Menghapus Transaksi Ini :</h3>
         <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
             Nomor : {temp_nomor} <br>
@@ -626,7 +631,7 @@
 </div>
 <input type="checkbox" id="my-modal-informationalert2" class="modal-toggle" bind:checked={isModalAlert2}>
 <div class="modal" >
-    <div class="modal-box relative max-w-lg">
+    <div class="modal-box relative max-w-lg select-none">
         <h3 class="text-xs lg:text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Menghapus Semua Transaksi :</h3>
         <div class="grid grid-cols-2 gap-1">
             <button
@@ -645,10 +650,10 @@
 
 <input type="checkbox" id="my-modal-informationalertbelanja" class="modal-toggle" bind:checked={isModalAlert_belanja}>
 <div class="modal" >
-    <div class="modal-box relative max-w-lg">
+    <div class="modal-box relative max-w-lg select-none">
         <h3 class="text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Melanjutkan Transaksi :</h3>
         <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+            Total Transaksi : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
         </p>
         <div class="grid grid-cols-2 gap-1">
             <button
@@ -665,9 +670,3 @@
     </div>
 </div>
 
-<style>
-    .scrollbar-thin::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-</style>

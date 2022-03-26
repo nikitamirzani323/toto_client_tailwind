@@ -428,8 +428,8 @@
     </div>
     <div class="navbar">
         <div class="navbar-start">
-            <a href="/?token={client_token}" class="btn btn-ghost">
-                <img src="logo-green.svg" alt="">
+            <a href="/?token={client_token}" >
+                <img src="logo-green.svg" alt="SDSB" class="hover:scale-110  transition ">
             </a>
         </div>
         <div class="navbar-center hidden lg:flex">
@@ -523,7 +523,7 @@
 
 <input type="checkbox" id="my-modal-resulttogel" class="modal-toggle" bind:checked={isModal_result}>
 <div class="modal" on:click|self={()=>isModal_result = false}>
-    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+    <div class="modal-box relative select-none max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-resulttogel" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold mt-1">RESULT</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-base-300 lg:scrollbar-thumb-green-100  mt-4">
@@ -592,14 +592,14 @@
 
 <input type="checkbox" id="my-modal-resulttogel_bypasaran" class="modal-toggle" bind:checked={isModal_result_bypasaran}>
 <div class="modal" on:click|self={()=>isModal_result_bypasaran = false}>
-    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+    <div class="modal-box relative select-none max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-resulttogel_bypasaran" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold mt-1">PASARAN : {nmpasaran}</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full">
                 <thead>
                     <tr>
-                        <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
+                        <th width="15%" class="text-xs lg:text-sm text-center">TANGGAL</th>
                         <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
                         <th width="25%" class="text-xs lg:text-sm text-center">HASIL</th>
                     </tr>
@@ -607,7 +607,7 @@
                 <tbody>
                     {#each resulttogel  as rec}
                     <tr>
-                        <th class="text-xs lg:text-sm text-left">{rec.date}</th>
+                        <th class="text-xs lg:text-sm text-center">{rec.date}</th>
                         <td class="text-xs lg:text-sm text-left">{rec.periode}</td>
                         <td class="text-xs lg:text-sm text-center link-accent">{rec.result}</td>
                     </tr>
@@ -620,7 +620,7 @@
 <input type="checkbox" id="my-modal-allinvoice" class="modal-toggle" bind:checked={isModal_allinvoice}>
 <div class="modal" on:click|self={()=>isModal_allinvoice = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative  lg:max-w-2xl h-full lg:max-h-[600px] rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+    <div class="modal-box relative select-none  lg:max-w-2xl h-full lg:max-h-[600px] rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-allinvoice" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold -mt-1">INVOICE</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
@@ -638,7 +638,7 @@
                     {#each listhasilinvoice as rec}
                     <tr>
                         <th class="text-sm text-center whitespace-nowrap">
-                            <span class="{rec.invoice_status_background} p-1.5 text-xs lg:text-sm  uppercase tracking-wider rounded-lg ">{rec.invoice_status}</span>
+                            <span class="{rec.invoice_status_background} p-1.5 text-xs lg:text-sm  uppercase  rounded-lg ">{rec.invoice_status}</span>
                         </th>
                         <td class="text-xs lg:text-sm text-center whitespace-nowrap">{rec.invoice_tglkeluaran}</td>
                         <td class="text-xs lg:text-sm text-left whitespace-nowrap">{rec.invoice_pasaran}</td>
@@ -698,9 +698,9 @@
     {/if}
 </div>
 <input type="checkbox" id="my-modal-invoicedetail" class="modal-toggle" bind:checked={isModal_invoicedetail}>
-<div class="modal top-0 right-0 left-0" on:click|self={()=>isModal_invoicedetail = false}>
+<div class="modal" on:click|self={()=>isModal_invoicedetail = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-4/5 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+    <div class="modal-box relative select-none max-w-full lg:max-w-xl h-full lg:h-4/5 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-invoicedetail" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold -mt-1">PASARAN : {detailslipheader}</h3>
         <div class="overflow-auto h-3/4 scrollbar-thin scrollbar-thumb-green-100 mt-4">
@@ -1085,7 +1085,7 @@
 <input type="checkbox" id="my-modal-detailbyid" class="modal-toggle" bind:checked={isModal_detailbyid}>
 <div class="modal" on:click|self={()=>isModal_detailbyid = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-5xl h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+    <div class="modal-box relative select-none max-w-5xl h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
         <label for="my-modal-detailbyid" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold -mt-1">PERMAINAN : {detailslipheaderpermainan}</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
@@ -1171,7 +1171,7 @@
 <input type="checkbox" id="my-modal-pasaran" class="modal-toggle">
 <div class="modal">
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative max-w-2xl h-full lg:h-[500px] rounded-none lg:rounded-lg overflow-hidden" >
+    <div class="modal-box relative select-none max-w-2xl h-full lg:h-[500px] rounded-none lg:rounded-lg overflow-hidden" >
         <label for="my-modal-pasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold -mt-1">INFORMASI</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
@@ -1194,9 +1194,9 @@
                             </a>
                         </td>
                         <td class="text-xs lg:text-sm text-left whitespace-nowrap">{rec.pasaran_note}</td>
-                        <td class="text-xs lg:text-sm text-left">{rec.pasaran_tglclose}</td>
-                        <td class="text-xs lg:text-sm text-left">{rec.pasaran_tglschedule}</td>
-                        <td class="text-xs lg:text-sm text-left">{rec.pasaran_tglopen}</td>
+                        <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglclose}</td>
+                        <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglschedule}</td>
+                        <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglopen}</td>
                     </tr>
                     {/each}
                 </tbody>
@@ -1242,7 +1242,7 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-bukumimpi" class="modal-toggle" bind:checked={isModal_bukumimpi}>
     <div class="modal" on:click|self={()=>isModal_bukumimpi = false}>
-        <div class="modal-box relative max-w-xl h-full lg:h-[600px] rounded-none lg:rounded-lg overflow-hidden">
+        <div class="modal-box relative select-none max-w-xl h-full lg:h-[600px] rounded-none lg:rounded-lg overflow-hidden">
             <label for="my-modal-bukumimpi" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold -mt-2">BUKU MIMPI</h3>
             <div class="hidden lg:flex justify-start items-center mt-4 ">

@@ -188,12 +188,12 @@
                 <table class="table table-zebra w-full" >
                     <thead>
                         <tr>
-                            <th width="1%" class="text-xs lg:text-sm text-center">#</th>
+                            <th width="1%" class="text-xs text-center">#</th>
                             <th width="*" class="text-xs text-center">NOMOR</th>
-                            <th width="10%" class="text-xs lg:text-sm text-center">PERMAINAN</th>
-                            <th width="15%" class="text-xs lg:text-sm text-right">BET</th>
-                            <th width="15%" class="text-xs lg:text-sm text-right">DISKON</th>
-                            <th width="15%" class="text-xs lg:text-sm text-right">BAYAR</th>
+                            <th width="10%" class="text-xs text-center">PERMAINAN</th>
+                            <th width="15%" class="text-xs text-right">BET</th>
+                            <th width="15%" class="text-xs text-right">DISKON</th>
+                            <th width="15%" class="text-xs text-right">BAYAR</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -208,11 +208,11 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
                                 </th>
-                                <td class="text-xs lg:text-sm text-center">{rec.nomor}</td>
-                                <td class="text-xs lg:text-sm text-center">{rec.permainan}</td>
-                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                                <td class="text-xs lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                <td class="text-xs text-center">{rec.nomor}</td>
+                                <td class="text-xs text-center">{rec.permainan}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                             </tr>
                         {/each}
                     </tbody>
@@ -307,7 +307,7 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal" on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative w-11/12 max-w-2xl h-[600px] overflow-hidden">
+        <div class="modal-box relative w-11/12 max-w-xl h-[600px] overflow-hidden">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="hidden lg:flex justify-start items-center mt-4 ">
@@ -340,25 +340,25 @@
                         <table class="table table-compact w-full" >
                             <tbody>
                                 <tr>
-                                    <th class="text-sm text-left">MIN BET</th>
-                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokbebas)}</td>
+                                    <th class="text-xs text-left">MIN BET</th>
+                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokbebas)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">MAX BET</th>
-                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokbebas)}</td>
+                                    <th class="text-xs text-left">MAX BET</th>
+                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokbebas)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">DISKON</th>
-                                    <td class="text-sm text-right link-accent">{(disc_bet_colokbebas * 100).toFixed(2)}%</td>
+                                    <th class="text-xs text-left">DISKON</th>
+                                    <td class="text-xs text-right link-accent">{(disc_bet_colokbebas * 100).toFixed(2)}%</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH</th>
-                                    <td class="text-sm text-right link-accent">{win_bet_colokbebas}x</td>
+                                    <th class="text-xs text-left">HADIAH</th>
+                                    <td class="text-xs text-right link-accent">{win_bet_colokbebas}x</td>
                                 </tr>
                             </tbody>
                         </table>    
                     </div>
-                    <p class="py-2 text-sm">
+                    <p class="py-2 text-xs">
                         <b>CARA BERMAIN</b>
                         <br />
                         Menebak salah satu angka dari 4D. Posisi angka bisa dimana saja
@@ -383,33 +383,33 @@
                         <table class="table table-compact w-full" >
                             <tbody>
                                 <tr>
-                                    <th class="text-sm text-left">MIN BET</th>
-                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokmacau)}</td>
+                                    <th class="text-xs text-left">MIN BET</th>
+                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokmacau)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">MAX BET</th>
-                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokmacau)}</td>
+                                    <th class="text-xs text-left">MAX BET</th>
+                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokmacau)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">DISKON</th>
-                                    <td class="text-sm text-right link-accent">{(disc_bet_colokmacau  * 100).toFixed(2)}%</td>
+                                    <th class="text-xs text-left">DISKON</th>
+                                    <td class="text-xs text-right link-accent">{(disc_bet_colokmacau  * 100).toFixed(2)}%</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH 2 DIGIT</th>
-                                    <td class="text-sm text-right link-accent">{win_bet_colokmacau}x</td>
+                                    <th class="text-xs text-left">HADIAH 2 DIGIT</th>
+                                    <td class="text-xs text-right link-accent">{win_bet_colokmacau}x</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH 3 DIGIT</th>
-                                    <td class="text-sm text-right link-accent">{win3_bet_colokmacau}x</td>
+                                    <th class="text-xs text-left">HADIAH 3 DIGIT</th>
+                                    <td class="text-xs text-right link-accent">{win3_bet_colokmacau}x</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH 4 DIGIT</th>
-                                    <td class="text-sm text-right link-accent">{win4_bet_colokmacau}x</td>
+                                    <th class="text-xs text-left">HADIAH 4 DIGIT</th>
+                                    <td class="text-xs text-right link-accent">{win4_bet_colokmacau}x</td>
                                 </tr>
                             </tbody>
                         </table>    
                     </div>
-                    <p class="py-2 text-sm">
+                    <p class="py-2 text-xs">
                         <b>CARA BERMAIN</b>
                         <br />
                         Cara kerja seperti colok angka tapi mesti yang keluar 2 angka dari 4D.
@@ -442,29 +442,29 @@
                         <table class="table table-compact w-full" >
                             <tbody>
                                 <tr>
-                                    <th class="text-sm text-left">MIN BET</th>
-                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(min_bet_coloknaga)}</td>
+                                    <th class="text-xs text-left">MIN BET</th>
+                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_coloknaga)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">MAX BET</th>
-                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max_bet_coloknaga)}</td>
+                                    <th class="text-xs text-left">MAX BET</th>
+                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_coloknaga)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">DISKON</th>
-                                    <td class="text-sm text-right link-accent">{(disc_bet_coloknaga  * 100).toFixed(2)}%</td>
+                                    <th class="text-xs text-left">DISKON</th>
+                                    <td class="text-xs text-right link-accent">{(disc_bet_coloknaga  * 100).toFixed(2)}%</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH 3 DIGIT</th>
-                                    <td class="text-sm text-right link-accent">{win_bet_coloknaga.toFixed(2)}x</td>
+                                    <th class="text-xs text-left">HADIAH 3 DIGIT</th>
+                                    <td class="text-xs text-right link-accent">{win_bet_coloknaga.toFixed(2)}x</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH 4 DIGIT</th>
-                                    <td class="text-sm text-right link-accent">{win4_bet_coloknaga.toFixed(2)}x</td>
+                                    <th class="text-xs text-left">HADIAH 4 DIGIT</th>
+                                    <td class="text-xs text-right link-accent">{win4_bet_coloknaga.toFixed(2)}x</td>
                                 </tr>
                             </tbody>
                         </table>    
                     </div>
-                    <p class="py-2 text-sm">
+                    <p class="py-2 text-xs">
                         <b>CARA BERMAIN</b>
                         <br />
                         Cara kerja seperti colok angka tapi mesti yang keluar 3 angka dari 4D.
@@ -499,37 +499,37 @@
                         <table class="table table-compact w-full" >
                             <tbody>
                                 <tr>
-                                    <th class="text-sm text-left">MIN BET</th>
-                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokjitu)}</td>
+                                    <th class="text-xs text-left">MIN BET</th>
+                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokjitu)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">MAX BET</th>
-                                    <td class="text-sm text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokjitu)}</td>
+                                    <th class="text-xs text-left">MAX BET</th>
+                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokjitu)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">DISKON</th>
-                                    <td class="text-sm text-right link-accent">{(disc_bet_colokjitu  * 100).toFixed(2)}%</td>
+                                    <th class="text-xs text-left">DISKON</th>
+                                    <td class="text-xs text-right link-accent">{(disc_bet_colokjitu  * 100).toFixed(2)}%</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH AS</th>
-                                    <td class="text-sm text-right link-accent">{winas_bet_colokjitu.toFixed(2)}x</td>
+                                    <th class="text-xs text-left">HADIAH AS</th>
+                                    <td class="text-xs text-right link-accent">{winas_bet_colokjitu.toFixed(2)}x</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH KOP</th>
-                                    <td class="text-sm text-right link-accent">{winkop_bet_colokjitu.toFixed(2)}x</td>
+                                    <th class="text-xs text-left">HADIAH KOP</th>
+                                    <td class="text-xs text-right link-accent">{winkop_bet_colokjitu.toFixed(2)}x</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH KEPALA</th>
-                                    <td class="text-sm text-right link-accent">{winkepala_bet_colokjitu.toFixed(2)}x</td>
+                                    <th class="text-xs text-left">HADIAH KEPALA</th>
+                                    <td class="text-xs text-right link-accent">{winkepala_bet_colokjitu.toFixed(2)}x</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-sm text-left">HADIAH EKOR</th>
-                                    <td class="text-sm text-right link-accent">{winekor_bet_colokjitu.toFixed(2)}x</td>
+                                    <th class="text-xs text-left">HADIAH EKOR</th>
+                                    <td class="text-xs text-right link-accent">{winekor_bet_colokjitu.toFixed(2)}x</td>
                                 </tr>
                             </tbody>
                         </table>    
                     </div>
-                    <p class="py-2 text-sm">
+                    <p class="py-2 text-xs">
                         <b>CARA BERMAIN</b>
                         <br />
                         Menebak satu angka pada posisi tertentu dari 4D.
@@ -857,7 +857,7 @@
     <div class="modal-box relative max-w-lg">
         <h3 class="text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Melanjutkan Transaksi :</h3>
         <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+            Total Transaksi : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
         </p>
         <div class="grid grid-cols-2 gap-1">
             <button

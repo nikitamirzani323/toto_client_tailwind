@@ -1,10 +1,11 @@
 <script>
-
+    import Card_placeholder from '../component/Placeholder.svelte'
     import Form432d from "../permainan/Form432d.svelte";
     import Formcolok from "../permainan/Formcolok.svelte";
     import Form5050 from "../permainan/Form5050.svelte";
     import Formmacau from "../permainan/Formmacau.svelte";
     import Formdasar from "../permainan/Formdasar.svelte";
+    import Formshio from "../permainan/Formshio.svelte";
 
     export let path_api = "";
     export let client_token = "";
@@ -20,16 +21,20 @@
     export let pasaran_periode = 0;
     export let permainan = "";
     export let listkeluaran = [];
-
+    
+    
     let resultinvoice = [];
     let totalbayar_invoice = 0;
     let totalbet_invoice = 0;
+    let row_keranjang = 0;
+    let totalkeranjang = 0;
     let isModalAlert = false;
+    let isModalAlertKeranjang = false;
     let msg_error = "";
     let idcomppasaran = "";
     let idtrxkeluaran = "";
     let permainan_title = "4D / 3D / 2D";
-    let statuspasaran = "OFFLINE";
+    let statuspasaran = "";
     let tab_bet_pasangan = true;
     let tab_bet_pasangan_class = "bg-base-300 rounded-lg outline outline-1 outline-offset-1 outline-green-600";
     let tab_bet_history_class = "";
@@ -115,6 +120,10 @@
         resultinvoice = [];
         invoicebet("all");
     };
+    const handleKeranjang = (e) => {
+        row_keranjang = e.detail.row_keranjang
+        totalkeranjang = e.detail.totalkeranjang
+    }
     const handleTabBet = (e) => {
         if(e == "Y"){
             tab_bet_pasangan = true;
@@ -125,67 +134,70 @@
             tab_bet_pasangan_class = "";
             tab_bet_history_class = "bg-base-300 rounded-lg outline outline-1 outline-offset-1 outline-green-600";
             resultinvoice = [];
-            resultslipbet = [];
             invoicebet("all");
         }
     };
     const changePermainan = (e) => {
-        permainan = e;
-        switch (e) {
-            case "4-3-2":
-                permainan_title = "4D / 3D / 2D";
-                permainan_432_class = "bg-green-700 grass text-white";
-                permainan_colok_class = "bg-base-200 ";
-                permainan_5050_class = "bg-base-200 ";
-                permainan_kombinasi_class = "bg-base-200 ";
-                permainan_dasar_class = "bg-base-200 ";
-                permainan_shio_class = "bg-base-200 ";
-                break;
-            case "colok":
-                permainan_title = "COLOK";
-                permainan_432_class = "bg-base-200";
-                permainan_colok_class = "bg-green-700 grass text-white ";
-                permainan_5050_class = "bg-base-200 ";
-                permainan_kombinasi_class = "bg-base-200 ";
-                permainan_dasar_class = "bg-base-200 ";
-                permainan_shio_class = "bg-base-200 ";
-                break;
-            case "5050":
-                permainan_title = "50 - 50";
-                permainan_432_class = "bg-base-200";
-                permainan_colok_class = " ";
-                permainan_5050_class = "bg-green-700 grass text-white ";
-                permainan_kombinasi_class = "bg-base-200 ";
-                permainan_dasar_class = "bg-base-200 ";
-                permainan_shio_class = "bg-base-200 ";
-                break;
-            case "kombinasi":
-                permainan_title = "MACAU / KOMBINASI";
-                permainan_432_class = "bg-base-200";
-                permainan_colok_class = "bg-base-200 ";
-                permainan_5050_class = "bg-base-200 ";
-                permainan_kombinasi_class = "bg-green-700 grass text-white";
-                permainan_dasar_class = "bg-base-200 ";
-                permainan_shio_class = "bg-base-200 ";
-                break;
-            case "dasar":
-                permainan_title = "DASAR";
-                permainan_432_class = "bg-base-200";
-                permainan_colok_class = "bg-base-200 ";
-                permainan_5050_class = "bg-base-200 ";
-                permainan_kombinasi_class = "bg-base-200 ";
-                permainan_dasar_class = "bg-green-700 grass text-white";
-                permainan_shio_class = "bg-base-200 ";
-                break;
-            case "shio":
-                permainan_title = "SHIO";
-                permainan_432_class = "bg-base-200 ";
-                permainan_colok_class = "bg-base-200 ";
-                permainan_5050_class = "bg-base-200 ";
-                permainan_kombinasi_class = "bg-base-200 ";
-                permainan_dasar_class = "bg-base-200 ";
-                permainan_shio_class = "bg-green-700 grass text-white";
-                break;
+        if(row_keranjang > 0){
+            isModalAlertKeranjang = true;
+        }else{
+            permainan = e;
+            switch (e) {
+                case "4-3-2":
+                    permainan_title = "4D / 3D / 2D";
+                    permainan_432_class = "bg-green-700 grass text-white";
+                    permainan_colok_class = "bg-base-200 ";
+                    permainan_5050_class = "bg-base-200 ";
+                    permainan_kombinasi_class = "bg-base-200 ";
+                    permainan_dasar_class = "bg-base-200 ";
+                    permainan_shio_class = "bg-base-200 ";
+                    break;
+                case "colok":
+                    permainan_title = "COLOK";
+                    permainan_432_class = "bg-base-200";
+                    permainan_colok_class = "bg-green-700 grass text-white ";
+                    permainan_5050_class = "bg-base-200 ";
+                    permainan_kombinasi_class = "bg-base-200 ";
+                    permainan_dasar_class = "bg-base-200 ";
+                    permainan_shio_class = "bg-base-200 ";
+                    break;
+                case "5050":
+                    permainan_title = "50 - 50";
+                    permainan_432_class = "bg-base-200";
+                    permainan_colok_class = " ";
+                    permainan_5050_class = "bg-green-700 grass text-white ";
+                    permainan_kombinasi_class = "bg-base-200 ";
+                    permainan_dasar_class = "bg-base-200 ";
+                    permainan_shio_class = "bg-base-200 ";
+                    break;
+                case "kombinasi":
+                    permainan_title = "MACAU / KOMBINASI";
+                    permainan_432_class = "bg-base-200";
+                    permainan_colok_class = "bg-base-200 ";
+                    permainan_5050_class = "bg-base-200 ";
+                    permainan_kombinasi_class = "bg-green-700 grass text-white";
+                    permainan_dasar_class = "bg-base-200 ";
+                    permainan_shio_class = "bg-base-200 ";
+                    break;
+                case "dasar":
+                    permainan_title = "DASAR";
+                    permainan_432_class = "bg-base-200";
+                    permainan_colok_class = "bg-base-200 ";
+                    permainan_5050_class = "bg-base-200 ";
+                    permainan_kombinasi_class = "bg-base-200 ";
+                    permainan_dasar_class = "bg-green-700 grass text-white";
+                    permainan_shio_class = "bg-base-200 ";
+                    break;
+                case "shio":
+                    permainan_title = "SHIO";
+                    permainan_432_class = "bg-base-200 ";
+                    permainan_colok_class = "bg-base-200 ";
+                    permainan_5050_class = "bg-base-200 ";
+                    permainan_kombinasi_class = "bg-base-200 ";
+                    permainan_dasar_class = "bg-base-200 ";
+                    permainan_shio_class = "bg-green-700 grass text-white";
+                    break;
+            }
         }
     };
     checkpasaran();
@@ -204,6 +216,7 @@
         }
     }
 </script>
+
 {#if statuspasaran == "ONLINE"}
     {#if client_device=="WEBSITE"}
         <div class="card shadow-xl bg-base-300  mt-5 rounded-md">
@@ -221,41 +234,43 @@
                             on:click={() => {
                                 changePermainan("4-3-2");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_432_class} w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</button>
+                            type="button" class="modal-button text-sm {permainan_432_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</button>
                         <button
                             on:click={() => {
                                 changePermainan("colok");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_colok_class} w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</button>
+                            type="button" class="modal-button text-sm {permainan_colok_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</button>
                         <button
                             on:click={() => {
                                 changePermainan("5050");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_5050_class} w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</button>
+                            type="button" class="modal-button text-sm {permainan_5050_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</button>
                         <button
                             on:click={() => {
                                 changePermainan("kombinasi");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_kombinasi_class} w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</button>
+                            type="button" class="modal-button text-sm {permainan_kombinasi_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</button>
                         <button
                             on:click={() => {
                                 changePermainan("dasar");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_dasar_class} w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</button>
+                            type="button" class="modal-button text-sm {permainan_dasar_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</button>
                         <button
                             on:click={() => {
                                 changePermainan("shio");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_shio_class} w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</button>
+                            type="button" class="modal-button text-sm {permainan_shio_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-8 gap-2 grid grid-cols-1 lg:grid-cols-2 ">
+        
+        <div class="mt-5 gap-2 grid grid-cols-1 lg:grid-cols-2 ">
             <div>
                 {#if permainan == "4-3-2"}
                     <Form432d
                         on:handleInvoice={handleInvoice}
+                        on:handleKeranjang={handleKeranjang}
                         {path_api}
                         {idcomppasaran}
                         {idtrxkeluaran}
@@ -273,6 +288,7 @@
                 {#if permainan == "colok"}
                     <Formcolok
                         on:handleInvoice={handleInvoice}
+                        on:handleKeranjang={handleKeranjang}
                         {path_api}
                         {idcomppasaran}
                         {idtrxkeluaran}
@@ -290,6 +306,7 @@
                 {#if permainan == "5050"}
                     <Form5050
                         on:handleInvoice={handleInvoice}
+                        on:handleKeranjang={handleKeranjang}
                         {path_api}
                         {idcomppasaran}
                         {idtrxkeluaran}
@@ -307,6 +324,7 @@
                 {#if permainan == "kombinasi"}
                     <Formmacau
                         on:handleInvoice={handleInvoice}
+                        on:handleKeranjang={handleKeranjang}
                         {path_api}
                         {idcomppasaran}
                         {idtrxkeluaran}
@@ -324,6 +342,25 @@
                 {#if permainan == "dasar"}
                     <Formdasar
                         on:handleInvoice={handleInvoice}
+                        on:handleKeranjang={handleKeranjang}
+                        {path_api}
+                        {idcomppasaran}
+                        {idtrxkeluaran}
+                        {client_token}
+                        {client_company}
+                        {client_username}
+                        {client_timezone}
+                        {client_ipaddress}
+                        {client_device}
+                        {pasaran_name}
+                        {pasaran_code}
+                        {pasaran_periode} 
+                        {permainan_title}/>
+                {/if}
+                {#if permainan == "shio"}
+                    <Formshio
+                        on:handleInvoice={handleInvoice}
+                        on:handleKeranjang={handleKeranjang}
                         {path_api}
                         {idcomppasaran}
                         {idtrxkeluaran}
@@ -339,7 +376,7 @@
                         {permainan_title}/>
                 {/if}
             </div>
-            <div class="card rounded-md bg-base-200 shadow-xl">
+            <div class="card rounded-md bg-base-200 shadow-xl select-none">
                 <div class="card-body p-3 overflow-hidden">
                     <h2 class="card-title text-sm lg:text-lg grid grid-cols-2 gap-4">
                         <div class="place-content-start text-left">
@@ -354,7 +391,7 @@
                         class="input w-full max-w-full rounded-sm"
                         placeholder="Search Nomor" 
                         type="text" name="" id="">
-                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-100" style="height:{client_device_height_custom-100}px;">
+                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-300 h-[50rem]">
                         <table class="table table-zebra w-full " >
                             <thead>
                                 <tr>
@@ -446,6 +483,7 @@
             {#if permainan == "4-3-2"}
                 <Form432d
                     on:handleInvoice={handleInvoice}
+                    on:handleKeranjang={handleKeranjang}
                     {path_api}
                     {idcomppasaran}
                     {idtrxkeluaran}
@@ -457,11 +495,13 @@
                     {client_device}
                     {pasaran_name}
                     {pasaran_code}
-                    {pasaran_periode}/>
+                    {pasaran_periode} 
+                    {permainan_title}/>
             {/if}
             {#if permainan == "colok"}
                 <Formcolok
                     on:handleInvoice={handleInvoice}
+                    on:handleKeranjang={handleKeranjang}
                     {path_api}
                     {idcomppasaran}
                     {idtrxkeluaran}
@@ -479,6 +519,7 @@
             {#if permainan == "5050"}
                 <Form5050
                     on:handleInvoice={handleInvoice}
+                    on:handleKeranjang={handleKeranjang}
                     {path_api}
                     {idcomppasaran}
                     {idtrxkeluaran}
@@ -496,6 +537,7 @@
             {#if permainan == "kombinasi"}
                 <Formmacau
                     on:handleInvoice={handleInvoice}
+                    on:handleKeranjang={handleKeranjang}
                     {path_api}
                     {idcomppasaran}
                     {idtrxkeluaran}
@@ -513,6 +555,25 @@
             {#if permainan == "dasar"}
                 <Formdasar
                     on:handleInvoice={handleInvoice}
+                    on:handleKeranjang={handleKeranjang}
+                    {path_api}
+                    {idcomppasaran}
+                    {idtrxkeluaran}
+                    {client_token}
+                    {client_company}
+                    {client_username}
+                    {client_timezone}
+                    {client_ipaddress}
+                    {client_device}
+                    {pasaran_name}
+                    {pasaran_code}
+                    {pasaran_periode} 
+                    {permainan_title}/>
+            {/if}
+            {#if permainan == "shio"}
+                <Formshio
+                    on:handleInvoice={handleInvoice}
+                    on:handleKeranjang={handleKeranjang}
                     {path_api}
                     {idcomppasaran}
                     {idtrxkeluaran}
@@ -576,7 +637,8 @@
             </div>
         {/if}
     {/if}
-    
+{:else if statuspasaran == ""}
+    <div class="glass_bgplace border border-base-300 shadow rounded-md p-4 max-w-full w-full mx-auto mb-5 h-96"></div>
 {/if}
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <div class="modal" on:click|self={()=>isModalAlert = false}>
@@ -586,6 +648,18 @@
         <div class="modal-action">
             <a href="/?token={client_token}" class="btn btn-block">BACK</a>
         </div>
+    </div>
+</div>
+
+<input type="checkbox" id="my-modal-alertkeranjang" class="modal-toggle" bind:checked={isModalAlertKeranjang}>
+<div class="modal" >
+    <div class="modal-box relative max-w-lg">
+		<label for="my-modal-alertkeranjang" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
+        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
+            Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
+        </p>
     </div>
 </div>
 <style>
@@ -609,5 +683,14 @@
         transform: rotate(45deg);
         box-shadow: 2px 2px;
         pointer-events: none;
-}
+    }
+    .glass_bgplace {
+        border: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background-color: transparent;
+        background-image: linear-gradient( 135deg, rgb(255 255 255 / var(--glass-opacity, 30%)) 0%, rgb(0 0 0 / 0%) 100% ), linear-gradient( var(--glass-reflex-degree, 100deg), rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%, rgb(0 0 0 / 0%) 25% );
+        box-shadow: 0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset, 0 0 0 2px rgb(0 0 0 / 5%);
+        text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
+    }
 </style>

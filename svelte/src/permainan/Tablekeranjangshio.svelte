@@ -11,14 +11,8 @@
     export let count_line_standart = 0;
     export let min_bet = 0;
     export let max_bet = 0;
-    export let kei_besar_bet = 0;
-    export let kei_kecil_bet = 0;
-    export let kei_genap_bet = 0;
-    export let kei_ganjil_bet = 0;
-    export let disc_besar_bet = 0;
-    export let disc_kecil_bet = 0;
-    export let disc_genap_bet = 0;
-    export let disc_ganjil_bet = 0;
+    export let win_bet = 0;
+    export let diskon_bet = 0;
     let count_line = 0;
     let isModalInformation = false;
     let isModalAlert = false;
@@ -107,7 +101,7 @@
         isModalAlert_belanja = false;
     };
     
-    $: count_line = count_line_dasar  + count_line_standart;
+    $: count_line = count_line_dasar + count_line_standart;
 </script>
 
 <div class="card bg-base-200 shadow-xl mt-5 rounded-md {card_custom}">
@@ -127,7 +121,6 @@
                             <th width="10%" class="text-xs text-center">PERMAINAN</th>
                             <th width="15%" class="text-xs text-right">BET</th>
                             <th width="15%" class="text-xs text-right">DISKON</th>
-                            <th width="15%" class="text-xs text-right">KEI</th>
                             <th width="15%" class="text-xs text-right">BAYAR</th>
                         </tr>
                     </thead>
@@ -147,7 +140,6 @@
                                 <td class="text-xs text-center">{rec.permainan}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.kei))} ({(rec.kei_percen * 100).toFixed(2)}%)</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                             </tr>
                         {/each}
@@ -188,7 +180,6 @@
                             <th width="10%" class="text-xs text-center">PERMAINAN</th>
                             <th width="15%" class="text-xs text-right">BET</th>
                             <th width="15%" class="text-xs text-right">DISKON</th>
-                            <th width="15%" class="text-xs text-right">KEI</th>
                             <th width="15%" class="text-xs text-right">BAYAR</th>
                         </tr>
                     </thead>
@@ -208,7 +199,6 @@
                                 <td class="text-xs text-center">{rec.permainan}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.kei))} ({(rec.kei_percen * 100).toFixed(2)}%)</td>
                                 <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                             </tr>
                         {/each}
@@ -263,19 +253,13 @@
                             <tr>
                                 <td class="text-xs text-left">DISKON</td>
                                 <td class="text-xs text-right link-accent">
-                                    BESAR : {(disc_besar_bet * 100).toFixed(2)}%<br />
-                                    KECIL : {(disc_kecil_bet * 100).toFixed(2)}%<br />
-                                    GENAP : {(disc_genap_bet * 100).toFixed(2)}%<br />
-                                    GANJIL : {(disc_ganjil_bet * 100).toFixed(2)}%
+                                    {(diskon_bet * 100).toFixed(2)}%
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">KEI</td>
+                                <td class="text-xs text-left">HADIAH</td>
                                 <td class="text-xs text-right link-accent">
-                                    BESAR : {(kei_besar_bet * 100).toFixed(2)}% <br />
-                                    KECIL : {(kei_kecil_bet * 100).toFixed(2)}% <br />
-                                    GENAP : {(kei_genap_bet * 100).toFixed(2)}% <br />
-                                    GANJIL : {(kei_ganjil_bet * 100).toFixed(2)}%
+                                    {win_bet.toFixed(2)}X
                                 </td>
                             </tr>
                         </tbody>
@@ -283,33 +267,19 @@
                 </div>
                 <p class="py-2 text-xs">
                     <b>CARA BERMAIN</b>
-                    Menebak ganjil/genap dan besar/kecil dari penjumlah angka-angka 2D
                     <br />
-                    Nilai pembelian ditentukan pasaran (kei) pada saat itu.
+                    Menebak SHIO dari posisi 2D, SHIO merupakan 12 lambang kelahiran dalam penanggalan China. Dalam permainan ini, setiap lambang diwakili dengan satu nomor.
                     <br />
-                    Struktur CD (2 angka terakhir)<br /><br />
-
-                    Kecil = angka 0-4<br />
-                    Besar = angka 5-9<br />
-                    Ganjil = 1,3,5,7,9<br />
-                    Genap = 0,2,4,6,8<br /><br />
+                    Struktur ABCD<br /><br />
 
                     Analisis I :<br />
-                    Keluar : 1234,<br />
-                    3+4 = 7<br />
-                    Berarti keluar : Ganjil dan Besar<br /><br />
+                    Keluar : 4321<br />
+                    Permainan ini hanya memperhatikan posisi 2D, berarti yang dipedomanin = 21<br />
+                    Hasil = 21-12 = 9 (shio disesuaikan dengan tabel diatas)<br />
+                    catatan: nilai yang dikurangi merupakan kelipatan 12.<br /><br />
 
-                    Analisis II :<br />
-                    Keluar : 5678,<br />
-                    7+8 = 15<br />
-                    Karena angka 15 lebih besar dari 9, kembali dihitung 1+5=6<br />
-                    Berarti keluar : Genap dan Besar<br /><br />
-
-                    Analisis III :<br />
-                    Keluar : 1204,<br />
-                    0+4 = 4<br />
-                    Berarti keluar : Genap dan Kecil<br />
-                    Misal anda membeli dengan Rp.100rb untuk Genap, menang = 100rb + [indeks menang untuk Dasar]<br /><br />
+                    Jika dilakukan pembelian dengan 100rb dan menang maka:<br />
+                    Menang = 100rb + [Indeks kemenangan untuk SHIO]<br /><br />
 
                     NB: Indeks menang dan diskon dapat dilihat di bagian Peraturan
                 </p>
@@ -337,19 +307,13 @@
                             <tr>
                                 <td class="text-xs text-left">DISKON</td>
                                 <td class="text-xs text-right link-accent">
-                                    BESAR : {(disc_besar_bet * 100).toFixed(2)}%<br />
-                                    KECIL : {(disc_kecil_bet * 100).toFixed(2)}%<br />
-                                    GENAP : {(disc_genap_bet * 100).toFixed(2)}%<br />
-                                    GANJIL : {(disc_ganjil_bet * 100).toFixed(2)}%
+                                    {(diskon_bet * 100).toFixed(2)}%
                                 </td>
                             </tr>
                             <tr>
-                                <td class="text-xs text-left">KEI</td>
+                                <td class="text-xs text-left">HADIAH</td>
                                 <td class="text-xs text-right link-accent">
-                                    BESAR : {(kei_besar_bet * 100).toFixed(2)}% <br />
-                                    KECIL : {(kei_kecil_bet * 100).toFixed(2)}% <br />
-                                    GENAP : {(kei_genap_bet * 100).toFixed(2)}% <br />
-                                    GANJIL : {(kei_ganjil_bet * 100).toFixed(2)}%
+                                    {win_bet.toFixed(2)}X
                                 </td>
                             </tr>
                         </tbody>
@@ -357,33 +321,19 @@
                 </div>
                 <p class="py-2 text-xs">
                     <b>CARA BERMAIN</b>
-                    Menebak ganjil/genap dan besar/kecil dari penjumlah angka-angka 2D
                     <br />
-                    Nilai pembelian ditentukan pasaran (kei) pada saat itu.
+                    Menebak SHIO dari posisi 2D, SHIO merupakan 12 lambang kelahiran dalam penanggalan China. Dalam permainan ini, setiap lambang diwakili dengan satu nomor.
                     <br />
-                    Struktur CD (2 angka terakhir)<br /><br />
-
-                    Kecil = angka 0-4<br />
-                    Besar = angka 5-9<br />
-                    Ganjil = 1,3,5,7,9<br />
-                    Genap = 0,2,4,6,8<br /><br />
+                    Struktur ABCD<br /><br />
 
                     Analisis I :<br />
-                    Keluar : 1234,<br />
-                    3+4 = 7<br />
-                    Berarti keluar : Ganjil dan Besar<br /><br />
+                    Keluar : 4321<br />
+                    Permainan ini hanya memperhatikan posisi 2D, berarti yang dipedomanin = 21<br />
+                    Hasil = 21-12 = 9 (shio disesuaikan dengan tabel diatas)<br />
+                    catatan: nilai yang dikurangi merupakan kelipatan 12.<br /><br />
 
-                    Analisis II :<br />
-                    Keluar : 5678,<br />
-                    7+8 = 15<br />
-                    Karena angka 15 lebih besar dari 9, kembali dihitung 1+5=6<br />
-                    Berarti keluar : Genap dan Besar<br /><br />
-
-                    Analisis III :<br />
-                    Keluar : 1204,<br />
-                    0+4 = 4<br />
-                    Berarti keluar : Genap dan Kecil<br />
-                    Misal anda membeli dengan Rp.100rb untuk Genap, menang = 100rb + [indeks menang untuk Dasar]<br /><br />
+                    Jika dilakukan pembelian dengan 100rb dan menang maka:<br />
+                    Menang = 100rb + [Indeks kemenangan untuk SHIO]<br /><br />
 
                     NB: Indeks menang dan diskon dapat dilihat di bagian Peraturan
                 </p>

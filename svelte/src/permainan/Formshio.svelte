@@ -1,6 +1,6 @@
 <script>
 	import Button_custom1 from "../component/Button_custom1.svelte";
-	import Tablekeranjang from "../permainan/Tablekeranjangmacau.svelte";
+	import Tablekeranjang from "../permainan/Tablekeranjangshio.svelte";
 	import { createEventDispatcher } from "svelte";
 
 	export let path_api = "";
@@ -17,32 +17,24 @@
 	export let pasaran_periode = 0;
 	export let permainan_title = "4D / 3D / 2D";
 
-	
-
   	let keranjang = [];
 	let nomor_global = 0;
 	let totalkeranjang = 0;
-	let group_btn_beli = false;
-
 
 	let min_bet = 0;
 	let max_bet = 0;
 	let win_bet = 0;
 	let diskon_bet = 0;
 	let limit_total = 0;
-	let count_line_macaukombinasi = 0;
+	let count_line_shio = 0;
 	let count_line_standart = 0;
-	let db_formkombinasi = 0;
-	let db_formkombinasi_dasar = 0;
+	let db_formshio = 0;
+	let db_formshio_standart = 0;
 
-	//KOMBINASI - INIT FORM
-	let select_kombinasi_1 = "";
-	let select_kombinasi_1_input;
-	let select_kombinasi_2 = "";
-	let select_kombinasi_2_input;
-	let select_kombinasi_3 = "";
-	let select_kombinasi_3_input;
-	let bet_kombinasi = "";
+	//SHIO - INIT FORM
+	let select_shio = "";
+	let select_shio_input;
+	let bet_shio = "";
 
 	let dispatch = createEventDispatcher();
 	let isModalAlert = false
@@ -58,11 +50,11 @@
 	
   	const handleTambah = (e) => {
 		switch (e) {
-			case "macaukombinasi":
-				if (select_kombinasi_1 == "" && select_kombinasi_2 == "" && select_kombinasi_3 == "" && parseInt(bet_kombinasi) < min_bet) {
-					select_kombinasi_1_input.focus();
+			case "shio":
+				if (select_shio == "" && parseInt(bet_shio) < min_bet) {
+					select_shio_input.focus();
 				} else {
-					formkombinasi_add();
+					formshio_add();
 				}
 				break;
 		}
@@ -70,7 +62,6 @@
   	
   	async function savetransaksi() {
     	msg_error = "";
-		group_btn_beli = false;
 		isModalLoading = true;
 		const res = await fetch(path_api+"api/savetransaksi", {
 			method: "POST",
@@ -110,30 +101,30 @@
 			reset();
 		} else {
 			if (json.status == "500" || json.status == "404") {
-				group_btn_beli = true;
 				isModalAlert = true;
 				isModalLoading = false;
 			}
 		}
 	}
-	function addKeranjang(nomor,game,bet,diskon_percen,diskon,bayar,win,kei_percen,kei,tipetoto) {
+	function addKeranjang(nomor,game,bet,diskon_percen,diskon,bayar,win,
+		kei_percen,kei,tipetoto) {
 		let total_data = keranjang.length;
 		let flag_data = false;
 		msg_error = "";
 		for (var i = 0; i < total_data; i++) {
 			switch (game) {
-				case "MACAU_KOMBINASI":
+				case "DASAR":
 					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayarmacaukombinasi = 0;
+						let maxtotal_bayardasar = 0;
 						for (var j = 0; j < keranjang.length; j++) {
-							if ("MACAU_KOMBINASI" == keranjang[j].permainan) {
+							if ("DASAR" == keranjang[j].permainan) {
 								if (nomor == keranjang[j].nomor) {
-									maxtotal_bayarmacaukombinasi = parseInt(maxtotal_bayarmacaukombinasi) + parseInt(keranjang[j].bet);
+									maxtotal_bayardasar =parseInt(maxtotal_bayardasar) + parseInt(keranjang[j].bet);
 								}
 							}
 						}
-						if (parseInt(limit_total) < (parseInt(maxtotal_bayarmacaukombinasi)+parseInt(bet))) {
-							msg_error = "Nomor ini : " +nomor + " sudah melebihi LIMIT TOTAL MACAU KOMBINASI<br />";
+						if (parseInt(limit_total) < (parseInt(maxtotal_bayardasar)+parseInt(bet))) {
+							msg_error +="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL DASAR<br />";
 							flag_data = true;
 						}
 					}
@@ -192,9 +183,8 @@
 	};
   	function reset() {
 		keranjang = [];
-		group_btn_beli = true;
 		totalkeranjang = 0;
-		count_line_macaukombinasi = 0;
+		count_line_shio = 0;
 		count_line_standart = 0;
 	}
   	async function inittogel_432d(e) {
@@ -209,7 +199,6 @@
 				permainan: e,
 			}),
 		});
-		group_btn_beli = true;
 		const json = await res.json();
 		let record = json.record;
 		for (var i = 0; i < record.length; i++) {
@@ -222,60 +211,47 @@
 	}
   	function count_keranjang() {
 		let count_umum = 0;
-		let count_kombinasi = 0;
+		let count_shio = 0;
 		for (let i = 0; i < keranjang.length; i++) {
 			switch (keranjang[i].permainan.toString()) {
-				case "MACAU_KOMBINASI":
-					count_kombinasi = count_kombinasi + 1;
+				case "DASAR":
+					count_shio = count_shio + 1;
 					break;
 			}
 		}
-		count_line_macaukombinasi = count_kombinasi + db_formkombinasi;
-		count_line_standart = count_umum + db_formkombinasi_dasar;
+		count_line_shio = count_shio + db_formshio;
+		count_line_standart = count_umum + db_formshio_standart;
 	}
 	
-	function formkombinasi_add() {
+	function formshio_add() {
 		let flag = true;
-		let nomor = select_kombinasi_1;
-		let nomor2 = select_kombinasi_2;
-		let nomor3 = select_kombinasi_3;
-		let bet = bet_kombinasi;
+		let nomor = select_shio;
+		let bet = bet_shio;
 		let diskon = 0;
 		let diskonpercen = 0;
 		let win = win_bet;
 		let kei = 0;
 		let keipersen = 0;
 		let bayar = 0;
-		let nmgame = "MACAU_KOMBINASI";
+		let nmgame = "SHIO";
 		msg_error = "";
 		if (nomor == "") {
-			select_kombinasi_1_input.focus();
+			select_shio_input.focus();
 			flag = false;
-			msg_error += "Tebak tidak boleh kosong<br>";
-		}
-		if (nomor2 == "") {
-			select_kombinasi_2_input.focus();
-			flag = false;
-			msg_error += "Tebak tidak boleh kosong<br>";
-		}
-		if (nomor3 == "") {
-			select_kombinasi_3_input.focus();
-			flag = false;
-			msg_error += "Tebak tidak boleh kosong<br>";
 		}
 		if (bet == "") {
 			flag = false;
-			msg_error += "Bet tidak boleh kosong<br>";
+			msg_error += "Bet tidak boleh kosong";
 		}
 		if (parseInt(bet) < parseInt(min_bet)) {
-			bet_kombinasi = min_bet;
+			bet_shio = min_bet;
 			flag = false;
-			msg_error += "Minimal Bet : " + min_bet + "<br>";
+			msg_error += "Minimal Bet : " + min_bet;
 		}
 		if (parseInt(bet) > parseInt(max_bet)) {
-			bet_kombinasi = max_bet;
+			bet_shio = max_bet;
 			flag = false;
-			msg_error += " Maximal Bet : " + max_bet + "<br>";
+			msg_error += " Maximal Bet : " + max_bet;
 		}
 		if (flag == true) {
 			diskon = bet * diskon_bet;
@@ -284,15 +260,15 @@
 			bayar = parseInt(bet) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
-				nomor + "_" + nomor2 + "_" + nomor3,
+				nomor,
 				nmgame,
-				bet_kombinasi,
+				bet_shio,
 				diskonpercen,
 				diskon,
 				bayar,
 				win,
-				keipersen,
-				kei,flag_fulldiskon
+				0,
+				0,flag_fulldiskon
 			);
 			clearField();
 		}
@@ -301,33 +277,31 @@
 		}
 	}
 	
-	inittogel_432d("macaukombinasi");
+	inittogel_432d("shio");
 	
  	
   	const handleKeyboard_number = (e) => {
     	let numbera;
-		for (let i = 0; i < bet_kombinasi.length; i++) {
-			numbera = parseInt(bet_kombinasi[i]);
+		for (let i = 0; i < bet_shio.length; i++) {
+			numbera = parseInt(bet_shio[i]);
 			if (isNaN(numbera)) {
-				bet_kombinasi = "";
+				bet_shio = "";
 			}
 		}
   	}
   	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
 		if (keyCode === 13) {
-			formkombinasi_add();
+			formshio_add();
 		}
 	};
 	const clearField = () => {
-		select_kombinasi_1 = "";
-		select_kombinasi_2 = "";
-		select_kombinasi_3 = "";
-		bet_kombinasi = "";
+		select_shio = "";
+		bet_shio = "";
 	}
 	let form_font_sizelabel_default = "text-xs"
   	let form_font_sizeinput_default = "text-lg"
-	  $:{
+	  	$:{
 			let row_keranjang = keranjang.length;
 			dispatch("handleKeranjang", {
 				row_keranjang,
@@ -344,74 +318,58 @@
 			</div>
 			<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 		</h2>
-		<div class="gap-2 grid grid-cols-3">
+		<div class="gap-2 grid grid-cols-2">
 			<div class="form-control">
 				<label class="label">
 					<span class="label-text {form_font_sizelabel_default}">TEBAK</span>
 				</label>
 				<select
-					bind:value={select_kombinasi_1}
-					bind:this={select_kombinasi_1_input} 
+					bind:value={select_shio}
+					bind:this={select_shio_input} 
 					class="select w-full max-w-xs {form_font_sizeinput_default}">
 					<option value="">--Pilih--</option>
-					<option value="BELAKANG">BELAKANG</option>
-					<option value="TENGAH">TENGAH</option>
-					<option value="DEPAN">DEPAN</option>
+					<option value="ANJING">ANJING</option>
+					<option value="AYAM">AYAM</option>
+					<option value="MONYET">MONYET</option>
+					<option value="KAMBING">KAMBING</option>
+					<option value="KUDA">KUDA</option>
+					<option value="ULAR">ULAR</option>
+					<option value="NAGA">NAGA</option>
+					<option value="KELINCI">KELINCI</option>
+					<option value="HARIMAU">HARIMAU</option>
+					<option value="KERBAU">KERBAU</option>
+					<option value="TIKUS">TIKUS</option>
+					<option value="BABI">BABI</option>
 			  </select> 
 			</div>
 			<div class="form-control">
 				<label class="label">
-					<span class="label-text {form_font_sizelabel_default}">TEBAK</span>
+					<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+					<span class="label-text-alt {form_font_sizelabel_default}">
+						Bet (
+							min : {new Intl.NumberFormat().format(min_bet)} dan 
+							max : {new Intl.NumberFormat().format(max_bet)}
+						)
+					</span>
 				</label>
-				<select
-					bind:value={select_kombinasi_2}
-					bind:this={select_kombinasi_2_input} 
-					class="select w-full max-w-xs {form_font_sizeinput_default}">
-					<option value="">--Pilih--</option>
-					<option value="BESAR">BESAR</option>
-					<option value="KECIL">KECIL</option>
-			  </select> 
-			</div>
-			<div class="form-control">
+				<input
+					bind:value={bet_shio}
+					on:keyup={handleKeyboard_number}
+					on:keypress={handleKeyboard_checkenter} 
+					minlength="3"
+					maxlength="9"
+					type="text" placeholder="Bet" 
+					class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 				<label class="label">
-					<span class="label-text {form_font_sizelabel_default}">TEBAK</span>
+					<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+					<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_shio)}</span>
 				</label>
-				<select
-					bind:value={select_kombinasi_3}
-					bind:this={select_kombinasi_3_input} 
-					class="select w-full max-w-xs {form_font_sizeinput_default}">
-					<option value="">--Pilih--</option>
-					<option value="GENAP">GENAP</option>
-					<option value="GANJIL">GANJIL</option>
-			  </select> 
 			</div>
 		</div>
-		<div class="form-control">
-			<label class="label">
-				<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-				<span class="label-text-alt {form_font_sizelabel_default}">
-					Bet (
-						min : {new Intl.NumberFormat().format(min_bet)} dan 
-						max : {new Intl.NumberFormat().format(max_bet)}
-					)
-				</span>
-			</label>
-			<input
-				bind:value={bet_kombinasi}
-				on:keyup={handleKeyboard_number}
-				on:keypress={handleKeyboard_checkenter} 
-				minlength="3"
-				maxlength="9"
-				type="text" placeholder="Bet" 
-				class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-			<label class="label">
-				<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-				<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_kombinasi)}</span>
-			</label>
-		</div>
+		
 		<Button_custom1 
 			on:click={() => {
-			handleTambah("macaukombinasi");
+			handleTambah("dasar");
 			}} 
 		button_tipe="btn-block"
 		button_title="Tambah" />
@@ -432,35 +390,28 @@
 		<div class="modal modal-bottom sm:modal-middle">
 			<div class="modal-box bg-base-200 relative rounded-sm">
 				<label for="my-modal-inputbet" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-				<div class="mt-4 gap-2 grid grid-cols-3">
+				<div class="mt-4 gap-2 grid grid-cols-1">
 					<div class="form-control">
 						<select
-							bind:value={select_kombinasi_1}
+							bind:value={select_shio}
+							bind:this={select_shio_input} 
 							class="select w-full max-w-xs text-sm">
 							<option value="">--Pilih--</option>
-							<option value="BELAKANG">BELAKANG</option>
-							<option value="TENGAH">TENGAH</option>
-							<option value="DEPAN">DEPAN</option>
+							<option value="ANJING">ANJING</option>
+							<option value="AYAM">AYAM</option>
+							<option value="MONYET">MONYET</option>
+							<option value="KAMBING">KAMBING</option>
+							<option value="KUDA">KUDA</option>
+							<option value="ULAR">ULAR</option>
+							<option value="NAGA">NAGA</option>
+							<option value="KELINCI">KELINCI</option>
+							<option value="HARIMAU">HARIMAU</option>
+							<option value="KERBAU">KERBAU</option>
+							<option value="TIKUS">TIKUS</option>
+							<option value="BABI">BABI</option>
 					  </select> 
 					</div>
-					<div class="form-control">
-						<select
-							bind:value={select_kombinasi_2}
-							class="select w-full max-w-xs text-sm">
-							<option value="">--Pilih--</option>
-							<option value="BESAR">BESAR</option>
-							<option value="KECIL">KECIL</option>
-					  </select> 
-					</div>
-					<div class="form-control">
-						<select
-							bind:value={select_kombinasi_3}
-							class="select w-full max-w-xs text-sm">
-							<option value="">--Pilih--</option>
-							<option value="GENAP">GENAP</option>
-							<option value="GANJIL">GANJIL</option>
-					  </select> 
-					</div>
+					
 				</div>
 				<div class="form-control">
 					<label class="label">
@@ -473,22 +424,22 @@
 						</span>
 					</label>
 					<input
-						bind:value={bet_kombinasi}
+						bind:value={bet_shio}
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard_checkenter} 
 						minlength="3"
 						maxlength="9"
 						type="text" placeholder="Bet" 
-						class="input border-none text-right text-sm placeholder:text-sm">
+						class="input border-none text-right text-xs placeholder:text-xs">
 					<label class="label">
-						<span class="label-text text-sm">&nbsp;</span>
-						<span class="label-text-alt text-sm">{new Intl.NumberFormat().format(bet_kombinasi)}</span>
+						<span class="label-text text-xs">&nbsp;</span>
+						<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_shio)}</span>
 					</label>
 				</div>
 				<div class="form-control ">
 					<Button_custom1 
 						on:click={() => {
-						handleTambah("macaukombinasi");
+						handleTambah("dasar");
 						}} 
 					button_tipe=""
 					button_title="Tambah" />
@@ -544,10 +495,9 @@
 	on:handleSave={handleSave}
 	{card_custom}
 	{client_device}
-	{group_btn_beli}
 	{keranjang}
 	{totalkeranjang}
-	{count_line_macaukombinasi}
+	{count_line_shio}
 	{count_line_standart}
 	{min_bet}
 	{max_bet}

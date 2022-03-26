@@ -17,7 +17,7 @@
 </script>
 <div on:click={() => dispatch('click',card_function)} class="card {card_background} shadow-lg {card_shadow} rounded-md" style="{card_css_style}">
     {#if card_device == "WEBSITE"}
-      <div class="card-body items-center text-center">
+      <div class="card-body grass items-center text-center">
         <h2 class="card-title text-xs lg:text-sm font-bold">{card_title}</h2>
         <p class="text-xs lg:text-sm">
           {@html card_description}

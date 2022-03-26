@@ -21,7 +21,7 @@
   let client_device = "";
   let client_device_height = Viewport.Height
   let client_device_width = Viewport.Width
-  let container_class = "container mx-auto lg:px-2 text-base-content glass xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5"
+  let container_class = "container mx-auto lg:px-2 text-base-content glass2 xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5"
   if (token_browser === null) {
     console.log("TOKEN NOT FOUND");
   } else {
@@ -32,7 +32,7 @@
     container_class = "container mx-auto";
   } else {
     client_device = "WEBSITE";
-    container_class = "container mx-auto lg:px-2 text-base-content glass xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5";
+    container_class = "container mx-auto glass2 lg:px-2 text-base-content  xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5";
   }
   let listkeluaran = [];
   let pasaran_name = "";
@@ -101,7 +101,7 @@
             client_website_message = initJson.website_message;
             if (client_website_status == "OFFLINE") {
               client_token = "";
-              message_err = client_website_message;
+              message_err = client_website_message.replace(",","<br>");
               isModalAlert = true;
             } else {
               initPasaran();
@@ -166,7 +166,7 @@
 <svelte:body
   on:viewportchanged={() => {
     client_device_height_custom = parseInt(Viewport.Height)
-    console.log('HEIGHT Size changed to: ',client_device_height_custom)
+    // console.log('HEIGHT Size changed to: ',client_device_height_custom)
     // console.log('HEIGHT Size2 changed to: ',Viewport.Height)
     // console.log('Viewport Size changed to: ',Viewport.Width+'x'+Viewport.Height)
   }}
@@ -178,6 +178,7 @@
     )
   ) }}
 />
+
 {#if client_website_status == "ONLINE"}
   <div class="{container_class} "> 
     {#if token_browser != "" || client_token != ""}
@@ -230,7 +231,7 @@
       <div class="modal-box relative">
           <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
           <h3 class="text-lg font-bold">INFORMATION</h3>
-          <p class="py-4">{@html message_err}</p>
+          <p class="py-4 text-center">{@html message_err}</p>
       </div>
   </div>
 {/if}
@@ -244,9 +245,20 @@
   </div>
 </footer>
 {/if}
-  
 <style global lang="postcss">
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
+
+  .glass2 {
+    border: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background-color: transparent;
+    background-image: linear-gradient( 135deg, rgb(255 255 255 / var(--glass-opacity, 30%)) 0%, rgb(0 0 0 / 0%) 100% ), linear-gradient( var(--glass-reflex-degree, 100deg), rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%, rgb(0 0 0 / 0%) 25% );
+    box-shadow: 0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset, 0 0 0 2px rgb(0 0 0 / 5%);
+    text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
+  }
 </style>
+
+
