@@ -532,12 +532,13 @@
 	{disc_genap_bet}
 	{disc_ganjil_bet}/>
 
+{#if client_device !="WEBSITE"}
+	<style>
+		.scrollbar-thin::-webkit-scrollbar {
+		width: 3px;
+		height: 3px;
+		}
+	</style>
+{/if}
 
 
-
-<style>
-    .scrollbar-thin::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-</style>

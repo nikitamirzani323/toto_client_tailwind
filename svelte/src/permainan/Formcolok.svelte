@@ -1908,11 +1908,11 @@
 	{winekor_bet_colokjitu}/>
 
 
-
-
-<style>
-    .scrollbar-thin::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-</style>
+{#if client_device !="WEBSITE"}
+	<style>
+		.scrollbar-thin::-webkit-scrollbar {
+		width: 3px;
+		height: 3px;
+		}
+	</style>
+{/if}

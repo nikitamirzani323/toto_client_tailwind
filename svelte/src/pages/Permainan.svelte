@@ -638,7 +638,9 @@
         {/if}
     {/if}
 {:else if statuspasaran == ""}
+    {#if client_device == "WEBSITE"}
     <div class="glass_bgplace border border-base-300 shadow rounded-md p-4 max-w-full w-full mx-auto mb-5 h-96"></div>
+    {/if}
 {/if}
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <div class="modal" on:click|self={()=>isModalAlert = false}>

@@ -113,18 +113,18 @@
 		msg_error = "";
 		for (var i = 0; i < total_data; i++) {
 			switch (game) {
-				case "DASAR":
+				case "SHIO":
 					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayardasar = 0;
+						let maxtotal_bayarshio = 0;
 						for (var j = 0; j < keranjang.length; j++) {
-							if ("DASAR" == keranjang[j].permainan) {
+							if ("SHIO" == keranjang[j].permainan) {
 								if (nomor == keranjang[j].nomor) {
-									maxtotal_bayardasar =parseInt(maxtotal_bayardasar) + parseInt(keranjang[j].bet);
+									maxtotal_bayarshio = parseInt(maxtotal_bayarshio) + parseInt(keranjang[j].bet);
 								}
 							}
 						}
-						if (parseInt(limit_total) < (parseInt(maxtotal_bayardasar)+parseInt(bet))) {
-							msg_error +="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL DASAR<br />";
+						if (parseInt(limit_total) < (parseInt(maxtotal_bayarshio) + parseInt(bet))) {
+							msg_error ="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL SHIO<br />";
 							flag_data = true;
 						}
 					}
@@ -369,7 +369,7 @@
 		
 		<Button_custom1 
 			on:click={() => {
-			handleTambah("dasar");
+			handleTambah("shio");
 			}} 
 		button_tipe="btn-block"
 		button_title="Tambah" />
@@ -439,7 +439,7 @@
 				<div class="form-control ">
 					<Button_custom1 
 						on:click={() => {
-						handleTambah("dasar");
+						handleTambah("shio");
 						}} 
 					button_tipe=""
 					button_title="Tambah" />
@@ -506,10 +506,11 @@
 
 
 
-
-<style>
-    .scrollbar-thin::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-</style>
+{#if client_device !="WEBSITE"}
+	<style>
+		.scrollbar-thin::-webkit-scrollbar {
+		width: 3px;
+		height: 3px;
+		}
+	</style>
+{/if}
