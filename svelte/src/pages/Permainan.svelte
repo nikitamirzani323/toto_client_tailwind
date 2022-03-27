@@ -392,30 +392,30 @@
                         class="input w-full max-w-full rounded-sm"
                         placeholder="Search Nomor" 
                         type="text" name="" id="">
-                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-300 h-[50rem]">
+                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-300 h-[830px]">
                         <table class="table table-zebra w-full " >
                             <thead>
                                 <tr>
-                                    <th class="text-xs lg:text-sm text-center tracking-wide whitespace-nowrap">NOMOR</th>
-                                    <th class="text-xs lg:text-sm text-center tracking-wide whitespace-nowrap">TIPE</th>
-                                    <th class="text-xs lg:text-sm text-center tracking-wide whitespace-nowrap">PERMAINAN</th>
-                                    <th class="text-xs lg:text-sm text-right tracking-wide whitespace-nowrap">BET</th>
-                                    <th class="text-xs lg:text-sm text-right tracking-wide whitespace-nowrap">DISC(%)</th>
-                                    <th class="text-xs lg:text-sm text-right tracking-wide whitespace-nowrap">KEI(%)</th>
-                                    <th class="text-xs lg:text-sm text-right tracking-wide whitespace-nowrap">BAYAR</th>
+                                    <th class="text-xs text-center tracking-wide whitespace-nowrap">NOMOR</th>
+                                    <th class="text-xs text-center tracking-wide whitespace-nowrap">TIPE</th>
+                                    <th class="text-xs text-center tracking-wide whitespace-nowrap">PERMAINAN</th>
+                                    <th class="text-xs text-right tracking-wide whitespace-nowrap">BET</th>
+                                    <th class="text-xs text-right tracking-wide whitespace-nowrap">DISC(%)</th>
+                                    <th class="text-xs text-right tracking-wide whitespace-nowrap">KEI(%)</th>
+                                    <th class="text-xs text-right tracking-wide whitespace-nowrap">BAYAR</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 
                                 {#each filterTransaksi as rec}
                                     <tr>
-                                        <th class="text-sm lg:text-sm text-center">{rec.nomor}</th>
-                                        <td class="text-sm lg:text-sm text-center">{rec.tipe_betinvoice}</td>
-                                        <td class="text-sm lg:text-sm text-center">{rec.permainan}</td>
-                                        <td class="text-sm lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                        <td class="text-sm lg:text-sm text-right link-accent">{rec.diskon.toFixed(2)}</td>
-                                        <td class="text-sm lg:text-sm text-right link-accent">{rec.kei.toFixed(2)}</td>
-                                        <td class="text-sm lg:text-sm text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                        <th class="text-xs text-center">{rec.nomor}</th>
+                                        <td class="text-xs text-center">{rec.tipe_betinvoice}</td>
+                                        <td class="text-xs text-center">{rec.permainan}</td>
+                                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                        <td class="text-xs text-right link-accent">{rec.diskon.toFixed(2)}</td>
+                                        <td class="text-xs text-right link-accent">{rec.kei.toFixed(2)}</td>
+                                        <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                                     </tr>
                                 {/each}
                                
