@@ -54,7 +54,6 @@
   };
   let record = "";
   let isModalAlert = false;
-  
   let message_err = "";
   async function initTimezone() {
     const res = await fetch(path_api+"api/healthz");

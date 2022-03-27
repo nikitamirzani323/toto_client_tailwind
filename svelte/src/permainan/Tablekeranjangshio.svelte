@@ -289,11 +289,11 @@
 {:else}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-auto scrollbar-hide">
+        <div class="modal-box relative max-w-full lg:max-w-xl h-full max-h-full rounded-none lg:rounded-lg p-2 lg:p-4 overflow-auto scrollbar-hide">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
-            <div class="h-[40rem] overflow-auto scrollbar-hide mt-4" >
-                <div class="overflow-auto">
+            <div class="h-[40rem] mt-4" >
+                <div class="overflow-auto scrollbar-hide">
                     <table class="table table-compact w-full" >
                         <tbody>
                             <tr>

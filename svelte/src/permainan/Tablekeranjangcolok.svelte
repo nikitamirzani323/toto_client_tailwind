@@ -558,7 +558,7 @@
 {:else}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <div class="modal-box relative max-w-full h-full max-h-full rounded-none lg:rounded-lg p-2 scrollbar-hide ">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="flex justify-start items-center mt-4 ">
@@ -567,27 +567,27 @@
                         on:click={() => {
                             handleClickInfoColok("bebas");
                         }}
-                        class="{tab_colok_bebas} inline-flex items-center  px-2 py-1 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Bebas</li>
+                        class="{tab_colok_bebas} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Bebas</li>
                     <li 
                         on:click={() => {
                             handleClickInfoColok("macau");
                         }}
-                        class="{tab_colok_macau} inline-flex items-center  px-2 py-1 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Macau</li>
+                        class="{tab_colok_macau} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Macau</li>
                     <li 
                         on:click={() => {
                             handleClickInfoColok("naga");
                         }}
-                        class="{tab_colok_naga} inline-flex items-center  px-2 py-1 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Naga</li>
+                        class="{tab_colok_naga} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Naga</li>
                     <li 
                         on:click={() => {
                             handleClickInfoColok("jitu");
                         }}
-                        class="{tab_colok_jitu} inline-flex items-center  px-2 py-1 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Jitu</li>
+                        class="{tab_colok_jitu} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Jitu</li>
                 </ul>
             </div>
-            <div class="h-[32rem] overflow-auto scrollbar-hide mt-4" >
+            <div class="h-[32rem] mt-4" >
                 {#if panel_colok_bebas}
-                    <div class="overflow-auto">
+                    <div class="overflow-auto ">
                         <table class="table table-compact w-full" >
                             <tbody>
                                 <tr>

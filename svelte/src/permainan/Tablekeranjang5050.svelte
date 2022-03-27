@@ -642,7 +642,7 @@
 {:else}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-auto scrollbar-hide">
+        <div class="modal-box relative max-w-full lg:max-w-xl h-full max-h-full rounded-none lg:rounded-lg p-2 lg:p-4 overflow-auto scrollbar-hide">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="flex justify-start items-center mt-4 ">
@@ -664,9 +664,9 @@
                         class="{tab_5050_kombinasi} inline-flex items-center  px-2 py-1 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</li>
                 </ul>
             </div>
-            <div class="h-[32rem] overflow-auto scrollbar-hide mt-4" >
+            <div class="h-[32rem] mt-4" >
                 {#if panel_5050_umum}
-                    <div class="overflow-auto">
+                    <div class="overflow-auto scrollbar-hide">
                         <table class="table table-compact w-full" >
                             <tbody>
                                 <tr>
@@ -725,7 +725,7 @@
                     </p>
 				{/if}
                 {#if panel_5050_special}
-                    <div class="overflow-auto">
+                    <div class="overflow-auto scrollbar-hide">
                         <table class="table table-compact w-full" >
                             <tbody>
                                 <tr>
@@ -813,7 +813,7 @@
                     </p>
 				{/if}
                 {#if panel_5050_kombinasi}
-                    <div class="overflow-auto">
+                    <div class="overflow-auto scrollbar-hide">
                         <table class="table table-compact w-full" >
                             <tbody>
                                 <tr>

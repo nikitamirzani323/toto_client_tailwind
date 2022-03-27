@@ -455,7 +455,7 @@
 {:else}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <div class="modal-box relative max-w-full  h-full max-h-full  rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="h-full mt-5 overflow-auto scrollbar-thin scrollbar-thumb-green-100">

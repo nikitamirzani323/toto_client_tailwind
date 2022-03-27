@@ -528,63 +528,63 @@
         <h3 class="text-xs lg:text-sm font-bold mt-1">RESULT</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-base-300 lg:scrollbar-thumb-green-100  mt-4">
             {#if client_device == "WEBSITE"}
-            <table class="table table-zebra w-full" >
-                <thead>
-                    <tr>
-                        <th width="1%" class="text-xs lg:text-sm text-center"></th>
-                        <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
-                        <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
-                        <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
-                        <th width="25%" class="text-xs lg:text-sm text-center">HASIL</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each listhasilkeluaran as rec}
-                    <tr>
-                        <td class="text-xs text-center">{rec.keluaran_no}</td>
-                        <td class="text-xs lg:text-sm text-left">{rec.keluaran_date}</td>
-                        <td 
-                            on:click={() => {
-                                fetch_resultbypasaran(
-                                    rec.keluaran_pasarancode,
-                                    rec.keluaran_pasaran
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left underline cursor-pointer">{rec.keluaran_pasaran}</td>
-                        <td class="text-xs lg:text-sm text-left">{rec.keluaran_periode}</td>
-                        <td class="text-xs lg:text-sm text-center link-accent">{rec.keluaran_result}</td>
-                    </tr>
-                    {/each}
-                </tbody>
-            </table>
+                <table class="table table-zebra w-full" >
+                    <thead>
+                        <tr>
+                            <th width="1%" class="text-xs lg:text-sm text-center"></th>
+                            <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
+                            <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
+                            <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
+                            <th width="25%" class="text-xs lg:text-sm text-center">HASIL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each listhasilkeluaran as rec}
+                        <tr>
+                            <td class="text-xs text-center">{rec.keluaran_no}</td>
+                            <td class="text-xs lg:text-sm text-left">{rec.keluaran_date}</td>
+                            <td 
+                                on:click={() => {
+                                    fetch_resultbypasaran(
+                                        rec.keluaran_pasarancode,
+                                        rec.keluaran_pasaran
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left underline cursor-pointer">{rec.keluaran_pasaran}</td>
+                            <td class="text-xs lg:text-sm text-left">{rec.keluaran_periode}</td>
+                            <td class="text-xs lg:text-sm text-center link-accent">{rec.keluaran_result}</td>
+                        </tr>
+                        {/each}
+                    </tbody>
+                </table>
             {:else}
-            <table class="table table-zebra w-full" >
-                <thead>
-                    <tr>
-                        <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
-                        <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
-                        <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
-                        <th width="25%" class="text-xs lg:text-sm text-center">HASIL</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each listhasilkeluaran as rec}
-                    <tr>
-                        <th class="text-xs text-left">{rec.keluaran_date}</th>
-                        <td 
-                            on:click={() => {
-                                fetch_resultbypasaran(
-                                    rec.keluaran_pasarancode,
-                                    rec.keluaran_pasaran
-                                );
-                            }}
-                            class="text-xs text-left underline cursor-pointer">{rec.keluaran_pasaran}</td>
-                        <td class="text-xs text-left">{rec.keluaran_periode}</td>
-                        <td class="text-xs text-center link-accent">{rec.keluaran_result}</td>
-                    </tr>
-                    {/each}
-                </tbody>
-            </table>
+                <table class="table table-zebra w-full" >
+                    <thead>
+                        <tr>
+                            <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
+                            <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
+                            <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
+                            <th width="25%" class="text-xs lg:text-sm text-center">HASIL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each listhasilkeluaran as rec}
+                        <tr>
+                            <th class="text-xs text-left">{rec.keluaran_date}</th>
+                            <td 
+                                on:click={() => {
+                                    fetch_resultbypasaran(
+                                        rec.keluaran_pasarancode,
+                                        rec.keluaran_pasaran
+                                    );
+                                }}
+                                class="text-xs text-left underline cursor-pointer">{rec.keluaran_pasaran}</td>
+                            <td class="text-xs text-left">{rec.keluaran_periode}</td>
+                            <td class="text-xs text-center link-accent">{rec.keluaran_result}</td>
+                        </tr>
+                        {/each}
+                    </tbody>
+                </table>
             {/if}
         </div>
     </div>
