@@ -377,8 +377,8 @@
                         {permainan_title}/>
                 {/if}
             </div>
-            <div class="card rounded-md bg-base-200 shadow-xl select-none">
-                <div class="card-body p-3 overflow-hidden">
+            <div class="card rounded-md bg-base-200 shadow-xl select-none h-[950px]">
+                <div class="card-body p-3 overflow-hidden h-[950px]">
                     <h2 class="card-title text-sm lg:text-lg grid grid-cols-2 gap-4">
                         <div class="place-content-start text-left">
                             TOTAL BET : <span class="text-sm lg:text-lg link-accent">{new Intl.NumberFormat().format(totalbet_invoice)}</span>
@@ -392,7 +392,7 @@
                         class="input w-full max-w-full rounded-sm"
                         placeholder="Search Nomor" 
                         type="text" name="" id="">
-                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-300 h-[830px]">
+                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-300 h-[950px]">
                         <table class="table table-zebra w-full " >
                             <thead>
                                 <tr>
