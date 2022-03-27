@@ -2232,7 +2232,7 @@
 							win = win3ddbb_kena_bet;
 							break;
 						default:
-							diskon = Math.ceil(betset_6 * disc3d_bet);
+							diskon = Math.ceil(betset_6 * disc3dd_bet);
 							diskonpercen = disc3dd_bet;
 							win = win3dd_bet;
 							break;
@@ -2297,8 +2297,6 @@
 		let game = nomorbbfs.length;
 		let nmgame = "";
 		let nomor = "";
-		let code_alert = 0;
-		let note_alert = "";
 		let diskon = 0;
 		let diskonpercen = 0;
 		let win = 0;
