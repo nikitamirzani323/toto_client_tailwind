@@ -215,6 +215,7 @@
             filterTransaksi = [...resultinvoice];
         }
     }
+
 </script>
 
 {#if statuspasaran == "ONLINE"}
@@ -639,7 +640,40 @@
     {/if}
 {:else if statuspasaran == ""}
     {#if client_device == "WEBSITE"}
-    <div class="glass_bgplace border border-base-300 shadow rounded-md p-4 max-w-full w-full mx-auto mb-5 h-96"></div>
+        <div class="card shadow-xl bg-base-300  mt-5 rounded-md">
+            <div class="card-body p-1">
+                <div class="lg:flex lg:items-start">
+                    <div class="hidden lg:flex lg:self-center">
+                        <a href="/?token={client_token}" class="btn btn-ghost">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                            </svg> 
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-3 self-center lg:flex lg:flex-1 lg:justify-center ">
+                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</button>
+                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</button>
+                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</button>
+                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</button>
+                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</button>
+                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-5 gap-2 grid grid-cols-1 lg:grid-cols-2 ">
+            <div class="card rounded-md bg-base-200 shadow-xl select-none">
+                <div class="card-body p-3 ">
+                   <Card_placeholder total_placeholder=12 />
+                </div>
+            </div>
+            <div class="card rounded-md bg-base-200 shadow-xl select-none">
+                <div class="card-body p-3 ">
+                   <Card_placeholder total_placeholder=12 />
+                </div>
+            </div>
+        </div>
     {/if}
 {/if}
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
