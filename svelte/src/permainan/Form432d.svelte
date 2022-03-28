@@ -4545,13 +4545,13 @@
 			{/if}
       	{:else}
 			<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
-			<div class="place-content-start text-left text-xs">
-				{pasaran_name} <br> {permainan_title}
-			</div>
-			<div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
+				<div class="place-content-start text-left text-xs">
+					{pasaran_name} <br> {permainan_title}
+				</div>
+				<div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 			</h2>
 			<label for="my-modal-inputbet" 
-				class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">
+				class="modal-button flex items-center justify-center cursor-pointer font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">
 				Klik Area Ini Untuk Melakukan Transaksi
 			</label>
 			
@@ -4560,7 +4560,7 @@
 				<div class="modal-box bg-base-200 relative rounded-sm">
 					<label for="my-modal-inputbet" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 					<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
-						<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-12">
+						<div class="relative flex items-center overflow-auto scrollbar-hide h-12">
 							<ul class="flex items-center">
 								<li>
 								<span

@@ -1107,11 +1107,11 @@
 			{/if}
 		
       	{:else}
-			<h2 class="card-title text-lg grid grid-cols-2 gap-2">
-				<div class="text-left text-xs lg:text-lg md:text-sm">
-					{pasaran_name} - {permainan_title}
+			<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
+				<div class="place-content-start text-left text-xs">
+					{pasaran_name} <br> {permainan_title}
 				</div>
-				<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
+				<div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 			</h2>
 			<label for="my-modal-inputbet" 
 				class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">

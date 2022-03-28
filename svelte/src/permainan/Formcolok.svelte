@@ -1483,7 +1483,7 @@
 				<div class="modal-box bg-base-200 relative rounded-sm">
 					<label for="my-modal-inputbet" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 					<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
-						<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-12">
+						<div class="relative flex items-center overflow-auto scrollbar-hide h-12">
 							<ul class="flex items-center">
 								<li>
 								<span

@@ -38,7 +38,7 @@
     {:else}
       <div class="card-body p-3 items-center text-center">
         <h2 class="card-title text-xs font-bold">{card_title}</h2>
-        <p class="text-xs">
+        <p class="text-[10px]">
           {@html card_description}
         </p>
         <div class="card-actions justify-center">

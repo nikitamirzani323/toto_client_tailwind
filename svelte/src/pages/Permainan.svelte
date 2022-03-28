@@ -164,7 +164,7 @@
                 case "5050":
                     permainan_title = "50 - 50";
                     permainan_432_class = "bg-base-200";
-                    permainan_colok_class = " ";
+                    permainan_colok_class = "bg-base-200 ";
                     permainan_5050_class = "bg-green-700 grass text-white ";
                     permainan_kombinasi_class = "bg-base-200 ";
                     permainan_dasar_class = "bg-base-200 ";
@@ -230,37 +230,37 @@
                             </svg> 
                         </a>
                     </div>
-                    <div class="grid grid-cols-3 self-center lg:flex lg:flex-1 lg:justify-center ">
+                    <div class="grid grid-cols-3 gap-2 justify-items-center lg:flex lg:flex-1 lg:justify-center ">
                         <button
                             on:click={() => {
                                 changePermainan("4-3-2");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_432_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</button>
+                            type="button" class="modal-button text-sm {permainan_432_class} w-full lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</button>
                         <button
                             on:click={() => {
                                 changePermainan("colok");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_colok_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</button>
+                            type="button" class="modal-button text-sm {permainan_colok_class} w-full lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</button>
                         <button
                             on:click={() => {
                                 changePermainan("5050");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_5050_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</button>
+                            type="button" class="modal-button text-sm {permainan_5050_class} w-full lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</button>
                         <button
                             on:click={() => {
                                 changePermainan("kombinasi");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_kombinasi_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</button>
+                            type="button" class="modal-button text-sm {permainan_kombinasi_class} w-full lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</button>
                         <button
                             on:click={() => {
                                 changePermainan("dasar");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_dasar_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</button>
+                            type="button" class="modal-button text-sm {permainan_dasar_class} w-full lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</button>
                         <button
                             on:click={() => {
                                 changePermainan("shio");
                             }} 
-                            type="button" class="modal-button text-sm {permainan_shio_class} w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</button>
+                            type="button" class="modal-button text-sm {permainan_shio_class} w-full lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</button>
                     </div>
                 </div>
             </div>
@@ -431,56 +431,61 @@
                 on:click={() => {
                     handleTabBet("Y");
                 }} 
-                class="{tab_bet_pasangan_class} p-2 text-xs lg:text-sm">TRANSAKSI</div>
+                class="{tab_bet_pasangan_class} p-2 text-xs lg:text-sm cursor-pointer">TRANSAKSI</div>
             <div
                 on:click={() => {
                     handleTabBet("N");
                 }}
-                class="{tab_bet_history_class} p-2 text-xs lg:text-sm">BET HISTORY</div>
+                class="{tab_bet_history_class} p-2 text-xs lg:text-sm cursor-pointer">BET HISTORY</div>
         </div>
         
         {#if tab_bet_pasangan}
-            <div tabindex="0" class="collapse collapse-arrow border border-base-200 bg-base-200 rounded-md mx-2 my-2">
-                <input type="checkbox" class="peer"> 
-                <div class="collapse-title text-sm font-normal">
-                    PILIH PERMAINAN DIBAWAH INI
-                </div>
-                <div class="collapse-content"> 
-                    <div class="grid grid-cols-3 gap-2 px-2">
-                        <button
+            <div class="relative flex  overflow-x-scroll scrollbar-hide  h-16 cursor-pointer mx-2">
+				<ul class="flex items-center select-none gap-2 mx-1">
+					<li>
+                        <span
                             on:click={() => {
                                 changePermainan("4-3-2");
                             }} 
-                            type="button" class="modal-button text-xs {permainan_432_class} w-full py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</button>
-                        <button
+                            class="{permainan_432_class} px-3 py-1.5  whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</span>
+					</li>
+					<li>
+                        <span
                             on:click={() => {
                                 changePermainan("colok");
-                            }} 
-                            type="button" class="modal-button text-xs {permainan_colok_class} w-full py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</button>
-                        <button
+                            }}
+                            class="{permainan_colok_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</span>
+                    </li>
+					<li>
+                        <span
                             on:click={() => {
                                 changePermainan("5050");
-                            }} 
-                            type="button" class="modal-button text-xs {permainan_5050_class} w-full py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</button>
-                        <button
-                            on:click={() => {
-                                changePermainan("kombinasi");
-                            }} 
-                            type="button" class="modal-button text-xs {permainan_kombinasi_class} w-full py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</button>
-                        <button
-                            on:click={() => {
-                                changePermainan("dasar");
-                            }} 
-                            type="button" class="modal-button text-xs {permainan_dasar_class} w-full py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</button>
-                        <button
-                            on:click={() => {
-                                changePermainan("shio");
-                            }} 
-                            type="button" class="modal-button text-xs {permainan_shio_class} w-full py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</button>
-                    </div>
-                </div>
-            </div>
-            
+                            }}
+                            class="{permainan_5050_class} transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</span>
+					</li>
+					<li>
+					<span 
+						on:click={() => {
+							changePermainan("kombinasi");
+						}}
+						class="{permainan_kombinasi_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</span>
+					</li>
+					<li>
+					<span 
+						on:click={() => {
+                             changePermainan("dasar");
+						}}
+						class="{permainan_dasar_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</span>
+					</li>
+					<li>
+					<span 
+						on:click={() => {
+							changePermainan("shio");
+						}}
+						class="{permainan_shio_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</span>
+					</li>
+				</ul>
+			</div>
             {#if permainan == "4-3-2"}
                 <Form432d
                     on:handleInvoice={handleInvoice}
@@ -651,12 +656,21 @@
                         </a>
                     </div>
                     <div class="grid grid-cols-3 self-center lg:flex lg:flex-1 lg:justify-center ">
-                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</button>
-                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</button>
-                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</button>
-                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</button>
-                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</button>
-                        <button type="button" class="modal-button text-sm w-20 lg:w-32 py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</button>
+                        <div class="bg-base-200 border border-base-300 shadow rounded-md p-4 max-w-full w-full mx-auto">
+                            <div class="animate-pulse flex space-x-4">
+                              <div class="flex-1 space-y-6 py-1">
+                                <div class="space-y-3">
+                                  <div class="grid grid-cols-3 gap-4">
+                                    <div class="h-2 bg-slate-300 rounded col-span-2"></div>
+                                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                                    <div class="h-2 bg-slate-300 rounded col-span-1"></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -664,12 +678,12 @@
         
         <div class="mt-5 gap-2 grid grid-cols-1 lg:grid-cols-2 mx-2">
             <div class="card rounded-md bg-base-200 shadow-xl select-none">
-                <div class="card-body p-3 ">
+                <div class="card-body p-3 w-full mx-w-full">
                    <Card_placeholder total_placeholder=12 />
                 </div>
             </div>
             <div class="card rounded-md bg-base-200 shadow-xl select-none">
-                <div class="card-body p-3 ">
+                <div class="card-body p-3 w-full mx-w-full">
                    <Card_placeholder total_placeholder=12 />
                 </div>
             </div>
