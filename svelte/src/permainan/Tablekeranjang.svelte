@@ -325,7 +325,7 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal" on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative w-11/12 max-w-xl h-[600px] overflow-hidden select-none">
+        <div class="modal-box relative w-11/12 max-w-2xl h-[600px] overflow-hidden select-none">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="h-[32rem] overflow-auto scrollbar-hide" >
@@ -639,12 +639,12 @@
                 on:click={() => {
                     handleAlertRemove("Y");
                 }}
-                class="btn btn-success rounded-md">Ya</button>
+                class="btn btn-sm btn-success rounded-md">Ya</button>
             <button
                 on:click={() => {
                     handleAlertRemove("N");
                 }}
-                class="btn btn-accent rounded-md">Tidak</button>
+                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
         </div>
     </div>
 </div>
@@ -657,12 +657,12 @@
                 on:click={() => {
                     handleAlertRemoveAll("Y");
                 }}
-                class="btn btn-success rounded-md">Ya</button>
+                class="btn btn-sm btn-success rounded-md">Ya</button>
             <button
                 on:click={() => {
                     handleAlertRemoveAll("N");
                 }}
-                class="btn btn-accent rounded-md">Tidak</button>
+                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
         </div>
     </div>
 </div>
@@ -679,12 +679,12 @@
                 on:click={() => {
                     handleSaveLanjut("Y");
                 }}
-                class="btn btn-success rounded-md">Ya</button>
+                class="btn btn-sm btn-success rounded-md">Ya</button>
             <button
                 on:click={() => {
                     handleSaveLanjut("N");
                 }}
-                class="btn btn-accent rounded-md">Tidak</button>
+                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
         </div>
     </div>
 </div>

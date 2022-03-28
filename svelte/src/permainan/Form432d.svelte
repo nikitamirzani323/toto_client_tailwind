@@ -2865,7 +2865,7 @@
 		}
 		if(bet_tarung == ""){
 			bet_tarung_input.focus();
-			msg += "Bet Wajib diisi"
+			msg_error += "Bet Wajib diisi"
 			flag = false;
 		}
 		if (parseInt(bet_tarung) < parseInt(minimal_bet)) {
@@ -2877,69 +2877,32 @@
 			let nomor = ""
 			switch(pola){
 				case "11--":
-					for(let i=0;i<nomoras_game;i++){
-						for(let j=0;j<nomorkop_game;j++){
-							if (checkLimitLine("2D") == true) {
-								nomor = nomoras[i] + nomorkop[j]
-								count = count + 1
-								switch(flag_fulldiskon){
-									case "FULL":
-										diskon = 0
-										diskonpercen = 0
-										win = win2dnodiskon_bet;
-										break;
-									case "BB":
-										diskon = 0
-										diskonpercen = 0
-										win = win2dbb_kena_bet;
-										break;
-									default:
-										diskon = bet_tarung * disc2d_bet;
-										diskonpercen = disc2d_bet;
-										win = win2d_bet;
-										break;
-								}
-								
-								bayar = parseInt(bet_tarung) - parseInt(Math.ceil(diskon));
-								totalkeranjang = bayar + totalkeranjang;
-								addKeranjang(
-									nomor,
-									"2D",
-									bet_tarung,
-									diskonpercen,
-									diskon,
-									bayar,
-									win,
-									0,
-									0,flag_fulldiskon
-								);
-							}
-						}
+					let flag_2D = true;
+					if (parseInt(bet_tarung) > parseInt(max2d_bet)) {
+						flag_2D = false;
+						msg_error += "Maximal Bet Pola Tarung Bet 2D : " +new Intl.NumberFormat().format(max2d_bet)+"<br>";
 					}
-					clearField();
-				  break;
-				case "111-":
-					for(let i=0;i<nomoras_game;i++){
-						for(let j=0;j<nomorkop_game;j++){
-							for(let x=0;x<nomorkepala_game;x++){
-								if (checkLimitLine("3D") == true) {
-									nomor = nomoras[i]+nomorkop[j]+nomorkepala[x]
+					if(flag_2D){
+						for(let i=0;i<nomoras_game;i++){
+							for(let j=0;j<nomorkop_game;j++){
+								if (checkLimitLine("2D") == true) {
+									nomor = nomoras[i] + nomorkop[j]
 									count = count + 1
 									switch(flag_fulldiskon){
 										case "FULL":
 											diskon = 0
 											diskonpercen = 0
-											win = win3dnodiskon_bet;
+											win = win2dnodiskon_bet;
 											break;
 										case "BB":
 											diskon = 0
 											diskonpercen = 0
-											win = win3dbb_kena_bet;
+											win = win2dbb_kena_bet;
 											break;
 										default:
-											diskon = bet_tarung * disc3d_bet;
-											diskonpercen = disc3d_bet;
-											win = win3d_bet;
+											diskon = bet_tarung * disc2d_bet;
+											diskonpercen = disc2d_bet;
+											win = win2d_bet;
 											break;
 									}
 									
@@ -2947,7 +2910,7 @@
 									totalkeranjang = bayar + totalkeranjang;
 									addKeranjang(
 										nomor,
-										"3D",
+										"2D",
 										bet_tarung,
 										diskonpercen,
 										diskon,
@@ -2959,32 +2922,37 @@
 								}
 							}
 						}
+						clearField();
 					}
-					clearField();
 				  break;
-				case "1111":
-					for(let i=0;i<nomoras_game;i++){
-						for(let j=0;j<nomorkop_game;j++){
-							for(let x=0;x<nomorkepala_game;x++){
-								for(let y=0;y<nomorekor_game;y++){
-									if (checkLimitLine("4D") == true) {
-										nomor = nomoras[i]+nomorkop[j]+nomorkepala[x]+nomorekor[y]
+				case "111-":
+					let flag_3D = true;
+					if (parseInt(bet_tarung) > parseInt(max3d_bet)) {
+						flag_3D = false;
+						msg_error += "Maximal Bet Pola Tarung Bet 3D : " +new Intl.NumberFormat().format(max3d_bet)+"<br>";
+					}
+					if(flag_3D){
+						for(let i=0;i<nomoras_game;i++){
+							for(let j=0;j<nomorkop_game;j++){
+								for(let x=0;x<nomorkepala_game;x++){
+									if (checkLimitLine("3D") == true) {
+										nomor = nomoras[i]+nomorkop[j]+nomorkepala[x]
 										count = count + 1
 										switch(flag_fulldiskon){
 											case "FULL":
 												diskon = 0
 												diskonpercen = 0
-												win = win4dnodiskon_bet;
+												win = win3dnodiskon_bet;
 												break;
 											case "BB":
 												diskon = 0
 												diskonpercen = 0
-												win = win4dbb_kena_bet;
+												win = win3dbb_kena_bet;
 												break;
 											default:
-												diskon = bet_tarung * disc4d_bet;
-												diskonpercen = disc4d_bet;
-												win = win4d_bet;
+												diskon = bet_tarung * disc3d_bet;
+												diskonpercen = disc3d_bet;
+												win = win3d_bet;
 												break;
 										}
 										
@@ -2992,7 +2960,7 @@
 										totalkeranjang = bayar + totalkeranjang;
 										addKeranjang(
 											nomor,
-											"4D",
+											"3D",
 											bet_tarung,
 											diskonpercen,
 											diskon,
@@ -3005,8 +2973,61 @@
 								}
 							}
 						}
+						clearField();
 					}
-					clearField();
+				  break;
+				case "1111":
+					let flag_4D = true;
+					if (parseInt(bet_tarung) > parseInt(max4d_bet)) {
+						flag_4D = false;
+						msg_error += "Maximal Bet Pola Tarung Bet 4D : " +new Intl.NumberFormat().format(max4d_bet)+"<br>";
+					}
+					if(flag_4D){
+						for(let i=0;i<nomoras_game;i++){
+							for(let j=0;j<nomorkop_game;j++){
+								for(let x=0;x<nomorkepala_game;x++){
+									for(let y=0;y<nomorekor_game;y++){
+										if (checkLimitLine("4D") == true) {
+											nomor = nomoras[i]+nomorkop[j]+nomorkepala[x]+nomorekor[y]
+											count = count + 1
+											switch(flag_fulldiskon){
+												case "FULL":
+													diskon = 0
+													diskonpercen = 0
+													win = win4dnodiskon_bet;
+													break;
+												case "BB":
+													diskon = 0
+													diskonpercen = 0
+													win = win4dbb_kena_bet;
+													break;
+												default:
+													diskon = bet_tarung * disc4d_bet;
+													diskonpercen = disc4d_bet;
+													win = win4d_bet;
+													break;
+											}
+											
+											bayar = parseInt(bet_tarung) - parseInt(Math.ceil(diskon));
+											totalkeranjang = bayar + totalkeranjang;
+											addKeranjang(
+												nomor,
+												"4D",
+												bet_tarung,
+												diskonpercen,
+												diskon,
+												bayar,
+												win,
+												0,
+												0,flag_fulldiskon
+											);
+										}
+									}
+								}
+							}
+						}
+						clearField();
+					}
 					break;
 				default:
           			msg_error = "Format Pola Tarung Salah"
@@ -3051,7 +3072,7 @@
 		if (parseInt(quick_bet) < parseInt(minimal_bet)) {
 			quick_bet = minimal_bet;
 			flag = false;
-			msg_error += "Minimal Bet : " + minimal_bet + "<br>";
+			msg_error += "Minimal Bet : " + new Intl.NumberFormat().format(minimal_bet) + "<br>";
 		}
 		if (quick_pilihan2 != "") {
 			switch (quick_pilihan2) {
@@ -3059,21 +3080,21 @@
 					if (parseInt(quick_bet) > parseInt(max2d_bet)) {
 						quick_bet = minimal_bet;
 						flag = false;
-						msg_error += "Maximal Bet 2D  : " + max2d_bet + "<br>";
+						msg_error += "Maximal Bet 2D  : " + new Intl.NumberFormat().format(max2d_bet) + "<br>";
 					}
 					break;
 				case "2DD":
 					if (parseInt(quick_bet) > parseInt(max2dd_bet)) {
 						quick_bet = minimal_bet;
 						flag = false;
-						msg_error += "Maximal Bet 2D Depan : " + max2dd_bet + "<br>";
+						msg_error += "Maximal Bet 2D Depan : " + new Intl.NumberFormat().format(max2dd_bet) + "<br>";
 					}
 					break;
 				case "2DT":
 					if (parseInt(quick_bet) > parseInt(max2dt_bet)) {
 						quick_bet = minimal_bet;
 						flag = false;
-						msg_error += "Maximal Bet 2D Tengah : " + max2dt_bet + "<br>";
+						msg_error += "Maximal Bet 2D Tengah : " + new Intl.NumberFormat().format(max2dt_bet) + "<br>";
 					}
 					break;
 			}
@@ -3142,7 +3163,7 @@
 						bayar = parseInt(quick_bet) - parseInt(Math.ceil(diskon));
 						for (let i = 0; i < data_quick.length; i++) {
 							if (checkLimitLine("2D") == false) {
-								msg_error = "Line 2D sudah melebihi limit";
+								msg_error += "Line 2D sudah melebihi limit<br>";
 								break;
 							} else {
 								totalkeranjang = bayar + totalkeranjang;
@@ -3184,7 +3205,7 @@
 						bayar = parseInt(quick_bet) - parseInt(Math.ceil(diskon));
 						for (let i = 0; i < data_quick.length; i++) {
 							if (checkLimitLine("2DD") == false) {
-								msg_error = "Line 2DD sudah melebihi limit";
+								msg_error += "Line 2DD sudah melebihi limit<br>";
 								break;
 							} else {
 								totalkeranjang = bayar + totalkeranjang;
@@ -3238,7 +3259,7 @@
 						bayar = parseInt(quick_bet) - parseInt(Math.ceil(diskon));
 						for (let i = 0; i < data_quick.length; i++) {
 							if (checkLimitLine("2DT") == false) {
-								msg_error = "Line 2DT sudah melebihi limit";
+								msg_error += "Line 2DT sudah melebihi limit<br>";
 								break;
 							} else {
 								totalkeranjang = bayar + totalkeranjang;
@@ -3289,27 +3310,27 @@
 		if (parseInt(bet_3dd) < parseInt(minimal_bet)) {
 			bet_3dd = minimal_bet;
 			flag = false;
-			msg_error += "Minimal Bet : " + minimal_bet+ "<br>";
+			msg_error += "Minimal Bet : " + new Intl.NumberFormat().format(minimal_bet) + "<br>";
 		}
 		if (game.toString() == "3") {
 			if (parseInt(bet_3dd) > parseInt(max3dd_bet)) {
 				bet_3dd = minimal_bet;
 				flag = false;
-				msg_error += "Maximal Bet 3D Depan : " + max3dd_bet + "<br>";
+				msg_error += "Maximal Bet 3D Depan : " + new Intl.NumberFormat().format(max3dd_bet) + "<br>";
 			}
 			if (checkLimitLine("3DD") == false) {
 				flag = false;
-				msg_error += "Maximal Line 3D Depan : " + limitline_3dd + "<br>";
+				msg_error += "Maximal Line 3D Depan : " + new Intl.NumberFormat().format(limitline_3dd) + "<br>";
 			}
 		}else{
 			flag = false;
-			msg_error += "Minimal 3 Digit<br>";
+			msg_error += "Nomor Harus Angka 3 Digit<br>";
 		}
 		for (var i = 0; i < nomor3dd.length; i++) {
 			let numbera = parseInt(nomor3dd[i]);
 			if (isNaN(numbera)) {
 				flag = false;
-				msg_error +="Nomor harus angka <br>";
+				msg_error += "Nomor Harus Angka 3 Digit<br>";
 			}
 		}
 		
@@ -3380,17 +3401,17 @@
 		if (parseInt(bet_2dd) < parseInt(minimal_bet)) {
 			bet_2dd = minimal_bet;
 			flag = false;
-			msg_error += "Minimal Bet : " + minimal_bet + "<br>";
+			msg_error += "Minimal Bet : " + new Intl.NumberFormat().format(minimal_bet) + "<br>";
 		}
 		if (game.toString() == "2") {
 			if (parseInt(bet_2dd) > parseInt(max2dd_bet)) {
 				bet_2dd = minimal_bet;
 				flag = false;
-        		msg_error += "Maximal Bet 2D Depan : " + max2dd_bet + "<br>";
+        		msg_error += "Maximal Bet 2D Depan : " + new Intl.NumberFormat().format(max2dd_bet) + "<br>";
 			}
 			if (checkLimitLine("2DD") == false) {
 				flag = false;
-        		msg_error += "Maximal Line 2D Depan : " + limitline_2dd + "<br>";
+        		msg_error += "Maximal Line 2D Depan : " + new Intl.NumberFormat().format(limitline_2dd) + "<br>";
 			}
 		}else{
 			flag = false;
@@ -3469,17 +3490,17 @@
 		if (parseInt(bet_2dt) < parseInt(minimal_bet)) {
 			bet_2dt = minimal_bet;
 			flag = false;
-			msg_error += "Minimal Bet : " + minimal_bet + "<br>";
+			msg_error += "Minimal Bet : " + new Intl.NumberFormat().format(minimal_bet) + "<br>";
 		}
 		if (game.toString() == "2") {
 			if (parseInt(bet_2dt) > parseInt(max2dt_bet)) {
 				bet_2dt = minimal_bet;
 				flag = false;
-        		msg_error += "Maximal Bet 2D Tengah : " + max2dt_bet + "<br>";
+        		msg_error += "Maximal Bet 2D Tengah : " + new Intl.NumberFormat().format(max2dt_bet) + "<br>";
 			}
 			if (checkLimitLine("2DT") == false) {
 				flag = false;
-       			 msg_error += "Maximal Line 2D Tengah : " + limitline_2dt + "<br>";
+       			 msg_error += "Maximal Line 2D Tengah : " + new Intl.NumberFormat().format(limitline_2dt) + "<br>";
 			}
 		}else{
 			flag = false;
