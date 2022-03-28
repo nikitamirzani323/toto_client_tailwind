@@ -720,7 +720,8 @@
 		<label for="my-modal-alertkeranjang" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
         <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Belanja : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+            Total Transaksi : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+            <br>    
 			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
         </p>
     </div>

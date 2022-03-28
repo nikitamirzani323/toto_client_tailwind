@@ -421,10 +421,8 @@
             </svg>
         </label>
         <ul data-choose-theme tabindex="0" class="dropdown-content menu p-3 shadow bg-base-200 rounded-box w-52">
-            <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Light</li>
-            <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Winter</li>
-            <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Dark</li>
-            <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Dracula</li>
+            <li data-set-theme="emerald" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Light</li>
+            <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Night</li>
         </ul>
     </div>
     <div class="navbar">
@@ -491,9 +489,7 @@
                     </label>
                     <ul data-choose-theme tabindex="0" class="dropdown-content menu p-3 shadow bg-base-200 rounded-box w-52">
                         <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Light</li>
-                        <li data-set-theme="winter" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Winter</li>
-                        <li data-set-theme="dark" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Dark</li>
-                        <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Dracula</li>
+                        <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Night</li>
                     </ul>
                 </div>
             </div>

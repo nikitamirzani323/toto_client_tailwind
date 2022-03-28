@@ -86,11 +86,8 @@
       if (initJson.status === 200) {
         switch (initJson.company) {
           case "":
-            css_err = "display:inline-block";
             message_err = "Agen not found, Please contact admin";
-            setTimeout(function () {
-              css_err = "display: none;";
-            }, 5000);
+            isModalAlert = true;
             break;
           default:
             client_token = initJson.token;
@@ -264,6 +261,7 @@
     box-shadow: 0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset, 0 0 0 2px rgb(0 0 0 / 5%);
     text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
   }
+ 
 </style>
 
 
