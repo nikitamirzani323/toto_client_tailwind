@@ -30,7 +30,7 @@
   }
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     client_device = "MOBILE";
-    container_class = "container mx-auto";
+    container_class = "container mx-auto glass2 lg:px-2 text-base-content  xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5";
   } else {
     client_device = "WEBSITE";
     container_class = "container mx-auto glass2 lg:px-2 text-base-content  xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5";
@@ -171,14 +171,14 @@
   }}
   on:orientationchangeend={() => { 
     client_device_orientation = Viewport.Orientation
-    console.log(client_device_orientation)
-    console.log(
-      'Screen Orientation changed to: ', Viewport.Orientation + (
-        Viewport.detailledOrientation == null
-        ? ''
-        : '(' + Viewport.detailledOrientation + ')'
-      )
-    ) 
+    // console.log(client_device_orientation)
+    // console.log(
+    //   'Screen Orientation changed to: ', Viewport.Orientation + (
+    //     Viewport.detailledOrientation == null
+    //     ? ''
+    //     : '(' + Viewport.detailledOrientation + ')'
+    //   )
+    // ) 
   }}
 />
 

@@ -32,7 +32,7 @@
     };
 </script>
 {#if client_device == "WEBSITE"}
-  <div class="mt-5 gap-4 grid grid-cols-2  xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2">
+  <div class="mt-5 gap-4 grid grid-cols-2  xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3">
     {#if listkeluaran != []}
         {#each listkeluaran as rec}
             <Card_pasaran
