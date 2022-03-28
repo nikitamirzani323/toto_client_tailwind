@@ -19,6 +19,7 @@
     export let client_timezone = "Asia/Jakarta";
     export let client_device = "";
     export let client_device_height_custom = 0;
+    export let client_device_orientation = "";
     export let listkeluaran = [];
     let listhasilkeluaran = [];
     let listhasilinvoice = [];
@@ -121,7 +122,6 @@
                         },
                     ];
                 }
-                console.log(listhasilkeluaran);
             }
         } 
     }
@@ -491,7 +491,7 @@
             </div>
         </div>
     </div>
-    <div class="mt-1 mb-2 mx-2 p-0 card bg-base-300 shadow-xl rounded-none">
+    <div class="p-0 mt-1 mb-2 mx-1  card bg-base-300 shadow-xl rounded-none">
         <div class="card-body p-3">
             <p class="text-xs lg:text-sm">
                 Asia/Jakarta<br>{clockmachine} WIB (+7)<br>
@@ -558,33 +558,62 @@
                     </tbody>
                 </table>
             {:else}
-                <table class="table table-zebra w-full" >
-                    <thead>
-                        <tr>
-                            <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
-                            <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
-                            <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
-                            <th width="25%" class="text-xs lg:text-sm text-center">HASIL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {#each listhasilkeluaran as rec}
-                        <tr>
-                            <th class="text-xs text-left">{rec.keluaran_date}</th>
-                            <td 
-                                on:click={() => {
-                                    fetch_resultbypasaran(
-                                        rec.keluaran_pasarancode,
-                                        rec.keluaran_pasaran
-                                    );
-                                }}
-                                class="text-xs text-left underline cursor-pointer">{rec.keluaran_pasaran}</td>
-                            <td class="text-xs text-left">{rec.keluaran_periode}</td>
-                            <td class="text-xs text-center link-accent">{rec.keluaran_result}</td>
-                        </tr>
-                        {/each}
-                    </tbody>
-                </table>
+                {#if client_device_orientation == "landscape"}
+                    <table class="table table-zebra w-full" >
+                        <thead>
+                            <tr>
+                                <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
+                                <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
+                                <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
+                                <th width="25%" class="text-xs lg:text-sm text-center">HASIL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each listhasilkeluaran as rec}
+                            <tr>
+                                <th class="text-xs text-left">{rec.keluaran_date}</th>
+                                <td 
+                                    on:click={() => {
+                                        fetch_resultbypasaran(
+                                            rec.keluaran_pasarancode,
+                                            rec.keluaran_pasaran
+                                        );
+                                    }}
+                                    class="text-xs text-left underline cursor-pointer">{rec.keluaran_pasaran}</td>
+                                <td class="text-xs text-left">{rec.keluaran_periode}</td>
+                                <td class="text-xs text-center link-accent">{rec.keluaran_result}</td>
+                            </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                {:else}
+                    <table class="table table-zebra w-full" >
+                        <thead>
+                            <tr>
+                                <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
+                                <th width="*" class="text-xs lg:text-sm text-left">NOTE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each listhasilkeluaran as rec}
+                            <tr>
+                                <th class="text-xs text-left">{rec.keluaran_date}</th>
+                                <td 
+                                    on:click={() => {
+                                        fetch_resultbypasaran(
+                                            rec.keluaran_pasarancode,
+                                            rec.keluaran_pasaran
+                                        );
+                                    }}
+                                    class="text-xs text-left">
+                                    PASARAN : <span class="underline cursor-pointer">{rec.keluaran_pasaran} - {rec.keluaran_periode}</span><br>
+                                    RESULT : <span class="link-accent ">{rec.keluaran_result}</span>
+                                </td>
+                            </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                {/if}
             {/if}
         </div>
     </div>
@@ -620,466 +649,498 @@
 <input type="checkbox" id="my-modal-allinvoice" class="modal-toggle" bind:checked={isModal_allinvoice}>
 <div class="modal" on:click|self={()=>isModal_allinvoice = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative select-none  lg:max-w-2xl h-full lg:max-h-[600px] rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
-        <label for="my-modal-allinvoice" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold -mt-1">INVOICE</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
-            <table class="table table-zebra w-full" >
-                <thead>
-                    <tr>
-                        <th width="1%" class="text-xs lg:text-sm text-center">STATUS</th>
-                        <th width="15%" class="text-xs lg:text-sm text-center">TANGGAL</th>
-                        <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
-                        <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
-                        <th width="25%" class="text-xs lg:text-sm text-right">WINLOSE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each listhasilinvoice as rec}
-                    <tr>
-                        <th class="text-sm text-center whitespace-nowrap">
-                            <span class="{rec.invoice_status_background} p-1.5 text-xs lg:text-sm  uppercase  rounded-lg ">{rec.invoice_status}</span>
-                        </th>
-                        <td class="text-xs lg:text-sm text-center whitespace-nowrap">{rec.invoice_tglkeluaran}</td>
-                        <td class="text-xs lg:text-sm text-left whitespace-nowrap">{rec.invoice_pasaran}</td>
-                        <td 
-                            on:click={() => {
-                                fetch_invoicelldetail(
-                                    rec.invoice_idinvoice,
-                                    rec.invoice_periode
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap underline cursor-pointer">{rec.invoice_periode}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.invoice_totallose)}</td>
-                    </tr>
-                    {/each}
-                </tbody>
-            </table>
+        <div class="modal-box relative select-none  lg:max-w-2xl h-full lg:max-h-[600px] rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+            <label for="my-modal-allinvoice" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-xs lg:text-sm font-bold -mt-1">INVOICE</h3>
+            <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+                <table class="table table-zebra w-full" >
+                    <thead>
+                        <tr>
+                            <th width="1%" class="text-xs lg:text-sm text-center">STATUS</th>
+                            <th width="15%" class="text-xs lg:text-sm text-center">TANGGAL</th>
+                            <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
+                            <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
+                            <th width="25%" class="text-xs lg:text-sm text-right">WINLOSE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each listhasilinvoice as rec}
+                        <tr>
+                            <th class="text-sm text-center whitespace-nowrap">
+                                <span class="{rec.invoice_status_background} p-1.5 text-xs lg:text-sm  uppercase  rounded-lg ">{rec.invoice_status}</span>
+                            </th>
+                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">{rec.invoice_tglkeluaran}</td>
+                            <td class="text-xs lg:text-sm text-left whitespace-nowrap">{rec.invoice_pasaran}</td>
+                            <td 
+                                on:click={() => {
+                                    fetch_invoicelldetail(
+                                        rec.invoice_idinvoice,
+                                        rec.invoice_periode
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap underline cursor-pointer">{rec.invoice_periode}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.invoice_totallose)}</td>
+                        </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     {:else}
-    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
-        <label for="my-modal-allinvoice" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold mt-4">INVOICE</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
-            <table class="table table-zebra w-full" >
-                <thead>
-                    <tr>
-                        <th width="1%" class="text-xs text-center">STATUS</th>
-                        <th width="15%" class="text-xs text-center">TANGGAL</th>
-                        <th width="*" class="text-xs text-left">PASARAN</th>
-                        <th width="15%" class="text-xs text-left">PERIODE</th>
-                        <th width="25%" class="text-xs text-right">WINLOSE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each listhasilinvoice as rec}
-                    <tr>
-                        <th class="text-xs text-center whitespace-nowrap">
-                            <span class="{rec.invoice_status_background} p-1 text-[10px] lg:text-sm  uppercase rounded-lg ">{rec.invoice_status}</span>
-                        </th>
-                        <td class="text-xs text-center whitespace-nowrap">{rec.invoice_tglkeluaran}</td>
-                        <td class="text-xs text-left whitespace-nowrap">{rec.invoice_pasaran}</td>
-                        <td 
-                            on:click={() => {
-                                fetch_invoicelldetail(
-                                    rec.invoice_idinvoice,
-                                    rec.invoice_periode
-                                );
-                            }}
-                            class="text-xs text-left whitespace-nowrap  underline cursor-pointer">{rec.invoice_periode}</td>
-                        <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.invoice_totallose)}</td>
-                    </tr>
-                    {/each}
-                </tbody>
-            </table>
+        <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+            <label for="my-modal-allinvoice" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-xs lg:text-sm font-bold mt-4">INVOICE</h3>
+            <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
+                {#if client_device_orientation == "landscape"}
+                    <table class="table table-zebra w-full" >
+                        <thead>
+                            <tr>
+                                <th width="1%" class="text-xs text-center">STATUS</th>
+                                <th width="15%" class="text-xs text-center">TANGGAL</th>
+                                <th width="*" class="text-xs text-left">PASARAN</th>
+                                <th width="15%" class="text-xs text-left">PERIODE</th>
+                                <th width="25%" class="text-xs text-right">WINLOSE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each listhasilinvoice as rec}
+                            <tr>
+                                <th class="text-xs text-center whitespace-nowrap">
+                                    <span class="{rec.invoice_status_background} p-1 text-[10px] lg:text-sm  uppercase rounded-lg ">{rec.invoice_status}</span>
+                                </th>
+                                <td class="text-xs text-center whitespace-nowrap">{rec.invoice_tglkeluaran}</td>
+                                <td class="text-xs text-left whitespace-nowrap">{rec.invoice_pasaran}</td>
+                                <td 
+                                    on:click={() => {
+                                        fetch_invoicelldetail(
+                                            rec.invoice_idinvoice,
+                                            rec.invoice_periode
+                                        );
+                                    }}
+                                    class="text-xs text-left whitespace-nowrap  underline cursor-pointer">{rec.invoice_periode}</td>
+                                <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.invoice_totallose)}</td>
+                            </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                {:else}
+                    <table class="table table-zebra w-full" >
+                        <thead>
+                            <tr>
+                                <th width="1%" class="text-xs text-center">STATUS</th>
+                                <th width="*" class="text-xs text-left">NOTE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each listhasilinvoice as rec}
+                            <tr>
+                                <th class="text-xs text-center whitespace-nowrap">
+                                    <span class="{rec.invoice_status_background} p-1 text-[10px] lg:text-sm  uppercase rounded-lg ">{rec.invoice_status}</span>
+                                </th>
+                                <td 
+                                    on:click={() => {
+                                        fetch_invoicelldetail(
+                                            rec.invoice_idinvoice,
+                                            rec.invoice_periode
+                                        );
+                                    }}
+                                    class="text-xs text-left">
+                                    TANGGAL : {rec.invoice_tglkeluaran}<br>
+                                    PASARAN : <span class="underline cursor-pointer">{rec.invoice_pasaran} - {rec.invoice_periode}</span><br>
+                                    WINLOSE : <span class="link-accent">{new Intl.NumberFormat().format(rec.invoice_totallose)}</span>
+                                </td>
+                            </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                {/if}
+            </div>
         </div>
-    </div>
     {/if}
 </div>
 <input type="checkbox" id="my-modal-invoicedetail" class="modal-toggle" bind:checked={isModal_invoicedetail}>
 <div class="modal" on:click|self={()=>isModal_invoicedetail = false}>
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative select-none max-w-full lg:max-w-xl h-full lg:h-4/5 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
-        <label for="my-modal-invoicedetail" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold -mt-1">PASARAN : {detailslipheader}</h3>
-        <div class="overflow-auto h-3/4 scrollbar-thin scrollbar-thumb-green-100 mt-4">
-            <table class="table table-zebra w-full" >
-                <thead>
+        <div class="modal-box relative select-none max-w-full lg:max-w-xl h-full lg:h-4/5 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+            <label for="my-modal-invoicedetail" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-xs lg:text-sm font-bold -mt-1">PASARAN : {detailslipheader}</h3>
+            <div class="overflow-auto h-3/4 scrollbar-thin scrollbar-thumb-green-100 mt-4">
+                <table class="table table-zebra w-full" >
+                    <thead>
+                        <tr>
+                            <th width="1%" class="text-xs lg:text-sm text-center">NO</th>
+                            <th width="*" class="text-xs lg:text-sm text-left">PERMAINAN</th>
+                            <th width="25%" class="text-xs lg:text-sm text-right">BAYAR</th>
+                            <th width="25%" class="text-xs lg:text-sm text-right">MENANG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">1</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "4D",
+                                        total4d_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total4d_bayar>0 ? 'cursor-pointer underline':''}">4D</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">2</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "3D",
+                                        total3d_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total3d_bayar>0 ? 'cursor-pointer underline':''}">3D</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">3</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "2D",
+                                        total2d_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total2d_bayar>0 ? 'cursor-pointer underline':''}">2D</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">4</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "COLOK_BEBAS",
+                                        totalcolokbebas_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokbebas_bayar>0 ? 'cursor-pointer underline':''}">COLOK BEBAS</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">5</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "COLOK_MACAU",
+                                        totalcolokmacau_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokmacau_bayar>0 ? 'cursor-pointer underline':''}">COLOK MACAU</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">6</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "COLOK_NAGA",
+                                        totalcoloknaga_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcoloknaga_bayar>0 ? 'cursor-pointer underline':''}">COLOK NAGA</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">7</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "COLOK_JITU",
+                                        totalcolokjitu_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokjitu_bayar>0 ? 'cursor-pointer underline':''}">COLOK JITU</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">8</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "50_50_UMUM",
+                                        total5050umum_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total5050umum_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 UMUM</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">9</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "50_50_SPECIAL",
+                                        total5050special_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total5050special_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 SPECIAL</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "50_50_KOMBINASI",
+                                        total5050kombinasi_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-center whitespace-nowrap">10</th>
+                            <th class="text-xs lg:text-sm text-left whitespace-nowrap {total5050kombinasi_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 KOMBINASI</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">11</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "MACAU_KOMBINASI",
+                                        totalmacaukombinasi_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalmacaukombinasi_bayar>0 ? 'cursor-pointer underline':''}">MACAU / KOMBINASI</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">12</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "DASAR",
+                                        totaldasar_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totaldasar_bayar>0 ? 'cursor-pointer underline':''}">DASAR</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">13</th>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "SHIO",
+                                        totalshio_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalshio_bayar>0 ? 'cursor-pointer underline':''}">SHIO</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="bg-base-300 p-3 shadow-lg mt-4 rounded-lg">
+                <table class="w-full">
                     <tr>
-                        <th width="1%" class="text-xs lg:text-sm text-center">NO</th>
-                        <th width="*" class="text-xs lg:text-sm text-left">PERMAINAN</th>
-                        <th width="25%" class="text-xs lg:text-sm text-right">BAYAR</th>
-                        <th width="25%" class="text-xs lg:text-sm text-right">MENANG</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">1</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "4D",
-                                    total4d_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {total4d_bayar>0 ? 'cursor-pointer underline':''}">4D</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
+                        <td class="text-right text-xs lg:text-sm">TOTAL BAYAR</td>
+                        <td class="text-right text-xs lg:text-sm">:</td>
+                        <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_bayar)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">2</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "3D",
-                                    total3d_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {total3d_bayar>0 ? 'cursor-pointer underline':''}">3D</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
+                        <td class="text-right text-xs lg:text-sm">TOTAL WINNER</td>
+                        <td class="text-right text-xs lg:text-sm">:</td>
+                        <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_winner)}</td>
                     </tr>
                     <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">3</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "2D",
-                                    total2d_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {total2d_bayar>0 ? 'cursor-pointer underline':''}">2D</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
+                        <td class="text-right text-xs lg:text-sm">WINLOSE</td>
+                        <td class="text-right text-xs lg:text-sm">:</td>
+                        <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(total_winlose)}</td>
                     </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">4</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "COLOK_BEBAS",
-                                    totalcolokbebas_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokbebas_bayar>0 ? 'cursor-pointer underline':''}">COLOK BEBAS</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">5</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "COLOK_MACAU",
-                                    totalcolokmacau_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokmacau_bayar>0 ? 'cursor-pointer underline':''}">COLOK MACAU</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">6</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "COLOK_NAGA",
-                                    totalcoloknaga_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalcoloknaga_bayar>0 ? 'cursor-pointer underline':''}">COLOK NAGA</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">7</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "COLOK_JITU",
-                                    totalcolokjitu_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokjitu_bayar>0 ? 'cursor-pointer underline':''}">COLOK JITU</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">8</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "50_50_UMUM",
-                                    total5050umum_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {total5050umum_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 UMUM</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">9</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "50_50_SPECIAL",
-                                    total5050special_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {total5050special_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 SPECIAL</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "50_50_KOMBINASI",
-                                    total5050kombinasi_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-center whitespace-nowrap">10</th>
-                        <th class="text-xs lg:text-sm text-left whitespace-nowrap {total5050kombinasi_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 KOMBINASI</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">11</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "MACAU_KOMBINASI",
-                                    totalmacaukombinasi_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalmacaukombinasi_bayar>0 ? 'cursor-pointer underline':''}">MACAU / KOMBINASI</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">12</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "DASAR",
-                                    totaldasar_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {totaldasar_bayar>0 ? 'cursor-pointer underline':''}">DASAR</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
-                    </tr>
-                    <tr>
-                        <th class="text-xs lg:text-sm text-center whitespace-nowrap">13</th>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "SHIO",
-                                    totalshio_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap {totalshio_bayar>0 ? 'cursor-pointer underline':''}">SHIO</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
-                    </tr>
-                </tbody>
-            </table>
+                </table>
+            </div>
         </div>
-        <div class="bg-base-300 p-3 shadow-lg mt-4 rounded-lg">
-            <table class="w-full">
-                <tr>
-                    <td class="text-right text-xs lg:text-sm">TOTAL BAYAR</td>
-                    <td class="text-right text-xs lg:text-sm">:</td>
-                    <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_bayar)}</td>
-                </tr>
-                <tr>
-                    <td class="text-right text-xs lg:text-sm">TOTAL WINNER</td>
-                    <td class="text-right text-xs lg:text-sm">:</td>
-                    <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_winner)}</td>
-                </tr>
-                <tr>
-                    <td class="text-right text-xs lg:text-sm">WINLOSE</td>
-                    <td class="text-right text-xs lg:text-sm">:</td>
-                    <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(total_winlose)}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
     {:else}
-    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
-        <label for="my-modal-invoicedetail" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold mt-2">PASARAN : {detailslipheader}</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
-            <table class="table table-zebra w-full" >
-                <thead>
-                    <tr>
-                        <th width="*" class="text-xs lg:text-sm text-left">PERMAINAN</th>
-                        <th width="25%" class="text-xs lg:text-sm text-right">BAYAR</th>
-                        <th width="25%" class="text-xs lg:text-sm text-right">MENANG</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "4D",
-                                    total4d_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">4D</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "3D",
-                                    total3d_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">3D</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "2D",
-                                    total2d_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">2D</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "COLOK_BEBAS",
-                                    totalcolokbebas_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK BEBAS</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "COLOK_MACAU",
-                                    totalcolokmacau_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK MACAU</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "COLOK_NAGA",
-                                    totalcoloknaga_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK NAGA</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "COLOK_JITU",
-                                    totalcolokjitu_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK JITU</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "50_50_UMUM",
-                                    total5050umum_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 UMUM</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "50_50_SPECIAL",
-                                    total5050special_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 SPECIAL</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "50_50_KOMBINASI",
-                                    total5050kombinasi_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-center whitespace-nowrap">50 - 50 KOMBINASI</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "MACAU_KOMBINASI",
-                                    totalmacaukombinasi_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">MACAU / KOMBINASI</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "DASAR",
-                                    totaldasar_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">DASAR</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
-                    </tr>
-                    <tr>
-                        <th 
-                            on:click={() => {
-                                fetch_invoicealldetailpermainan(
-                                    "SHIO",
-                                    totalshio_bayar
-                                );
-                            }}
-                            class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">SHIO</th>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
-                        <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+            <label for="my-modal-invoicedetail" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-xs lg:text-sm font-bold mt-2">PASARAN : {detailslipheader}</h3>
+            <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
+                <table class="table table-zebra w-full" >
+                    <thead>
+                        <tr>
+                            <th width="*" class="text-xs lg:text-sm text-left">PERMAINAN</th>
+                            <th width="25%" class="text-xs lg:text-sm text-right">BAYAR</th>
+                            <th width="25%" class="text-xs lg:text-sm text-right">MENANG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "4D",
+                                        total4d_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">4D</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "3D",
+                                        total3d_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">3D</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "2D",
+                                        total2d_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">2D</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "COLOK_BEBAS",
+                                        totalcolokbebas_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK BEBAS</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "COLOK_MACAU",
+                                        totalcolokmacau_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK MACAU</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "COLOK_NAGA",
+                                        totalcoloknaga_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK NAGA</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "COLOK_JITU",
+                                        totalcolokjitu_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK JITU</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "50_50_UMUM",
+                                        total5050umum_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 UMUM</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "50_50_SPECIAL",
+                                        total5050special_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 SPECIAL</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "50_50_KOMBINASI",
+                                        total5050kombinasi_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-center whitespace-nowrap">50 - 50 KOMBINASI</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "MACAU_KOMBINASI",
+                                        totalmacaukombinasi_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">MACAU / KOMBINASI</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "DASAR",
+                                        totaldasar_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">DASAR</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
+                        </tr>
+                        <tr>
+                            <th 
+                                on:click={() => {
+                                    fetch_invoicealldetailpermainan(
+                                        "SHIO",
+                                        totalshio_bayar
+                                    );
+                                }}
+                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">SHIO</th>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
+                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     {/if}
 </div>
 <input type="checkbox" id="my-modal-detailbyid" class="modal-toggle" bind:checked={isModal_detailbyid}>
@@ -1126,117 +1187,180 @@
         </div>
     </div>
     {:else}
-    <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
-        <label for="my-modal-detailbyid" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold mt-1">PERMAINAN : {detailslipheaderpermainan}</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
-            <table class="table table-zebra w-full" >
-                <thead>
-                    <tr>
-                        <th width="1%" class="text-xs text-center">NO</th>
-                        <th width="1%" class="text-xs text-center">STATUS</th>
-                        <th width="15%" class="text-xs text-center">TIPE</th>
-                        <th width="15%" class="text-xs text-center">PERMAINAN</th>
-                        <th width="*" class="text-xs text-left">NOMOR</th>
-                        <th width="15%" class="text-xs text-right">BET</th>
-                        <th width="15%" class="text-xs text-right">DISC(%)</th>
-                        <th width="15%" class="text-xs text-right">KEI(%)</th>
-                        <th width="15%" class="text-xs text-right">BAYAR</th>
-                        <th width="15%" class="text-xs text-right">WIN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each listhasilinvoicebet as rec}
-                    <tr>
-                        <th class="text-xs text-center whitespace-nowrap">{rec.bet_no}</th>
-                        <th class="text-xs text-center whitespace-nowrap">
-                            <span class="{rec.bet_background} p-1.5 text-[11px] uppercase tracking-wider rounded-lg ">{rec.bet_status}</span>
-                        </th>
-                        <th class="text-xs text-center whitespace-nowrap">{rec.bet_tipe}</th>
-                        <th class="text-xs text-center whitespace-nowrap">{rec.bet_permainan}</th>
-                        <th class="text-xs text-center whitespace-nowrap">{rec.bet_nomor}</th>
-                        <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_bet)}</td>
-                        <td class="text-xs text-right link-accent whitespace-nowrap">{rec.bet_diskon.toFixed(2)}</td>
-                        <td class="text-xs text-right link-accent whitespace-nowrap">{rec.bet_kei.toFixed(2)}</td>
-                        <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_bayar)}</td>
-                        <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_win)}</td>
-                    </tr>
-                    {/each}
-                </tbody>
-            </table>
-        </div>
-    </div>
+        {#if client_device_orientation == "landscape"}
+            <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+                <label for="my-modal-detailbyid" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 class="text-xs lg:text-sm font-bold mt-1">PERMAINAN : {detailslipheaderpermainan}</h3>
+                <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+                    <table class="table table-zebra w-full" >
+                        <thead>
+                            <tr>
+                                <th width="1%" class="text-xs text-center">NO</th>
+                                <th width="1%" class="text-xs text-center">STATUS</th>
+                                <th width="15%" class="text-xs text-center">TIPE</th>
+                                <th width="15%" class="text-xs text-center">PERMAINAN</th>
+                                <th width="*" class="text-xs text-left">NOMOR</th>
+                                <th width="15%" class="text-xs text-right">BET</th>
+                                <th width="15%" class="text-xs text-right">DISC(%)</th>
+                                <th width="15%" class="text-xs text-right">KEI(%)</th>
+                                <th width="15%" class="text-xs text-right">BAYAR</th>
+                                <th width="15%" class="text-xs text-right">WIN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each listhasilinvoicebet as rec}
+                            <tr>
+                                <th class="text-xs text-center whitespace-nowrap">{rec.bet_no}</th>
+                                <th class="text-xs text-center whitespace-nowrap">
+                                    <span class="{rec.bet_background} p-1.5 text-[11px] uppercase tracking-wider rounded-lg ">{rec.bet_status}</span>
+                                </th>
+                                <th class="text-xs text-center whitespace-nowrap">{rec.bet_tipe}</th>
+                                <th class="text-xs text-center whitespace-nowrap">{rec.bet_permainan}</th>
+                                <th class="text-xs text-center whitespace-nowrap">{rec.bet_nomor}</th>
+                                <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_bet)}</td>
+                                <td class="text-xs text-right link-accent whitespace-nowrap">{rec.bet_diskon.toFixed(2)}</td>
+                                <td class="text-xs text-right link-accent whitespace-nowrap">{rec.bet_kei.toFixed(2)}</td>
+                                <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_bayar)}</td>
+                                <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_win)}</td>
+                            </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {:else}
+            <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+                <label for="my-modal-detailbyid" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 class="text-xs lg:text-sm font-bold mt-1">PERMAINAN : {detailslipheaderpermainan}</h3>
+                <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+                    <table class="table table-zebra w-full" >
+                        <thead>
+                            <tr>
+                                <th width="1%" class="text-xs text-center">STATUS</th>
+                                <th width="*" class="text-xs text-left">NOTE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each listhasilinvoicebet as rec}
+                            <tr>
+                                <th class="text-xs text-center whitespace-nowrap align-top">
+                                    <span class="{rec.bet_background} p-1.5 text-[10px] uppercase tracking-wider rounded-lg ">{rec.bet_status}</span>
+                                </th>
+                                <td class="text-xs text-left align-top">
+                                    PERMAINAN : {rec.bet_permainan}<br>
+                                    TIPE : {rec.bet_tipe}<br>
+                                    NOMOR : {rec.bet_nomor}<br>
+                                    BET : <span class="link-accent">{new Intl.NumberFormat().format(rec.bet_bet)}</span><br>
+                                    DISKON : <span class="link-accent">{rec.bet_diskon.toFixed(2)}%</span><br>
+                                    KEI : <span class="link-accent">{rec.bet_kei.toFixed(2)}%</span><br>
+                                    BAYAR : <span class="link-accent">{new Intl.NumberFormat().format(rec.bet_bayar)}</span><br>
+                                    WIN : <span class="link-accent">{new Intl.NumberFormat().format(rec.bet_win)}</span>
+                                </td>
+                            </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {/if}
     {/if}
 </div>
 <input type="checkbox" id="my-modal-pasaran" class="modal-toggle">
 <div class="modal">
     {#if client_device == "WEBSITE"}
-    <div class="modal-box relative select-none max-w-2xl h-full lg:h-[500px] rounded-none lg:rounded-lg overflow-hidden" >
-        <label for="my-modal-pasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold -mt-1">INFORMASI</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
-            <table class="table-normal table-zebra  w-full" >
-                <thead>
-                    <tr>
-                        <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
-                        <th width="15%" class="text-xs lg:text-sm text-left">NOTE</th>
-                        <th width="15%" class="text-xs lg:text-sm text-center">TUTUP</th>
-                        <th width="15%" class="text-xs lg:text-sm text-center">JADWAL</th>
-                        <th width="15%" class="text-xs lg:text-sm text-center">OPEN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each listkeluaran as rec}
-                    <tr>
-                        <td class="text-xs lg:text-sm text-left whitespace-nowrap">
-                            <a class="underline" href="{rec.pasaran_url}" target="_blank">
-                                {rec.pasaran}
-                            </a>
-                        </td>
-                        <td class="text-xs lg:text-sm text-left whitespace-nowrap">{rec.pasaran_note}</td>
-                        <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglclose}</td>
-                        <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglschedule}</td>
-                        <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglopen}</td>
-                    </tr>
-                    {/each}
-                </tbody>
-            </table>
+        <div class="modal-box relative select-none max-w-2xl h-full lg:h-[500px] rounded-none lg:rounded-lg overflow-hidden" >
+            <label for="my-modal-pasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-xs lg:text-sm font-bold -mt-1">INFORMASI</h3>
+            <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+                <table class="table-normal table-zebra  w-full" >
+                    <thead>
+                        <tr>
+                            <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
+                            <th width="15%" class="text-xs lg:text-sm text-left">NOTE</th>
+                            <th width="15%" class="text-xs lg:text-sm text-center">TUTUP</th>
+                            <th width="15%" class="text-xs lg:text-sm text-center">JADWAL</th>
+                            <th width="15%" class="text-xs lg:text-sm text-center">OPEN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each listkeluaran as rec}
+                        <tr>
+                            <td class="text-xs lg:text-sm text-left whitespace-nowrap">
+                                <a class="underline" href="{rec.pasaran_url}" target="_blank">
+                                    {rec.pasaran}
+                                </a>
+                            </td>
+                            <td class="text-xs lg:text-sm text-left whitespace-nowrap">{rec.pasaran_note}</td>
+                            <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglclose}</td>
+                            <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglschedule}</td>
+                            <td class="text-xs lg:text-sm text-center">{rec.pasaran_tglopen}</td>
+                        </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     {:else}
-    <div class="modal-box relative max-w-full h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
-        <label for="my-modal-pasaran" class="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
-        <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
-            <table class="table table-zebra w-full" >
-                <thead>
-                    <tr>
-                        <th width="*" class="text-xs text-left">PASARAN</th>
-                        <th width="15%" class="text-xs text-left">NOTE</th>
-                        <th width="15%" class="text-xs text-center">TUTUP</th>
-                        <th width="15%" class="text-xs text-center">JADWAL</th>
-                        <th width="15%" class="text-xs text-center">OPEN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each listkeluaran as rec}
-                    <tr>
-                        <th class="text-xs text-left whitespace-nowrap">
-                            <a class="underline" href="{rec.pasaran_url}" target="_blank">
-                                {rec.pasaran}
-                            </a>
-                        </th>
-                        <td class="text-xs text-left whitespace-nowrap">{rec.pasaran_note}</td>
-                        <td class="text-xs text-center">{rec.pasaran_tglclose}</td>
-                        <td class="text-xs text-center">{rec.pasaran_tglschedule}</td>
-                        <td class="text-xs text-center">{rec.pasaran_tglopen}</td>
-                    </tr>
-                    {/each}
-                </tbody>
-            </table>
+        <div class="modal-box relative max-w-full h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+            <label for="my-modal-pasaran" class="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
+            <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
+            <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
+                {#if client_device_orientation == "landscape"}
+                    <table class="table table-zebra w-full" >
+                        <thead>
+                            <tr>
+                                <th width="*" class="text-xs text-left">PASARAN</th>
+                                <th width="15%" class="text-xs text-left">NOTE</th>
+                                <th width="15%" class="text-xs text-center">TUTUP</th>
+                                <th width="15%" class="text-xs text-center">JADWAL</th>
+                                <th width="15%" class="text-xs text-center">OPEN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each listkeluaran as rec}
+                            <tr>
+                                <th class="text-xs text-left whitespace-nowrap">
+                                    <a class="underline" href="{rec.pasaran_url}" target="_blank">
+                                        {rec.pasaran}
+                                    </a>
+                                </th>
+                                <td class="text-xs text-left whitespace-nowrap">{rec.pasaran_note}</td>
+                                <td class="text-xs text-center">{rec.pasaran_tglclose}</td>
+                                <td class="text-xs text-center">{rec.pasaran_tglschedule}</td>
+                                <td class="text-xs text-center">{rec.pasaran_tglopen}</td>
+                            </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                {:else}
+                    <table class="table table-zebra w-full" >
+                        <thead>
+                            <tr>
+                                <th width="20%" class="text-xs text-left">PASARAN</th>
+                                <th width="*" class="text-xs text-left">NOTE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {#each listkeluaran as rec}
+                            <tr>
+                                <th class="text-xs text-left whitespace-nowrap">
+                                    <a class="underline" href="{rec.pasaran_url}" target="_blank">
+                                        {rec.pasaran}
+                                    </a>
+                                </th>
+                                <td class="text-xs text-left whitespace-nowrap">
+                                    {rec.pasaran_note}<br>
+                                    TUTUP : {rec.pasaran_tglclose}<br>
+                                    JADWAL : {rec.pasaran_tglschedule}<br>
+                                    OPEN : {rec.pasaran_tglopen}<br>
+                                </td>
+                            </tr>
+                            {/each}
+                        </tbody>
+                    </table>
+                {/if}
+            </div>
         </div>
-    </div>
-    
     {/if}
 </div>
 {#if client_device == "WEBSITE"}
@@ -1308,7 +1432,7 @@
                         <div class="flex w-[3rem] text-center text-sm self-center link-accent">{rec.bukumimpi_tipe}</div>
                         <div class="flex flex-1">
                             <p class="p-1 text-xs text-justify">
-                                {rec.bukumimpi_nama}<br>{client_device_height_custom-200}
+                                {rec.bukumimpi_nama}<br>
                                 <span class="link-accent text-xs ">{rec.bukumimpi_nomor}</span>
                             </p>
                             

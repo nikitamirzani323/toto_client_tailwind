@@ -21,6 +21,7 @@
   let client_device = "";
   let client_device_height = Viewport.Height
   let client_device_width = Viewport.Width
+  let client_device_orientation = Viewport.Orientation
   let container_class = "container mx-auto lg:px-2 text-base-content glass2 xl:rounded-box xl:mt-7 max-w-screen-xl bg-opacity-60 pb-5 xl:pb-5"
   if (token_browser === null) {
     console.log("TOKEN NOT FOUND");
@@ -156,7 +157,6 @@
     }
   }
   let client_device_height_custom =  parseInt(client_device_height);
-  
 </script>
 <svelte:head>
   <title>APP TOTO</title>
@@ -169,13 +169,17 @@
     // console.log('HEIGHT Size2 changed to: ',Viewport.Height)
     // console.log('Viewport Size changed to: ',Viewport.Width+'x'+Viewport.Height)
   }}
-  on:orientationchangeend={() => { console.log(
-    'Screen Orientation changed to: ', Viewport.Orientation + (
-      Viewport.detailledOrientation == null
-      ? ''
-      : '(' + Viewport.detailledOrientation + ')'
-    )
-  ) }}
+  on:orientationchangeend={() => { 
+    client_device_orientation = Viewport.Orientation
+    console.log(client_device_orientation)
+    console.log(
+      'Screen Orientation changed to: ', Viewport.Orientation + (
+        Viewport.detailledOrientation == null
+        ? ''
+        : '(' + Viewport.detailledOrientation + ')'
+      )
+    ) 
+  }}
 />
 
 {#if client_website_status == "ONLINE"}
@@ -191,6 +195,7 @@
           {client_timezone}
           {client_device} 
           {client_device_height_custom} 
+          {client_device_orientation} 
           {listkeluaran}/>
           {#if pasaran_code != ""}
             <Permainan

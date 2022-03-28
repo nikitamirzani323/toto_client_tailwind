@@ -33,22 +33,22 @@
 </script>
 {#if client_device == "WEBSITE"}
   <div class="mt-5 gap-4 grid grid-cols-2  xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2">
-    {#if listkeluaran != ""}
-    {#each listkeluaran as rec}
-        <Card_pasaran
-          on:click={() => {
-              handleClick(
-                  rec.pasaran_code,
-                  rec.pasaran,
-                  rec.pasaran_periode,
-                  rec.pasaran_status
-              );
-          }}
-          card_title="{rec.pasaran}"
-          card_description="PERIODE: {rec.pasaran_periode} <br>
-          {rec.pasaran_tgl} WIB"
-          card_status="{rec.pasaran_status}"/>
-    {/each}
+    {#if listkeluaran != []}
+        {#each listkeluaran as rec}
+            <Card_pasaran
+            on:click={() => {
+                handleClick(
+                    rec.pasaran_code,
+                    rec.pasaran,
+                    rec.pasaran_periode,
+                    rec.pasaran_status
+                );
+            }}
+            card_title="{rec.pasaran}"
+            card_description="PERIODE: {rec.pasaran_periode} <br>
+            {rec.pasaran_tgl} WIB"
+            card_status="{rec.pasaran_status}"/>
+        {/each}
     {:else}
         <Card_placeholder total_placeholder=12 />
     {/if}
@@ -63,23 +63,23 @@
   </div>
 {:else}
   <div class="mt-1 gap-1 grid grid-cols-2 px-1">
-    {#if listkeluaran != ""}
-    {#each listkeluaran as rec}
-      <Card_pasaran
-          on:click={() => {
-              handleClick(
-                  rec.pasaran_code,
-                  rec.pasaran,
-                  rec.pasaran_periode,
-                  rec.pasaran_status
-              );
-          }}
-          card_device="{client_device}"
-          card_title="{rec.pasaran}"
-          card_description="{rec.pasaran_periode} <br>
-          {rec.pasaran_tgl}"
-          card_status="{rec.pasaran_status}"/>
-    {/each}
+    {#if listkeluaran != []}
+        {#each listkeluaran as rec}
+        <Card_pasaran
+            on:click={() => {
+                handleClick(
+                    rec.pasaran_code,
+                    rec.pasaran,
+                    rec.pasaran_periode,
+                    rec.pasaran_status
+                );
+            }}
+            card_device="{client_device}"
+            card_title="{rec.pasaran}"
+            card_description="{rec.pasaran_periode} <br>
+            {rec.pasaran_tgl}"
+            card_status="{rec.pasaran_status}"/>
+        {/each}
     {:else}
         <Card_placeholder total_placeholder=6 />
     {/if}
