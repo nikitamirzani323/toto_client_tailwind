@@ -1021,6 +1021,7 @@
 		count_line_2dd = 0;
 		count_line_2dt = 0;
 		limittogel("4-3-2");
+		inittogel_432d("4-3-2");
 	}
   	async function inittogel_432d(e) {
 		const res = await fetch(path_api+"api/inittogel_432d", {
@@ -2317,463 +2318,472 @@
 		} else {
 			countangkabbfs(nomorbbfs);
 		}
-		if (parseInt(bet_1) > 0) {
-			if (parseInt(bet_1) < parseInt(minimal_bet)) {
-				bet_1 = minimal_bet;
-				flag = false;
-				msg_error += "Minimal Bet 4D : " + minimal_bet +"<br>";
-			}
-			if (parseInt(bet_1) > parseInt(max4d_bet)) {
-				bet_1 = max4d_bet;
-				flag = false;
-				msg_error += "Maximal Bet 4D : " +new Intl.NumberFormat().format(max4d_bet) + "<br>";
-			}
-			if (flag == true) {
-				switch(flag_fulldiskon){
-					case "FULL":
-						diskon = 0
-						diskonpercen = 0
-						win = win4dnodiskon_bet;
-						break;
-					case "BB":
-						diskon = 0
-						diskonpercen = 0
-						win = win4dbb_kena_bet;
-						break;
-					default:
-						diskon = Math.ceil(bet_1 * disc4d_bet);
-						diskonpercen = disc4d_bet;
-						win = win4d_bet;
-						break;
+		//VALIDASI BET 4D/3D/3DD/2D/2DD/2DT
+		if(flag){// 
+			if (parseInt(bet_1) > 0) {
+				let flag_4D = true;
+				if (parseInt(bet_1) < parseInt(minimal_bet)) {
+					bet_1 = minimal_bet;
+					flag_4D = false;
+					msg_error += "Minimal Bet 4D : " + minimal_bet +"<br>";
 				}
-				bayar = parseInt(bet_1) - parseInt(Math.ceil(diskon));
-				for (let a = 0; a < data_bbfs.length; a++) {
-					for (let b = 0; b < data_bbfs.length; b++) {
-						for (let c = 0; c < data_bbfs.length; c++) {
-							for (let d = 0; d < data_bbfs.length; d++) {
-								let dat =data_bbfs[a] +data_bbfs[b] +data_bbfs[c] +data_bbfs[d];
-								if (generate4D.length > 0) {
-									for (let x = 0;x < generate4D.length;x++) {
-										if (dat == generate4D[x]) {
+				if (parseInt(bet_1) > parseInt(max4d_bet)) {
+					bet_1 = max4d_bet;
+					flag_4D = false;
+					msg_error += "Maximal Bet 4D : " +new Intl.NumberFormat().format(max4d_bet) + "<br>";
+				}
+				if (flag_4D == true) {
+					switch(flag_fulldiskon){
+						case "FULL":
+							diskon = 0
+							diskonpercen = 0
+							win = win4dnodiskon_bet;
+							break;
+						case "BB":
+							diskon = 0
+							diskonpercen = 0
+							win = win4dbb_kena_bet;
+							break;
+						default:
+							diskon = Math.ceil(bet_1 * disc4d_bet);
+							diskonpercen = disc4d_bet;
+							win = win4d_bet;
+							break;
+					}
+					bayar = parseInt(bet_1) - parseInt(Math.ceil(diskon));
+					for (let a = 0; a < data_bbfs.length; a++) {
+						for (let b = 0; b < data_bbfs.length; b++) {
+							for (let c = 0; c < data_bbfs.length; c++) {
+								for (let d = 0; d < data_bbfs.length; d++) {
+									let dat =data_bbfs[a] +data_bbfs[b] +data_bbfs[c] +data_bbfs[d];
+									if (generate4D.length > 0) {
+										for (let x = 0;x < generate4D.length;x++) {
+											if (dat == generate4D[x]) {
+												found = true;
+											}
+										}
+										if (found == false) {
+											generate4D.push(dat);
+										}
+									} else {
+										generate4D.push(dat);
+									}
+									found = false;
+									dat = "";
+								}
+							}
+						}
+					}
+					for (let x = 0; x < generate4D.length; x++) {
+						if (checkcountangka(generate4D[x]) == true) {
+							if (checkLimitLine("4D") == true) {
+								nomor = generate4D[x];
+								totalkeranjang = bayar + totalkeranjang;
+								bet = bet_1;
+								addKeranjang(
+									nomor,
+									"4D",
+									bet,
+									diskonpercen,
+									diskon,
+									bayar,
+									win,
+									0,
+									0,flag_fulldiskon
+								);
+							} else {
+								msg_error += "Line 4D sudah melebihi limit<br>";
+								break;
+							}
+						}
+					}
+				}
+			}
+			if (parseInt(bet_2) > 0) {
+				let flag_3D = true;
+				if (parseInt(bet_2) < parseInt(minimal_bet)) {
+					bet_2 = minimal_bet;
+					flag_3D = false;
+					msg_error += "Minimal Bet 3D : " + minimal_bet + "<br>";
+				}
+				if (parseInt(bet_2) > parseInt(max3d_bet)) {
+					bet_2 = max3d_bet;
+					flag_3D = false;
+					msg_error += "Maximal Bet 3D : " +new Intl.NumberFormat().format(max3d_bet) + "<br>";
+				}
+				if (flag_3D == true) {
+					switch(flag_fulldiskon){
+						case "FULL":
+							diskon = 0
+							diskonpercen = 0
+							win = win3dnodiskon_bet;
+							break;
+						case "BB":
+							diskon = 0
+							diskonpercen = 0
+							win = win3dbb_kena_bet;
+							break;
+						default:
+							diskon = Math.ceil(bet_2 * disc3d_bet);
+							diskonpercen = disc3d_bet;
+							win = win3d_bet;
+							break;
+					}
+					bayar = parseInt(bet_2) - parseInt(Math.ceil(diskon));
+					for (let a = 0; a < data_bbfs.length; a++) {
+						for (let b = 0; b < data_bbfs.length; b++) {
+							for (let c = 0; c < data_bbfs.length; c++) {
+								let dat = data_bbfs[a] + data_bbfs[b] + data_bbfs[c];
+								if (generate3D.length > 0) {
+									for (let x = 0; x < generate3D.length; x++) {
+										if (dat == generate3D[x]) {
 											found = true;
 										}
 									}
 									if (found == false) {
-										generate4D.push(dat);
+										generate3D.push(dat);
 									}
 								} else {
-									generate4D.push(dat);
+									generate3D.push(dat);
 								}
 								found = false;
 								dat = "";
 							}
 						}
 					}
-				}
-				for (let x = 0; x < generate4D.length; x++) {
-					if (checkcountangka(generate4D[x]) == true) {
-						if (checkLimitLine("4D") == true) {
-							nomor = generate4D[x];
-							totalkeranjang = bayar + totalkeranjang;
-							bet = bet_1;
-							addKeranjang(
-								nomor,
-								"4D",
-								bet,
-								diskonpercen,
-								diskon,
-								bayar,
-								win,
-								0,
-								0,flag_fulldiskon
-							);
-						} else {
-							msg_error = "Line 4D sudah melebihi limit";
-							break;
+					for (let x = 0; x < generate3D.length; x++) {
+						if (checkcountangka(generate3D[x]) == true) {
+							if (checkLimitLine("3D") == true) {
+								nomor = generate3D[x];
+								totalkeranjang = bayar + totalkeranjang;
+								bet = bet_2;
+								addKeranjang(
+									nomor,
+									"3D",
+									bet,
+									diskonpercen,
+									diskon,
+									bayar,
+									win,
+									0,
+									0,flag_fulldiskon
+								);
+							} else {
+								msg_error += "Line 3D sudah melebihi limit<br>";
+								break;
+							}
 						}
 					}
 				}
 			}
-		}
-		if (parseInt(bet_2) > 0) {
-			if (parseInt(bet_2) < parseInt(minimal_bet)) {
-				bet_2 = minimal_bet;
-				flag = false;
-				msg_error += "Minimal Bet 3D : " + minimal_bet + "<br>";
-			}
-			if (parseInt(bet_2) > parseInt(max3d_bet)) {
-				bet_2 = max3d_bet;
-				flag = false;
-				msg_error += "Maximal Bet 3D : " +new Intl.NumberFormat().format(max3d_bet) + "<br>";
-			}
-			if (flag == true) {
-				switch(flag_fulldiskon){
-					case "FULL":
-						diskon = 0
-						diskonpercen = 0
-						win = win3dnodiskon_bet;
-						break;
-					case "BB":
-						diskon = 0
-						diskonpercen = 0
-						win = win3dbb_kena_bet;
-						break;
-					default:
-						diskon = Math.ceil(bet_2 * disc3d_bet);
-						diskonpercen = disc3d_bet;
-						win = win3d_bet;
-						break;
+			if (parseInt(bet_3) > 0) {
+				let flag_2D = true;
+				if (parseInt(bet_3) < parseInt(minimal_bet)) {
+					bet_3 = minimal_bet;
+					flag_2D = false;
+					msg_error += "Minimal Bet 2D : " + minimal_bet + "<br>";
 				}
-				bayar = parseInt(bet_2) - parseInt(Math.ceil(diskon));
-				for (let a = 0; a < data_bbfs.length; a++) {
-					for (let b = 0; b < data_bbfs.length; b++) {
-						for (let c = 0; c < data_bbfs.length; c++) {
-							let dat =
-								data_bbfs[a] + data_bbfs[b] + data_bbfs[c];
-							if (generate3D.length > 0) {
-								for (let x = 0; x < generate3D.length; x++) {
-									if (dat == generate3D[x]) {
+				if (parseInt(bet_3) > parseInt(max2d_bet)) {
+					bet_3 = max2d_bet;
+					flag_2D = false;
+					msg_error += "Maximal Bet 2D : " + new Intl.NumberFormat().format(max2d_bet) + "<br>";
+				}
+				if (flag_2D == true) {
+					switch(flag_fulldiskon){
+						case "FULL":
+							diskon = 0
+							diskonpercen = 0
+							win = win2dnodiskon_bet;
+							break;
+						case "BB":
+							diskon = 0
+							diskonpercen = 0
+							win = win2dbb_kena_bet;
+							break;
+						default:
+							diskon = Math.ceil(bet_3 * disc2d_bet);
+							diskonpercen = disc2d_bet;
+							win = win2d_bet;
+							break;
+					}
+					bayar = parseInt(bet_3) - parseInt(Math.ceil(diskon));
+					for (let a = 0; a < data_bbfs.length; a++) {
+						for (let b = 0; b < data_bbfs.length; b++) {
+							let dat = data_bbfs[a] + data_bbfs[b];
+							if (generate2D.length > 0) {
+								for (let x = 0; x < generate2D.length; x++) {
+									if (dat == generate2D[x]) {
 										found = true;
 									}
 								}
 								if (found == false) {
-									generate3D.push(dat);
+									generate2D.push(dat);
 								}
 							} else {
-								generate3D.push(dat);
-							}
-							found = false;
-							dat = "";
-						}
-					}
-				}
-				for (let x = 0; x < generate3D.length; x++) {
-					if (checkcountangka(generate3D[x]) == true) {
-						if (checkLimitLine("3D") == true) {
-							nomor = generate3D[x];
-							totalkeranjang = bayar + totalkeranjang;
-							bet = bet_2;
-							addKeranjang(
-								nomor,
-								"3D",
-								bet,
-								diskonpercen,
-								diskon,
-								bayar,
-								win,
-								0,
-								0,flag_fulldiskon
-							);
-						} else {
-							msg_error = "Line 3D sudah melebihi limit";
-							break;
-						}
-					}
-				}
-			}
-		}
-		if (parseInt(bet_3) > 0) {
-			if (parseInt(bet_3) < parseInt(minimal_bet)) {
-				bet_3 = minimal_bet;
-				flag = false;
-				msg_error += "Minimal Bet 2D : " + minimal_bet + "<br>";
-			}
-			if (parseInt(bet_3) > parseInt(max2d_bet)) {
-				bet_3 = max2d_bet;
-				flag = false;
-				msg_error += "Maximal Bet 2D : " + new Intl.NumberFormat().format(max2d_bet) + "<br>";
-			}
-			if (flag == true) {
-				switch(flag_fulldiskon){
-					case "FULL":
-						diskon = 0
-						diskonpercen = 0
-						win = win2dnodiskon_bet;
-						break;
-					case "BB":
-						diskon = 0
-						diskonpercen = 0
-						win = win2dbb_kena_bet;
-						break;
-					default:
-						diskon = Math.ceil(bet_3 * disc2d_bet);
-						diskonpercen = disc2d_bet;
-						win = win2d_bet;
-						break;
-				}
-				bayar = parseInt(bet_3) - parseInt(Math.ceil(diskon));
-				for (let a = 0; a < data_bbfs.length; a++) {
-					for (let b = 0; b < data_bbfs.length; b++) {
-						let dat = data_bbfs[a] + data_bbfs[b];
-						if (generate2D.length > 0) {
-							for (let x = 0; x < generate2D.length; x++) {
-								if (dat == generate2D[x]) {
-									found = true;
-								}
-							}
-							if (found == false) {
 								generate2D.push(dat);
 							}
-						} else {
-							generate2D.push(dat);
+							found = false;
+							dat = "";
 						}
-						found = false;
-						dat = "";
+					}
+					for (let x = 0; x < generate2D.length; x++) {
+						if (checkcountangka(generate2D[x]) == true) {
+							if (checkLimitLine("2D") == true) {
+								nomor = generate2D[x];
+								totalkeranjang = bayar + totalkeranjang;
+								bet = bet_3;
+								addKeranjang(
+									nomor,
+									"2D",
+									bet,
+									diskonpercen,
+									diskon,
+									bayar,
+									win,
+									0,
+									0,flag_fulldiskon
+								);
+							} else {
+								msg_error = "Line 2D sudah melebihi limit";
+								break;
+							}
+						}
 					}
 				}
-				for (let x = 0; x < generate2D.length; x++) {
-					if (checkcountangka(generate2D[x]) == true) {
-						if (checkLimitLine("2D") == true) {
-							nomor = generate2D[x];
-							totalkeranjang = bayar + totalkeranjang;
-							bet = bet_3;
-							addKeranjang(
-								nomor,
-								"2D",
-								bet,
-								diskonpercen,
-								diskon,
-								bayar,
-								win,
-								0,
-								0,flag_fulldiskon
-							);
-						} else {
-							msg_error = "Line 2D sudah melebihi limit";
+			}
+			if (parseInt(bet_4) > 0) {
+				let flag_2DD = true;
+				if (parseInt(bet_4) < parseInt(minimal_bet)) {
+					bet_4 = minimal_bet;
+					flag_2DD = false;
+					msg_error += "Minimal Bet 2DD : " + minimal_bet + "<br>";
+				}
+				if (parseInt(bet_4) > parseInt(max2dd_bet)) {
+					bet_4 = max2dd_bet;
+					flag_2DD = false;
+					msg_error += "Maximal Bet 2DD : " +new Intl.NumberFormat().format(max2dd_bet) + "<br>";
+				}
+				if (flag_2DD == true) {
+					switch(flag_fulldiskon){
+						case "FULL":
+							diskon = 0
+							diskonpercen = 0
+							win = win2ddnodiskon_bet;
 							break;
-						}
-					}
-				}
-			}
-		}
-		if (parseInt(bet_4) > 0) {
-			if (parseInt(bet_4) < parseInt(minimal_bet)) {
-				bet_4 = minimal_bet;
-				flag = false;
-				msg_error += "Minimal Bet 2DD : " + minimal_bet + "<br>";
-			}
-			if (parseInt(bet_4) > parseInt(max2dd_bet)) {
-				bet_4 = max2dd_bet;
-				flag = false;
-				msg_error += "Maximal Bet 2DD : " +new Intl.NumberFormat().format(max2dd_bet) + "<br>";
-			}
-			if (flag == true) {
-				switch(flag_fulldiskon){
-					case "FULL":
-						diskon = 0
-						diskonpercen = 0
-						win = win2ddnodiskon_bet;
-						break;
-					case "BB":
-						diskon = 0
-						diskonpercen = 0
-						win = win2ddbb_kena_bet;
-						break;
-					default:
-						diskon = Math.ceil(bet_4 * disc2dd_bet);
-						diskonpercen = disc2dd_bet;
-						win = win2dd_bet;
-						break;
-				}
-				bayar = parseInt(bet_4) - parseInt(Math.ceil(diskon));
-				for (let a = 0; a < data_bbfs.length; a++) {
-					for (let b = 0; b < data_bbfs.length; b++) {
-						let dat = data_bbfs[a] + data_bbfs[b];
-						if (generate2DD.length > 0) {
-							for (let x = 0; x < generate2DD.length; x++) {
-								if (dat == generate2DD[x]) {
-									found = true;
-								}
-							}
-							if (found == false) {
-								generate2DD.push(dat);
-							}
-						} else {
-							generate2DD.push(dat);
-						}
-						found = false;
-						dat = "";
-					}
-				}
-				for (let x = 0; x < generate2DD.length; x++) {
-					if (checkcountangka(generate2DD[x]) == true) {
-						if (checkLimitLine("2DD") == true) {
-							nomor = generate2DD[x];
-							totalkeranjang = bayar + totalkeranjang;
-							bet = bet_4;
-							addKeranjang(
-								nomor,
-								"2DD",
-								bet,
-								diskonpercen,
-								diskon,
-								bayar,
-								win,
-								0,
-								0,flag_fulldiskon
-							);
-						} else {
-							msg_error = "Line 2DD sudah melebihi limit";
+						case "BB":
+							diskon = 0
+							diskonpercen = 0
+							win = win2ddbb_kena_bet;
 							break;
-						}
-					}
-				}
-			}
-		}
-		if (parseInt(bet_5) > 0) {
-			if (parseInt(bet_5) < parseInt(minimal_bet)) {
-				bet_5 = minimal_bet;
-				flag = false;
-				msg_error += "Minimal Bet 2DT : " + minimal_bet + "<br>";
-			}
-			if (parseInt(bet_5) > parseInt(max2dt_bet)) {
-				bet_5 = max2dt_bet;
-				flag = false;
-				msg_error += "Maximal Bet 2DT : " +new Intl.NumberFormat().format(max2dt_bet) + "<br>";
-			}
-			if (flag == true) {
-				switch(flag_fulldiskon){
-					case "FULL":
-						diskon = 0
-						diskonpercen = 0
-						win = win2dtnodiskon_bet;
-						break;
-					case "BB":
-						diskon = 0
-						diskonpercen = 0
-						win = win2dtbb_kena_bet;
-						break;
-					default:
-						diskon = Math.ceil(bet_5 * disc2dt_bet);
-						diskonpercen = disc2dt_bet;
-						win = win2dd_bet;
-						break;
-				}
-				bayar = parseInt(bet_5) - parseInt(Math.ceil(diskon));
-				for (let a = 0; a < data_bbfs.length; a++) {
-					for (let b = 0; b < data_bbfs.length; b++) {
-						let dat = data_bbfs[a] + data_bbfs[b];
-						if (generate2DT.length > 0) {
-							for (let x = 0; x < generate2DT.length; x++) {
-								if (dat == generate2DT[x]) {
-									found = true;
-								}
-							}
-							if (found == false) {
-								generate2DT.push(dat);
-							}
-						} else {
-							generate2DT.push(dat);
-						}
-						found = false;
-						dat = "";
-					}
-				}
-				for (let x = 0; x < generate2DT.length; x++) {
-					if (checkcountangka(generate2DT[x]) == true) {
-						if (checkLimitLine("2DT") == true) {
-							nomor = generate2DT[x];
-							totalkeranjang = bayar + totalkeranjang;
-							bet = bet_5;
-							addKeranjang(
-								nomor,
-								"2DT",
-								bet,
-								diskonpercen,
-								diskon,
-								bayar,
-								win,
-								0,
-								0,flag_fulldiskon
-							);
-						} else {
-							msg_error = "Line 2DT sudah melebihi limit";
+						default:
+							diskon = Math.ceil(bet_4 * disc2dd_bet);
+							diskonpercen = disc2dd_bet;
+							win = win2dd_bet;
 							break;
-						}
 					}
-				}
-			}
-		}
-		if (parseInt(bet_6) > 0) {
-			if (parseInt(bet_6) < parseInt(minimal_bet)) {
-				bet_6 = minimal_bet;
-				flag = false;
-				msg_error += "Minimal Bet 3DD : " + minimal_bet + "<br>";
-			}
-			if (parseInt(bet_6) > parseInt(max3dd_bet)) {
-				bet_6 = max3dd_bet;
-				flag = false;
-				msg_error += "Maximal Bet 3DD : " +new Intl.NumberFormat().format(max3dd_bet) + "<br>";
-			}
-			if (flag == true) {
-				switch(flag_fulldiskon){
-					case "FULL":
-						diskon = 0
-						diskonpercen = 0
-						win = win3ddnodiskon_bet;
-						break;
-					case "BB":
-						diskon = 0
-						diskonpercen = 0
-						win = win3ddbb_kena_bet;
-						break;
-					default:
-						diskon = Math.ceil(bet_6 * disc3dd_bet);
-						diskonpercen = disc3dd_bet;
-						win = win3dd_bet;
-						break;
-				}
-				bayar = parseInt(bet_6) - parseInt(Math.ceil(diskon));
-				for (let a = 0; a < data_bbfs.length; a++) {
-					for (let b = 0; b < data_bbfs.length; b++) {
-						for (let c = 0; c < data_bbfs.length; c++) {
-							let dat = data_bbfs[a] + data_bbfs[b] + data_bbfs[c];
-							if (generate3DD.length > 0) {
-								for (let x = 0; x < generate3DD.length; x++) {
-									if (dat == generate3DD[x]) {
+					bayar = parseInt(bet_4) - parseInt(Math.ceil(diskon));
+					for (let a = 0; a < data_bbfs.length; a++) {
+						for (let b = 0; b < data_bbfs.length; b++) {
+							let dat = data_bbfs[a] + data_bbfs[b];
+							if (generate2DD.length > 0) {
+								for (let x = 0; x < generate2DD.length; x++) {
+									if (dat == generate2DD[x]) {
 										found = true;
 									}
 								}
 								if (found == false) {
-									generate3DD.push(dat);
+									generate2DD.push(dat);
 								}
 							} else {
-								generate3DD.push(dat);
+								generate2DD.push(dat);
 							}
 							found = false;
 							dat = "";
 						}
 					}
+					for (let x = 0; x < generate2DD.length; x++) {
+						if (checkcountangka(generate2DD[x]) == true) {
+							if (checkLimitLine("2DD") == true) {
+								nomor = generate2DD[x];
+								totalkeranjang = bayar + totalkeranjang;
+								bet = bet_4;
+								addKeranjang(
+									nomor,
+									"2DD",
+									bet,
+									diskonpercen,
+									diskon,
+									bayar,
+									win,
+									0,
+									0,flag_fulldiskon
+								);
+							} else {
+								msg_error += "Line 2DD sudah melebihi limit<br>";
+								break;
+							}
+						}
+					}
 				}
-				for (let x = 0; x < generate3DD.length; x++) {
-					if (checkcountangka(generate3DD[x]) == true) {
-						if (checkLimitLine("3DD") == true) {
-							nomor = generate3DD[x];
-							totalkeranjang = bayar + totalkeranjang;
-							bet = bet_6;
-							addKeranjang(
-								nomor,
-								"3DD",
-								bet,
-								diskonpercen,
-								diskon,
-								bayar,
-								win,
-								0,
-								0,flag_fulldiskon
-							);
-						} else {
-							msg_error = "Line 3DD sudah melebihi limit";
+			}
+			if (parseInt(bet_5) > 0) {
+				let flag_2DT = true;
+				if (parseInt(bet_5) < parseInt(minimal_bet)) {
+					bet_5 = minimal_bet;
+					flag_2DT = false;
+					msg_error += "Minimal Bet 2DT : " + minimal_bet + "<br>";
+				}
+				if (parseInt(bet_5) > parseInt(max2dt_bet)) {
+					bet_5 = max2dt_bet;
+					flag_2DT = false;
+					msg_error += "Maximal Bet 2DT : " +new Intl.NumberFormat().format(max2dt_bet) + "<br>";
+				}
+				if (flag_2DT == true) {
+					switch(flag_fulldiskon){
+						case "FULL":
+							diskon = 0
+							diskonpercen = 0
+							win = win2dtnodiskon_bet;
 							break;
+						case "BB":
+							diskon = 0
+							diskonpercen = 0
+							win = win2dtbb_kena_bet;
+							break;
+						default:
+							diskon = Math.ceil(bet_5 * disc2dt_bet);
+							diskonpercen = disc2dt_bet;
+							win = win2dd_bet;
+							break;
+					}
+					bayar = parseInt(bet_5) - parseInt(Math.ceil(diskon));
+					for (let a = 0; a < data_bbfs.length; a++) {
+						for (let b = 0; b < data_bbfs.length; b++) {
+							let dat = data_bbfs[a] + data_bbfs[b];
+							if (generate2DT.length > 0) {
+								for (let x = 0; x < generate2DT.length; x++) {
+									if (dat == generate2DT[x]) {
+										found = true;
+									}
+								}
+								if (found == false) {
+									generate2DT.push(dat);
+								}
+							} else {
+								generate2DT.push(dat);
+							}
+							found = false;
+							dat = "";
+						}
+					}
+					for (let x = 0; x < generate2DT.length; x++) {
+						if (checkcountangka(generate2DT[x]) == true) {
+							if (checkLimitLine("2DT") == true) {
+								nomor = generate2DT[x];
+								totalkeranjang = bayar + totalkeranjang;
+								bet = bet_5;
+								addKeranjang(
+									nomor,
+									"2DT",
+									bet,
+									diskonpercen,
+									diskon,
+									bayar,
+									win,
+									0,
+									0,flag_fulldiskon
+								);
+							} else {
+								msg_error += "Line 2DT sudah melebihi limit";
+								break;
+							}
+						}
+					}
+				}
+			}
+			if (parseInt(bet_6) > 0) {
+				let flag_3DD = true;
+				if (parseInt(bet_6) < parseInt(minimal_bet)) {
+					bet_6 = minimal_bet;
+					flag_3DD = false;
+					msg_error += "Minimal Bet 3DD : " + minimal_bet + "<br>";
+				}
+				if (parseInt(bet_6) > parseInt(max3dd_bet)) {
+					bet_6 = max3dd_bet;
+					flag_3DD = false;
+					msg_error += "Maximal Bet 3DD : " +new Intl.NumberFormat().format(max3dd_bet) + "<br>";
+				}
+				if (flag_3DD == true) {
+					switch(flag_fulldiskon){
+						case "FULL":
+							diskon = 0
+							diskonpercen = 0
+							win = win3ddnodiskon_bet;
+							break;
+						case "BB":
+							diskon = 0
+							diskonpercen = 0
+							win = win3ddbb_kena_bet;
+							break;
+						default:
+							diskon = Math.ceil(bet_6 * disc3dd_bet);
+							diskonpercen = disc3dd_bet;
+							win = win3dd_bet;
+							break;
+					}
+					bayar = parseInt(bet_6) - parseInt(Math.ceil(diskon));
+					for (let a = 0; a < data_bbfs.length; a++) {
+						for (let b = 0; b < data_bbfs.length; b++) {
+							for (let c = 0; c < data_bbfs.length; c++) {
+								let dat = data_bbfs[a] + data_bbfs[b] + data_bbfs[c];
+								if (generate3DD.length > 0) {
+									for (let x = 0; x < generate3DD.length; x++) {
+										if (dat == generate3DD[x]) {
+											found = true;
+										}
+									}
+									if (found == false) {
+										generate3DD.push(dat);
+									}
+								} else {
+									generate3DD.push(dat);
+								}
+								found = false;
+								dat = "";
+							}
+						}
+					}
+					for (let x = 0; x < generate3DD.length; x++) {
+						if (checkcountangka(generate3DD[x]) == true) {
+							if (checkLimitLine("3DD") == true) {
+								nomor = generate3DD[x];
+								totalkeranjang = bayar + totalkeranjang;
+								bet = bet_6;
+								addKeranjang(
+									nomor,
+									"3DD",
+									bet,
+									diskonpercen,
+									diskon,
+									bayar,
+									win,
+									0,
+									0,flag_fulldiskon
+								);
+							} else {
+								msg_error += "Line 3DD sudah melebihi limit<br>";
+								break;
+							}
 						}
 					}
 				}
 			}
 		}
 		if(msg_error != ""){
+			isModalAlert = true
 			loader_timeout();
 		}
-		clearField();
+		clearField()
 	}
   
 	function formwap_add() {
@@ -3802,7 +3812,6 @@
 		bet_2dd = "";
 		nomor2dt = "";
 		bet_2dt = "";
-		isModalAlert = false
 	}
   
 	let form_font_sizelabel_default = "text-xs"
@@ -3940,7 +3949,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="3"
-							maxlength="7"
+							maxlength="{max4d_bet.toString().length}"
 							type="text" placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -3987,7 +3996,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard432set_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="{max4d_bet.toString().length}"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4006,7 +4015,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard432set_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="{max3d_bet.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4024,7 +4033,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard432set_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="{max3dd_bet.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4042,7 +4051,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard432set_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="{max2d_bet.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4060,7 +4069,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard432set_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="{max2dd_bet.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4078,7 +4087,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard432set_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="{max2dt_bet.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4120,7 +4129,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardbbfs_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="{max4d_bet.toString().length}"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4139,7 +4148,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardbbfs_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="{max3d_bet.toString().length}"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4158,7 +4167,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardbbfs_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="{max3dd_bet.toString().length}"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4177,7 +4186,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardbbfs_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="{max2d_bet.toString().length}"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4196,7 +4205,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardbbfs_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="{max2dd_bet.toString().length}"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4215,7 +4224,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardbbfs_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="{max2dt_bet.toString().length}"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4310,7 +4319,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboardpolatarung_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="8"
 						type="text" 
 						placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4373,7 +4382,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardquick2d_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="8"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4417,7 +4426,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard3dd_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="{max3dd_bet.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4465,7 +4474,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard2dd_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="{max2dd_bet.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4513,7 +4522,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard2dt_checkenter}
 						minlength="3"
-						maxlength="7"
+						maxlength="{max2dt_bet.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4643,7 +4652,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="3"
-									maxlength="7"
+									maxlength="{max4d_bet.toString().length}"
 									type="text" placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -4685,7 +4694,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard432set_checkenter}
 									minlength="3"
-									maxlength="7"
+									maxlength="{max4d_bet.toString().length}"
 									type="text" 
 									placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4704,7 +4713,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard432set_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="{max3d_bet.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -4722,7 +4731,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard432set_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="{max3dd_bet.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -4741,7 +4750,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard432set_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="{max2d_bet.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -4759,7 +4768,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard432set_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="{max2dd_bet.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -4777,7 +4786,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard432set_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="{max2dt_bet.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -4822,7 +4831,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardbbfs_checkenter}
 									minlength="3"
-									maxlength="7"
+									maxlength="{max4d_bet.toString().length}"
 									type="text" 
 									placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4841,7 +4850,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardbbfs_checkenter}
 									minlength="3"
-									maxlength="7"
+									maxlength="{max3d_bet.toString().length}"
 									type="text" 
 									placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4860,7 +4869,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardbbfs_checkenter}
 									minlength="3"
-									maxlength="7"
+									maxlength="{max3dd_bet.toString().length}"
 									type="text" 
 									placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4879,7 +4888,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardbbfs_checkenter}
 									minlength="3"
-									maxlength="7"
+									maxlength="{max2d_bet.toString().length}"
 									type="text" 
 									placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4898,7 +4907,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardbbfs_checkenter}
 									minlength="3"
-									maxlength="7"
+									maxlength="{max2dd_bet.toString().length}"
 									type="text" 
 									placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -4917,7 +4926,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardbbfs_checkenter}
 									minlength="3"
-									maxlength="7"
+									maxlength="{max2dt_bet.toString().length}"
 									type="text" 
 									placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -5014,7 +5023,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardpolatarung_checkenter}
 							minlength="3"
-							maxlength="7"
+							maxlength="8"
 							type="text" 
 							placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -5073,7 +5082,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboardquick2d_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="8"
 								type="text" 
 								placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
@@ -5114,7 +5123,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard3dd_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="{max3dd_bet.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
@@ -5155,7 +5164,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard2dd_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="{max2dd_bet.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -5196,7 +5205,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard2dt_checkenter}
 								minlength="3"
-								maxlength="7"
+								maxlength="{max2dt_bet.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
