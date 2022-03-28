@@ -62,7 +62,7 @@
     </div>
   </div>
 {:else}
-  <div class="mt-1 gap-1 grid grid-cols-2 px-1">
+  <div class="mt-1 gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 px-1">
     {#if listkeluaran != []}
         {#each listkeluaran as rec}
         <Card_pasaran
