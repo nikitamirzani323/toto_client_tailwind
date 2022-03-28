@@ -827,7 +827,7 @@
 
 <input type="checkbox" id="my-modal-informationalert" class="modal-toggle" bind:checked={isModalAlert}>
 <div class="modal" >
-    <div class="modal-box relative max-w-lg">
+    <div class="modal-box relative max-w-lg select-none">
         <h3 class="text-xs lg:text-sm font-bold capitalize text-center">Apakah Anda Ingin Menghapus Transaksi Ini :</h3>
         <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
             Nomor : {temp_nomor} <br>
@@ -841,37 +841,37 @@
                 on:click={() => {
                     handleAlertRemove("Y");
                 }}
-                class="btn btn-success rounded-md">Ya</button>
+                class="btn btn-sm btn-success rounded-md">Ya</button>
             <button
                 on:click={() => {
                     handleAlertRemove("N");
                 }}
-                class="btn btn-accent rounded-md">Tidak</button>
+                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
         </div>
     </div>
 </div>
 <input type="checkbox" id="my-modal-informationalert2" class="modal-toggle" bind:checked={isModalAlert2}>
 <div class="modal" >
-    <div class="modal-box relative max-w-lg">
+    <div class="modal-box relative max-w-lg select-none">
         <h3 class="text-xs lg:text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Menghapus Semua Transaksi :</h3>
         <div class="grid grid-cols-2 gap-1">
             <button
                 on:click={() => {
                     handleAlertRemoveAll("Y");
                 }}
-                class="btn btn-success rounded-md">Ya</button>
+                class="btn btn-sm btn-success rounded-md">Ya</button>
             <button
                 on:click={() => {
                     handleAlertRemoveAll("N");
                 }}
-                class="btn btn-accent rounded-md">Tidak</button>
+                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
         </div>
     </div>
 </div>
 
 <input type="checkbox" id="my-modal-informationalertbelanja" class="modal-toggle" bind:checked={isModalAlert_belanja}>
 <div class="modal" >
-    <div class="modal-box relative max-w-lg">
+    <div class="modal-box relative max-w-lg select-none">
         <h3 class="text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Melanjutkan Transaksi :</h3>
         <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
             Total Transaksi : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
@@ -881,12 +881,12 @@
                 on:click={() => {
                     handleSaveLanjut("Y");
                 }}
-                class="btn btn-success rounded-md">Ya</button>
+                class="btn btn-sm btn-success rounded-md">Ya</button>
             <button
                 on:click={() => {
                     handleSaveLanjut("N");
                 }}
-                class="btn btn-accent rounded-md">Tidak</button>
+                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
         </div>
     </div>
 </div>

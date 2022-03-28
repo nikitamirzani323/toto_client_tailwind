@@ -1,5 +1,6 @@
 <script>
     import { createEventDispatcher } from "svelte";
+    import Modal_alert_remove from "../component/Modal_alert_remove.svelte";
     import Button_custom1 from "../component/Button_custom1.svelte";
     import Button_custom2 from "../component/Button_custom2.svelte";
 
@@ -86,7 +87,7 @@
         temp_diskonpercen = diskoonpercen
     };
     const handleAlertRemove = (e) => {
-        if(e == 'Y'){
+        if(e.detail.action_remove == 'Y'){
             isModalAlert = false;
             let idkeranjang = temp_idkeranjang 
             let bayar = temp_bayar 
@@ -113,7 +114,7 @@
 		}
     };
     const handleAlertRemoveAll = (e) => {
-        if(e == 'Y'){
+        if(e.detail.action_remove == 'Y'){
             isModalAlert2 = false;
             dispatch("removekeranjangall", "all");
         }else{
@@ -135,7 +136,7 @@
 		}
     };
     const handleSaveLanjut = (e) => {
-        if(e == "Y"){
+        if(e.detail.action_remove == "Y"){
             dispatch("handleSave", "save");
         }
         isModalAlert_belanja = false;
@@ -623,69 +624,38 @@
 {/if}
 
 <input type="checkbox" id="my-modal-informationalert" class="modal-toggle" bind:checked={isModalAlert}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg select-none">
-        <h3 class="text-xs lg:text-sm font-bold capitalize text-center">Apakah Anda Ingin Menghapus Transaksi Ini :</h3>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Nomor : {temp_nomor} <br>
-            Tipe : {temp_tipe} <br>
-            Permainan : {temp_permainan} <br>
-            Bet : <span class="text-sm link-accent">{new Intl.NumberFormat().format(temp_bet)}</span> <br>
-            Diskon : <span class="text-sm link-accent">{new Intl.NumberFormat().format( Math.ceil(temp_diskon))} ({(temp_diskonpercen * 100).toFixed(2)}%)</span> <br>
-            Bayar : <span class="text-sm link-accent">{new Intl.NumberFormat().format(temp_bayar)}</span>
-        </p>
-        <div class="grid grid-cols-2 gap-1">
-            <button
-                on:click={() => {
-                    handleAlertRemove("Y");
-                }}
-                class="btn btn-sm btn-success rounded-md">Ya</button>
-            <button
-                on:click={() => {
-                    handleAlertRemove("N");
-                }}
-                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
-        </div>
-    </div>
-</div>
+<Modal_alert_remove
+    on:handleAlertRemove={handleAlertRemove}
+    modal_tipe="remove_single"
+    modal_title="Apakah Anda Ingin Menghapus Transaksi Ini :"
+    modal_widthheight_class="max-w-lg">
+    <slot:template slot="modal_body">
+        Nomor : {temp_nomor} <br>
+        Tipe : {temp_tipe} <br>
+        Permainan : {temp_permainan} <br>
+        Bet : <span class="text-sm link-accent">{new Intl.NumberFormat().format(temp_bet)}</span> <br>
+        Diskon : <span class="text-sm link-accent">{new Intl.NumberFormat().format( Math.ceil(temp_diskon))} ({(temp_diskonpercen * 100).toFixed(2)}%)</span> <br>
+        Bayar : <span class="text-sm link-accent">{new Intl.NumberFormat().format(temp_bayar)}</span>
+    </slot:template>
+</Modal_alert_remove>
 <input type="checkbox" id="my-modal-informationalert2" class="modal-toggle" bind:checked={isModalAlert2}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg select-none">
-        <h3 class="text-xs lg:text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Menghapus Semua Transaksi :</h3>
-        <div class="grid grid-cols-2 gap-1">
-            <button
-                on:click={() => {
-                    handleAlertRemoveAll("Y");
-                }}
-                class="btn btn-sm btn-success rounded-md">Ya</button>
-            <button
-                on:click={() => {
-                    handleAlertRemoveAll("N");
-                }}
-                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
-        </div>
-    </div>
-</div>
+<Modal_alert_remove
+    on:handleAlertRemove={handleAlertRemoveAll}
+    modal_tipe=""
+    modal_title="Apakah Anda Ingin Menghapus Semua Transaksi :"
+    modal_widthheight_class="max-w-lg" />
 
 <input type="checkbox" id="my-modal-informationalertbelanja" class="modal-toggle" bind:checked={isModalAlert_belanja}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg select-none">
-        <h3 class="text-sm font-bold capitalize text-center mb-4">Apakah Anda Ingin Melanjutkan Transaksi :</h3>
-        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Transaksi : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-        </p>
-        <div class="grid grid-cols-2 gap-1">
-            <button
-                on:click={() => {
-                    handleSaveLanjut("Y");
-                }}
-                class="btn btn-sm btn-success rounded-md">Ya</button>
-            <button
-                on:click={() => {
-                    handleSaveLanjut("N");
-                }}
-                class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">Tidak</button>
-        </div>
-    </div>
-</div>
+<Modal_alert_remove
+    on:handleAlertRemove={handleSaveLanjut}
+    modal_tipe="remove_single"
+    modal_title="Apakah Anda Ingin Melanjutkan Transaksi :"
+    modal_widthheight_class="max-w-lg">
+    <slot:template slot="modal_body">
+        Total Transaksi : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+    </slot:template>
+</Modal_alert_remove>
+
+
+
 

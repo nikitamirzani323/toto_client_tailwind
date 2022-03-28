@@ -1,4 +1,5 @@
 <script>
+	import Modal_alert from "../component/Modal_alert.svelte";
 	import Button_custom1 from "../component/Button_custom1.svelte";
 	import Tablekeranjang from "../permainan/Tablekeranjangcolok.svelte";
 	import SaveTrans from "../permainan/savetransaksi";
@@ -103,6 +104,7 @@
 	let bet_polacoloknaga = "";
 
 	let dispatch = createEventDispatcher();
+	let isModalAlertSystem = false
 	let isModalAlert = false
 	let isModalAlertTabPermainan = false
 	let isModalLoading = false
@@ -233,7 +235,6 @@
 		bayar,win,kei,kei_percen,tipetoto) {
 		let total_data = keranjang.length;
 		let flag_data = false;
-		msg_error = "";
 		for (var i = 0; i < total_data; i++) {
 			switch (game) {
 				case "COLOK_BEBAS":
@@ -247,7 +248,7 @@
 							}
 						}
 						if (parseInt(limittotal_bet_colokbebas) < (parseInt(maxtotal_bayarcolokbebas)+parseInt(bet))) {
-							msg_error ="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK BEBAS<br />";
+							msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK BEBAS<br />";
 							flag_data = true;
 						}
 					}
@@ -263,7 +264,7 @@
 							}
 						}
 						if (parseInt(limittotal_bet_colokmacau) < (parseInt(maxtotal_bayarcolokmacau)+parseInt(bet))) {
-							msg_error ="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK MACAU<br />";
+							msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK MACAU<br />";
 							flag_data = true;
 						}
 					}
@@ -279,7 +280,7 @@
 							}
 						}
 						if (parseInt(limittotal_bet_coloknaga) < (parseInt(maxtotal_bayarcoloknaga)+parseInt(bet))) {
-							msg_error ="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK NAGA<br />";
+							msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK NAGA<br />";
 							flag_data = true;
 						}
 					}
@@ -295,7 +296,7 @@
 							}
 						}
 						if (parseInt(limittotal_bet_colokjitu) < (parseInt(maxtotal_bayarcolokjitu)+parseInt(bet))) {
-							msg_error ="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK JITU<br />";
+							msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK JITU<br />";
 							flag_data = true;
 						}
 					}
@@ -320,9 +321,6 @@
 			count_keranjang();
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
-		}
-		if(msg_error != ""){
-			isModalAlert = true;
 		}
 	}
   
@@ -377,7 +375,7 @@
 						dispatch("handleInvoice", "call");
 						reset();
 					}else{
-						msg_error = "System Mengalami Trouble<br>Silahkan Hubungi Administrator"
+						msg_error = server_msg
 						isModalAlert = true;
 						loader_timeout();
 					}
@@ -411,36 +409,39 @@
 				permainan: e,
 			}),
 		});
-		group_btn_beli = true;
-		const json = await res.json();
-		let record = json.record;
-		for (var i = 0; i < record.length; i++) {
-			min_bet_colokbebas = parseInt(record[i]["min_bet_colokbebas"]);
-			max_bet_colokbebas = parseInt(record[i]["max_bet_colokbebas"]);
-			disc_bet_colokbebas = parseFloat(record[i]["disc_bet_colokbebas"]);
-			win_bet_colokbebas = parseFloat(record[i]["win_bet_colokbebas"]);
-			limittotal_bet_colokbebas = parseInt(record[i]["limittotal_bet_colokbebas"]);
-			min_bet_colokmacau = parseInt(record[i]["min_bet_colokmacau"]);
-			max_bet_colokmacau = parseFloat(record[i]["max_bet_colokmacau"]);
-			disc_bet_colokmacau = parseFloat(record[i]["disc_bet_colokmacau"]);
-			win_bet_colokmacau = parseFloat(record[i]["win_bet_colokmacau"]);
-			win3_bet_colokmacau = parseFloat(record[i]["win3_bet_colokmacau"]);
-			win4_bet_colokmacau = parseFloat(record[i]["win4_bet_colokmacau"]);
-			limittotal_bet_colokmacau = parseInt(record[i]["limittotal_bet_colokmacau"]);
-			min_bet_coloknaga = parseInt(record[i]["min_bet_coloknaga"]);
-			max_bet_coloknaga = parseInt(record[i]["max_bet_coloknaga"]);
-			disc_bet_coloknaga = parseFloat(record[i]["disc_bet_coloknaga"]);
-			win_bet_coloknaga = parseFloat(record[i]["win_bet_coloknaga"]);
-			win4_bet_coloknaga = parseFloat(record[i]["win4_bet_coloknaga"]);
-			limittotal_bet_coloknaga = parseInt(record[i]["limittotal_bet_coloknaga"]);
-			min_bet_colokjitu = parseInt(record[i]["min_bet_colokjitu"]);
-			max_bet_colokjitu = parseInt(record[i]["max_bet_colokjitu"]);
-			disc_bet_colokjitu = parseFloat(record[i]["disc_bet_colokjitu"]);
-			winas_bet_colokjitu = parseFloat(record[i]["winas_bet_colokjitu"]);
-			winkop_bet_colokjitu = parseFloat(record[i]["winkop_bet_colokjitu"]);
-			winkepala_bet_colokjitu = parseFloat(record[i]["winkepala_bet_colokjitu"]);
-			winekor_bet_colokjitu = parseFloat(record[i]["winekor_bet_colokjitu"]);
-			limittotal_bet_colokjitu = parseInt(record[i]["limittotal_bet_colokjitu"]);
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			for (var i = 0; i < record.length; i++) {
+				min_bet_colokbebas = parseInt(record[i]["min_bet_colokbebas"]);
+				max_bet_colokbebas = parseInt(record[i]["max_bet_colokbebas"]);
+				disc_bet_colokbebas = parseFloat(record[i]["disc_bet_colokbebas"]);
+				win_bet_colokbebas = parseFloat(record[i]["win_bet_colokbebas"]);
+				limittotal_bet_colokbebas = parseInt(record[i]["limittotal_bet_colokbebas"]);
+				min_bet_colokmacau = parseInt(record[i]["min_bet_colokmacau"]);
+				max_bet_colokmacau = parseFloat(record[i]["max_bet_colokmacau"]);
+				disc_bet_colokmacau = parseFloat(record[i]["disc_bet_colokmacau"]);
+				win_bet_colokmacau = parseFloat(record[i]["win_bet_colokmacau"]);
+				win3_bet_colokmacau = parseFloat(record[i]["win3_bet_colokmacau"]);
+				win4_bet_colokmacau = parseFloat(record[i]["win4_bet_colokmacau"]);
+				limittotal_bet_colokmacau = parseInt(record[i]["limittotal_bet_colokmacau"]);
+				min_bet_coloknaga = parseInt(record[i]["min_bet_coloknaga"]);
+				max_bet_coloknaga = parseInt(record[i]["max_bet_coloknaga"]);
+				disc_bet_coloknaga = parseFloat(record[i]["disc_bet_coloknaga"]);
+				win_bet_coloknaga = parseFloat(record[i]["win_bet_coloknaga"]);
+				win4_bet_coloknaga = parseFloat(record[i]["win4_bet_coloknaga"]);
+				limittotal_bet_coloknaga = parseInt(record[i]["limittotal_bet_coloknaga"]);
+				min_bet_colokjitu = parseInt(record[i]["min_bet_colokjitu"]);
+				max_bet_colokjitu = parseInt(record[i]["max_bet_colokjitu"]);
+				disc_bet_colokjitu = parseFloat(record[i]["disc_bet_colokjitu"]);
+				winas_bet_colokjitu = parseFloat(record[i]["winas_bet_colokjitu"]);
+				winkop_bet_colokjitu = parseFloat(record[i]["winkop_bet_colokjitu"]);
+				winkepala_bet_colokjitu = parseFloat(record[i]["winkepala_bet_colokjitu"]);
+				winekor_bet_colokjitu = parseFloat(record[i]["winekor_bet_colokjitu"]);
+				limittotal_bet_colokjitu = parseInt(record[i]["limittotal_bet_colokjitu"]);
+			}
 		}
 	}
   	function count_keranjang() {
@@ -734,7 +735,6 @@
 		let win = 0;
 		let bayar = 0;
 		let found = false;
-		let msg = "";
 		msg_error = "";
 		if (nomor_polacolok == "") {
 			nomor_polacolok.focus();
@@ -1468,9 +1468,9 @@
 			{/if}
       	{:else}
 			<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
-			<div class="place-content-start text-left text-xs">
-				{pasaran_name} <br> {permainan_title}
-			</div>
+				<div class="place-content-start text-left text-xs">
+					{pasaran_name} <br> {permainan_title}
+				</div>
 			<div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 			</h2>
 			<label for="my-modal-inputbet" 
@@ -1843,36 +1843,30 @@
   </div>
 </div>
 
+
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
-<div class="modal " on:click|self={()=>isModalAlert = false}>
-    <div class="modal-box relative bg-content">
-        <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-lg font-bold">INFORMASI</h3>
-		<progress class="progress w-full" value="{barWidth}" max="100"></progress>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-			{@html msg_error}
-		</p>
-    </div>
-</div>
-
+<Modal_alert 
+	modal_id="my-modal-alert" 
+	modal_tipe="1" 
+	modal_title="Alert" 
+	modal_bar={barWidth} 
+	modal_message="{msg_error}" />
+<input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>
+<Modal_alert 
+	modal_id="my-modal-AlertSystem" 
+	modal_widthheight_class="w-11/12 max-w-xl" 
+	modal_tipe="2" 
+	modal_title="" 
+	modal_path_url="/?token={client_token}" 
+	modal_message="
+		Maaf Saat Ini Anda TIdak Bisa Mengakses Halaman Ini <br>
+		Halaman <b>4D/3D/2D</b> Terjadi Kesalahan Sistem Harap Hubungi Administrator
+	" />
 <input type="checkbox" id="my-modal-loading" class="modal-toggle" bind:checked={isModalLoading}>
-<div class="modal">
-    <div class="modal-box w-auto grass opacity-70">
-		<svg class="lds-curve-bars" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(50,50)"><circle cx="0" cy="0" r="8.333333333333334" fill="none" stroke="#ffffcb" stroke-width="4" stroke-dasharray="26.179938779914945 26.179938779914945" transform="rotate(308.129)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="0" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="16.666666666666668" fill="none" stroke="#fac090" stroke-width="4" stroke-dasharray="52.35987755982989 52.35987755982989" transform="rotate(360)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.2" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="25" fill="none" stroke="#ff7c81" stroke-width="4" stroke-dasharray="78.53981633974483 78.53981633974483" transform="rotate(51.8709)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.4" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="33.333333333333336" fill="none" stroke="#c0f6d2" stroke-width="4" stroke-dasharray="104.71975511965978 104.71975511965978" transform="rotate(135.238)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.6" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="41.666666666666664" fill="none" stroke="#dae4bf" stroke-width="4" stroke-dasharray="130.89969389957471 130.89969389957471" transform="rotate(224.762)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
-			</circle></g>
-		</svg>
-    </div>
-</div>
-
+<Modal_alert 
+	modal_id="my-modal-loading" 
+	modal_widthheight_class="w-auto grass opacity-50" 
+	modal_tipe="loading" />
 <input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
 <div class="modal" >
     <div class="modal-box relative max-w-lg">

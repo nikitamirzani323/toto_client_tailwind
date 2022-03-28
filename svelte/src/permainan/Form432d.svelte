@@ -1,4 +1,5 @@
 <script>
+	import Modal_alert from "../component/Modal_alert.svelte";
 	import Button_custom1 from "../component/Button_custom1.svelte";
 	import Tablekeranjang from "../permainan/Tablekeranjang.svelte";
 	import SaveTrans from "../permainan/savetransaksi";
@@ -176,8 +177,10 @@
 	let quick_bet_input;
 
 	let dispatch = createEventDispatcher();
+	let isModalAlertSystem = false
 	let isModalAlert = false
 	let isModalAlertTabPermainan = false
+	let isModalInfo = false
 	let isModalAPilihan = false
 	let isModalLoading = false
 	let flag_fulldiskon = "DISC"
@@ -956,7 +959,7 @@
 			reset();
 			count_keranjang();
 		} else {
-      isModalAlert = true;
+      		isModalAlert = true;
 			msg_error = "Tidak ada list transaksi";
 		}
 	};
@@ -979,7 +982,6 @@
 					loader_timeout();
 				}else{
 					if(server_status_external == 200){
-						console.log(server_status_external+" - "+server_msg+" - "+server_msg_error+" - "+server_totalbayar);
 						if(server_msg_error != ""){
 							msg_error += server_msg_error
 						}
@@ -987,7 +989,7 @@
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
 						}
 						if(msg_error != ""){
-							isModalAlert = true;
+							isModalInfo = true;
 							loader_timeout();
 						}
 						dispatch("handleInvoice", "call");
@@ -1030,61 +1032,65 @@
 				permainan: e,
 			}),
 		});
-		const json = await res.json();
-		let record = json.record;
-		minimal_bet = record[0]["min_bet"];
-		for (var i = 0; i < record.length; i++) {
-			minimal_bet = parseInt(record[i]["min_bet"]);
-			max4d_bet = parseInt(record[i]["max4d_bet"]);
-			max3d_bet = parseInt(record[i]["max3d_bet"]);
-			max3dd_bet = parseInt(record[i]["max3dd_bet"]);
-			max2d_bet = parseInt(record[i]["max2d_bet"]);
-			max2dd_bet = parseInt(record[i]["max2dd_bet"]);
-			max2dt_bet = parseInt(record[i]["max2dt_bet"]);
-			disc4d_bet = parseFloat(record[i]["disc4d_bet"]);
-			disc3d_bet = parseFloat(record[i]["disc3d_bet"]);
-			disc3dd_bet = parseFloat(record[i]["disc3dd_bet"]);
-			disc2d_bet = parseFloat(record[i]["disc2d_bet"]);
-			disc2dd_bet = parseFloat(record[i]["disc2dd_bet"]);
-			disc2dt_bet = parseFloat(record[i]["disc2dt_bet"]);
-			win4d_bet = parseInt(record[i]["win4d_bet"]);
-			win3d_bet = parseInt(record[i]["win3d_bet"]);
-			win3dd_bet = parseInt(record[i]["win3dd_bet"]);
-			win2d_bet = parseInt(record[i]["win2d_bet"]);
-			win2dd_bet = parseInt(record[i]["win2dd_bet"]);
-			win2dt_bet = parseInt(record[i]["win2dt_bet"]);
-			win4dnodiskon_bet = parseInt(record[i]["win4dnodiskon_bet"]);
-			win3dnodiskon_bet = parseInt(record[i]["win3dnodiskon_bet"]);
-			win3ddnodiskon_bet = parseInt(record[i]["win3ddnodiskon_bet"]);
-			win2dnodiskon_bet = parseInt(record[i]["win2dnodiskon_bet"]);
-			win2ddnodiskon_bet = parseInt(record[i]["win2ddnodiskon_bet"]);
-			win2dtnodiskon_bet = parseInt(record[i]["win2dtnodiskon_bet"]);
-			win4dbb_kena_bet = parseInt(record[i]["win4dbb_kena_bet"]);
-			win3dbb_kena_bet = parseInt(record[i]["win3dbb_kena_bet"]);
-			win3ddbb_kena_bet = parseInt(record[i]["win3ddbb_kena_bet"]);
-			win2dbb_kena_bet = parseInt(record[i]["win2dbb_kena_bet"]);
-			win2ddbb_kena_bet = parseInt(record[i]["win2ddbb_bet"]);
-			win2dtbb_kena_bet = parseInt(record[i]["win2dtbb_kena_bet"]);
-			win4dbb_bet = parseInt(record[i]["win4dbb_bet"]);
-			win3dbb_bet = parseInt(record[i]["win3dbb_bet"]);
-			win3ddbb_bet = parseInt(record[i]["win3dd_bet"]);
-			win2dbb_bet = parseInt(record[i]["win2dbb_bet"]);
-			win2ddbb_bet = parseInt(record[i]["win2ddbb_bet"]);
-			win2dtbb_bet = parseInt(record[i]["win2dtbb_bet"]);
-			limittotal4d_bet = parseInt(record[i]["limittotal4d_bet"]);
-			limittotal3d_bet = parseInt(record[i]["limittotal3d_bet"]);
-			limittotal3dd_bet = parseInt(record[i]["limittotal3dd_bet"]);
-			limittotal2d_bet = parseInt(record[i]["limittotal2d_bet"]);
-			limittotal2dd_bet = parseInt(record[i]["limittotal2dd_bet"]);
-			limittotal2dt_bet = parseInt(record[i]["limittotal2dt_bet"]);
-			limitline_4d = parseInt(record[i]["limitline_4d"]);
-			limitline_3d = parseInt(record[i]["limitline_3d"]);
-			limitline_3dd = parseInt(record[i]["limitline_3dd"]);
-			limitline_2d = parseInt(record[i]["limitline_2d"]);
-			limitline_2dd = parseInt(record[i]["limitline_2dd"]);
-			limitline_2dt = parseInt(record[i]["limitline_2dt"]);
-			bbfs = parseInt(record[i]["bbfs"]);
-		}
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			minimal_bet = record[0]["min_bet"];
+			for (var i = 0; i < record.length; i++) {
+				minimal_bet = parseInt(record[i]["min_bet"]);
+				max4d_bet = parseInt(record[i]["max4d_bet"]);
+				max3d_bet = parseInt(record[i]["max3d_bet"]);
+				max3dd_bet = parseInt(record[i]["max3dd_bet"]);
+				max2d_bet = parseInt(record[i]["max2d_bet"]);
+				max2dd_bet = parseInt(record[i]["max2dd_bet"]);
+				max2dt_bet = parseInt(record[i]["max2dt_bet"]);
+				disc4d_bet = parseFloat(record[i]["disc4d_bet"]);
+				disc3d_bet = parseFloat(record[i]["disc3d_bet"]);
+				disc3dd_bet = parseFloat(record[i]["disc3dd_bet"]);
+				disc2d_bet = parseFloat(record[i]["disc2d_bet"]);
+				disc2dd_bet = parseFloat(record[i]["disc2dd_bet"]);
+				disc2dt_bet = parseFloat(record[i]["disc2dt_bet"]);
+				win4d_bet = parseInt(record[i]["win4d_bet"]);
+				win3d_bet = parseInt(record[i]["win3d_bet"]);
+				win3dd_bet = parseInt(record[i]["win3dd_bet"]);
+				win2d_bet = parseInt(record[i]["win2d_bet"]);
+				win2dd_bet = parseInt(record[i]["win2dd_bet"]);
+				win2dt_bet = parseInt(record[i]["win2dt_bet"]);
+				win4dnodiskon_bet = parseInt(record[i]["win4dnodiskon_bet"]);
+				win3dnodiskon_bet = parseInt(record[i]["win3dnodiskon_bet"]);
+				win3ddnodiskon_bet = parseInt(record[i]["win3ddnodiskon_bet"]);
+				win2dnodiskon_bet = parseInt(record[i]["win2dnodiskon_bet"]);
+				win2ddnodiskon_bet = parseInt(record[i]["win2ddnodiskon_bet"]);
+				win2dtnodiskon_bet = parseInt(record[i]["win2dtnodiskon_bet"]);
+				win4dbb_kena_bet = parseInt(record[i]["win4dbb_kena_bet"]);
+				win3dbb_kena_bet = parseInt(record[i]["win3dbb_kena_bet"]);
+				win3ddbb_kena_bet = parseInt(record[i]["win3ddbb_kena_bet"]);
+				win2dbb_kena_bet = parseInt(record[i]["win2dbb_kena_bet"]);
+				win2ddbb_kena_bet = parseInt(record[i]["win2ddbb_bet"]);
+				win2dtbb_kena_bet = parseInt(record[i]["win2dtbb_kena_bet"]);
+				win4dbb_bet = parseInt(record[i]["win4dbb_bet"]);
+				win3dbb_bet = parseInt(record[i]["win3dbb_bet"]);
+				win3ddbb_bet = parseInt(record[i]["win3dd_bet"]);
+				win2dbb_bet = parseInt(record[i]["win2dbb_bet"]);
+				win2ddbb_bet = parseInt(record[i]["win2ddbb_bet"]);
+				win2dtbb_bet = parseInt(record[i]["win2dtbb_bet"]);
+				limittotal4d_bet = parseInt(record[i]["limittotal4d_bet"]);
+				limittotal3d_bet = parseInt(record[i]["limittotal3d_bet"]);
+				limittotal3dd_bet = parseInt(record[i]["limittotal3dd_bet"]);
+				limittotal2d_bet = parseInt(record[i]["limittotal2d_bet"]);
+				limittotal2dd_bet = parseInt(record[i]["limittotal2dd_bet"]);
+				limittotal2dt_bet = parseInt(record[i]["limittotal2dt_bet"]);
+				limitline_4d = parseInt(record[i]["limitline_4d"]);
+				limitline_3d = parseInt(record[i]["limitline_3d"]);
+				limitline_3dd = parseInt(record[i]["limitline_3dd"]);
+				limitline_2d = parseInt(record[i]["limitline_2d"]);
+				limitline_2dd = parseInt(record[i]["limitline_2dd"]);
+				limitline_2dt = parseInt(record[i]["limitline_2dt"]);
+				bbfs = parseInt(record[i]["bbfs"]);
+			}
+		} 
 	}
   	async function limittogel(e) {
 		db_form4d_4d_count_temp = 0;
@@ -1107,20 +1113,24 @@
 				permainan: e,
 			}),
 		});
-		const json = await res.json();
-		let record = json.record;
-		db_form4d_4d_count_temp = record.total_4d;
-		db_form4d_3d_count_temp = record.total_3d;
-		db_form4d_3dd_count_temp = record.total_3dd;
-		db_form4d_2d_count_temp = record.total_2d;
-		db_form4d_2dd_count_temp = record.total_2dd;
-		db_form4d_2dt_count_temp = record.total_2dt;
-		count_line_4d = count_line_4d + db_form4d_4d_count_temp;
-		count_line_3d = count_line_3d + db_form4d_3d_count_temp;
-		count_line_3dd = count_line_3dd + db_form4d_3dd_count_temp;
-		count_line_2d = count_line_2d + db_form4d_2d_count_temp;
-		count_line_2dd = count_line_2dd + db_form4d_2dd_count_temp;
-		count_line_2dt = count_line_2dt + db_form4d_2dt_count_temp;
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			db_form4d_4d_count_temp = record.total_4d;
+			db_form4d_3d_count_temp = record.total_3d;
+			db_form4d_3dd_count_temp = record.total_3dd;
+			db_form4d_2d_count_temp = record.total_2d;
+			db_form4d_2dd_count_temp = record.total_2dd;
+			db_form4d_2dt_count_temp = record.total_2dt;
+			count_line_4d = count_line_4d + db_form4d_4d_count_temp;
+			count_line_3d = count_line_3d + db_form4d_3d_count_temp;
+			count_line_3dd = count_line_3dd + db_form4d_3dd_count_temp;
+			count_line_2d = count_line_2d + db_form4d_2d_count_temp;
+			count_line_2dd = count_line_2dd + db_form4d_2dd_count_temp;
+			count_line_2dt = count_line_2dt + db_form4d_2dt_count_temp;
+		}
 	}
   	
 	function checkLimitLine(game) {
@@ -5256,36 +5266,37 @@
 		{/if}
   	</div>
 </div>
-
+<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
+<Modal_alert 
+	modal_id="my-modal-info" 
+	modal_tipe="1" 
+	modal_title="Information" 
+	modal_widthheight_class="bg-info"  
+	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
-<div class="modal " on:click|self={()=>isModalAlert = false}>
-    <div class="modal-box relative bg-content">
-        <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-lg font-bold">INFORMASI</h3>
-		<progress class="progress w-full" value="{barWidth}" max="100"></progress>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-			{@html msg_error}
-		</p>
-    </div>
-</div>
-
+<Modal_alert 
+	modal_id="my-modal-alert" 
+	modal_tipe="1" 
+	modal_title="Alert" 
+	modal_widthheight_class="bg-error" 
+	modal_bar={barWidth} 
+	modal_message="{msg_error}" />
+<input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>
+<Modal_alert 
+	modal_id="my-modal-AlertSystem" 
+	modal_widthheight_class="w-11/12 max-w-xl" 
+	modal_tipe="2" 
+	modal_title="" 
+	modal_path_url="/?token={client_token}" 
+	modal_message="
+		Maaf Saat Ini Anda TIdak Bisa Mengakses Halaman Ini <br>
+		Halaman <b>4D/3D/2D</b> Terjadi Kesalahan Sistem Harap Hubungi Administrator
+	" />
 <input type="checkbox" id="my-modal-loading" class="modal-toggle" bind:checked={isModalLoading}>
-<div class="modal">
-    <div class="modal-box w-auto grass opacity-70">
-		<svg class="lds-curve-bars" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(50,50)"><circle cx="0" cy="0" r="8.333333333333334" fill="none" stroke="#ffffcb" stroke-width="4" stroke-dasharray="26.179938779914945 26.179938779914945" transform="rotate(308.129)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="0" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="16.666666666666668" fill="none" stroke="#fac090" stroke-width="4" stroke-dasharray="52.35987755982989 52.35987755982989" transform="rotate(360)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.2" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="25" fill="none" stroke="#ff7c81" stroke-width="4" stroke-dasharray="78.53981633974483 78.53981633974483" transform="rotate(51.8709)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.4" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="33.333333333333336" fill="none" stroke="#c0f6d2" stroke-width="4" stroke-dasharray="104.71975511965978 104.71975511965978" transform="rotate(135.238)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.6" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="41.666666666666664" fill="none" stroke="#dae4bf" stroke-width="4" stroke-dasharray="130.89969389957471 130.89969389957471" transform="rotate(224.762)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
-			</circle></g>
-		</svg>
-    </div>
-</div>
+<Modal_alert 
+	modal_id="my-modal-loading" 
+	modal_widthheight_class="w-auto grass opacity-50" 
+	modal_tipe="loading" />
 
 <input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
 <div class="modal" >
