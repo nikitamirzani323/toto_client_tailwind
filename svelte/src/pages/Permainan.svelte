@@ -640,7 +640,7 @@
     {/if}
 {:else if statuspasaran == ""}
     {#if client_device == "WEBSITE"}
-        <div class="card shadow-xl bg-base-300  mt-5 rounded-md">
+        <div class="card shadow-xl bg-base-300  mt-5 rounded-md mx-2">
             <div class="card-body p-1">
                 <div class="lg:flex lg:items-start">
                     <div class="hidden lg:flex lg:self-center">
@@ -662,7 +662,7 @@
             </div>
         </div>
         
-        <div class="mt-5 gap-2 grid grid-cols-1 lg:grid-cols-2 ">
+        <div class="mt-5 gap-2 grid grid-cols-1 lg:grid-cols-2 mx-2">
             <div class="card rounded-md bg-base-200 shadow-xl select-none">
                 <div class="card-body p-3 ">
                    <Card_placeholder total_placeholder=12 />
@@ -675,7 +675,7 @@
             </div>
         </div>
     {:else}
-        <div class="mt-5 gap-2 grid grid-cols-1 lg:grid-cols-2 ">
+        <div class="mt-5 gap-2 grid grid-cols-1 lg:grid-cols-2 mx-2">
             <div class="card rounded-md bg-base-200 shadow-xl select-none">
                 <div class="card-body p-3 ">
                 <Card_placeholder total_placeholder=12 />
