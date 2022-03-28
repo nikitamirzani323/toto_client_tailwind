@@ -3957,7 +3957,7 @@
 							handleTambah("pilihan","4-3-2");
 							}} 
 						button_block="btn-block"
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					</div>
 				</div>
 			{/if}
@@ -4091,7 +4091,7 @@
 					on:click={() => {
 					handleTambah("pilihan","432SET");
 					}} 
-				button_title="Tambah"
+				button_title="Keranjang"
 				button_block="btn-block" />
 			{/if}
 			{#if panel_form_432bolakbalik}
@@ -4229,7 +4229,7 @@
 					on:click={() => {
 					handleTambah("pilihan","BBFS");
 					}} 
-				button_title="Tambah"
+				button_title="Keranjang"
 				button_block="btn-block" />
 			{/if}
 			{#if panel_form_432wap}
@@ -4246,7 +4246,7 @@
 						on:click={() => {
 						handleTambah("pilihan","wap");
 						}} 
-					button_title="Tambah"
+					button_title="Keranjang"
 					button_block="btn-block" />
 				</div>
 				<p class="text-left text-xs">
@@ -4323,7 +4323,7 @@
 					on:click={() => {
 						handleTambah("pilihan","polatarung");
 					}} 
-					button_title="Tambah"
+					button_title="Keranjang"
 					button_block="btn-block" />
 				<p class="text-left text-xs">
 					POLA TARUNG : AS KOP KEPALA EKOR <br>
@@ -4388,7 +4388,7 @@
 						handleTambah("pilihan","quick2D");
 						}} 
 					button_block="btn-block"
-					button_title="Tambah" />
+					button_title="Keranjang" />
 			{/if}
 			{#if panel_form_4323dd}
 				<div class="gap-2 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
@@ -4434,7 +4434,7 @@
 							handleTambah("pilihan","3DD");
 						}} 
 						button_tipe=""
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					</div>
 				</div>
 			{/if}
@@ -4482,7 +4482,7 @@
 							handleTambah("pilihan","2DD");
 						}} 
 						button_tipe=""
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					</div>
 				</div>
 			{/if}
@@ -4530,7 +4530,7 @@
 							handleTambah("pilihan","2DT");
 						}} 
 						button_tipe=""
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					</div>
 				</div>
 			{/if}
@@ -4658,7 +4658,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 					{/if}
 					{#if panel_form_432set}
 						<div class="mt-2 gap-2 grid grid-cols-1">
@@ -4792,7 +4792,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 					{/if}
 					{#if panel_form_432bolakbalik}
 						<div class="mt-2 gap-2 grid grid-cols-1">
@@ -4933,7 +4933,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 					{/if}
 					{#if panel_form_432wap}
 						<div class="mt-3 grid grid-cols-1">
@@ -4951,7 +4951,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm "
-							button_title="Tambah" />
+							button_title="Keranjang" />
 						</div>
 						<p class="text-left text-xs">
 							<b>Contoh (WAP) :</b><br />
@@ -5029,7 +5029,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 						<p class="text-left text-xs">
 							POLA TARUNG : AS KOP KEPALA EKOR <br>
 							<b>Contoh (POLA TARUNG) :</b><br />
@@ -5088,7 +5088,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 					{/if}
 					{#if panel_form_4323dd}
 						<div class="mt-2 gap-2 grid grid-cols-1">
@@ -5129,7 +5129,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 					{/if}
 					{#if panel_form_4322dd}
 						<div class="mt-2 gap-2 grid grid-cols-1">
@@ -5170,7 +5170,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 					{/if}
 					{#if panel_form_4322dt}
 						<div class="mt-2 gap-2 grid grid-cols-1">
@@ -5211,7 +5211,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 					{/if}
 				</div>
 			</div>

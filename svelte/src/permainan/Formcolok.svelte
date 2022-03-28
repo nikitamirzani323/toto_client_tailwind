@@ -1183,7 +1183,7 @@
 					handleTambah("colokbebas");
 					}} 
 				button_tipe=""
-				button_title="Tambah" />
+				button_title="Keranjang" />
 			{/if}
 			{#if panel_form_colokmacau}
 				<div class="gap-2 grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
@@ -1247,7 +1247,7 @@
 					handleTambah("colokmacau");
 					}} 
 				button_tipe=""
-				button_title="Tambah" />
+				button_title="Keranjang" />
 			{/if}
 			{#if panel_form_coloknaga}
 				<div class="gap-2 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3">
@@ -1326,7 +1326,7 @@
 					handleTambah("coloknaga");
 					}} 
 				button_tipe=""
-				button_title="Tambah" />
+				button_title="Keranjang" />
 			{/if}
 			{#if panel_form_colokjitu}
 				<div class="gap-2 grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2">
@@ -1390,7 +1390,7 @@
 					handleTambah("colokjitu");
 					}} 
 				button_tipe=""
-				button_title="Tambah" />
+				button_title="Keranjang" />
 			{/if}
 			{#if panel_form_polacolok}
 				<div class="form-control">
@@ -1470,7 +1470,7 @@
 					handleTambah("polacolok");
 					}} 
 				button_tipe=""
-				button_title="Tambah" />
+				button_title="Keranjang" />
 			{/if}
       	{:else}
 			<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
@@ -1574,7 +1574,7 @@
 							}} 
 						button_tipe=""
 						button_block="btn-sm btn-block"
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					{/if}
 					{#if panel_form_colokmacau}
 						<div class="mt-2 gap-1 grid grid-cols-2">
@@ -1633,7 +1633,7 @@
 								}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 						</div>
 					{/if}
 					{#if panel_form_coloknaga}
@@ -1704,7 +1704,7 @@
 								}} 
 						button_tipe=""
 						button_block="btn-sm btn-block"
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					{/if}
 					{#if panel_form_colokjitu}
 						<div class="mt-2 gap-2 grid grid-cols-2">
@@ -1762,7 +1762,7 @@
 							}} 
 						button_tipe=""
 						button_block="btn-sm btn-block"
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					{/if}
 					{#if panel_form_polacolok}
 						<div class="form-control mt-2">
@@ -1840,7 +1840,7 @@
 								handleTambah("polacolok");
 								}} 
 							button_tipe=""
-							button_title="Tambah" />
+							button_title="Keranjang" />
 						</div>
 					{/if}
 				</div>

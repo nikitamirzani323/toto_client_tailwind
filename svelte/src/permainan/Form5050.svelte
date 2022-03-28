@@ -1194,7 +1194,7 @@
 							}} 
 						button_tipe=""
 						button_block="btn-sm btn-block"
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					{/if}
 					{#if panel_form_5050special}
 						<div class="mt-2 gap-2 grid grid-cols-2">
@@ -1252,7 +1252,7 @@
 							}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
-							button_title="Tambah" />
+							button_title="Keranjang" />
 					{/if}
 					{#if panel_form_5050kombinasi}
 						<div class="mt-2 gap-2 grid grid-cols-2">
@@ -1310,7 +1310,7 @@
 							}} 
 						button_tipe=""
 						button_block="btn-sm btn-block"
-						button_title="Tambah" />
+						button_title="Keranjang" />
 					{/if}
 					
 				</div>

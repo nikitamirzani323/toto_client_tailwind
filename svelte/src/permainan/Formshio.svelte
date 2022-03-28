@@ -390,7 +390,7 @@
 				}} 
 			button_tipe=""
 			button_block="btn-block"
-			button_title="Tambah" />
+			button_title="Keranjang" />
 		
       	{:else}
 			<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
@@ -460,7 +460,7 @@
 						}} 
 					button_tipe=""
 					button_block="btn-sm btn-block"
-					button_title="Tambah" />
+					button_title="Keranjang" />
 				</div>
 			</div>
       	{/if}
