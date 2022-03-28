@@ -11,6 +11,7 @@
         themeChange(false)
     }) 
     export let path_api = "";
+    export let pasaran_code = "";
     export let client_token = "";
     export let client_company = "";
     export let client_username = "client";
@@ -468,6 +469,13 @@
          text-base-content shadow-sm">
         <div class="navbar w-full max-w-full">
             <div class="navbar-start">
+                {#if pasaran_code != ""}
+                <a href="/?token={client_token}" class="btn btn-ghost">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                    </svg> 
+                </a>
+                {/if}
             </div>
             <div class="navbar-center text-center">
                 <a href="/?token={client_token}" class="btn btn-ghost">
@@ -491,7 +499,7 @@
             </div>
         </div>
     </div>
-    <div class="p-0 mt-1 mb-2 mx-1  card bg-base-300 shadow-xl rounded-none">
+    <div class="p-0 mt-1 mb-2 mx-2 card bg-base-300 shadow-xl rounded-none">
         <div class="card-body p-3">
             <p class="text-xs lg:text-sm">
                 Asia/Jakarta<br>{clockmachine} WIB (+7)<br>
@@ -504,7 +512,7 @@
                     on:click={() => {
                         call_result();
                     }}   
-                     class="btn btn-xs bg-base-300 border-none shadow-sm shadow-green-500/50">RESULT</label>
+                    class="btn btn-xs bg-base-300 border-none shadow-sm shadow-green-500/50">RESULT</label>
                 <label
                     on:click={() => {
                         call_allinvoice();

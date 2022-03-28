@@ -187,6 +187,7 @@
     {#if token_browser != "" || client_token != ""}
         <Navbar
           {path_api}
+          {pasaran_code}
           {client_token}
           {client_company}
           {client_username}

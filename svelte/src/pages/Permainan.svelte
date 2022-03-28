@@ -590,8 +590,8 @@
                     {permainan_title}/>
             {/if}
         {:else}
-            <div class="card rounded-md bg-base-200 shadow-xl mt-3" >
-                <div class="card-body p-3">
+            <div class="card rounded-md bg-base-200 shadow-xl mt-3 mx-2 h-[800px]" >
+                <div class="card-body p-3 h-[900px]">
                     <h2 class="card-title text-xs grid grid-cols-2 gap-4">
                         <div class="place-content-start text-left">
                             TOTAL BET : <span class="text-xs link-accent">{new Intl.NumberFormat().format(totalbet_invoice)}</span>
@@ -602,11 +602,11 @@
                     </h2>
                     <input
                         bind:value={searchNomor}
-                        class="input w-full max-w-full rounded-sm"
+                        class="input w-full max-w-full rounded-sm text-xs lg:text-sm"
                         placeholder="Search Nomor" 
                         type="text" name="" id="">
                         
-                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-[50rem]">
+                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-[900px]">
                         <table class="table table-zebra w-full" >
                             <thead>
                                 <tr>
@@ -671,6 +671,19 @@
             <div class="card rounded-md bg-base-200 shadow-xl select-none">
                 <div class="card-body p-3 ">
                    <Card_placeholder total_placeholder=12 />
+                </div>
+            </div>
+        </div>
+    {:else}
+        <div class="mt-5 gap-2 grid grid-cols-1 lg:grid-cols-2 ">
+            <div class="card rounded-md bg-base-200 shadow-xl select-none">
+                <div class="card-body p-3 ">
+                <Card_placeholder total_placeholder=12 />
+                </div>
+            </div>
+            <div class="card rounded-md bg-base-200 shadow-xl select-none">
+                <div class="card-body p-3 ">
+                <Card_placeholder total_placeholder=12 />
                 </div>
             </div>
         </div>

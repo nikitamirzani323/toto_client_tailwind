@@ -144,10 +144,15 @@
     $: {
         count_line = count_line_4d +count_line_3d +count_line_3dd +count_line_2d +count_line_2dd +count_line_2dt;
     }
-    
+    let class_card_table_keranjang = "mt-5";
+    if(client_device == "WEBSITE"){
+        class_card_table_keranjang = "mt-5";
+    }else{
+        class_card_table_keranjang = "mt-2";
+    }
 </script>
 
-<div class="card bg-base-200 shadow-xl mt-5 rounded-md {card_custom}">
+<div class="card bg-base-200 shadow-xl {class_card_table_keranjang} rounded-md {card_custom}">
     <div class="card-body p-3 select-none">
         {#if client_device == "WEBSITE"}
             <h2 class="card-title text-lg grid grid-cols-2 gap-4">
