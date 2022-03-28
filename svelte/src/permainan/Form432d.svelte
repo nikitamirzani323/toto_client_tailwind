@@ -3853,7 +3853,7 @@
 				</div>
 				<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 			</h2>
-			<div class="relative flex scrollbar-thin hover:scrollbar-thumb-green-300  overflow-y-scroll h-16 cursor-pointer">
+			<div class="relative flex  scrollbar-thin hover:scrollbar-thumb-green-300 overflow-x-scroll  h-16 cursor-pointer">
 				<ul class="flex items-center select-none">
 					<li>
 					<span

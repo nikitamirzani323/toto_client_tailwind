@@ -23,7 +23,6 @@
 	let class_tab_coloknaga = "";
 	let class_tab_colokjitu = "";
 	let class_tab_polacolok = "";
-	let class_tab_432quick2d = "";
 	let panel_form_colokbebas = true;
 	let panel_form_colokmacau = false;
 	let panel_form_coloknaga = false;
@@ -125,7 +124,6 @@
 				class_tab_coloknaga = "";
 				class_tab_colokjitu = "";
 				class_tab_polacolok = "";
-				class_tab_432quick2d = "";
 				panel_form_colokbebas = true;
 				panel_form_colokmacau = false;
 				panel_form_coloknaga = false;
@@ -139,7 +137,6 @@
 				class_tab_coloknaga = "";
 				class_tab_colokjitu = "";
 				class_tab_polacolok = "";
-				class_tab_432quick2d = "";
 				panel_form_colokbebas = false;
 				panel_form_colokmacau = true;
 				panel_form_coloknaga = false;
@@ -153,7 +150,6 @@
 				class_tab_coloknaga = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
 				class_tab_colokjitu = "";
 				class_tab_polacolok = "";
-				class_tab_432quick2d = "";
 				panel_form_colokbebas = false;
 				panel_form_colokmacau = false;
 				panel_form_coloknaga = true;
@@ -167,7 +163,6 @@
 				class_tab_coloknaga = "p";
 				class_tab_colokjitu = "y-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
 				class_tab_polacolok = "";
-				class_tab_432quick2d = "";
 				panel_form_colokbebas = false;
 				panel_form_colokmacau = false;
 				panel_form_coloknaga = false;
@@ -181,7 +176,6 @@
 				class_tab_coloknaga = "p";
 				class_tab_colokjitu = "";
 				class_tab_polacolok = "y-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
-				class_tab_432quick2d = "";
 				panel_form_colokbebas = false;
 				panel_form_colokmacau = false;
 				panel_form_coloknaga = false;
@@ -1096,7 +1090,7 @@
 				</div>
 				<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 			</h2>
-			<div class="relative flex scrollbar-thin hover:scrollbar-thumb-green-300  overflow-y-scroll h-16 cursor-pointer">
+			<div class="relative flex scrollbar-thin hover:scrollbar-thumb-green-300  overflow-x-scroll h-16 cursor-pointer">
 				<ul class="flex items-center">
 					<li>
 					<span
@@ -1169,7 +1163,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="3"
-							maxlength="9"
+							maxlength="{max_bet_colokbebas.toString().length}"
 							type="text" placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -1234,7 +1228,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboardcolokmacau_checkenter} 
 						minlength="3"
-						maxlength="9"
+						maxlength="{max_bet_colokmacau.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
@@ -1313,7 +1307,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboardcoloknaga_checkenter} 
 						minlength="3"
-						maxlength="9"
+						maxlength="{max_bet_coloknaga.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
@@ -1377,7 +1371,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboardcolokjitu_checkenter} 
 						minlength="3"
-						maxlength="9"
+						maxlength="{max_bet_colokjitu.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
@@ -1420,7 +1414,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardpolacolok_checkenter} 
 							minlength="3"
-							maxlength="9"
+							maxlength="{max_bet_colokbebas.toString().length}"
 							type="text" placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -1438,7 +1432,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardpolacolok_checkenter} 
 							minlength="3"
-							maxlength="9"
+							maxlength="{max_bet_colokmacau.toString().length}"
 							type="text" placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -1456,7 +1450,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboardpolacolok_checkenter} 
 							minlength="3"
-							maxlength="9"
+							maxlength="{max_bet_coloknaga.toString().length}"
 							type="text" placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -1559,7 +1553,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="3"
-									maxlength="9"
+									maxlength="{max_bet_colokbebas.toString().length}"
 									type="text" placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -1618,7 +1612,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboardcolokmacau_checkenter} 
 								minlength="3"
-								maxlength="9"
+								maxlength="{max_bet_colokmacau.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
@@ -1690,7 +1684,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboardcoloknaga_checkenter} 
 								minlength="3"
-								maxlength="9"
+								maxlength="{max_bet_coloknaga.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
@@ -1748,7 +1742,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboardcolokjitu_checkenter} 
 								minlength="3"
-								maxlength="9"
+								maxlength="{max_bet_colokjitu.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
@@ -1788,7 +1782,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardpolacolok_checkenter} 
 									minlength="3"
-									maxlength="9"
+									maxlength="{max_bet_colokbebas.toString().length}"
 									type="text" placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -1806,7 +1800,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardpolacolok_checkenter} 
 									minlength="3"
-									maxlength="9"
+									maxlength="{max_bet_colokmacau.toString().length}"
 									type="text" placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
@@ -1824,7 +1818,7 @@
 									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboardpolacolok_checkenter} 
 									minlength="3"
-									maxlength="9"
+									maxlength="{max_bet_coloknaga.toString().length}"
 									type="text" placeholder="Bet" 
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">

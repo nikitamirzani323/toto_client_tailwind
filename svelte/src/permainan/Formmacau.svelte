@@ -416,7 +416,7 @@
 					on:keyup={handleKeyboard_number}
 					on:keypress={handleKeyboard_checkenter} 
 					minlength="3"
-					maxlength="9"
+					maxlength="{max_bet.toString().length}"
 					type="text" placeholder="Bet" 
 					class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 				<label class="label">
@@ -492,7 +492,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="3"
-							maxlength="9"
+							maxlength="{max_bet.toString().length}"
 							type="text" placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">

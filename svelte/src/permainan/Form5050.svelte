@@ -903,7 +903,7 @@
 				</div>
 				<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 			</h2>
-			<div class="relative flex scrollbar-thin hover:scrollbar-thumb-green-300 hover:scrollbar-track-green-100 overflow-y-scroll h-16 cursor-pointer">
+			<div class="relative flex scrollbar-thin hover:scrollbar-thumb-green-300 overflow-x-scroll h-16 cursor-pointer">
 				<ul class="flex items-center">
 					<li>
 					<span
@@ -963,7 +963,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="3"
-							maxlength="9"
+							maxlength="{max_bet_5050umum.toString().length}"
 							type="text" placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -1027,7 +1027,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboardspecial_checkenter} 
 						minlength="3"
-						maxlength="9"
+						maxlength="{max_bet_5050special.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
@@ -1090,7 +1090,7 @@
 						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboardkombinasi_checkenter} 
 						minlength="3"
-						maxlength="9"
+						maxlength="{max_bet_5050kombinasi.toString().length}"
 						type="text" placeholder="Bet" 
 						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
@@ -1180,7 +1180,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard_checkenter} 
 								minlength="3"
-								maxlength="9"
+								maxlength="{max_bet_5050umum.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
@@ -1238,7 +1238,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboardspecial_checkenter} 
 								minlength="3"
-								maxlength="9"
+								maxlength="{max_bet_5050special.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
@@ -1296,7 +1296,7 @@
 								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboardkombinasi_checkenter} 
 								minlength="3"
-								maxlength="9"
+								maxlength="{max_bet_5050kombinasi.toString().length}"
 								type="text" placeholder="Bet" 
 								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
