@@ -48,7 +48,6 @@
 	let dispatch = createEventDispatcher();
 	let isModalAlert = false
 	let isModalAlertSystem = false
-	let isModalInfo = false
 	let isModalLoading = false
 	let flag_fulldiskon = ""
 	let msg_error = ""
@@ -60,15 +59,11 @@
 	const animate = () => {
 		barWidth++;
   	}
-  	const handleTambah = (e) => {
-		switch (e) {
-			case "dasar":
-				if (select_dasar == "" && parseInt(bet_dasar) < min_bet) {
-					select_dasar_input.focus();
-				} else {
-					formdasar_add();
-				}
-				break;
+  	const handleTambah = () => {
+		if (select_dasar == "" && parseInt(bet_dasar) < min_bet) {
+			select_dasar_input.focus();
+		} else {
+			formdasar_add();
 		}
   	};
   	
@@ -158,7 +153,7 @@
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
 						}
 						if(msg_error != ""){
-							isModalInfo = true;
+							isModalAlert = true;
 							loader_timeout();
 						}
 						dispatch("handleInvoice", "call");
@@ -309,13 +304,9 @@
 	
  	
   	const handleKeyboard_number = (e) => {
-    	let numbera;
-		for (let i = 0; i < bet_dasar.length; i++) {
-			numbera = parseInt(bet_dasar[i]);
-			if (isNaN(numbera)) {
-				bet_dasar = "";
-			}
-		}
+    	if (isNaN(parseInt(e.key))) {
+      		return e.target.value = "";
+    	}
   	}
   	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
@@ -410,7 +401,7 @@
 			
 			<Button_custom1 
 				on:click={() => {
-				handleTambah("dasar");
+				handleTambah();
 				}} 
 			button_block="btn-block"
 			button_title="Keranjang" />
@@ -471,7 +462,7 @@
 					</div>
 					<Button_custom1 
 						on:click={() => {
-						handleTambah("dasar");
+						handleTambah();
 						}} 
 					button_block="btn-sm btn-block"
 					button_tipe=""
@@ -482,23 +473,14 @@
   </div>
 </div>
 
-<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
-<Modal_alert 
-	modal_id="my-modal-info" 
-	modal_tipe="1" 
-	modal_title="Information" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-info"  
-	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <Modal_alert 
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
-	modal_title="Alert" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-error"  
+	modal_title="Information" 
+	modal_title_class="text-white" 
+	modal_p_class="text-white" 
+	modal_widthheight_class="" 
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>

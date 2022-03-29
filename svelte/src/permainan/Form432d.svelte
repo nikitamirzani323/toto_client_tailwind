@@ -180,7 +180,6 @@
 	let isModalAlertSystem = false
 	let isModalAlert = false
 	let isModalAlertTabPermainan = false
-	let isModalInfo = false
 	let isModalAPilihan = false
 	let isModalLoading = false
 	let flag_fulldiskon = "DISC"
@@ -989,7 +988,7 @@
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
 						}
 						if(msg_error != ""){
-							isModalInfo = true;
+							isModalAlert = true;
 							loader_timeout();
 						}
 						dispatch("handleInvoice", "call");
@@ -3611,160 +3610,10 @@
 	}
   
 	const handleKeyboard_number = (e) => {
-		let numbera;
-		for (let i = 0; i < bet_432.length; i++) {
-			numbera = parseInt(bet_432[i]);
-			if (isNaN(numbera)) {
-				bet_432 = "";
-			}
-		}
-		for (let i = 0; i < bet_3dd.length; i++) {
-			numbera = parseInt(bet_3dd[i]);
-			if (isNaN(numbera)) {
-				bet_3dd = "";
-			}
-		}
-		for (let i = 0; i < betset_1.length; i++) {
-			numbera = parseInt(betset_1[i]);
-			if (isNaN(numbera)) {
-				betset_1 = "";
-			}
-		}
-		for (let i = 0; i < betset_2.length; i++) {
-			numbera = parseInt(betset_2[i]);
-			if (isNaN(numbera)) {
-				betset_2 = "";
-			}
-		}
-		for (let i = 0; i < betset_3.length; i++) {
-			numbera = parseInt(betset_3[i]);
-			if (isNaN(numbera)) {
-				betset_3 = "";
-			}
-		}
-		for (let i = 0; i < betset_4.length; i++) {
-			numbera = parseInt(betset_4[i]);
-			if (isNaN(numbera)) {
-				betset_4 = "";
-			}
-		}
-		for (let i = 0; i < betset_5.length; i++) {
-			numbera = parseInt(betset_5[i]);
-			if (isNaN(numbera)) {
-				betset_5 = "";
-			}
-		}
-		for (let i = 0; i < betset_6.length; i++) {
-			numbera = parseInt(betset_6[i]);
-			if (isNaN(numbera)) {
-				betset_6 = "";
-			}
-		}
-		for (let i = 0; i < bet_1.length; i++) {
-			numbera = parseInt(bet_1[i]);
-			if (isNaN(numbera)) {
-				bet_1 = "";
-			}
-		}
-		for (let i = 0; i < bet_2.length; i++) {
-			numbera = parseInt(bet_2[i]);
-			if (isNaN(numbera)) {
-				bet_2 = "";
-			}
-		}
-		for (let i = 0; i < bet_3.length; i++) {
-			numbera = parseInt(bet_3[i]);
-			if (isNaN(numbera)) {
-				bet_3 = "";
-			}
-		}
-		for (let i = 0; i < bet_4.length; i++) {
-			numbera = parseInt(bet_4[i]);
-			if (isNaN(numbera)) {
-				bet_4 = "";
-			}
-		}
-		for (let i = 0; i < bet_5.length; i++) {
-			numbera = parseInt(bet_5[i]);
-			if (isNaN(numbera)) {
-				bet_5 = "";
-			}
-		}
-		for (let i = 0; i < bet_6.length; i++) {
-			numbera = parseInt(bet_6[i]);
-			if (isNaN(numbera)) {
-				bet_6 = "";
-			}
-		}
-		
-		for (let i = 0; i < bet_2dd.length; i++) {
-			numbera = parseInt(bet_2dd[i]);
-			if (isNaN(numbera)) {
-				bet_2dd = "";
-			}
-		}
-		for (let i = 0; i < bet_2dt.length; i++) {
-			numbera = parseInt(bet_2dt[i]);
-			if (isNaN(numbera)) {
-				bet_2dt = "";
-			}
-		}
-		for (let i = 0; i < nomorbbfs.length; i++) {
-			numbera = parseInt(nomorbbfs[i]);
-			if (isNaN(numbera)) {
-				nomorbbfs = "";
-			}
-		}
-		for (let i = 0; i < nomor2dd.length; i++) {
-			numbera = parseInt(nomor2dd[i]);
-			if (isNaN(numbera)) {
-				nomor2dd = "";
-			}
-		}
-		for (let i = 0; i < nomor2dt.length; i++) {
-			numbera = parseInt(nomor2dt[i]);
-			if (isNaN(numbera)) {
-				nomor2dt = "";
-			}
-		}
-		for (let i = 0; i < quick_bet.length; i++) {
-			numbera = parseInt(quick_bet[i]);
-			if (isNaN(numbera)) {
-				quick_bet = "";
-			}
-		}
-		for (let i = 0; i < nomoras.length; i++) {
-			numbera = parseInt(nomoras[i]);
-			if (isNaN(nomoras)) {
-				nomoras = "";
-			}
-		}
-		for (let i = 0; i < nomorkop.length; i++) {
-			numbera = parseInt(nomorkop[i]);
-			if (isNaN(nomorkop)) {
-				nomorkop = "";
-			}
-		}
-		for (let i = 0; i < nomorkepala.length; i++) {
-			numbera = parseInt(nomorkepala[i]);
-			if (isNaN(nomorkepala)) {
-				nomorkepala = "";
-			}
-		}
-		for (let i = 0; i < nomorekor.length; i++) {
-			numbera = parseInt(nomorekor[i]);
-			if (isNaN(nomorekor)) {
-				nomorekor = "";
-			}
-		}
-		for (let i = 0; i < bet_tarung.length; i++) {
-			numbera = parseInt(bet_tarung[i]);
-			if (isNaN(bet_tarung)) {
-				bet_tarung = "";
-			}
-		}
+		if (isNaN(parseInt(e.key))) {
+      		return e.target.value = "";
+    	}
 	}
-  
 	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
 		if (keyCode === 13) {
@@ -3852,7 +3701,6 @@
 		nomor2dt = "";
 		bet_2dt = "";
 	}
-  
 	let form_font_sizelabel_default = "text-xs"
 	let form_font_sizeinput_default = "text-lg"
 	if(client_device == "WEBSITE"){
@@ -5266,23 +5114,15 @@
 		{/if}
   	</div>
 </div>
-<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
-<Modal_alert 
-	modal_id="my-modal-info" 
-	modal_tipe="1" 
-	modal_title="Information" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-info"  
-	modal_message="{msg_error}" />
+
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <Modal_alert 
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
-	modal_title="Alert" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-error" 
+	modal_title="Information" 
+	modal_title_class="text-white" 
+	modal_p_class="text-white" 
+	modal_widthheight_class="" 
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>

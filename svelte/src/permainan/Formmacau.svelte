@@ -48,10 +48,8 @@
 
 	let dispatch = createEventDispatcher();
 	let isModalAlert = false
-	let isModalAlertTabPermainan = false
 	let isModalAlertSystem = false
 	let isModalLoading = false
-	let isModalInfo = false
 	let flag_fulldiskon = ""
 	let msg_error = ""
 	let barWidth = 0;
@@ -62,15 +60,11 @@
 	const animate = () => {
 		barWidth++;
   	}
-  	const handleTambah = (e) => {
-		switch (e) {
-			case "macaukombinasi":
-				if (select_kombinasi_1 == "" && select_kombinasi_2 == "" && select_kombinasi_3 == "" && parseInt(bet_kombinasi) < min_bet) {
-					select_kombinasi_1_input.focus();
-				} else {
-					formkombinasi_add();
-				}
-				break;
+  	const handleTambah = () => {
+		if (select_kombinasi_1 == "" && select_kombinasi_2 == "" && select_kombinasi_3 == "" && parseInt(bet_kombinasi) < min_bet) {
+			select_kombinasi_1_input.focus();
+		} else {
+			formkombinasi_add();
 		}
   	};
   	
@@ -160,7 +154,7 @@
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
 						}
 						if(msg_error != ""){
-							isModalInfo = true;
+							isModalAlert = true;
 							loader_timeout();
 						}
 						dispatch("handleInvoice", "call");
@@ -299,13 +293,9 @@
 	
  	
   	const handleKeyboard_number = (e) => {
-    	let numbera;
-		for (let i = 0; i < bet_kombinasi.length; i++) {
-			numbera = parseInt(bet_kombinasi[i]);
-			if (isNaN(numbera)) {
-				bet_kombinasi = "";
-			}
-		}
+    	if (isNaN(parseInt(e.key))) {
+      		return e.target.value = "";
+    	}
   	}
   	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
@@ -425,7 +415,7 @@
 			</div>
 			<Button_custom1 
 			  on:click={() => {
-			  handleTambah("macaukombinasi");
+			  handleTambah();
 			  }} 
 			button_block="btn-block"
 			button_title="Keranjang" />
@@ -501,7 +491,7 @@
 					</div>
 					<Button_custom1 
 						on:click={() => {
-						handleTambah("macaukombinasi");
+						handleTambah();
 						}} 
 					button_tipe=""
 					button_block="btn-sm btn-block"
@@ -512,23 +502,14 @@
 	</div>
 </div>
 
-<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
-<Modal_alert 
-	modal_id="my-modal-info" 
-	modal_tipe="1" 
-	modal_title="Information" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-info"  
-	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <Modal_alert 
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
-	modal_title="Alert" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-error"  
+	modal_title="Information" 
+	modal_title_class="text-white" 
+	modal_p_class="text-white" 
+	modal_widthheight_class="" 
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>

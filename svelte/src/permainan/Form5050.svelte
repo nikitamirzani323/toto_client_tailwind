@@ -142,7 +142,6 @@
 	let dispatch = createEventDispatcher();
 	let isModalAlert = false
 	let isModalAlertSystem = false
-	let isModalInfo = false
 	let isModalLoading = false
 	let flag_fulldiskon = ""
 	let msg_error = ""
@@ -333,7 +332,7 @@
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
 						}
 						if(msg_error != ""){
-							isModalInfo = true;
+							isModalAlert = true;
 							loader_timeout();
 						}
 						dispatch("handleInvoice", "call");
@@ -815,25 +814,9 @@
 	
  	
   	const handleKeyboard_number = (e) => {
-    	let numbera;
-		for (let i = 0; i < bet_5050umum.length; i++) {
-			numbera = parseInt(bet_5050umum[i]);
-			if (isNaN(numbera)) {
-				bet_5050umum = "";
-			}
-		}
-		for (let i = 0; i < bet_5050special.length; i++) {
-			numbera = parseInt(bet_5050special[i]);
-			if (isNaN(numbera)) {
-				bet_5050special = "";
-			}
-		}
-		for (let i = 0; i < bet_5050kombinasi.length; i++) {
-			numbera = parseInt(bet_5050kombinasi[i]);
-			if (isNaN(numbera)) {
-				bet_5050kombinasi = "";
-			}
-		}
+		if (isNaN(parseInt(e.key))) {
+      		return e.target.value = "";
+    	}
   	}
   	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
@@ -1321,23 +1304,14 @@
   	</div>
 </div>
 
-<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
-<Modal_alert 
-	modal_id="my-modal-info" 
-	modal_tipe="1" 
-	modal_title="Information" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-info"  
-	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <Modal_alert 
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
-	modal_title="Alert" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-error"  
+	modal_title="Information" 
+	modal_title_class="text-white" 
+	modal_p_class="text-white" 
+	modal_widthheight_class="" 
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>

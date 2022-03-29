@@ -105,7 +105,6 @@
 
 	let dispatch = createEventDispatcher();
 	let isModalAlertSystem = false
-	let isModalInfo = false
 	let isModalAlert = false
 	let isModalLoading = false
 	let flag_fulldiskon = ""
@@ -369,7 +368,7 @@
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
 						}
 						if(msg_error != ""){
-							isModalInfo = true;
+							isModalAlert = true;
 							loader_timeout();
 						}
 						dispatch("handleInvoice", "call");
@@ -899,101 +898,10 @@
 	}
 	inittogel_432d("colok");
 	
- 	const handleKeyboard_format = (e) => {
-    	let numbera;
-		for (let i = 0; i < nomor_colokbebas.length; i++) {
-			numbera = parseInt(nomor_colokbebas[i]);
-			if (isNaN(numbera)) {
-				nomor_colokbebas = "";
-			}
-		}
-		for (let i = 0; i < nomor_colokmacau_1.length; i++) {
-			numbera = parseInt(nomor_colokmacau_1[i]);
-			if (isNaN(numbera)) {
-				nomor_colokmacau_1 = "";
-			}
-		}
-		for (let i = 0; i < nomor_colokmacau_2.length; i++) {
-			numbera = parseInt(nomor_colokmacau_2[i]);
-			if (isNaN(numbera)) {
-				nomor_colokmacau_2 = "";
-			}
-		}
-		for (let i = 0; i < nomor_coloknaga_1.length; i++) {
-			numbera = parseInt(nomor_coloknaga_1[i]);
-			if (isNaN(numbera)) {
-				nomor_coloknaga_1 = "";
-			}
-		}
-		for (let i = 0; i < nomor_coloknaga_2.length; i++) {
-			numbera = parseInt(nomor_coloknaga_2[i]);
-			if (isNaN(numbera)) {
-				nomor_coloknaga_2 = "";
-			}
-		}
-		for (let i = 0; i < nomor_coloknaga_3.length; i++) {
-			numbera = parseInt(nomor_coloknaga_3[i]);
-			if (isNaN(numbera)) {
-				nomor_coloknaga_3 = "";
-			}
-		}
-		for (let i = 0; i < nomor_colokjitu.length; i++) {
-			numbera = parseInt(nomor_colokjitu[i]);
-			if (isNaN(numbera)) {
-				nomor_colokjitu = "";
-			}
-		}
-  	}
   	const handleKeyboard_number = (e) => {
-    	let numbera;
-		for (let i = 0; i < bet_colokbebas.length; i++) {
-			numbera = parseInt(bet_colokbebas[i]);
-			if (isNaN(numbera)) {
-				bet_colokbebas = "";
-			}
-		}
-		for (let i = 0; i < bet_colokmacau.length; i++) {
-			numbera = parseInt(bet_colokmacau[i]);
-			if (isNaN(numbera)) {
-				bet_colokmacau = "";
-			}
-		}
-		for (let i = 0; i < bet_coloknaga.length; i++) {
-			numbera = parseInt(bet_coloknaga[i]);
-			if (isNaN(numbera)) {
-				bet_coloknaga = "";
-			}
-		}
-		for (let i = 0; i < bet_colokjitu.length; i++) {
-			numbera = parseInt(bet_colokjitu[i]);
-			if (isNaN(numbera)) {
-				bet_colokjitu = "";
-			}
-		}
-		for (let i = 0; i < nomor_polacolok.length; i++) {
-			numbera = parseInt(nomor_polacolok[i]);
-			if (isNaN(numbera)) {
-				nomor_polacolok = "";
-			}
-		}
-		for (let i = 0; i < bet_polacolokbebas.length; i++) {
-			numbera = parseInt(bet_polacolokbebas[i]);
-			if (isNaN(numbera)) {
-				bet_polacolokbebas = "";
-			}
-		}
-		for (let i = 0; i < bet_polacolokmacau.length; i++) {
-			numbera = parseInt(bet_polacolokmacau[i]);
-			if (isNaN(numbera)) {
-				bet_polacolokmacau = "";
-			}
-		}
-		for (let i = 0; i < bet_polacoloknaga.length; i++) {
-			numbera = parseInt(bet_polacoloknaga[i]);
-			if (isNaN(numbera)) {
-				bet_polacoloknaga = "";
-			}
-		}
+    	if (isNaN(parseInt(e.key))) {
+      		return e.target.value = "";
+    	}
   	}
   	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
@@ -1140,7 +1048,7 @@
 							autofocus
 							bind:this={nomor_colokbebas_input}
 							bind:value={nomor_colokbebas}
-							on:keyup={handleKeyboard_format}
+							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="1"
 							maxlength="1"
@@ -1189,7 +1097,7 @@
 							autofocus
 							bind:this={nomor_colokmacau_1_input}
 							bind:value={nomor_colokmacau_1}
-							on:keyup={handleKeyboard_format}
+							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="1"
 							maxlength="1"
@@ -1204,7 +1112,7 @@
 						<input
 							bind:this={nomor_colokmacau_2_input}
 							bind:value={nomor_colokmacau_2}
-							on:keyup={handleKeyboard_format}
+							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="1"
 							maxlength="1"
@@ -1253,7 +1161,7 @@
 							autofocus
 							bind:this={nomor_coloknaga_1_input}
 							bind:value={nomor_coloknaga_1}
-							on:keyup={handleKeyboard_format}
+							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="1"
 							maxlength="1"
@@ -1268,7 +1176,7 @@
 						<input
 							bind:this={nomor_coloknaga_2_input}
 							bind:value={nomor_coloknaga_2}
-							on:keyup={handleKeyboard_format}
+							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="1"
 							maxlength="1"
@@ -1283,7 +1191,7 @@
 						<input
 							bind:this={nomor_coloknaga_3_input}
 							bind:value={nomor_coloknaga_3}
-							on:keyup={handleKeyboard_format}
+							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="1"
 							maxlength="1"
@@ -1332,7 +1240,7 @@
 							autofocus
 							bind:this={nomor_colokjitu_input}
 							bind:value={nomor_colokjitu}
-							on:keyup={handleKeyboard_format}
+							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="1"
 							maxlength="1"
@@ -1395,7 +1303,7 @@
 						autofocus
 						bind:this={nomor_polacolok_input}
 						bind:value={nomor_polacolok}
-						on:keyup={handleKeyboard_format}
+						on:keyup={handleKeyboard_number}
 						on:keypress={handleKeyboard_checkenter} 
 						minlength="4"
 						maxlength="7"
@@ -1530,7 +1438,7 @@
 								<input
 									bind:this={nomor_colokbebas_input}
 									bind:value={nomor_colokbebas}
-									on:keyup={handleKeyboard_format}
+									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="1"
 									maxlength="1"
@@ -1576,7 +1484,7 @@
 								<input
 									bind:this={nomor_colokmacau_1_input}
 									bind:value={nomor_colokmacau_1}
-									on:keyup={handleKeyboard_format}
+									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="1"
 									maxlength="1"
@@ -1588,7 +1496,7 @@
 								<input
 									bind:this={nomor_colokmacau_2_input}
 									bind:value={nomor_colokmacau_2}
-									on:keyup={handleKeyboard_format}
+									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="1"
 									maxlength="1"
@@ -1636,7 +1544,7 @@
 								<input
 									bind:this={nomor_coloknaga_1_input}
 									bind:value={nomor_coloknaga_1}
-									on:keyup={handleKeyboard_format}
+									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="1"
 									maxlength="1"
@@ -1648,7 +1556,7 @@
 								<input
 									bind:this={nomor_coloknaga_2_input}
 									bind:value={nomor_coloknaga_2}
-									on:keyup={handleKeyboard_format}
+									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="1"
 									maxlength="1"
@@ -1660,7 +1568,7 @@
 								<input
 									bind:this={nomor_coloknaga_3_input}
 									bind:value={nomor_coloknaga_3}
-									on:keyup={handleKeyboard_format}
+									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="1"
 									maxlength="1"
@@ -1706,7 +1614,7 @@
 								<input
 									bind:this={nomor_colokjitu_input}
 									bind:value={nomor_colokjitu}
-									on:keyup={handleKeyboard_format}
+									on:keyup={handleKeyboard_number}
 									on:keypress={handleKeyboard_checkenter} 
 									minlength="1"
 									maxlength="1"
@@ -1763,7 +1671,7 @@
 							<input
 								bind:this={nomor_polacolok_input}
 								bind:value={nomor_polacolok}
-								on:keyup={handleKeyboard_format}
+								on:keyup={handleKeyboard_number}
 								on:keypress={handleKeyboard_checkenter} 
 								minlength="4"
 								maxlength="7"
@@ -1843,23 +1751,14 @@
   </div>
 </div>
 
-<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
-<Modal_alert 
-	modal_id="my-modal-info" 
-	modal_tipe="1" 
-	modal_title="Information" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-info"  
-	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <Modal_alert 
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
-	modal_title="Alert" 
-	modal_title_class="text-black" 
-	modal_p_class="text-black" 
-	modal_widthheight_class="bg-error"
+	modal_title="Information" 
+	modal_title_class="text-white" 
+	modal_p_class="text-white" 
+	modal_widthheight_class="" 
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>
