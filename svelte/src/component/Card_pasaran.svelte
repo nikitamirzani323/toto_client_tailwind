@@ -36,7 +36,7 @@
         </div>
       </div>
     {:else}
-      <div class="card-body p-3 items-center text-center">
+      <div class="card-body grass p-2 items-center text-center">
         <h2 class="card-title text-xs font-bold">{card_title}</h2>
         <p class="text-[10px]">
           {@html card_description}

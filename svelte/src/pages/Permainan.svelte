@@ -1,4 +1,5 @@
 <script>
+    import Modal_alert from "../component/Modal_alert.svelte";
     import Card_placeholder from '../component/Placeholder.svelte'
     import Form432d from "../permainan/Form432d.svelte";
     import Formcolok from "../permainan/Formcolok.svelte";
@@ -215,7 +216,7 @@
             filterTransaksi = [...resultinvoice];
         }
     }
-
+    
 </script>
 
 {#if statuspasaran == "ONLINE"}
@@ -440,49 +441,49 @@
         </div>
         
         {#if tab_bet_pasangan}
-            <div class="relative flex  overflow-x-scroll scrollbar-hide  h-16 cursor-pointer mx-2">
+            <div class="relative flex  overflow-x-scroll scrollbar-hide  h-16 cursor-pointer mx-2 -mt-2">
 				<ul class="flex items-center select-none gap-2 mx-1">
 					<li>
                         <span
                             on:click={() => {
                                 changePermainan("4-3-2");
                             }} 
-                            class="{permainan_432_class} px-3 py-1.5  whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</span>
+                            class="{permainan_432_class} px-3 py-1.5  whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</span>
 					</li>
 					<li>
                         <span
                             on:click={() => {
                                 changePermainan("colok");
                             }}
-                            class="{permainan_colok_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</span>
+                            class="{permainan_colok_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</span>
                     </li>
 					<li>
                         <span
                             on:click={() => {
                                 changePermainan("5050");
                             }}
-                            class="{permainan_5050_class} transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</span>
+                            class="{permainan_5050_class} transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</span>
 					</li>
 					<li>
 					<span 
 						on:click={() => {
 							changePermainan("kombinasi");
 						}}
-						class="{permainan_kombinasi_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</span>
+						class="{permainan_kombinasi_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</span>
 					</li>
 					<li>
 					<span 
 						on:click={() => {
                              changePermainan("dasar");
 						}}
-						class="{permainan_dasar_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</span>
+						class="{permainan_dasar_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</span>
 					</li>
 					<li>
 					<span 
 						on:click={() => {
 							changePermainan("shio");
 						}}
-						class="{permainan_shio_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</span>
+						class="{permainan_shio_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</span>
 					</li>
 				</ul>
 			</div>
@@ -645,7 +646,7 @@
     {/if}
 {:else if statuspasaran == ""}
     {#if client_device == "WEBSITE"}
-        <div class="card shadow-xl bg-base-300  mt-5 rounded-md mx-2">
+        <div class="card shadow-xl bg-base-300  mt-5 rounded-md ">
             <div class="card-body p-1">
                 <div class="lg:flex lg:items-start">
                     <div class="hidden lg:flex lg:self-center">
@@ -658,17 +659,17 @@
                     <div class="grid grid-cols-3 self-center lg:flex lg:flex-1 lg:justify-center ">
                         <div class="bg-base-200 border border-base-300 shadow rounded-md p-4 max-w-full w-full mx-auto">
                             <div class="animate-pulse flex space-x-4">
-                              <div class="flex-1 space-y-6 py-1">
-                                <div class="space-y-3">
-                                  <div class="grid grid-cols-3 gap-4">
+                            <div class="flex-1 space-y-2 ">
+                                <div class="space-y-2">
+                                <div class="grid grid-cols-3 gap-4">
                                     <div class="h-2 bg-slate-300 rounded col-span-2"></div>
                                     <div class="h-2 bg-slate-300 rounded col-span-1"></div>
                                     <div class="h-2 bg-slate-300 rounded col-span-1"></div>
                                     <div class="h-2 bg-slate-300 rounded col-span-1"></div>
                                     <div class="h-2 bg-slate-300 rounded col-span-1"></div>
-                                  </div>
                                 </div>
-                              </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -703,29 +704,26 @@
         </div>
     {/if}
 {/if}
+
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
-<div class="modal" on:click|self={()=>isModalAlert = false}>
-    <div class="modal-box relative">
-        <h3 class="text-lg font-bold">INFORMATION</h3>
-        <p class="py-4">{@html msg_error}</p>
-        <div class="modal-action">
-            <a href="/?token={client_token}" class="btn btn-block">BACK</a>
-        </div>
-    </div>
-</div>
+<Modal_alert 
+	modal_id="my-modal-alert" 
+	modal_widthheight_class="w-11/12 max-w-xl" 
+	modal_tipe="2" 
+	modal_title="" 
+	modal_path_url="/?token={client_token}" 
+	modal_message="{msg_error}" />
 
 <input type="checkbox" id="my-modal-alertkeranjang" class="modal-toggle" bind:checked={isModalAlertKeranjang}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg">
-		<label for="my-modal-alertkeranjang" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
-        <p class="p-3 italic text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Transaksi : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-            <br>    
-			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
-        </p>
-    </div>
-</div>
+<Modal_alert 
+	modal_id="my-modal-alertkeranjang" 
+	modal_tipe="1" 
+	modal_title="Information" 
+	modal_widthheight_class=""  
+	modal_message="
+		Total Transaksi : <span class='text-xs lg:text-sm link-accent'>{new Intl.NumberFormat().format(totalkeranjang)}</span>
+		Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
+	" />
 <style>
     .scrollbar-thin::-webkit-scrollbar {
       width: 3px;

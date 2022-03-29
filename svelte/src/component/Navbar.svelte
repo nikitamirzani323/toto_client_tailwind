@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte'
     import { themeChange } from 'theme-change'
+    import Card_placeholder from '../component/Placeholder.svelte'
     import dayjs from "dayjs";
     import utc from "dayjs/plugin/utc";
     import timezone from "dayjs/plugin/timezone";
@@ -481,22 +482,16 @@
                 </a>
             </div>
             <div class="navbar-end text-right">
-                <div class="dropdown dropdown-left ">
-                    <label tabindex="0" class="btn btn-ghost btn-circle">
-                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                        </svg>
-                    </label>
-                    <ul data-choose-theme tabindex="0" class="dropdown-content menu p-3 shadow bg-base-200 rounded-box w-52">
-                        <li data-set-theme="light" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Light</li>
-                        <li data-set-theme="dracula" class="cursor-pointer hover:bg-base-300 p-3 text-sm" data-act-class="ACTIVECLASS">Night</li>
-                    </ul>
-                </div>
+                <label class="swap swap-rotate mr-2 cursor-pointer">
+                    <input type="checkbox"/>
+                    <svg data-set-theme="light" data-act-class="ACTIVECLASS" class="swap-on fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/></svg>
+                    <svg data-set-theme="dracula" data-act-class="ACTIVECLASS" class="swap-off fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"/></svg>
+                </label>
             </div>
         </div>
     </div>
-    <div class="p-0 mt-1 mb-2 mx-2 card bg-base-300 shadow-xl rounded-none">
-        <div class="card-body p-3">
+    <div class="p-0 my-2 mx-2 card bg-base-300  shadow-xl rounded-md">
+        <div class="card-body p-3 ">
             <p class="text-xs lg:text-sm">
                 Asia/Jakarta<br>{clockmachine} WIB (+7)<br>
                 {client_username} ({client_ipaddress}) <br>
@@ -508,18 +503,18 @@
                     on:click={() => {
                         call_result();
                     }}   
-                    class="btn btn-xs bg-base-300 border-none shadow-sm shadow-green-500/50">RESULT</label>
+                    class="btn btn-xs  rounded-sm text-xs cursor-pointer shadow-sm shadow-green-500/50">RESULT</label>
                 <label
                     on:click={() => {
                         call_allinvoice();
                     }}
-                    class="btn btn-xs bg-base-300 border-none shadow-sm shadow-green-500/50">INVOICE</label>
-                <label for="my-modal-pasaran" class="btn btn-xs bg-base-300 border-none shadow-sm shadow-green-500/50">PASARAN</label>
+                    class="btn btn-xs  rounded-sm text-xs cursor-pointer shadow-sm shadow-green-500/50">INVOICE</label>
+                <label for="my-modal-pasaran" class="btn btn-xs  rounded-sm text-xs cursor-pointer shadow-sm shadow-green-500/50">PASARAN</label>
                 <label
                     on:click={() => {
                         call_bukumimpi();
                     }}
-                    class="btn btn-xs bg-base-300 border-none shadow-sm shadow-green-500/50">BUKU MIMPI</label>
+                    class="btn btn-xs  rounded-sm text-xs cursor-pointer shadow-sm shadow-green-500/50">BUKU MIMPI</label>
             </div>
         </div>
     </div>
@@ -591,32 +586,32 @@
                         </tbody>
                     </table>
                 {:else}
-                    <table class="table table-zebra w-full" >
-                        <thead>
-                            <tr>
-                                <th width="15%" class="text-xs lg:text-sm text-left">TANGGAL</th>
-                                <th width="*" class="text-xs lg:text-sm text-left">NOTE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {#each listhasilkeluaran as rec}
-                            <tr>
-                                <th class="text-xs text-left">{rec.keluaran_date}</th>
-                                <td 
+                    <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3">
+                        {#each listhasilkeluaran as rec}
+                            <div class="card  bg-base-300 shadow-lg rounded-md mb-2">
+                                <div class="card-body text-center items-center m-0 p-3 ">
+                                    <h2 class="card-title text-xs font-bold ">
+                                        {rec.keluaran_pasaran}
+                                    </h2>
+                                    <p class="text-center text-[11px]">
+                                        <span class="text-[10px;]">#{rec.keluaran_periode}</span><br>
+                                        {rec.keluaran_date}<br>
+                                        <span class="link-accent text-lg">{rec.keluaran_result}</span>
+                                    </p>
+                                </div>
+                                <button
                                     on:click={() => {
                                         fetch_resultbypasaran(
                                             rec.keluaran_pasarancode,
                                             rec.keluaran_pasaran
                                         );
-                                    }}
-                                    class="text-xs text-left">
-                                    PASARAN : <span class="underline cursor-pointer">{rec.keluaran_pasaran} - {rec.keluaran_periode}</span><br>
-                                    RESULT : <span class="link-accent ">{rec.keluaran_result}</span>
-                                </td>
-                            </tr>
-                            {/each}
-                        </tbody>
-                    </table>
+                                    }} 
+                                    class="flex btn btn-xs rounded-none btn-block" >
+                                    ALL
+                                </button>
+                            </div>
+                        {/each}
+                    </div>
                 {/if}
             {/if}
         </div>
@@ -691,9 +686,9 @@
             </div>
         </div>
     {:else}
-        <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <div class="modal-box relative max-w-full h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
             <label for="my-modal-allinvoice" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-xs lg:text-sm font-bold mt-4">INVOICE</h3>
+            <h3 class="text-xs lg:text-sm font-bold ">INVOICE</h3>
             <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
                 {#if client_device_orientation == "landscape"}
                     <table class="table table-zebra w-full" >
@@ -728,35 +723,41 @@
                         </tbody>
                     </table>
                 {:else}
-                    <table class="table table-zebra w-full" >
-                        <thead>
-                            <tr>
-                                <th width="1%" class="text-xs text-center">STATUS</th>
-                                <th width="*" class="text-xs text-left">NOTE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2">
+                        {#if listhasilinvoice != ""}
                             {#each listhasilinvoice as rec}
-                            <tr>
-                                <th class="text-xs text-center whitespace-nowrap">
-                                    <span class="{rec.invoice_status_background} p-1 text-[10px] lg:text-sm  uppercase rounded-lg ">{rec.invoice_status}</span>
-                                </th>
-                                <td 
-                                    on:click={() => {
-                                        fetch_invoicelldetail(
-                                            rec.invoice_idinvoice,
-                                            rec.invoice_periode
-                                        );
-                                    }}
-                                    class="text-xs text-left">
-                                    TANGGAL : {rec.invoice_tglkeluaran}<br>
-                                    PASARAN : <span class="underline cursor-pointer">{rec.invoice_pasaran} - {rec.invoice_periode}</span><br>
-                                    WINLOSE : <span class="link-accent">{new Intl.NumberFormat().format(rec.invoice_totallose)}</span>
-                                </td>
-                            </tr>
+                                <div class="card bg-base-300 shadow-lg rounded-md mb-2">
+                                    <div class="card-body  m-0 p-3 ">
+                                        <div class="grid grid-cols-1 ">
+                                            <div class="text-center text-xs">
+                                                {rec.invoice_pasaran} -  #{rec.invoice_periode}
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div class="text-left text-xs">
+                                                <span class="{rec.invoice_status_background} p-1 text-[10px] lg:text-sm  uppercase rounded-lg ">{rec.invoice_status}</span>
+                                            </div>
+                                            <div class="text-right text-[11px]">
+                                                WINLOSE : <span class="link-accent">{new Intl.NumberFormat().format(rec.invoice_totallose)}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button
+                                        on:click={() => {
+                                            fetch_invoicelldetail(
+                                                rec.invoice_idinvoice,
+                                                rec.invoice_periode
+                                            );
+                                        }}
+                                        class="flex btn btn-xs rounded-none btn-block">
+                                        Detail
+                                    </button>
+                                </div>
                             {/each}
-                        </tbody>
-                    </table>
+                        {:else}
+                            <Card_placeholder total_placeholder=4 />
+                        {/if}
+                    </div>
                 {/if}
             </div>
         </div>
@@ -985,6 +986,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {#if total4d_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -997,6 +999,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
                         </tr>
+                        {/if}
+                        {#if total3d_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1009,6 +1013,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
                         </tr>
+                        {/if}
+                        {#if total2d_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1021,6 +1027,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
                         </tr>
+                        {/if}
+                        {#if totalcolokbebas_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1033,6 +1041,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
                         </tr>
+                        {/if}
+                        {#if totalcolokmacau_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1045,6 +1055,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
                         </tr>
+                        {/if}
+                        {#if totalcoloknaga_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1057,6 +1069,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
                         </tr>
+                        {/if}
+                        {#if totalcolokjitu_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1069,6 +1083,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
                         </tr>
+                        {/if}
+                        {#if total5050umum_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1081,6 +1097,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
                         </tr>
+                        {/if}
+                        {#if total5050special_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1093,6 +1111,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
                         </tr>
+                        {/if}
+                        {#if total5050kombinasi_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1101,10 +1121,12 @@
                                         total5050kombinasi_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-center whitespace-nowrap">50 - 50 KOMBINASI</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap">50 - 50 KOMBINASI</th>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
                         </tr>
+                        {/if}
+                        {#if totalmacaukombinasi_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1117,6 +1139,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
                         </tr>
+                        {/if}
+                        {#if totaldasar_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1129,6 +1153,8 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
                         </tr>
+                        {/if}
+                        {#if totalshio_bayar > 0}
                         <tr>
                             <th 
                                 on:click={() => {
@@ -1141,8 +1167,28 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
                         </tr>
+                        {/if}
                     </tbody>
                 </table>
+                <div class="bg-base-300 p-3 shadow-lg mt-4 rounded-lg">
+                    <table class="w-full">
+                        <tr>
+                            <td class="text-right text-xs lg:text-sm">TOTAL BAYAR</td>
+                            <td class="text-right text-xs lg:text-sm">:</td>
+                            <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_bayar)}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right text-xs lg:text-sm">TOTAL WINNER</td>
+                            <td class="text-right text-xs lg:text-sm">:</td>
+                            <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_winner)}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-right text-xs lg:text-sm">WINLOSE</td>
+                            <td class="text-right text-xs lg:text-sm">:</td>
+                            <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(total_winlose)}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     {/if}
@@ -1192,7 +1238,7 @@
     </div>
     {:else}
         {#if client_device_orientation == "landscape"}
-            <div class="modal-box relative max-w-full lg:max-w-xl h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+            <div class="modal-box relative max-w-full lg:max-w-2xl x-full h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
                 <label for="my-modal-detailbyid" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
                 <h3 class="text-xs lg:text-sm font-bold mt-1">PERMAINAN : {detailslipheaderpermainan}</h3>
                 <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
@@ -1214,18 +1260,18 @@
                         <tbody>
                             {#each listhasilinvoicebet as rec}
                             <tr>
-                                <th class="text-xs text-center whitespace-nowrap">{rec.bet_no}</th>
-                                <th class="text-xs text-center whitespace-nowrap">
-                                    <span class="{rec.bet_background} p-1.5 text-[11px] uppercase tracking-wider rounded-lg ">{rec.bet_status}</span>
+                                <th class="text-[11px] text-center whitespace-nowrap">{rec.bet_no}</th>
+                                <th class="text-[11px] text-center whitespace-nowrap">
+                                    <span class="{rec.bet_background} p-1.5 text-[10px] uppercase tracking-wider rounded-lg ">{rec.bet_status}</span>
                                 </th>
-                                <th class="text-xs text-center whitespace-nowrap">{rec.bet_tipe}</th>
-                                <th class="text-xs text-center whitespace-nowrap">{rec.bet_permainan}</th>
-                                <th class="text-xs text-center whitespace-nowrap">{rec.bet_nomor}</th>
-                                <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_bet)}</td>
-                                <td class="text-xs text-right link-accent whitespace-nowrap">{rec.bet_diskon.toFixed(2)}</td>
-                                <td class="text-xs text-right link-accent whitespace-nowrap">{rec.bet_kei.toFixed(2)}</td>
-                                <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_bayar)}</td>
-                                <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_win)}</td>
+                                <th class="text-[11px] text-center whitespace-nowrap">{rec.bet_tipe}</th>
+                                <th class="text-[11px] text-center whitespace-nowrap">{rec.bet_permainan}</th>
+                                <th class="text-[11px] text-center whitespace-nowrap">{rec.bet_nomor}</th>
+                                <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_bet)}</td>
+                                <td class="text-[11px] text-right link-accent whitespace-nowrap">{rec.bet_diskon.toFixed(2)}</td>
+                                <td class="text-[11px] text-right link-accent whitespace-nowrap">{rec.bet_kei.toFixed(2)}</td>
+                                <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_bayar)}</td>
+                                <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet_win)}</td>
                             </tr>
                             {/each}
                         </tbody>
@@ -1237,33 +1283,59 @@
                 <label for="my-modal-detailbyid" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
                 <h3 class="text-xs lg:text-sm font-bold mt-1">PERMAINAN : {detailslipheaderpermainan}</h3>
                 <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
-                    <table class="table table-zebra w-full" >
-                        <thead>
-                            <tr>
-                                <th width="1%" class="text-xs text-center">STATUS</th>
-                                <th width="*" class="text-xs text-left">NOTE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {#each listhasilinvoicebet as rec}
-                            <tr>
-                                <th class="text-xs text-center whitespace-nowrap align-top">
-                                    <span class="{rec.bet_background} p-1.5 text-[10px] uppercase tracking-wider rounded-lg ">{rec.bet_status}</span>
-                                </th>
-                                <td class="text-xs text-left align-top">
-                                    PERMAINAN : {rec.bet_permainan}<br>
-                                    TIPE : {rec.bet_tipe}<br>
-                                    NOMOR : {rec.bet_nomor}<br>
-                                    BET : <span class="link-accent">{new Intl.NumberFormat().format(rec.bet_bet)}</span><br>
-                                    DISKON : <span class="link-accent">{rec.bet_diskon.toFixed(2)}%</span><br>
-                                    KEI : <span class="link-accent">{rec.bet_kei.toFixed(2)}%</span><br>
-                                    BAYAR : <span class="link-accent">{new Intl.NumberFormat().format(rec.bet_bayar)}</span><br>
-                                    WIN : <span class="link-accent">{new Intl.NumberFormat().format(rec.bet_win)}</span>
-                                </td>
-                            </tr>
-                            {/each}
-                        </tbody>
-                    </table>
+                    <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2">
+                        {#each listhasilinvoicebet as rec}
+                            <div tabindex="0" class="collapse  border border-base-300 bg-base-100 rounded-box p-2 cursor-pointer">
+                                <input type="checkbox" class="peer"> 
+                                <div class="collapse-title p-1 ">
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="text-left text-xs">
+                                            NOMOR : {rec.bet_nomor}
+                                        </div>
+                                        <div class="text-right text-[11px]">
+                                            <span class="{rec.bet_background} p-2 rounded-lg">{rec.bet_status}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapse-content mt-1"> 
+                                    <table class="w-full">
+                                        {#if rec.bet_tipe != ""}
+                                        <tr>
+                                            <td width="*" class="text-left text-[11px]">TIPE</td>
+                                            <td width="1%" class="text-right text-[11px]">:</td>
+                                            <td width="50%" class="text-right text-[11px]">{rec.bet_tipe}</td>
+                                        </tr>
+                                        {/if}
+                                        <tr>
+                                            <td width="*"  class="text-left text-[11px]">BET</td>
+                                            <td width="1%"  class="text-right text-[11px]">:</td>
+                                            <td width="50%"  class="text-right text-[11px] link-accent">{new Intl.NumberFormat().format(rec.bet_bet)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left text-[11px]">DISKON (%)</td>
+                                            <td class="text-right text-[11px]">:</td>
+                                            <td class="text-right text-[11px] link-accent">{rec.bet_diskon.toFixed(2)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left text-[11px]">KEI (%)</td>
+                                            <td class="text-right text-[11px]">:</td>
+                                            <td class="text-right text-[11px] link-accent">{rec.bet_kei.toFixed(2)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left text-[11px]">BAYAR</td>
+                                            <td class="text-right text-[11px]">:</td>
+                                            <td class="text-right text-[11px] link-accent">{new Intl.NumberFormat().format(rec.bet_bayar)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left text-[11px]">WIN</td>
+                                            <td class="text-right text-[11px]">:</td>
+                                            <td class="text-right text-[11px] link-accent">{new Intl.NumberFormat().format(rec.bet_win)}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        {/each}
+                    </div>
                 </div>
             </div>
         {/if}
@@ -1309,60 +1381,38 @@
             <label for="my-modal-pasaran" class="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
-                {#if client_device_orientation == "landscape"}
-                    <table class="table table-zebra w-full" >
-                        <thead>
-                            <tr>
-                                <th width="*" class="text-xs text-left">PASARAN</th>
-                                <th width="15%" class="text-xs text-left">NOTE</th>
-                                <th width="15%" class="text-xs text-center">TUTUP</th>
-                                <th width="15%" class="text-xs text-center">JADWAL</th>
-                                <th width="15%" class="text-xs text-center">OPEN</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {#each listkeluaran as rec}
-                            <tr>
-                                <th class="text-xs text-left whitespace-nowrap">
-                                    <a class="underline" href="{rec.pasaran_url}" target="_blank">
-                                        {rec.pasaran}
-                                    </a>
-                                </th>
-                                <td class="text-xs text-left whitespace-nowrap">{rec.pasaran_note}</td>
-                                <td class="text-xs text-center">{rec.pasaran_tglclose}</td>
-                                <td class="text-xs text-center">{rec.pasaran_tglschedule}</td>
-                                <td class="text-xs text-center">{rec.pasaran_tglopen}</td>
-                            </tr>
-                            {/each}
-                        </tbody>
-                    </table>
-                {:else}
-                    <table class="table table-zebra w-full" >
-                        <thead>
-                            <tr>
-                                <th width="20%" class="text-xs text-left">PASARAN</th>
-                                <th width="*" class="text-xs text-left">NOTE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {#each listkeluaran as rec}
-                            <tr>
-                                <th class="text-xs text-left whitespace-nowrap">
-                                    <a class="underline" href="{rec.pasaran_url}" target="_blank">
-                                        {rec.pasaran}
-                                    </a>
-                                </th>
-                                <td class="text-xs text-left whitespace-nowrap">
-                                    {rec.pasaran_note}<br>
-                                    TUTUP : {rec.pasaran_tglclose}<br>
-                                    JADWAL : {rec.pasaran_tglschedule}<br>
-                                    OPEN : {rec.pasaran_tglopen}<br>
-                                </td>
-                            </tr>
-                            {/each}
-                        </tbody>
-                    </table>
-                {/if}
+                <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3">
+                    {#each listkeluaran as rec}
+                        <div class="card  bg-base-300 shadow-lg rounded-md mb-2">
+                            <div class="card-body text-center items-center m-0 p-3 ">
+                                <h2 class="card-title text-xs font-bold ">{rec.pasaran}</h2>
+                                <table class="w-full">
+                                    <tr>
+                                        <td class="text-center text-[11px]" colspan="3">{rec.pasaran_note}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left text-[10px]">TUTUP</td>
+                                        <td class="text-center text-[10px]">:</td>
+                                        <td class="text-right text-[10px]">{rec.pasaran_tglclose}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left text-[10px]">JADWAL</td>
+                                        <td class="text-center text-[10px]">:</td>
+                                        <td class="text-right text-[10px]">{rec.pasaran_tglschedule}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left text-[10px]">OPEN</td>
+                                        <td class="text-center text-[10px]">:</td>
+                                        <td class="text-right text-[10px]">{rec.pasaran_tglopen}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <a class="flex btn btn-xs rounded-none btn-block" href="{rec.pasaran_url}" target="_blank">
+                                Visit
+                            </a>
+                        </div>
+                    {/each}
+                </div>
             </div>
         </div>
     {/if}
@@ -1485,5 +1535,11 @@
     .scrollbar-thin::-webkit-scrollbar {
       width: 3px;
       height: 3px;
+    }
+    .collapse-title, .collapse>input[type=checkbox] {
+        width: 100%;
+        padding: 2px;
+        min-height: 0;
+        transition: background-color .2s ease-in-out;
     }
 </style>

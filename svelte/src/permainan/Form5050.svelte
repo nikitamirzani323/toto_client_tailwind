@@ -1,4 +1,5 @@
 <script>
+	import Modal_alert from "../component/Modal_alert.svelte";
 	import Button_custom1 from "../component/Button_custom1.svelte";
 	import Tablekeranjang from "../permainan/Tablekeranjang5050.svelte";
 	import SaveTrans from "../permainan/savetransaksi";
@@ -140,7 +141,8 @@
 
 	let dispatch = createEventDispatcher();
 	let isModalAlert = false
-	let isModalAlertTabPermainan = false
+	let isModalAlertSystem = false
+	let isModalInfo = false
 	let isModalLoading = false
 	let flag_fulldiskon = ""
 	let msg_error = ""
@@ -183,7 +185,7 @@
 				break;
 		}
 	};
-  	const handleTambah = (e,path) => {
+  	const handleTambah = (e) => {
 		switch (e) {
 			case "5050umum":
 				if (select_5050umum == "" &&parseInt(bet_5050umum) < min_bet_5050umum) {
@@ -213,7 +215,6 @@
 	function addKeranjang(nomor,game,bet,diskon_percen,diskon,bayar,win,kei_percen,kei,tipetoto) {
 		let total_data = keranjang.length;
 		let flag_data = false;
-		msg_error = "";
 		for (var i = 0; i < total_data; i++) {
 			switch (game) {
 				case "50_50_UMUM":
@@ -285,9 +286,6 @@
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
 		}
-		if(msg_error != ""){
-			isModalAlert = true;
-		}
 	}
   
   	const removekeranjang = (e) => {
@@ -335,7 +333,7 @@
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
 						}
 						if(msg_error != ""){
-							isModalAlert = true;
+							isModalInfo = true;
 							loader_timeout();
 						}
 						dispatch("handleInvoice", "call");
@@ -361,6 +359,7 @@
 		count_line_5050umum = 0;
 		count_line_5050special = 0;
 		count_line_5050kombinasi = 0;
+		inittogel_432d("5050");
 	}
   	async function inittogel_432d(e) {
 		const res = await fetch(path_api+"api/inittogel_432d", {
@@ -374,93 +373,96 @@
 				permainan: e,
 			}),
 		});
-		group_btn_beli = true;
-		const json = await res.json();
-		let record = json.record;
-		for (var i = 0; i < record.length; i++) {
-			min_bet_5050umum = parseInt(record[i]["min_bet_5050umum"]);
-			max_bet_5050umum = parseInt(record[i]["max_bet_5050umum"]);
-			keibesar_bet_5050umum = parseFloat(record[i]["keibesar_bet_5050umum"]);
-			keikecil_bet_5050umum = parseFloat(record[i]["keikecil_bet_5050umum"]);
-			keigenap_bet_5050umum = parseFloat(record[i]["keigenap_bet_5050umum"]);
-			keiganjil_bet_5050umum = parseFloat(record[i]["keiganjil_bet_5050umum"]);
-			keitengah_bet_5050umum = parseFloat(record[i]["keitengah_bet_5050umum"]);
-			keitepi_bet_5050umum = parseFloat(record[i]["keitepi_bet_5050umum"]);
-			discbesar_bet_5050umum = parseFloat(record[i]["discbesar_bet_5050umum"]);
-			disckecil_bet_5050umum = parseFloat(record[i]["disckecil_bet_5050umum"]);
-			discgenap_bet_5050umum = parseFloat(record[i]["discgenap_bet_5050umum"]);
-			discganjil_bet_5050umum = parseFloat(record[i]["discganjil_bet_5050umum"]);
-			disctengah_bet_5050umum = parseFloat(record[i]["disctengah_bet_5050umum"]);
-			disctepi_bet_5050umum = parseFloat(record[i]["disctepi_bet_5050umum"]);
-			limittotal_bet_5050umum = parseFloat(record[i]["limittotal_bet_5050umum"]);
-			min_bet_5050special = parseFloat(record[i]["min_bet_5050special"]);
-			max_bet_5050special = parseFloat(record[i]["max_bet_5050special"]);
-			keiasganjil_bet_5050special = parseFloat(record[i]["keiasganjil_bet_5050special"]);
-			keiasgenap_bet_5050special = parseFloat(record[i]["keiasgenap_bet_5050special"]);
-			keiasbesar_bet_5050special = parseFloat(record[i]["keiasbesar_bet_5050special"]);
-			keiaskecil_bet_5050special = parseFloat(record[i]["keiaskecil_bet_5050special"]);
-			keikopganjil_bet_5050special = parseFloat(record[i]["keikopganjil_bet_5050special"]);
-			keikopgenap_bet_5050special = parseFloat(record[i]["keikopgenap_bet_5050special"]);
-			keikopbesar_bet_5050special = parseFloat(record[i]["keikopbesar_bet_5050special"]);
-			keikopkecil_bet_5050special = parseFloat(record[i]["keikopkecil_bet_5050special"]);
-			keikepalaganjil_bet_5050special = parseFloat(record[i]["keikepalaganjil_bet_5050special"]);
-			keikepalagenap_bet_5050special = parseFloat(record[i]["keikepalagenap_bet_5050special"]);
-			keikepalabesar_bet_5050special = parseFloat(record[i]["keikepalabesar_bet_5050special"]);
-			keikepalakecil_bet_5050special = parseFloat(record[i]["keikepalakecil_bet_5050special"]);
-			keiekorganjil_bet_5050special = parseFloat(record[i]["keiekorganjil_bet_5050special"]);
-			keiekorgenap_bet_5050special = parseFloat(record[i]["keiekorgenap_bet_5050special"]);
-			keiekorbesar_bet_5050special = parseFloat(record[i]["keiekorbesar_bet_5050special"]);
-			keiekorkecil_bet_5050special = parseFloat(record[i]["keiekorkecil_bet_5050special"]);
-			discasganjil_bet_5050special = parseFloat(record[i]["discasganjil_bet_5050special"]);
-			discasgenap_bet_5050special = parseFloat(record[i]["discasgenap_bet_5050special"]);
-			discasbesar_bet_5050special = parseFloat(record[i]["discasbesar_bet_5050special"]);
-			discaskecil_bet_5050special = parseFloat(record[i]["discaskecil_bet_5050special"]);
-			disckopganjil_bet_5050special = parseFloat(record[i]["disckopganjil_bet_5050special"]);
-			disckopgenap_bet_5050special = parseFloat(record[i]["disckopgenap_bet_5050special"]);
-			disckopbesar_bet_5050special = parseFloat(record[i]["disckopbesar_bet_5050special"]);
-			disckopkecil_bet_5050special = parseFloat(record[i]["disckopkecil_bet_5050special"]);
-			disckepalaganjil_bet_5050special = parseFloat(record[i]["disckepalaganjil_bet_5050special"]);
-			disckepalagenap_bet_5050special = parseFloat(record[i]["disckepalagenap_bet_5050special"]);
-			disckepalabesar_bet_5050special = parseFloat(record[i]["disckepalabesar_bet_5050special"]);
-			disckepalakecil_bet_5050special = parseFloat(record[i]["disckepalakecil_bet_5050special"]);
-			discekorganjil_bet_5050special = parseFloat(record[i]["discekorganjil_bet_5050special"]);
-			discekorgenap_bet_5050special = parseFloat(record[i]["discekorgenap_bet_5050special"]);
-			discekorbesar_bet_5050special = parseFloat(record[i]["discekorbesar_bet_5050special"]);
-			discekorkecil_bet_5050special = parseFloat(record[i]["discekorkecil_bet_5050special"]);
-			limittotal_bet_5050special = parseFloat(record[i]["limittotal_bet_5050special"]);
-			min_bet_5050kombinasi = parseFloat(record[i]["min_bet_5050kombinasi"]);
-			max_bet_5050kombinasi = parseFloat(record[i]["max_bet_5050kombinasi"]);
-			kei_belakangmono_bet_5050kombinasi = parseFloat(record[i]["kei_belakangmono_bet_5050kombinasi"]);
-			kei_belakangstereo_bet_5050kombinasi = parseFloat(record[i]["kei_belakangstereo_bet_5050kombinasi"]);
-			kei_belakangkembang_bet_5050kombinasi = parseFloat(record[i]["kei_belakangkembang_bet_5050kombinasi"]);
-			kei_belakangkempis_bet_5050kombinasi = parseFloat(record[i]["kei_belakangkempis_bet_5050kombinasi"]);
-			kei_belakangkembar_bet_5050kombinasi = parseFloat(record[i]["kei_belakangkembar_bet_5050kombinasi"]);
-			kei_tengahmono_bet_5050kombinasi = parseFloat(record[i]["kei_tengahmono_bet_5050kombinasi"]);
-			kei_tengahstereo_bet_5050kombinasi = parseFloat(record[i]["kei_tengahstereo_bet_5050kombinasi"]);
-			kei_tengahkembang_bet_5050kombinasi = parseFloat(record[i]["kei_tengahkembang_bet_5050kombinasi"]);
-			kei_tengahkempis_bet_5050kombinasi = parseFloat(record[i]["kei_tengahkempis_bet_5050kombinasi"]);
-			kei_tengahkembar_bet_5050kombinasi = parseFloat(record[i]["kei_tengahkembar_bet_5050kombinasi"]);
-			kei_depanmono_bet_5050kombinasi = parseFloat(record[i]["kei_depanmono_bet_5050kombinasi"]);
-			kei_depanstereo_bet_5050kombinasi = parseFloat(record[i]["kei_depanstereo_bet_5050kombinasi"]);
-			kei_depankembang_bet_5050kombinasi = parseFloat(record[i]["kei_depankembang_bet_5050kombinasi"]);
-			kei_depankempis_bet_5050kombinasi = parseFloat(record[i]["kei_depankempis_bet_5050kombinasi"]);
-			kei_depankembar_bet_5050kombinasi = parseFloat(record[i]["kei_depankembar_bet_5050kombinasi"]);
-			disc_belakangmono_bet_5050kombinasi = parseFloat(record[i]["disc_belakangmono_bet_5050kombinasi"]);
-			disc_belakangstereo_bet_5050kombinasi = parseFloat(record[i]["disc_belakangstereo_bet_5050kombinasi"]);
-			disc_belakangkembang_bet_5050kombinasi = parseFloat(record[i]["disc_belakangkembang_bet_5050kombinasi"]);
-			disc_belakangkempis_bet_5050kombinasi = parseFloat(record[i]["disc_belakangkempis_bet_5050kombinasi"]);
-			disc_belakangkembar_bet_5050kombinasi = parseFloat(record[i]["disc_belakangkembar_bet_5050kombinasi"]);
-			disc_tengahmono_bet_5050kombinasi = parseFloat(record[i]["disc_tengahmono_bet_5050kombinasi"]);
-			disc_tengahstereo_bet_5050kombinasi = parseFloat(record[i]["disc_tengahstereo_bet_5050kombinasi"]);
-			disc_tengahkembang_bet_5050kombinasi = parseFloat(record[i]["disc_tengahkembang_bet_5050kombinasi"]);
-			disc_tengahkempis_bet_5050kombinasi = parseFloat(record[i]["disc_tengahkempis_bet_5050kombinasi"]);
-			disc_tengahkembar_bet_5050kombinasi = parseFloat(record[i]["disc_tengahkembar_bet_5050kombinasi"]);
-			disc_depanmono_bet_5050kombinasi = parseFloat(record[i]["disc_depanmono_bet_5050kombinasi"]);
-			disc_depanstereo_bet_5050kombinasi = parseFloat(record[i]["disc_depanstereo_bet_5050kombinasi"]);
-			disc_depankembang_bet_5050kombinasi = parseFloat(record[i]["disc_depankembang_bet_5050kombinasi"]);
-			disc_depankempis_bet_5050kombinasi = parseFloat(record[i]["disc_depankempis_bet_5050kombinasi"]);
-			disc_depankembar_bet_5050kombinasi = parseFloat(record[i]["disc_depankembar_bet_5050kombinasi"]);
-			limittotal_bet_5050kombinasi = parseFloat(record[i]["limittotal_bet_5050kombinasi"]);
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			for (var i = 0; i < record.length; i++) {
+				min_bet_5050umum = parseInt(record[i]["min_bet_5050umum"]);
+				max_bet_5050umum = parseInt(record[i]["max_bet_5050umum"]);
+				keibesar_bet_5050umum = parseFloat(record[i]["keibesar_bet_5050umum"]);
+				keikecil_bet_5050umum = parseFloat(record[i]["keikecil_bet_5050umum"]);
+				keigenap_bet_5050umum = parseFloat(record[i]["keigenap_bet_5050umum"]);
+				keiganjil_bet_5050umum = parseFloat(record[i]["keiganjil_bet_5050umum"]);
+				keitengah_bet_5050umum = parseFloat(record[i]["keitengah_bet_5050umum"]);
+				keitepi_bet_5050umum = parseFloat(record[i]["keitepi_bet_5050umum"]);
+				discbesar_bet_5050umum = parseFloat(record[i]["discbesar_bet_5050umum"]);
+				disckecil_bet_5050umum = parseFloat(record[i]["disckecil_bet_5050umum"]);
+				discgenap_bet_5050umum = parseFloat(record[i]["discgenap_bet_5050umum"]);
+				discganjil_bet_5050umum = parseFloat(record[i]["discganjil_bet_5050umum"]);
+				disctengah_bet_5050umum = parseFloat(record[i]["disctengah_bet_5050umum"]);
+				disctepi_bet_5050umum = parseFloat(record[i]["disctepi_bet_5050umum"]);
+				limittotal_bet_5050umum = parseFloat(record[i]["limittotal_bet_5050umum"]);
+				min_bet_5050special = parseFloat(record[i]["min_bet_5050special"]);
+				max_bet_5050special = parseFloat(record[i]["max_bet_5050special"]);
+				keiasganjil_bet_5050special = parseFloat(record[i]["keiasganjil_bet_5050special"]);
+				keiasgenap_bet_5050special = parseFloat(record[i]["keiasgenap_bet_5050special"]);
+				keiasbesar_bet_5050special = parseFloat(record[i]["keiasbesar_bet_5050special"]);
+				keiaskecil_bet_5050special = parseFloat(record[i]["keiaskecil_bet_5050special"]);
+				keikopganjil_bet_5050special = parseFloat(record[i]["keikopganjil_bet_5050special"]);
+				keikopgenap_bet_5050special = parseFloat(record[i]["keikopgenap_bet_5050special"]);
+				keikopbesar_bet_5050special = parseFloat(record[i]["keikopbesar_bet_5050special"]);
+				keikopkecil_bet_5050special = parseFloat(record[i]["keikopkecil_bet_5050special"]);
+				keikepalaganjil_bet_5050special = parseFloat(record[i]["keikepalaganjil_bet_5050special"]);
+				keikepalagenap_bet_5050special = parseFloat(record[i]["keikepalagenap_bet_5050special"]);
+				keikepalabesar_bet_5050special = parseFloat(record[i]["keikepalabesar_bet_5050special"]);
+				keikepalakecil_bet_5050special = parseFloat(record[i]["keikepalakecil_bet_5050special"]);
+				keiekorganjil_bet_5050special = parseFloat(record[i]["keiekorganjil_bet_5050special"]);
+				keiekorgenap_bet_5050special = parseFloat(record[i]["keiekorgenap_bet_5050special"]);
+				keiekorbesar_bet_5050special = parseFloat(record[i]["keiekorbesar_bet_5050special"]);
+				keiekorkecil_bet_5050special = parseFloat(record[i]["keiekorkecil_bet_5050special"]);
+				discasganjil_bet_5050special = parseFloat(record[i]["discasganjil_bet_5050special"]);
+				discasgenap_bet_5050special = parseFloat(record[i]["discasgenap_bet_5050special"]);
+				discasbesar_bet_5050special = parseFloat(record[i]["discasbesar_bet_5050special"]);
+				discaskecil_bet_5050special = parseFloat(record[i]["discaskecil_bet_5050special"]);
+				disckopganjil_bet_5050special = parseFloat(record[i]["disckopganjil_bet_5050special"]);
+				disckopgenap_bet_5050special = parseFloat(record[i]["disckopgenap_bet_5050special"]);
+				disckopbesar_bet_5050special = parseFloat(record[i]["disckopbesar_bet_5050special"]);
+				disckopkecil_bet_5050special = parseFloat(record[i]["disckopkecil_bet_5050special"]);
+				disckepalaganjil_bet_5050special = parseFloat(record[i]["disckepalaganjil_bet_5050special"]);
+				disckepalagenap_bet_5050special = parseFloat(record[i]["disckepalagenap_bet_5050special"]);
+				disckepalabesar_bet_5050special = parseFloat(record[i]["disckepalabesar_bet_5050special"]);
+				disckepalakecil_bet_5050special = parseFloat(record[i]["disckepalakecil_bet_5050special"]);
+				discekorganjil_bet_5050special = parseFloat(record[i]["discekorganjil_bet_5050special"]);
+				discekorgenap_bet_5050special = parseFloat(record[i]["discekorgenap_bet_5050special"]);
+				discekorbesar_bet_5050special = parseFloat(record[i]["discekorbesar_bet_5050special"]);
+				discekorkecil_bet_5050special = parseFloat(record[i]["discekorkecil_bet_5050special"]);
+				limittotal_bet_5050special = parseFloat(record[i]["limittotal_bet_5050special"]);
+				min_bet_5050kombinasi = parseFloat(record[i]["min_bet_5050kombinasi"]);
+				max_bet_5050kombinasi = parseFloat(record[i]["max_bet_5050kombinasi"]);
+				kei_belakangmono_bet_5050kombinasi = parseFloat(record[i]["kei_belakangmono_bet_5050kombinasi"]);
+				kei_belakangstereo_bet_5050kombinasi = parseFloat(record[i]["kei_belakangstereo_bet_5050kombinasi"]);
+				kei_belakangkembang_bet_5050kombinasi = parseFloat(record[i]["kei_belakangkembang_bet_5050kombinasi"]);
+				kei_belakangkempis_bet_5050kombinasi = parseFloat(record[i]["kei_belakangkempis_bet_5050kombinasi"]);
+				kei_belakangkembar_bet_5050kombinasi = parseFloat(record[i]["kei_belakangkembar_bet_5050kombinasi"]);
+				kei_tengahmono_bet_5050kombinasi = parseFloat(record[i]["kei_tengahmono_bet_5050kombinasi"]);
+				kei_tengahstereo_bet_5050kombinasi = parseFloat(record[i]["kei_tengahstereo_bet_5050kombinasi"]);
+				kei_tengahkembang_bet_5050kombinasi = parseFloat(record[i]["kei_tengahkembang_bet_5050kombinasi"]);
+				kei_tengahkempis_bet_5050kombinasi = parseFloat(record[i]["kei_tengahkempis_bet_5050kombinasi"]);
+				kei_tengahkembar_bet_5050kombinasi = parseFloat(record[i]["kei_tengahkembar_bet_5050kombinasi"]);
+				kei_depanmono_bet_5050kombinasi = parseFloat(record[i]["kei_depanmono_bet_5050kombinasi"]);
+				kei_depanstereo_bet_5050kombinasi = parseFloat(record[i]["kei_depanstereo_bet_5050kombinasi"]);
+				kei_depankembang_bet_5050kombinasi = parseFloat(record[i]["kei_depankembang_bet_5050kombinasi"]);
+				kei_depankempis_bet_5050kombinasi = parseFloat(record[i]["kei_depankempis_bet_5050kombinasi"]);
+				kei_depankembar_bet_5050kombinasi = parseFloat(record[i]["kei_depankembar_bet_5050kombinasi"]);
+				disc_belakangmono_bet_5050kombinasi = parseFloat(record[i]["disc_belakangmono_bet_5050kombinasi"]);
+				disc_belakangstereo_bet_5050kombinasi = parseFloat(record[i]["disc_belakangstereo_bet_5050kombinasi"]);
+				disc_belakangkembang_bet_5050kombinasi = parseFloat(record[i]["disc_belakangkembang_bet_5050kombinasi"]);
+				disc_belakangkempis_bet_5050kombinasi = parseFloat(record[i]["disc_belakangkempis_bet_5050kombinasi"]);
+				disc_belakangkembar_bet_5050kombinasi = parseFloat(record[i]["disc_belakangkembar_bet_5050kombinasi"]);
+				disc_tengahmono_bet_5050kombinasi = parseFloat(record[i]["disc_tengahmono_bet_5050kombinasi"]);
+				disc_tengahstereo_bet_5050kombinasi = parseFloat(record[i]["disc_tengahstereo_bet_5050kombinasi"]);
+				disc_tengahkembang_bet_5050kombinasi = parseFloat(record[i]["disc_tengahkembang_bet_5050kombinasi"]);
+				disc_tengahkempis_bet_5050kombinasi = parseFloat(record[i]["disc_tengahkempis_bet_5050kombinasi"]);
+				disc_tengahkembar_bet_5050kombinasi = parseFloat(record[i]["disc_tengahkembar_bet_5050kombinasi"]);
+				disc_depanmono_bet_5050kombinasi = parseFloat(record[i]["disc_depanmono_bet_5050kombinasi"]);
+				disc_depanstereo_bet_5050kombinasi = parseFloat(record[i]["disc_depanstereo_bet_5050kombinasi"]);
+				disc_depankembang_bet_5050kombinasi = parseFloat(record[i]["disc_depankembang_bet_5050kombinasi"]);
+				disc_depankempis_bet_5050kombinasi = parseFloat(record[i]["disc_depankempis_bet_5050kombinasi"]);
+				disc_depankembar_bet_5050kombinasi = parseFloat(record[i]["disc_depankembar_bet_5050kombinasi"]);
+				limittotal_bet_5050kombinasi = parseFloat(record[i]["limittotal_bet_5050kombinasi"]);
+			}
 		}
 	}
   	function count_keranjang() {
@@ -1319,47 +1321,37 @@
   	</div>
 </div>
 
+<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
+<Modal_alert 
+	modal_id="my-modal-info" 
+	modal_tipe="1" 
+	modal_title="Information" 
+	modal_widthheight_class="bg-info"  
+	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
-<div class="modal " on:click|self={()=>isModalAlert = false}>
-    <div class="modal-box relative bg-content">
-        <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-lg font-bold">INFORMASI</h3>
-		<progress class="progress w-full" value="{barWidth}" max="100"></progress>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-			{@html msg_error}
-		</p>
-    </div>
-</div>
-
+<Modal_alert 
+	modal_id="my-modal-alert" 
+	modal_tipe="1" 
+	modal_title="Alert" 
+	modal_widthheight_class="bg-error"  
+	modal_bar={barWidth+1} 
+	modal_message="{msg_error}" />
+<input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>
+<Modal_alert 
+	modal_id="my-modal-AlertSystem" 
+	modal_widthheight_class="w-11/12 max-w-xl" 
+	modal_tipe="2" 
+	modal_title="" 
+	modal_path_url="/?token={client_token}" 
+	modal_message="
+		Maaf Saat Ini Anda TIdak Bisa Mengakses Halaman Ini <br>
+		Halaman <b>50-50</b> Terjadi Kesalahan Sistem Harap Hubungi Administrator
+	" />
 <input type="checkbox" id="my-modal-loading" class="modal-toggle" bind:checked={isModalLoading}>
-<div class="modal">
-    <div class="modal-box w-auto grass opacity-70">
-		<svg class="lds-curve-bars" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(50,50)"><circle cx="0" cy="0" r="8.333333333333334" fill="none" stroke="#ffffcb" stroke-width="4" stroke-dasharray="26.179938779914945 26.179938779914945" transform="rotate(308.129)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="0" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="16.666666666666668" fill="none" stroke="#fac090" stroke-width="4" stroke-dasharray="52.35987755982989 52.35987755982989" transform="rotate(360)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.2" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="25" fill="none" stroke="#ff7c81" stroke-width="4" stroke-dasharray="78.53981633974483 78.53981633974483" transform="rotate(51.8709)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.4" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="33.333333333333336" fill="none" stroke="#c0f6d2" stroke-width="4" stroke-dasharray="104.71975511965978 104.71975511965978" transform="rotate(135.238)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.6" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="41.666666666666664" fill="none" stroke="#dae4bf" stroke-width="4" stroke-dasharray="130.89969389957471 130.89969389957471" transform="rotate(224.762)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
-			</circle></g>
-		</svg>
-    </div>
-</div>
-
-<input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg">
-		<label for="my-modal-alertbbfs" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Transaksi : <span class="text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
-        </p>
-    </div>
-</div>
+<Modal_alert 
+	modal_id="my-modal-loading" 
+	modal_widthheight_class="w-auto grass opacity-50" 
+	modal_tipe="loading" />
 
 <Tablekeranjang
   	on:removekeranjang={removekeranjang}

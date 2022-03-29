@@ -294,12 +294,12 @@
     <div class="card rounded-none p-0 m-0 bottom-0 fixed z-50">
         <div class="card-body bg-base-300 m-0 w-full max-w-full p-2">
             <div class="grid grid-cols-3 justify-center items-center gap-1 mx-2">
-                <button on:click={handleInformation} class="btn btn-md rounded-r-sm gap-2 glass  ">
+                <button on:click={handleInformation} class="btn btn-md rounded-r-sm gap-2 glass bg-[#bf95f9] hover:bg-[#bf95f9]     ">
                     <div class="grid grid-rows-2 justify-items-center items-center w-screen max-w-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                        <div class="text-xs">INFORMASI</div>
+                        <div class="text-xs text-[#3f1b71]">INFORMASI</div>
                     </div>
                 </button>
                 <button on:click={handleRemoveKeranjang_all} class="btn btn-md rounded-none gap-2 glass bg-green-700  border-green-500 outline-green-500 text-white">

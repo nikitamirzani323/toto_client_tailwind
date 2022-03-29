@@ -1,4 +1,5 @@
 <script>
+	import Modal_alert from "../component/Modal_alert.svelte";
 	import Button_custom1 from "../component/Button_custom1.svelte";
 	import Tablekeranjang from "../permainan/Tablekeranjangshio.svelte";
 	import SaveTrans from "../permainan/savetransaksi";
@@ -39,7 +40,8 @@
 
 	let dispatch = createEventDispatcher();
 	let isModalAlert = false
-	let isModalAlertTabPermainan = false
+	let isModalAlertSystem = false
+	let isModalInfo = false
 	let isModalLoading = false
 	let flag_fulldiskon = ""
 	let msg_error = ""
@@ -68,25 +70,20 @@
 		kei_percen,kei,tipetoto) {
 		let total_data = keranjang.length;
 		let flag_data = false;
-		msg_error = "";
 		for (var i = 0; i < total_data; i++) {
-			switch (game) {
-				case "SHIO":
-					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayarshio = 0;
-						for (var j = 0; j < keranjang.length; j++) {
-							if ("SHIO" == keranjang[j].permainan) {
-								if (nomor == keranjang[j].nomor) {
-									maxtotal_bayarshio = parseInt(maxtotal_bayarshio) + parseInt(keranjang[j].bet);
-								}
-							}
-						}
-						if (parseInt(limit_total) < (parseInt(maxtotal_bayarshio) + parseInt(bet))) {
-							msg_error ="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL SHIO<br />";
-							flag_data = true;
+			if (nomor == keranjang[i].nomor.toString()) {
+				let maxtotal_bayarshio = 0;
+				for (var j = 0; j < keranjang.length; j++) {
+					if ("SHIO" == keranjang[j].permainan) {
+						if (nomor == keranjang[j].nomor) {
+							maxtotal_bayarshio = parseInt(maxtotal_bayarshio) + parseInt(keranjang[j].bet);
 						}
 					}
-					break;
+				}
+				if (parseInt(limit_total) < (parseInt(maxtotal_bayarshio) + parseInt(bet))) {
+					msg_error +="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL SHIO<br />";
+					flag_data = true;
+				}
 			}
 		}
 		if (flag_data == false) {
@@ -107,9 +104,6 @@
 			count_keranjang();
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
-		}
-		if(msg_error != ""){
-			isModalAlert = true;
 		}
 	}
   
@@ -182,6 +176,7 @@
 		totalkeranjang = 0;
 		count_line_shio = 0;
 		count_line_standart = 0;
+		inittogel_432d("shio");
 	}
   	async function inittogel_432d(e) {
 		const res = await fetch(path_api+"api/inittogel_432d", {
@@ -195,14 +190,18 @@
 				permainan: e,
 			}),
 		});
-		const json = await res.json();
-		let record = json.record;
-		for (var i = 0; i < record.length; i++) {
-			min_bet = parseInt(record[i]["min_bet"]);
-			max_bet = parseInt(record[i]["max_bet"]);
-			win_bet = parseFloat(record[i]["win_bet"]);
-			diskon_bet = parseFloat(record[i]["diskon_bet"]);
-			limit_total = parseInt(record[i]["limit_total"]);
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			for (var i = 0; i < record.length; i++) {
+				min_bet = parseInt(record[i]["min_bet"]);
+				max_bet = parseInt(record[i]["max_bet"]);
+				win_bet = parseFloat(record[i]["win_bet"]);
+				diskon_bet = parseFloat(record[i]["diskon_bet"]);
+				limit_total = parseInt(record[i]["limit_total"]);
+			}
 		}
 	}
   	function count_keranjang() {
@@ -327,7 +326,7 @@
 	}
 </script>
 <div class="card bg-base-200 shadow-xl rounded-md {card_custom}">
-  <div class="card-body p-3">
+  	<div class="card-body p-3">
       	{#if client_device == "WEBSITE"}
 			<h2 class="card-title text-lg grid grid-cols-2 gap-2">
 				<div class="text-left text-xs lg:text-lg md:text-sm">
@@ -464,50 +463,40 @@
 				</div>
 			</div>
       	{/if}
-  </div>
+ 	</div>
 </div>
 
+<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
+<Modal_alert 
+	modal_id="my-modal-info" 
+	modal_tipe="1" 
+	modal_title="Information" 
+	modal_widthheight_class="bg-info"  
+	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
-<div class="modal " on:click|self={()=>isModalAlert = false}>
-    <div class="modal-box relative bg-content">
-        <label for="my-modal-alert" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-lg font-bold">INFORMASI</h3>
-		<progress class="progress w-full" value="{barWidth}" max="100"></progress>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-			{@html msg_error}
-		</p>
-    </div>
-</div>
-
+<Modal_alert 
+	modal_id="my-modal-alert" 
+	modal_tipe="1" 
+	modal_title="Alert" 
+	modal_widthheight_class="bg-error"  
+	modal_bar={barWidth+1} 
+	modal_message="{msg_error}" />
+<input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>
+<Modal_alert 
+	modal_id="my-modal-AlertSystem" 
+	modal_widthheight_class="w-11/12 max-w-xl" 
+	modal_tipe="2" 
+	modal_title="" 
+	modal_path_url="/?token={client_token}" 
+	modal_message="
+		Maaf Saat Ini Anda TIdak Bisa Mengakses Halaman Ini <br>
+		Halaman <b>SHIO</b> Terjadi Kesalahan Sistem Harap Hubungi Administrator
+	" />
 <input type="checkbox" id="my-modal-loading" class="modal-toggle" bind:checked={isModalLoading}>
-<div class="modal">
-    <div class="modal-box w-auto grass opacity-70">
-		<svg class="lds-curve-bars" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(50,50)"><circle cx="0" cy="0" r="8.333333333333334" fill="none" stroke="#ffffcb" stroke-width="4" stroke-dasharray="26.179938779914945 26.179938779914945" transform="rotate(308.129)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="0" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="16.666666666666668" fill="none" stroke="#fac090" stroke-width="4" stroke-dasharray="52.35987755982989 52.35987755982989" transform="rotate(360)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.2" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="25" fill="none" stroke="#ff7c81" stroke-width="4" stroke-dasharray="78.53981633974483 78.53981633974483" transform="rotate(51.8709)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.4" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="33.333333333333336" fill="none" stroke="#c0f6d2" stroke-width="4" stroke-dasharray="104.71975511965978 104.71975511965978" transform="rotate(135.238)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.6" repeatCount="indefinite"></animateTransform>
-			</circle><circle cx="0" cy="0" r="41.666666666666664" fill="none" stroke="#dae4bf" stroke-width="4" stroke-dasharray="130.89969389957471 130.89969389957471" transform="rotate(224.762)">
-			<animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
-			</circle></g>
-		</svg>
-    </div>
-</div>
-
-<input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg">
-		<label for="my-modal-alertbbfs" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Transaksi : <span class="text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
-        </p>
-    </div>
-</div>
+<Modal_alert 
+	modal_id="my-modal-loading" 
+	modal_widthheight_class="w-auto grass opacity-50" 
+	modal_tipe="loading" />
 
 <Tablekeranjang
   	on:removekeranjang={removekeranjang}

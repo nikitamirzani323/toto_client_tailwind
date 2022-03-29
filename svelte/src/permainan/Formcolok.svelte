@@ -105,8 +105,8 @@
 
 	let dispatch = createEventDispatcher();
 	let isModalAlertSystem = false
+	let isModalInfo = false
 	let isModalAlert = false
-	let isModalAlertTabPermainan = false
 	let isModalLoading = false
 	let flag_fulldiskon = ""
 	let msg_error = ""
@@ -369,7 +369,7 @@
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
 						}
 						if(msg_error != ""){
-							isModalAlert = true;
+							isModalInfo = true;
 							loader_timeout();
 						}
 						dispatch("handleInvoice", "call");
@@ -1843,13 +1843,20 @@
   </div>
 </div>
 
-
+<input type="checkbox" id="my-modal-info" class="modal-toggle" bind:checked={isModalInfo}>
+<Modal_alert 
+	modal_id="my-modal-info" 
+	modal_tipe="1" 
+	modal_title="Information" 
+	modal_widthheight_class="bg-info"  
+	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
 <Modal_alert 
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
 	modal_title="Alert" 
-	modal_bar={barWidth} 
+	modal_widthheight_class="bg-error"
+	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>
 <Modal_alert 
@@ -1860,24 +1867,14 @@
 	modal_path_url="/?token={client_token}" 
 	modal_message="
 		Maaf Saat Ini Anda TIdak Bisa Mengakses Halaman Ini <br>
-		Halaman <b>4D/3D/2D</b> Terjadi Kesalahan Sistem Harap Hubungi Administrator
+		Halaman <b>COLOK</b> Terjadi Kesalahan Sistem Harap Hubungi Administrator
 	" />
 <input type="checkbox" id="my-modal-loading" class="modal-toggle" bind:checked={isModalLoading}>
 <Modal_alert 
 	modal_id="my-modal-loading" 
 	modal_widthheight_class="w-auto grass opacity-50" 
 	modal_tipe="loading" />
-<input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg">
-		<label for="my-modal-alertbbfs" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Transaksi : <span class="text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
-        </p>
-    </div>
-</div>
+
 
 <Tablekeranjang
   	on:removekeranjang={removekeranjang}

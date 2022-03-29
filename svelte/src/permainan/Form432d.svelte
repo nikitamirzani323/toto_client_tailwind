@@ -5279,7 +5279,7 @@
 	modal_tipe="1" 
 	modal_title="Alert" 
 	modal_widthheight_class="bg-error" 
-	modal_bar={barWidth} 
+	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-AlertSystem" class="modal-toggle" bind:checked={isModalAlertSystem}>
 <Modal_alert 
@@ -5297,18 +5297,17 @@
 	modal_id="my-modal-loading" 
 	modal_widthheight_class="w-auto grass opacity-50" 
 	modal_tipe="loading" />
-
 <input type="checkbox" id="my-modal-alertbbfs" class="modal-toggle" bind:checked={isModalAlertTabPermainan}>
-<div class="modal" >
-    <div class="modal-box relative max-w-lg">
-		<label for="my-modal-alertbbfs" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-        <h3 class="text-xs lg:text-sm font-bold capitalize text-center mb-4">Saat Ini Anda Memiliki Transaksi:</h3>
-        <p class="p-3 italic text-xs lg:text-sm bg-base-200 rounded-md mb-4 mt-4">
-            Total Transaksi : <span class="text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
-			Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
-        </p>
-    </div>
-</div>
+<Modal_alert 
+	modal_id="my-modal-alertbbfs" 
+	modal_tipe="1" 
+	modal_title="Information" 
+	modal_widthheight_class=""  
+	modal_message="
+		Total Transaksi : <span class='text-xs lg:text-sm link-accent'>{new Intl.NumberFormat().format(totalkeranjang)}</span>
+		Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
+	" />
+
 <Tablekeranjang
   on:removekeranjang={removekeranjang}
   on:removekeranjangall={removekeranjangall}

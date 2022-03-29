@@ -33,7 +33,7 @@
 </script>
 {#if client_device == "WEBSITE"}
   <div class="mt-5 gap-4 grid grid-cols-2  xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3">
-    {#if listkeluaran != []}
+    {#if listkeluaran != ""}
         {#each listkeluaran as rec}
             <Card_pasaran
             on:click={() => {
@@ -63,7 +63,7 @@
   </div>
 {:else}
   <div class="mt-1 gap-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mx-2">
-    {#if listkeluaran != []}
+    {#if listkeluaran != ""}
         {#each listkeluaran as rec}
         <Card_pasaran
             on:click={() => {
