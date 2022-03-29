@@ -3,6 +3,8 @@
     export let modal_tipe = "1";
     export let modal_widthheight_class = "";
     export let modal_title = "";
+    export let modal_title_class = "";
+    export let modal_p_class = "";
     export let modal_bar = 0;
     export let modal_message = "";
     export let modal_path_url = "";
@@ -13,12 +15,12 @@
         <div class="modal-box {modal_widthheight_class} relative  select-none">
             <label for="{modal_id}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             {#if modal_title != ""}
-                <h3 class="text-xs lg:text-lg font-bold text-black">{modal_title}</h3>
+                <h3 class="text-xs lg:text-lg font-bold {modal_title_class}">{modal_title}</h3>
             {/if}
             {#if modal_bar > 0}
             <progress class="progress w-full" value="{modal_bar}" max="100"></progress>
             {/if}
-            <p class="italic text-xs lg:text-sm my-4 text-black">
+            <p class="italic text-xs lg:text-sm my-4 {modal_p_class}">
                 {@html modal_message}
             </p>
         </div>

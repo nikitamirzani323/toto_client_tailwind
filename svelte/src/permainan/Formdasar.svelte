@@ -487,6 +487,8 @@
 	modal_id="my-modal-info" 
 	modal_tipe="1" 
 	modal_title="Information" 
+	modal_title_class="text-black" 
+	modal_p_class="text-black" 
 	modal_widthheight_class="bg-info"  
 	modal_message="{msg_error}" />
 <input type="checkbox" id="my-modal-alert" class="modal-toggle" bind:checked={isModalAlert}>
@@ -494,6 +496,8 @@
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
 	modal_title="Alert" 
+	modal_title_class="text-black" 
+	modal_p_class="text-black" 
 	modal_widthheight_class="bg-error"  
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
