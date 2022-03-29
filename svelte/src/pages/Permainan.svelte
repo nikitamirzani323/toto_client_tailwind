@@ -16,7 +16,9 @@
     export let client_ipaddress = "";
     export let client_timezone = "Asia/Jakarta";
     export let client_device = "";
+    export let client_device_width_custom = "";
     export let client_device_height_custom = "";
+    export let client_device_orientation = "";
     export let pasaran_code = "";
     export let pasaran_name = "";
     export let pasaran_periode = 0;
@@ -204,6 +206,7 @@
     checkpasaran();
     let searchNomor = ""
     let filterTransaksi = []
+    let menu_permainan_class = "";
     $: {
         if (searchNomor) {
             filterTransaksi = resultinvoice.filter(
@@ -215,8 +218,16 @@
         } else {
             filterTransaksi = [...resultinvoice];
         }
+        if(client_device_orientation == "landscape"){
+            menu_permainan_class = "justify-center"
+        }else{
+            if(client_device_width_custom < 500){
+                menu_permainan_class = "justify-start"
+            }else{
+                menu_permainan_class = "justify-center"
+            }
+        }
     }
-    
 </script>
 
 {#if statuspasaran == "ONLINE"}
@@ -441,7 +452,7 @@
         </div>
         
         {#if tab_bet_pasangan}
-            <div class="relative flex  overflow-x-scroll scrollbar-hide  h-16 cursor-pointer mx-2 -mt-2">
+            <div class="relative flex {menu_permainan_class}  overflow-x-scroll scrollbar-hide  h-16 cursor-pointer mx-2 -mt-2 ">
 				<ul class="flex items-center select-none gap-2 mx-1">
 					<li>
                         <span

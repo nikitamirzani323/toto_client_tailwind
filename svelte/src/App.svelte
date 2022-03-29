@@ -154,6 +154,7 @@
     }
   }
   let client_device_height_custom =  parseInt(client_device_height);
+  let client_device_width_custom =  parseInt(client_device_width);
 </script>
 <svelte:head>
   <title>APP TOTO</title>
@@ -162,6 +163,7 @@
 <svelte:body
   on:viewportchanged={() => {
     client_device_height_custom = parseInt(Viewport.Height)
+    client_device_width_custom = parseInt(Viewport.Width)
     // console.log('HEIGHT Size changed to: ',client_device_height_custom)
     // console.log('HEIGHT Size2 changed to: ',Viewport.Height)
     // console.log('Viewport Size changed to: ',Viewport.Width+'x'+Viewport.Height)
@@ -198,6 +200,8 @@
           {#if pasaran_code != ""}
             <Permainan
               {client_device_height_custom}
+              {client_device_width_custom}
+              {client_device_orientation}
               {path_api}
               {client_token}
               {client_company}
