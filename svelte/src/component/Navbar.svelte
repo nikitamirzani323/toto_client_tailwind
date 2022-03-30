@@ -184,6 +184,35 @@
         isModal_invoicedetail = true;
         detailslipheader = periode;
         idinvoiceall = e;
+        total4d_bayar = 0;
+        total3d_bayar = 0;
+        total2d_bayar = 0;
+        totalcolokbebas_bayar = 0;
+        totalcolokmacau_bayar = 0;
+        totalcoloknaga_bayar = 0;
+        totalcolokjitu_bayar = 0;
+        total5050umum_bayar = 0;
+        total5050special_bayar = 0;
+        total5050kombinasi_bayar = 0;
+        totalmacaukombinasi_bayar = 0;
+        totaldasar_bayar = 0;
+        totalshio_bayar = 0;
+        totalwin_4d = 0;
+        totalwin_3d = 0;
+        totalwin_2d = 0;
+        totalwin_colokbebas = 0;
+        totalwin_colokmacau = 0;
+        totalwin_coloknaga = 0;
+        totalwin_colokjitu = 0;
+        totalwin_5050umum = 0;
+        totalwin_5050special = 0;
+        totalwin_5050kombinasi = 0;
+        totalwin_macaukombinasi = 0;
+        totalwin_dasar = 0;
+        totalwin_shio = 0;
+        subtotal_bayar = 0;
+        subtotal_winner = 0;
+        total_winlose = 0;
         const res = await fetch(path_api+"api/slipperiodedetail", {
             method: "POST",
             headers: {
@@ -420,9 +449,7 @@
     }
 </script>
 
-{#if client_device == "WEBSITE"}
-   
-    
+{#if client_device == "WEBSITE"} 
     <div class="navbar">
         <div class="navbar-start">
             <a href="/?token={client_token}" >
@@ -605,9 +632,9 @@
                                         {rec.keluaran_pasaran}
                                     </h2>
                                     <p class="text-center text-[11px]">
-                                        <span class="text-[10px;]">#{rec.keluaran_periode}</span><br>
-                                        {rec.keluaran_date}<br>
-                                        <span class="link-accent text-lg">{rec.keluaran_result}</span>
+                                        <span class="link-accent text-lg">{rec.keluaran_result}</span><br>
+                                        <span class="text-[9px;]">#{rec.keluaran_periode}</span><br>
+                                        <span class="text-[9px;]">{rec.keluaran_date}</span>
                                     </p>
                                 </div>
                                 <button
@@ -639,7 +666,7 @@
                 <thead>
                     <tr>
                         <th width="15%" class="text-xs lg:text-sm text-center">TANGGAL</th>
-                        <th width="15%" class="text-xs lg:text-sm text-left">PERIODE</th>
+                        <th width="15%" class="text-xs lg:text-sm text-center">PERIODE</th>
                         <th width="25%" class="text-xs lg:text-sm text-center">HASIL</th>
                     </tr>
                 </thead>
@@ -647,7 +674,7 @@
                     {#each resulttogel  as rec}
                     <tr>
                         <th class="text-xs lg:text-sm text-center">{rec.date}</th>
-                        <td class="text-xs lg:text-sm text-left">{rec.periode}</td>
+                        <td class="text-xs lg:text-sm text-center">{rec.periode}</td>
                         <td class="text-xs lg:text-sm text-center link-accent">{rec.result}</td>
                     </tr>
                     {/each}
@@ -699,8 +726,8 @@
     {:else}
         <div class="modal-box relative max-w-full h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
             <label for="my-modal-allinvoice" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-xs lg:text-sm font-bold ">INVOICE</h3>
-            <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
+            <h3 class="text-xs lg:text-sm font-bold mt-4">INVOICE</h3>
+            <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-5">
                 {#if client_device_orientation == "landscape"}
                     <table class="table table-zebra w-full" >
                         <thead>
@@ -737,32 +764,32 @@
                     <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2">
                         {#if listhasilinvoice != ""}
                             {#each listhasilinvoice as rec}
-                                <div class="card bg-base-300 shadow-lg rounded-md mb-2">
+                                <div
+                                    on:click={() => {
+                                        fetch_invoicelldetail(
+                                            rec.invoice_idinvoice,
+                                            rec.invoice_periode
+                                        );
+                                    }} 
+                                    class="card bg-base-300 shadow-lg rounded-md mb-2">
                                     <div class="card-body  m-0 p-3 ">
-                                        <div class="grid grid-cols-1 ">
-                                            <div class="text-center text-xs">
-                                                {rec.invoice_pasaran} -  #{rec.invoice_periode}
+                                        <div class="flex justify-center items-stretch gap-2">
+                                            <div class="text-xs">
+                                                <span class="font-bold">{rec.invoice_pasaran} -  #{rec.invoice_periode}</span>
+                                                <br>
+                                                <div class="text-[9px] italic">
+                                                    {rec.invoice_tglkeluaran}<br />
+                                                    WINLOSE : <span class="link-accent text-[10px]">{new Intl.NumberFormat().format(rec.invoice_totallose)}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-2">
-                                            <div class="text-left text-xs">
+                                            <div class="self-center flex-1 text-right">
                                                 <span class="{rec.invoice_status_background} p-1 text-[10px] lg:text-sm  uppercase rounded-lg ">{rec.invoice_status}</span>
                                             </div>
-                                            <div class="text-right text-[11px]">
-                                                WINLOSE : <span class="link-accent">{new Intl.NumberFormat().format(rec.invoice_totallose)}</span>
-                                            </div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 self-center text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                            </svg>
                                         </div>
                                     </div>
-                                    <button
-                                        on:click={() => {
-                                            fetch_invoicelldetail(
-                                                rec.invoice_idinvoice,
-                                                rec.invoice_periode
-                                            );
-                                        }}
-                                        class="flex btn btn-xs rounded-none btn-block">
-                                        Detail
-                                    </button>
                                 </div>
                             {/each}
                         {:else}
@@ -988,12 +1015,12 @@
             <label for="my-modal-invoicedetail" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-2">PASARAN : {detailslipheader}</h3>
             <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-2">
-                <table class="table table-zebra w-full" >
+                <table class="table table-compact w-full" >
                     <thead>
                         <tr>
-                            <th width="*" class="text-xs lg:text-sm text-left">PERMAINAN</th>
-                            <th width="25%" class="text-xs lg:text-sm text-right">BAYAR</th>
-                            <th width="25%" class="text-xs lg:text-sm text-right">MENANG</th>
+                            <th width="*" class="text-[11px] lg:text-sm text-left">PERMAINAN</th>
+                            <th width="25%" class="text-[11px] lg:text-sm text-right">BAYAR</th>
+                            <th width="25%" class="text-[11px] lg:text-sm text-right">MENANG</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1006,9 +1033,9 @@
                                         total4d_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">4D</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">4D</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
                         </tr>
                         {/if}
                         {#if total3d_bayar > 0}
@@ -1020,9 +1047,9 @@
                                         total3d_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">3D</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">3D</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
                         </tr>
                         {/if}
                         {#if total2d_bayar > 0}
@@ -1034,9 +1061,9 @@
                                         total2d_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">2D</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">2D</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
                         </tr>
                         {/if}
                         {#if totalcolokbebas_bayar > 0}
@@ -1048,9 +1075,9 @@
                                         totalcolokbebas_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK BEBAS</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK BEBAS</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
                         </tr>
                         {/if}
                         {#if totalcolokmacau_bayar > 0}
@@ -1062,9 +1089,9 @@
                                         totalcolokmacau_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK MACAU</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK MACAU</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
                         </tr>
                         {/if}
                         {#if totalcoloknaga_bayar > 0}
@@ -1076,9 +1103,9 @@
                                         totalcoloknaga_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK NAGA</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK NAGA</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
                         </tr>
                         {/if}
                         {#if totalcolokjitu_bayar > 0}
@@ -1090,9 +1117,9 @@
                                         totalcolokjitu_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK JITU</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK JITU</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
                         </tr>
                         {/if}
                         {#if total5050umum_bayar > 0}
@@ -1104,9 +1131,9 @@
                                         total5050umum_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 UMUM</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 UMUM</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
                         </tr>
                         {/if}
                         {#if total5050special_bayar > 0}
@@ -1118,9 +1145,9 @@
                                         total5050special_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 SPECIAL</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 SPECIAL</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
                         </tr>
                         {/if}
                         {#if total5050kombinasi_bayar > 0}
@@ -1132,9 +1159,9 @@
                                         total5050kombinasi_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap">50 - 50 KOMBINASI</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap">50 - 50 KOMBINASI</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
                         </tr>
                         {/if}
                         {#if totalmacaukombinasi_bayar > 0}
@@ -1146,9 +1173,9 @@
                                         totalmacaukombinasi_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">MACAU / KOMBINASI</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">MACAU / KOMBINASI</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
                         </tr>
                         {/if}
                         {#if totaldasar_bayar > 0}
@@ -1160,9 +1187,9 @@
                                         totaldasar_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">DASAR</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">DASAR</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
                         </tr>
                         {/if}
                         {#if totalshio_bayar > 0}
@@ -1174,9 +1201,9 @@
                                         totalshio_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap cursor-pointer underline">SHIO</th>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
-                            <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
+                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">SHIO</th>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
+                            <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
                         </tr>
                         {/if}
                     </tbody>
@@ -1184,19 +1211,19 @@
                 <div class="bg-base-300 p-3 shadow-lg mt-4 rounded-lg">
                     <table class="w-full">
                         <tr>
-                            <td class="text-right text-xs lg:text-sm">TOTAL BAYAR</td>
-                            <td class="text-right text-xs lg:text-sm">:</td>
-                            <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_bayar)}</td>
+                            <td class="text-right text-[11px] lg:text-sm">TOTAL BAYAR</td>
+                            <td class="text-right text-[11px] lg:text-sm">:</td>
+                            <td class="text-right text-[11px] lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_bayar)}</td>
                         </tr>
                         <tr>
-                            <td class="text-right text-xs lg:text-sm">TOTAL WINNER</td>
-                            <td class="text-right text-xs lg:text-sm">:</td>
-                            <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_winner)}</td>
+                            <td class="text-right text-[11px] lg:text-sm">TOTAL WINNER</td>
+                            <td class="text-right text-[11px] lg:text-sm">:</td>
+                            <td class="text-right text-[11px] lg:text-sm link-accent">{new Intl.NumberFormat().format(subtotal_winner)}</td>
                         </tr>
                         <tr>
-                            <td class="text-right text-xs lg:text-sm">WINLOSE</td>
-                            <td class="text-right text-xs lg:text-sm">:</td>
-                            <td class="text-right text-xs lg:text-sm link-accent">{new Intl.NumberFormat().format(total_winlose)}</td>
+                            <td class="text-right text-[11px] lg:text-sm">WINLOSE</td>
+                            <td class="text-right text-[11px] lg:text-sm">:</td>
+                            <td class="text-right text-[11px] lg:text-sm link-accent">{new Intl.NumberFormat().format(total_winlose)}</td>
                         </tr>
                     </table>
                 </div>
@@ -1296,19 +1323,23 @@
                 <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
                     <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2">
                         {#each listhasilinvoicebet as rec}
-                            <div tabindex="0" class="collapse  border border-base-300 bg-base-100 rounded-box p-2 cursor-pointer">
+                            <div tabindex="0" class="collapse  bg-base-300  p-2 cursor-pointer">
                                 <input type="checkbox" class="peer"> 
                                 <div class="collapse-title p-1 ">
-                                    <div class="grid grid-cols-2 gap-2">
-                                        <div class="text-left text-xs">
+                                    <div class="flex justify-center items-stretch gap-2">
+                                        <div class="text-left text-xs font-bold">
                                             NOMOR : {rec.bet_nomor}
                                         </div>
-                                        <div class="text-right text-[11px]">
-                                            <span class="{rec.bet_background} p-2 rounded-lg">{rec.bet_status}</span>
+                                        <div class="self-center flex-1 text-right">
+                                            <span class="{rec.bet_background} p-1 text-[10px] lg:text-sm  uppercase rounded-lg">{rec.bet_status}</span>
                                         </div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 self-center text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                                        </svg>
+                                            
                                     </div>
                                 </div>
-                                <div class="collapse-content mt-1"> 
+                                <div class="collapse-content mt-1 px-1 pb-0"> 
                                     <table class="w-full">
                                         {#if rec.bet_tipe != ""}
                                         <tr>
@@ -1390,7 +1421,7 @@
     {:else}
         <div class="modal-box relative max-w-full h-full lg:h-2/3 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
             <label for="my-modal-pasaran" class="btn btn-xs btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
+            <h3 class="text-xs lg:text-sm font-bold mt-1">PASARAN</h3>
             <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
                 <div class="grid grid-cols-2 gap-2 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3">
                     {#each listkeluaran as rec}
