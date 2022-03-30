@@ -293,9 +293,13 @@
 	
  	
   	const handleKeyboard_number = (e) => {
-    	if (isNaN(parseInt(e.key))) {
-      		return e.target.value = "";
-    	}
+    	let numbera;
+		for (let i = 0; i < bet_kombinasi.length; i++) {
+			numbera = parseInt(bet_kombinasi[i]);
+			if (isNaN(numbera)) {
+				bet_kombinasi = "";
+			}
+		}
   	}
   	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
@@ -507,8 +511,8 @@
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
 	modal_title="Information" 
-	modal_title_class="text-white" 
-	modal_p_class="text-white" 
+	modal_title_class="" 
+	modal_p_class="" 
 	modal_widthheight_class="" 
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />

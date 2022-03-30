@@ -899,9 +899,55 @@
 	inittogel_432d("colok");
 	
   	const handleKeyboard_number = (e) => {
-    	if (isNaN(parseInt(e.key))) {
-      		return e.target.value = "";
-    	}
+    	let numbera;
+		for (let i = 0; i < bet_colokbebas.length; i++) {
+			numbera = parseInt(bet_colokbebas[i]);
+			if (isNaN(numbera)) {
+				bet_colokbebas = "";
+			}
+		}
+		for (let i = 0; i < bet_colokmacau.length; i++) {
+			numbera = parseInt(bet_colokmacau[i]);
+			if (isNaN(numbera)) {
+				bet_colokmacau = "";
+			}
+		}
+		for (let i = 0; i < bet_coloknaga.length; i++) {
+			numbera = parseInt(bet_coloknaga[i]);
+			if (isNaN(numbera)) {
+				bet_coloknaga = "";
+			}
+		}
+		for (let i = 0; i < bet_colokjitu.length; i++) {
+			numbera = parseInt(bet_colokjitu[i]);
+			if (isNaN(numbera)) {
+				bet_colokjitu = "";
+			}
+		}
+		for (let i = 0; i < nomor_polacolok.length; i++) {
+			numbera = parseInt(nomor_polacolok[i]);
+			if (isNaN(numbera)) {
+				nomor_polacolok = "";
+			}
+		}
+		for (let i = 0; i < bet_polacolokbebas.length; i++) {
+			numbera = parseInt(bet_polacolokbebas[i]);
+			if (isNaN(numbera)) {
+				bet_polacolokbebas = "";
+			}
+		}
+		for (let i = 0; i < bet_polacolokmacau.length; i++) {
+			numbera = parseInt(bet_polacolokmacau[i]);
+			if (isNaN(numbera)) {
+				bet_polacolokmacau = "";
+			}
+		}
+		for (let i = 0; i < bet_polacoloknaga.length; i++) {
+			numbera = parseInt(bet_polacoloknaga[i]);
+			if (isNaN(numbera)) {
+				bet_polacoloknaga = "";
+			}
+		}
   	}
   	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
@@ -1756,8 +1802,8 @@
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
 	modal_title="Information" 
-	modal_title_class="text-white" 
-	modal_p_class="text-white" 
+	modal_title_class="" 
+	modal_p_class="" 
 	modal_widthheight_class="" 
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />

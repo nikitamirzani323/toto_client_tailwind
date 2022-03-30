@@ -3610,9 +3610,158 @@
 	}
   
 	const handleKeyboard_number = (e) => {
-		if (isNaN(parseInt(e.key))) {
-      		return e.target.value = "";
-    	}
+		let numbera;
+		for (let i = 0; i < bet_432.length; i++) {
+			numbera = parseInt(bet_432[i]);
+			if (isNaN(numbera)) {
+				bet_432 = "";
+			}
+		}
+		for (let i = 0; i < bet_3dd.length; i++) {
+			numbera = parseInt(bet_3dd[i]);
+			if (isNaN(numbera)) {
+				bet_3dd = "";
+			}
+		}
+		for (let i = 0; i < betset_1.length; i++) {
+			numbera = parseInt(betset_1[i]);
+			if (isNaN(numbera)) {
+				betset_1 = "";
+			}
+		}
+		for (let i = 0; i < betset_2.length; i++) {
+			numbera = parseInt(betset_2[i]);
+			if (isNaN(numbera)) {
+				betset_2 = "";
+			}
+		}
+		for (let i = 0; i < betset_3.length; i++) {
+			numbera = parseInt(betset_3[i]);
+			if (isNaN(numbera)) {
+				betset_3 = "";
+			}
+		}
+		for (let i = 0; i < betset_4.length; i++) {
+			numbera = parseInt(betset_4[i]);
+			if (isNaN(numbera)) {
+				betset_4 = "";
+			}
+		}
+		for (let i = 0; i < betset_5.length; i++) {
+			numbera = parseInt(betset_5[i]);
+			if (isNaN(numbera)) {
+				betset_5 = "";
+			}
+		}
+		for (let i = 0; i < betset_6.length; i++) {
+			numbera = parseInt(betset_6[i]);
+			if (isNaN(numbera)) {
+				betset_6 = "";
+			}
+		}
+		for (let i = 0; i < bet_1.length; i++) {
+			numbera = parseInt(bet_1[i]);
+			if (isNaN(numbera)) {
+				bet_1 = "";
+			}
+		}
+		for (let i = 0; i < bet_2.length; i++) {
+			numbera = parseInt(bet_2[i]);
+			if (isNaN(numbera)) {
+				bet_2 = "";
+			}
+		}
+		for (let i = 0; i < bet_3.length; i++) {
+			numbera = parseInt(bet_3[i]);
+			if (isNaN(numbera)) {
+				bet_3 = "";
+			}
+		}
+		for (let i = 0; i < bet_4.length; i++) {
+			numbera = parseInt(bet_4[i]);
+			if (isNaN(numbera)) {
+				bet_4 = "";
+			}
+		}
+		for (let i = 0; i < bet_5.length; i++) {
+			numbera = parseInt(bet_5[i]);
+			if (isNaN(numbera)) {
+				bet_5 = "";
+			}
+		}
+		for (let i = 0; i < bet_6.length; i++) {
+			numbera = parseInt(bet_6[i]);
+			if (isNaN(numbera)) {
+				bet_6 = "";
+			}
+		}
+		
+		for (let i = 0; i < bet_2dd.length; i++) {
+			numbera = parseInt(bet_2dd[i]);
+			if (isNaN(numbera)) {
+				bet_2dd = "";
+			}
+		}
+		for (let i = 0; i < bet_2dt.length; i++) {
+			numbera = parseInt(bet_2dt[i]);
+			if (isNaN(numbera)) {
+				bet_2dt = "";
+			}
+		}
+		for (let i = 0; i < nomorbbfs.length; i++) {
+			numbera = parseInt(nomorbbfs[i]);
+			if (isNaN(numbera)) {
+				nomorbbfs = "";
+			}
+		}
+		for (let i = 0; i < nomor2dd.length; i++) {
+			numbera = parseInt(nomor2dd[i]);
+			if (isNaN(numbera)) {
+				nomor2dd = "";
+			}
+		}
+		for (let i = 0; i < nomor2dt.length; i++) {
+			numbera = parseInt(nomor2dt[i]);
+			if (isNaN(numbera)) {
+				nomor2dt = "";
+			}
+		}
+		for (let i = 0; i < quick_bet.length; i++) {
+			numbera = parseInt(quick_bet[i]);
+			if (isNaN(numbera)) {
+				quick_bet = "";
+			}
+		}
+		for (let i = 0; i < nomoras.length; i++) {
+			numbera = parseInt(nomoras[i]);
+			if (isNaN(nomoras)) {
+				nomoras = "";
+			}
+		}
+		for (let i = 0; i < nomorkop.length; i++) {
+			numbera = parseInt(nomorkop[i]);
+			if (isNaN(nomorkop)) {
+				nomorkop = "";
+			}
+		}
+		for (let i = 0; i < nomorkepala.length; i++) {
+			numbera = parseInt(nomorkepala[i]);
+			if (isNaN(nomorkepala)) {
+				nomorkepala = "";
+			}
+		}
+		for (let i = 0; i < nomorekor.length; i++) {
+			numbera = parseInt(nomorekor[i]);
+			if (isNaN(nomorekor)) {
+				nomorekor = "";
+			}
+		}
+		for (let i = 0; i < bet_tarung.length; i++) {
+			numbera = parseInt(bet_tarung[i]);
+			if (isNaN(bet_tarung)) {
+				bet_tarung = "";
+			}
+		}
 	}
 	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
@@ -5120,8 +5269,8 @@
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
 	modal_title="Information" 
-	modal_title_class="text-white" 
-	modal_p_class="text-white" 
+	modal_title_class="" 
+	modal_p_class="" 
 	modal_widthheight_class="" 
 	modal_bar={barWidth+1} 
 	modal_message="{msg_error}" />
@@ -5146,8 +5295,8 @@
 	modal_id="my-modal-alertbbfs" 
 	modal_tipe="1" 
 	modal_title="Information" 
-	modal_title_class="text-white" 
-	modal_p_class="text-white" 
+	modal_title_class="" 
+	modal_p_class="" 
 	modal_widthheight_class=""  
 	modal_message="
 		Total Transaksi : <span class='text-xs lg:text-sm link-accent'>{new Intl.NumberFormat().format(totalkeranjang)}</span>

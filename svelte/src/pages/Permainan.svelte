@@ -730,8 +730,8 @@
 	modal_id="my-modal-alertkeranjang" 
 	modal_tipe="1" 
 	modal_title="Information" 
-	modal_title_class="text-white" 
-	modal_p_class="text-white" 
+	modal_title_class="" 
+	modal_p_class="" 
 	modal_widthheight_class=""  
 	modal_message="
 		Total Transaksi : <span class='text-xs lg:text-sm link-accent'>{new Intl.NumberFormat().format(totalkeranjang)}</span>
