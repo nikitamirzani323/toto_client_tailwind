@@ -34,14 +34,12 @@
     let isModalAlert = false;
     let isModalAlertKeranjang = false;
     let isModalBetHistory = false;
+    let isSkeleton = false;
     let msg_error = "";
     let idcomppasaran = "";
     let idtrxkeluaran = "";
     let permainan_title = "4D / 3D / 2D";
     let statuspasaran = "";
-    let tab_bet_pasangan = true;
-    let tab_bet_pasangan_class = "bg-base-300 rounded-lg outline outline-1 outline-offset-1 outline-green-600";
-    let tab_bet_history_class = "";
     let permainan_432_class = "bg-green-700 grass text-white";
     let permainan_colok_class = "bg-base-200 ";
     let permainan_5050_class = "bg-base-200 ";
@@ -78,6 +76,7 @@
         }
     }
     async function invoicebet(e) {
+        isSkeleton = true
         const res = await fetch(path_api+"api/invoicebet", {
             method: "POST",
             headers: {
@@ -98,6 +97,7 @@
             totalbayar_invoice = json.totalbayar;
             totalbet_invoice = json.totalbet;
             record = json.record;
+            
             if (record != null) {
                 for (var i = 0; i < record.length; i++) {
                     resultinvoice = [
@@ -117,7 +117,9 @@
                     ];
                 }
             }
+            isSkeleton = false;
         }
+        
     }
     
     const handleInvoice = (e) => {
@@ -129,23 +131,9 @@
         totalkeranjang = e.detail.totalkeranjang
     }
     const handleBetHistory = (e) => {
-        console.log('PERMAINAN')
         isModalBetHistory = true;
         invoicebet("all");
     }
-    const handleTabBet = (e) => {
-        if(e == "Y"){
-            tab_bet_pasangan = true;
-            tab_bet_pasangan_class = "bg-base-300 rounded-lg outline outline-1 outline-offset-1 outline-green-600";
-            tab_bet_history_class = "";
-        }else{
-            tab_bet_pasangan = false;
-            tab_bet_pasangan_class = "";
-            tab_bet_history_class = "bg-base-300 rounded-lg outline outline-1 outline-offset-1 outline-green-600";
-            resultinvoice = [];
-            invoicebet("all");
-        }
-    };
     const changePermainan = (e) => {
         if(row_keranjang > 0){
             isModalAlertKeranjang = true;
@@ -695,7 +683,11 @@
             <div class="border-b-2 border-base-200 p-2 h-11 w-full max-w-full">
                 <label for="my-modal-bethistory" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                 <h3 class="text-xs lg:text-sm font-bold mt-2">
-                    TOTAL BAYAR : <span class="text-xs link-accent">{new Intl.NumberFormat().format(totalbayar_invoice)}</span>
+                    {#if !isSkeleton}
+                        TOTAL BAYAR : <span class="text-xs link-accent">{new Intl.NumberFormat().format(totalbayar_invoice)}</span>
+                    {:else}
+                        <Card_placeholder tipe="3" with_flex="w-1/2" total_placeholder=1 />
+                    {/if}
                 </h3>
             </div>
             <div class="mx-2">
@@ -721,17 +713,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {#each filterTransaksi as rec}
+                                {#if !isSkeleton}
+                                    {#each filterTransaksi as rec}
+                                        <tr>
+                                            <th class="text-[11px] text-center whitespace-nowrap">{rec.nomor}</th>
+                                            <td class="text-[11px] text-center whitespace-nowrap">{rec.tipe_betinvoice}</td>
+                                            <td class="text-[11px] text-center whitespace-nowrap">{rec.permainan}</td>
+                                            <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                            <td class="text-[11px] text-right link-accent whitespace-nowrap">{rec.diskon.toFixed(2)}</td>
+                                            <td class="text-[11px] text-right link-accent whitespace-nowrap">{rec.kei.toFixed(2)}</td>
+                                            <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                        </tr>
+                                    {/each}
+                                {:else}
                                     <tr>
-                                        <th class="text-[11px] text-center whitespace-nowrap">{rec.nomor}</th>
-                                        <td class="text-[11px] text-center whitespace-nowrap">{rec.tipe_betinvoice}</td>
-                                        <td class="text-[11px] text-center whitespace-nowrap">{rec.permainan}</td>
-                                        <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                        <td class="text-[11px] text-right link-accent whitespace-nowrap">{rec.diskon.toFixed(2)}</td>
-                                        <td class="text-[11px] text-right link-accent whitespace-nowrap">{rec.kei.toFixed(2)}</td>
-                                        <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                        <td colspan="8">
+                                            <Card_placeholder tipe="2" total_placeholder=3 />
+                                        </td>
                                     </tr>
-                                {/each}
+                                {/if}
                             </tbody>
                         </table> 
                     </div>

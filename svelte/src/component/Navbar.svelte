@@ -1025,183 +1025,158 @@
                     </thead>
                     <tbody>
                         {#if total4d_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "4D",
-                                        total4d_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">4D</th>
+                        <tr
+                            on:click={() => {
+                                fetch_invoicealldetailpermainan(
+                                    "4D",
+                                    total4d_bayar
+                                );
+                            }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">4D</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
                         </tr>
                         {/if}
                         {#if total3d_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "3D",
-                                        total3d_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">3D</th>
+                        <tr on:click={() => {
+                                fetch_invoicealldetailpermainan(
+                                    "3D",
+                                    total3d_bayar
+                                );
+                            }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">3D</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
                         </tr>
                         {/if}
                         {#if total2d_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "2D",
-                                        total2d_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">2D</th>
+                        <tr on:click={() => {
+                                fetch_invoicealldetailpermainan(
+                                    "2D",
+                                    total2d_bayar
+                                );
+                            }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">2D</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
                         </tr>
                         {/if}
                         {#if totalcolokbebas_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "COLOK_BEBAS",
-                                        totalcolokbebas_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK BEBAS</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "COLOK_BEBAS",
+                                totalcolokbebas_bayar
+                            );
+                            }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK BEBAS</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
                         </tr>
                         {/if}
                         {#if totalcolokmacau_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "COLOK_MACAU",
-                                        totalcolokmacau_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK MACAU</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "COLOK_MACAU",
+                                totalcolokmacau_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK MACAU</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
                         </tr>
                         {/if}
                         {#if totalcoloknaga_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "COLOK_NAGA",
-                                        totalcoloknaga_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK NAGA</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "COLOK_NAGA",
+                                totalcoloknaga_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK NAGA</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
                         </tr>
                         {/if}
                         {#if totalcolokjitu_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "COLOK_JITU",
-                                        totalcolokjitu_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK JITU</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "COLOK_JITU",
+                                totalcolokjitu_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">COLOK JITU</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
                         </tr>
                         {/if}
                         {#if total5050umum_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "50_50_UMUM",
-                                        total5050umum_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 UMUM</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "50_50_UMUM",
+                                total5050umum_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 UMUM</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
                         </tr>
                         {/if}
                         {#if total5050special_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "50_50_SPECIAL",
-                                        total5050special_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 SPECIAL</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "50_50_SPECIAL",
+                                total5050special_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">50 - 50 SPECIAL</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
                         </tr>
                         {/if}
                         {#if total5050kombinasi_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "50_50_KOMBINASI",
-                                        total5050kombinasi_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap">50 - 50 KOMBINASI</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "50_50_KOMBINASI",
+                                total5050kombinasi_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap">50 - 50 KOMBINASI</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
                         </tr>
                         {/if}
                         {#if totalmacaukombinasi_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "MACAU_KOMBINASI",
-                                        totalmacaukombinasi_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">MACAU / KOMBINASI</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "MACAU_KOMBINASI",
+                                totalmacaukombinasi_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">MACAU / KOMBINASI</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
                         </tr>
                         {/if}
                         {#if totaldasar_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "DASAR",
-                                        totaldasar_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">DASAR</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "DASAR",
+                                totaldasar_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">DASAR</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
                         </tr>
                         {/if}
                         {#if totalshio_bayar > 0}
-                        <tr>
-                            <th 
-                                on:click={() => {
-                                    fetch_invoicealldetailpermainan(
-                                        "SHIO",
-                                        totalshio_bayar
-                                    );
-                                }}
-                                class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">SHIO</th>
+                        <tr on:click={() => {
+                            fetch_invoicealldetailpermainan(
+                                "SHIO",
+                                totalshio_bayar
+                            );
+                        }}>
+                            <th class="text-[11px] lg:text-sm text-left whitespace-nowrap cursor-pointer underline">SHIO</th>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
                             <td class="text-[11px] lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
                         </tr>

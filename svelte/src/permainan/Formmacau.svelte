@@ -1,4 +1,5 @@
 <script>
+	import Card_placeholder from '../component/Placeholder.svelte'
 	import Modal_alert from "../component/Modal_alert.svelte";
 	import Button_custom1 from "../component/Button_custom1.svelte";
 	import Tablekeranjang from "../permainan/Tablekeranjangmacau.svelte";
@@ -50,6 +51,7 @@
 	let isModalAlert = false
 	let isModalAlertSystem = false
 	let isModalLoading = false
+	let isSkeleton = false
 	let flag_fulldiskon = ""
 	let msg_error = ""
 	let barWidth = 0;
@@ -182,6 +184,7 @@
 		inittogel_432d("macaukombinasi");
 	}
   	async function inittogel_432d(e) {
+		isSkeleton = true;
 		const res = await fetch(path_api+"api/inittogel_432d", {
 			method: "POST",
 			headers: {
@@ -205,6 +208,7 @@
 				diskon_bet = parseFloat(record[i]["diskon_bet"]);
 				limit_total = parseInt(record[i]["limit_total"]);
 			}
+			isSkeleton = false;
 		}
 	}
   	function count_keranjang() {
@@ -428,83 +432,91 @@
 			button_title="Keranjang" />
 		  
 		{:else}
-			<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
-				<div class="place-content-start text-left text-xs">
-					{pasaran_name} <br> {permainan_title}
-				</div>
-				<div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
-			</h2>
-			<label for="my-modal-inputbet" 
-				class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">
-				Klik Area Ini Untuk Melakukan Transaksi
-			</label>
-		  
-			<input type="checkbox" id="my-modal-inputbet" class="modal-toggle">
-			<div class="modal modal-bottom sm:modal-middle">
-				<div class="modal-box bg-base-200 relative rounded-sm">
-					<label for="my-modal-inputbet" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-					<div class="mt-2 gap-2 grid grid-cols-3">
-						<div class="form-control">
-							<select
-								bind:value={select_kombinasi_1}
-								class="select w-full max-w-full {form_font_sizeinput_default}">
-								<option value="">--Pilih--</option>
-								<option value="BELAKANG">BELAKANG</option>
-								<option value="TENGAH">TENGAH</option>
-								<option value="DEPAN">DEPAN</option>
-							</select> 
-						</div>
-						<div class="form-control">
-							<select
-								bind:value={select_kombinasi_2}
-								class="select w-full max-w-full {form_font_sizeinput_default}">
-								<option value="">--Pilih--</option>
-								<option value="BESAR">BESAR</option>
-								<option value="KECIL">KECIL</option>
-							</select> 
-						</div>
-						<div class="form-control">
-							<select
-								bind:value={select_kombinasi_3}
-								class="select w-full max-w-full {form_font_sizeinput_default}">
-								<option value="">--Pilih--</option>
-								<option value="GENAP">GENAP</option>
-								<option value="GANJIL">GANJIL</option>
-							</select> 
-						</div>
+			{#if isSkeleton}
+				<Card_placeholder tipe="2" total_placeholder=1 />
+  			{:else}
+				<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
+					<div class="place-content-start text-left text-xs">
+						{pasaran_name} <br> {permainan_title}
 					</div>
-					<div class="form-control">
-						<label class="label">
-							<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-							<span class="label-text-alt {form_font_sizelabel_default}">
-								Bet (
-									min : {new Intl.NumberFormat().format(min_bet)} dan 
-									max : {new Intl.NumberFormat().format(max_bet)}
-								)
-							</span>
-						</label>
-						<input
-							bind:value={bet_kombinasi}
-							on:keyup={handleKeyboard_number}
-							on:keypress={handleKeyboard_checkenter} 
-							minlength="3"
-							maxlength="{max_bet.toString().length}"
-							type="text" placeholder="Bet" 
-							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-						<label class="label">
-							<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-							<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_kombinasi)}</span>
-						</label>
+					<div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
+				</h2>
+				<label for="my-modal-inputbet" class="modal-button font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">
+					<div class="flex flex-col justify-center items-center">
+						<span>Klik Area Ini Untuk Melakukan Transaksi</span>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+						</svg>
 					</div>
-					<Button_custom1 
-						on:click={() => {
-						handleTambah();
-						}} 
-					button_tipe=""
-					button_block="btn-sm btn-block"
-					button_title="Keranjang" />
+				</label>
+			
+				<input type="checkbox" id="my-modal-inputbet" class="modal-toggle">
+				<div class="modal modal-bottom sm:modal-middle">
+					<div class="modal-box bg-base-200 relative rounded-sm">
+						<label for="my-modal-inputbet" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+						<div class="mt-2 gap-2 grid grid-cols-3">
+							<div class="form-control">
+								<select
+									bind:value={select_kombinasi_1}
+									class="select w-full max-w-full {form_font_sizeinput_default}">
+									<option value="">--Pilih--</option>
+									<option value="BELAKANG">BELAKANG</option>
+									<option value="TENGAH">TENGAH</option>
+									<option value="DEPAN">DEPAN</option>
+								</select> 
+							</div>
+							<div class="form-control">
+								<select
+									bind:value={select_kombinasi_2}
+									class="select w-full max-w-full {form_font_sizeinput_default}">
+									<option value="">--Pilih--</option>
+									<option value="BESAR">BESAR</option>
+									<option value="KECIL">KECIL</option>
+								</select> 
+							</div>
+							<div class="form-control">
+								<select
+									bind:value={select_kombinasi_3}
+									class="select w-full max-w-full {form_font_sizeinput_default}">
+									<option value="">--Pilih--</option>
+									<option value="GENAP">GENAP</option>
+									<option value="GANJIL">GANJIL</option>
+								</select> 
+							</div>
+						</div>
+						<div class="form-control">
+							<label class="label">
+								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+								<span class="label-text-alt {form_font_sizelabel_default}">
+									Bet (
+										min : {new Intl.NumberFormat().format(min_bet)} dan 
+										max : {new Intl.NumberFormat().format(max_bet)}
+									)
+								</span>
+							</label>
+							<input
+								bind:value={bet_kombinasi}
+								on:keyup={handleKeyboard_number}
+								on:keypress={handleKeyboard_checkenter} 
+								minlength="3"
+								maxlength="{max_bet.toString().length}"
+								type="text" placeholder="Bet" 
+								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+							<label class="label">
+								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+								<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_kombinasi)}</span>
+							</label>
+						</div>
+						<Button_custom1 
+							on:click={() => {
+							handleTambah();
+							}} 
+						button_tipe=""
+						button_block="btn-sm btn-block"
+						button_title="Keranjang" />
+					</div>
 				</div>
-			</div>
+			{/if}
 		{/if}
 	</div>
 </div>

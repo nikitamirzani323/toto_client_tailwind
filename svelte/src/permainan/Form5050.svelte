@@ -1,4 +1,5 @@
 <script>
+	import Card_placeholder from '../component/Placeholder.svelte'
 	import Modal_alert from "../component/Modal_alert.svelte";
 	import Button_custom1 from "../component/Button_custom1.svelte";
 	import Tablekeranjang from "../permainan/Tablekeranjang5050.svelte";
@@ -143,6 +144,7 @@
 	let isModalAlert = false
 	let isModalAlertSystem = false
 	let isModalLoading = false
+	let isSkeleton = false
 	let flag_fulldiskon = ""
 	let msg_error = ""
 	let barWidth = 0;
@@ -361,6 +363,7 @@
 		inittogel_432d("5050");
 	}
   	async function inittogel_432d(e) {
+		isSkeleton = true;
 		const res = await fetch(path_api+"api/inittogel_432d", {
 			method: "POST",
 			headers: {
@@ -462,6 +465,7 @@
 				disc_depankembar_bet_5050kombinasi = parseFloat(record[i]["disc_depankembar_bet_5050kombinasi"]);
 				limittotal_bet_5050kombinasi = parseFloat(record[i]["limittotal_bet_5050kombinasi"]);
 			}
+			isSkeleton = false;
 		}
 	}
   	function count_keranjang() {
@@ -1111,215 +1115,223 @@
 			{/if}
 		
       	{:else}
-			<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
-				<div class="place-content-start text-left text-xs">
-					{pasaran_name} <br> {permainan_title}
-				</div>
-				<div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
-			</h2>
-			<label for="my-modal-inputbet" 
-				class="modal-button flex items-center justify-center font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">
-				Klik Area Ini Untuk Melakukan Transaksi
-			</label>
-			
-			<input type="checkbox" id="my-modal-inputbet" class="modal-toggle">
-			<div class="modal modal-bottom sm:modal-middle">
-				<div class="modal-box bg-base-200 relative rounded-sm">
-					<label for="my-modal-inputbet" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-					<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
-						<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-12">
-							<ul class="flex items-center">
-								<li>
-								<span
-									on:click={() => {
-									changeTabs("umum");
-									}} 
-									class="{class_tab_5050umum} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer ">UMUM</span>
-								</li>
-								<li>
-								<span
-									on:click={() => {
-									changeTabs("special");
-									}}
-									class="{class_tab_5050special} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">SPECIAL</span>
-								</li>
-								<li>
-								<span
-									on:click={() => {
-										changeTabs("kombinasi");
-									}}
-									class="{class_tab_5050kombinasi} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer">KOMBINASI</span>
-								</li>
-							</ul>
-						</div>
+		  	{#if isSkeleton}
+		  		<Card_placeholder tipe="2" total_placeholder=1 />
+			{:else}
+				<h2 class="card-title bg-base-200 text-lg grid grid-cols-2 gap-1">
+					<div class="place-content-start text-left text-xs">
+						{pasaran_name} <br> {permainan_title}
 					</div>
-					
-					{#if panel_form_5050umum}
-						<div class="form-control mt-2">
-							<select
-								bind:value={select_5050umum}
-								bind:this={select_5050umum_input} 
-								class="select w-full max-w-full {form_font_sizeinput_default}">
-								<option value="">--Pilih--</option>
-								<option value="BESAR">BESAR</option>
-								<option value="KECIL">KECIL</option>
-								<option value="GENAP">GENAP</option>
-								<option value="GANJIL">GANJIL</option>
-								<option value="TENGAH">TENGAH</option>
-								<option value="TEPI">TEPI</option>
-							</select> 
-						</div>
-						<div class="form-control">
-							<label class="label">
-								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-								<span class="label-text-alt {form_font_sizelabel_default}">
-									Bet (
-										min : {new Intl.NumberFormat().format(min_bet_5050umum)} dan 
-										max : {new Intl.NumberFormat().format(max_bet_5050umum)}
-									)
-								</span>
-							</label>
-							<input
-								bind:value={bet_5050umum}
-								on:keyup={handleKeyboard_number}
-								on:keypress={handleKeyboard_checkenter} 
-								minlength="3"
-								maxlength="{max_bet_5050umum.toString().length}"
-								type="text" placeholder="Bet" 
-								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-							<label class="label">
-								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-								<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050umum)}</span>
-							</label>
-						</div>
-						<Button_custom1 
-							on:click={() => {
-							handleTambah("5050umum");
-							}} 
-						button_tipe=""
-						button_block="btn-sm btn-block"
-						button_title="Keranjang" />
-					{/if}
-					{#if panel_form_5050special}
-						<div class="mt-2 gap-2 grid grid-cols-2">
-							<div class="form-control">
-								<select
-									bind:value={select_5050special_1}
-									bind:this={select_5050special_1_input} 
-									class="select w-full max-w-full {form_font_sizeinput_default}">
-									<option value="">--Pilih--</option>
-									<option value="AS">AS</option>
-									<option value="KOP">KOP</option>
-									<option value="KEPALA">KEPALA</option>
-									<option value="EKOR">EKOR</option>
-								</select> 
+					<div class="place-content-end text-right text-xs -mt-4">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
+				</h2>
+				<label for="my-modal-inputbet" class="modal-button font-semibold text-center text-xs m-2 h-[3rem] bg-base-200 rounded-md outline outline-1 outline-offset-1 outline-green-600 ">
+					<div class="flex flex-col justify-center items-center">
+						<span>Klik Area Ini Untuk Melakukan Transaksi</span>
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+						</svg>
+					</div>
+				</label>
+				
+				<input type="checkbox" id="my-modal-inputbet" class="modal-toggle">
+				<div class="modal modal-bottom sm:modal-middle">
+					<div class="modal-box bg-base-200 relative rounded-sm">
+						<label for="my-modal-inputbet" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+						<div class="mt-2 md:flex md:items-center md:justify-between md:space-x-8">
+							<div class="relative flex items-center overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-12">
+								<ul class="flex items-center">
+									<li>
+									<span
+										on:click={() => {
+										changeTabs("umum");
+										}} 
+										class="{class_tab_5050umum} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer ">UMUM</span>
+									</li>
+									<li>
+									<span
+										on:click={() => {
+										changeTabs("special");
+										}}
+										class="{class_tab_5050special} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive cursor-pointer">SPECIAL</span>
+									</li>
+									<li>
+									<span
+										on:click={() => {
+											changeTabs("kombinasi");
+										}}
+										class="{class_tab_5050kombinasi} inline-flex items-center transition text-xs lg:text-sm px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer">KOMBINASI</span>
+									</li>
+								</ul>
 							</div>
-							<div class="form-control">
+						</div>
+						
+						{#if panel_form_5050umum}
+							<div class="form-control mt-2">
 								<select
-									bind:value={select_5050special_2}
-									bind:this={select_5050special_2_input} 
+									bind:value={select_5050umum}
+									bind:this={select_5050umum_input} 
 									class="select w-full max-w-full {form_font_sizeinput_default}">
 									<option value="">--Pilih--</option>
-									<option value="GENAP">GENAP</option>
-									<option value="GANJIL">GANJIL</option>
 									<option value="BESAR">BESAR</option>
 									<option value="KECIL">KECIL</option>
+									<option value="GENAP">GENAP</option>
+									<option value="GANJIL">GANJIL</option>
+									<option value="TENGAH">TENGAH</option>
+									<option value="TEPI">TEPI</option>
 								</select> 
 							</div>
-						</div>
-						<div class="form-control">
-							<label class="label">
-								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-								<span class="label-text-alt {form_font_sizelabel_default}">
-									Bet (
-										min : {new Intl.NumberFormat().format(min_bet_5050special)} dan 
-										max : {new Intl.NumberFormat().format(max_bet_5050special)}
-									)
-								</span>
-							</label>
-							<input
-								bind:value={bet_5050special}
-								on:keyup={handleKeyboard_number}
-								on:keypress={handleKeyboardspecial_checkenter} 
-								minlength="3"
-								maxlength="{max_bet_5050special.toString().length}"
-								type="text" placeholder="Bet" 
-								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-							<label class="label">
-								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-								<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050special)}</span>
-							</label>
-						</div>
-						<Button_custom1 
-							on:click={() => {
-							handleTambah("5050special");
-							}} 
+							<div class="form-control">
+								<label class="label">
+									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+									<span class="label-text-alt {form_font_sizelabel_default}">
+										Bet (
+											min : {new Intl.NumberFormat().format(min_bet_5050umum)} dan 
+											max : {new Intl.NumberFormat().format(max_bet_5050umum)}
+										)
+									</span>
+								</label>
+								<input
+									bind:value={bet_5050umum}
+									on:keyup={handleKeyboard_number}
+									on:keypress={handleKeyboard_checkenter} 
+									minlength="3"
+									maxlength="{max_bet_5050umum.toString().length}"
+									type="text" placeholder="Bet" 
+									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+								<label class="label">
+									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050umum)}</span>
+								</label>
+							</div>
+							<Button_custom1 
+								on:click={() => {
+								handleTambah("5050umum");
+								}} 
 							button_tipe=""
 							button_block="btn-sm btn-block"
 							button_title="Keranjang" />
-					{/if}
-					{#if panel_form_5050kombinasi}
-						<div class="mt-2 gap-2 grid grid-cols-2">
-							<div class="form-control">
-								<select
-									bind:value={select_5050kombinasi_1}
-									bind:this={select_5050kombinasi_1_input} 
-									class="select w-full max-w-full {form_font_sizeinput_default}">
-									<option value="">--Pilih--</option>
-									<option value="BELAKANG">BELAKANG</option>
-									<option value="TENGAH">TENGAH</option>
-									<option value="DEPAN">DEPAN</option>
-								</select> 
+						{/if}
+						{#if panel_form_5050special}
+							<div class="mt-2 gap-2 grid grid-cols-2">
+								<div class="form-control">
+									<select
+										bind:value={select_5050special_1}
+										bind:this={select_5050special_1_input} 
+										class="select w-full max-w-full {form_font_sizeinput_default}">
+										<option value="">--Pilih--</option>
+										<option value="AS">AS</option>
+										<option value="KOP">KOP</option>
+										<option value="KEPALA">KEPALA</option>
+										<option value="EKOR">EKOR</option>
+									</select> 
+								</div>
+								<div class="form-control">
+									<select
+										bind:value={select_5050special_2}
+										bind:this={select_5050special_2_input} 
+										class="select w-full max-w-full {form_font_sizeinput_default}">
+										<option value="">--Pilih--</option>
+										<option value="GENAP">GENAP</option>
+										<option value="GANJIL">GANJIL</option>
+										<option value="BESAR">BESAR</option>
+										<option value="KECIL">KECIL</option>
+									</select> 
+								</div>
 							</div>
 							<div class="form-control">
-								<select
-									bind:value={select_5050kombinasi_2}
-									bind:this={select_5050kombinasi_2_input} 
-									class="select w-full max-w-full {form_font_sizeinput_default}">
-									<option value="">--Pilih--</option>
-									<option value="MONO">MONO</option>
-									<option value="STEREO">STEREO</option>
-									<option value="KEMBANG">KEMBANG</option>
-									<option value="KEMPIS">KEMPIS</option>
-									<option value="KEMBAR">KEMBAR</option>
-								</select> 
+								<label class="label">
+									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+									<span class="label-text-alt {form_font_sizelabel_default}">
+										Bet (
+											min : {new Intl.NumberFormat().format(min_bet_5050special)} dan 
+											max : {new Intl.NumberFormat().format(max_bet_5050special)}
+										)
+									</span>
+								</label>
+								<input
+									bind:value={bet_5050special}
+									on:keyup={handleKeyboard_number}
+									on:keypress={handleKeyboardspecial_checkenter} 
+									minlength="3"
+									maxlength="{max_bet_5050special.toString().length}"
+									type="text" placeholder="Bet" 
+									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+								<label class="label">
+									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050special)}</span>
+								</label>
 							</div>
-						</div>
-						<div class="form-control">
-							<label class="label">
-								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-								<span class="label-text-alt {form_font_sizelabel_default}">
-									Bet (
-										min : {new Intl.NumberFormat().format(min_bet_5050kombinasi)} dan 
-										max : {new Intl.NumberFormat().format(max_bet_5050kombinasi)}
-									)
-								</span>
-							</label>
-							<input
-								bind:value={bet_5050kombinasi}
-								on:keyup={handleKeyboard_number}
-								on:keypress={handleKeyboardkombinasi_checkenter} 
-								minlength="3"
-								maxlength="{max_bet_5050kombinasi.toString().length}"
-								type="text" placeholder="Bet" 
-								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-							<label class="label">
-								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-								<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050kombinasi)}</span>
-							</label>
-						</div>
-						<Button_custom1 
-							on:click={() => {
-							handleTambah("5050kombinasi");
-							}} 
-						button_tipe=""
-						button_block="btn-sm btn-block"
-						button_title="Keranjang" />
-					{/if}
-					
+							<Button_custom1 
+								on:click={() => {
+								handleTambah("5050special");
+								}} 
+								button_tipe=""
+								button_block="btn-sm btn-block"
+								button_title="Keranjang" />
+						{/if}
+						{#if panel_form_5050kombinasi}
+							<div class="mt-2 gap-2 grid grid-cols-2">
+								<div class="form-control">
+									<select
+										bind:value={select_5050kombinasi_1}
+										bind:this={select_5050kombinasi_1_input} 
+										class="select w-full max-w-full {form_font_sizeinput_default}">
+										<option value="">--Pilih--</option>
+										<option value="BELAKANG">BELAKANG</option>
+										<option value="TENGAH">TENGAH</option>
+										<option value="DEPAN">DEPAN</option>
+									</select> 
+								</div>
+								<div class="form-control">
+									<select
+										bind:value={select_5050kombinasi_2}
+										bind:this={select_5050kombinasi_2_input} 
+										class="select w-full max-w-full {form_font_sizeinput_default}">
+										<option value="">--Pilih--</option>
+										<option value="MONO">MONO</option>
+										<option value="STEREO">STEREO</option>
+										<option value="KEMBANG">KEMBANG</option>
+										<option value="KEMPIS">KEMPIS</option>
+										<option value="KEMBAR">KEMBAR</option>
+									</select> 
+								</div>
+							</div>
+							<div class="form-control">
+								<label class="label">
+									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+									<span class="label-text-alt {form_font_sizelabel_default}">
+										Bet (
+											min : {new Intl.NumberFormat().format(min_bet_5050kombinasi)} dan 
+											max : {new Intl.NumberFormat().format(max_bet_5050kombinasi)}
+										)
+									</span>
+								</label>
+								<input
+									bind:value={bet_5050kombinasi}
+									on:keyup={handleKeyboard_number}
+									on:keypress={handleKeyboardkombinasi_checkenter} 
+									minlength="3"
+									maxlength="{max_bet_5050kombinasi.toString().length}"
+									type="text" placeholder="Bet" 
+									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+								<label class="label">
+									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050kombinasi)}</span>
+								</label>
+							</div>
+							<Button_custom1 
+								on:click={() => {
+								handleTambah("5050kombinasi");
+								}} 
+							button_tipe=""
+							button_block="btn-sm btn-block"
+							button_title="Keranjang" />
+						{/if}
+						
+					</div>
 				</div>
-			</div>
-      {/if}
+      		{/if}
+      	{/if}
   	</div>
 </div>
 

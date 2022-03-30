@@ -248,8 +248,8 @@
             </div>
         {:else}
             <h2 class="card-title text-lg mt-1">
-                <div class="place-content-start text-left text-sm">
-                    TOTAL BAYAR : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+                <div class="place-content-start text-left text-xs">
+                    TOTAL BAYAR : <span class="text-xs link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
                 </div>
             </h2>
             <div class="overflow-auto scrollbar-hide bg-base-300 h-[350px]">
