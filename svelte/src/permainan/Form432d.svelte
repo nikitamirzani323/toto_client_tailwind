@@ -403,7 +403,7 @@
 				} 
 			}
 		}else{
-			if (total_keranjang > 0) {
+			if (total_keranjang > 100) {
 				isModalAlertTabPermainan = true;
 			}else{
 				switch(e){
