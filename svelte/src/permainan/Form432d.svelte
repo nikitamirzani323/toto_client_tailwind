@@ -3763,6 +3763,7 @@
 			}
 		}
 	}
+	
 	const handleKeyboard_checkenter = (e) => {
 		let keyCode = e.which || e.keyCode;
 		if (keyCode === 13) {
@@ -3879,6 +3880,9 @@
 			totalkeranjang
 		});
 	}
+	const handleBetHistory = (e) => {
+		dispatch("handleBetHistory", "call_bethistory");
+	};
 </script>
 <div class="card bg-base-200 shadow-xl rounded-md {card_custom}">
   	<div class="card-body p-3">
@@ -4685,8 +4689,7 @@
 								</label>
 								<input
 									bind:value={bet_432}
-									on:keyup={handleKeyboard_number}
-									on:keypress={handleKeyboard_checkenter} 
+									on:keyup={handleKeyboard_number} 
 									minlength="3"
 									maxlength="{max4d_bet.toString().length}"
 									type="text" placeholder="Bet" 
@@ -5268,7 +5271,7 @@
 <Modal_alert 
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
-	modal_title="Information" 
+	modal_title="INFORMASI" 
 	modal_title_class="" 
 	modal_p_class="" 
 	modal_widthheight_class="" 
@@ -5294,7 +5297,7 @@
 <Modal_alert 
 	modal_id="my-modal-alertbbfs" 
 	modal_tipe="1" 
-	modal_title="Information" 
+	modal_title="INFORMASI" 
 	modal_title_class="" 
 	modal_p_class="" 
 	modal_widthheight_class=""  
@@ -5304,9 +5307,10 @@
 	" />
 
 <Tablekeranjang
-  on:removekeranjang={removekeranjang}
-  on:removekeranjangall={removekeranjangall}
-  on:handleSave={handleSave}
+on:removekeranjang={removekeranjang}
+on:removekeranjangall={removekeranjangall}
+on:handleSave={handleSave}
+on:handleBetHistory={handleBetHistory}
   {card_custom}
   {client_device}
   {temp_permainan_tab}
@@ -5458,7 +5462,7 @@
 {:else}
 	<input type="checkbox" id="my-modal-pilihanpermainan" class="modal-toggle" bind:checked={isModalAPilihan}>
 	<div class="modal">
-		<div class="modal-box w-full h-full rounded-none">
+		<div class="modal-box w-full rounded-none">
 			<h3 class="font-bold text-sm text-center">Pilih Permainan Dibawah ini :</h3>
 			<div class="grid grid-cols-3 gap-1">
 				<button
@@ -5477,70 +5481,70 @@
 					}} 
 					class="btn btn-xs bg-[#ffb86b] hover:bg-[#ffb86b] border-none text-[#5d370d] text-xs rounded-md">BB</button>
 			</div>
-			<p class="text-xs p-2">
+			<p class="text-[11px] p-2">
 				<strong>NOTE</strong> : <br>
 				<strong>DISKON</strong> => Setiap transaksi  menggunakan diskon <br>
 				<strong>FULL</strong> => Setiap transaksi tidak menggunakan diskon <br>
-				<strong>BOLAK BALIK / BB</strong> => Setiap transaksi tidak menggunakan diskon
+				<strong>BB</strong> => Setiap transaksi tidak menggunakan diskon
 			</p>
 			<div class="overflow-auto">
 				<table class="table-auto table table-compact w-full" >
 					<thead>
 						<tr>
 							<th>#</th>
-							<th class="text-xs text-right align-top">4D</th>
-							<th class="text-xs text-right align-top">3D</th>
-							<th class="text-xs text-right align-top">3DD</th>
-							<th class="text-xs text-right align-top">2D</th>
-							<th class="text-xs text-right align-top">2DD</th>
-							<th class="text-xs text-right align-top">2DT</th>
+							<th class="text-[11px] text-right align-top">4D</th>
+							<th class="text-[11px] text-right align-top">3D</th>
+							<th class="text-[11px] text-right align-top">3DD</th>
+							<th class="text-[11px] text-right align-top">2D</th>
+							<th class="text-[11px] text-right align-top">2DD</th>
+							<th class="text-[11px] text-right align-top">2DT</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<th class="text-xs text-left">DISKON</th>
-							<td class="text-xs text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
-							<td class="text-xs text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
-							<td class="text-xs text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
-							<td class="text-xs text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
-							<td class="text-xs text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
-							<td class="text-xs text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
+							<th class="text-[11px] text-left">DISKON</th>
+							<td class="text-[11px] text-right link-accent">{(disc4d_bet * 100).toFixed(2)}%</td>
+							<td class="text-[11px] text-right link-accent">{(disc3d_bet * 100).toFixed(2)}%</td>
+							<td class="text-[11px] text-right link-accent">{(disc3dd_bet * 100).toFixed(2)}%</td>
+							<td class="text-[11px] text-right link-accent">{(disc2d_bet * 100).toFixed(2)}%</td>
+							<td class="text-[11px] text-right link-accent">{(disc2dd_bet * 100).toFixed(2)}%</td>
+							<td class="text-[11px] text-right link-accent">{(disc2dt_bet * 100).toFixed(2)}%</td>
 						</tr>
 						<tr>
-							<th class="text-xs text-left">HADIAH DISKON</th>
-							<td class="text-xs text-right link-accent">{win4d_bet}x</td>
-							<td class="text-xs text-right link-accent">{win3d_bet}x</td>
-							<td class="text-xs text-right link-accent">{win3dd_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2d_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2dd_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2dt_bet}x</td>
+							<th class="text-[11px] text-left">HADIAH DISKON</th>
+							<td class="text-[11px] text-right link-accent">{win4d_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win3d_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win3dd_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2d_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2dd_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2dt_bet}x</td>
 						</tr>
 						<tr>
-							<th class="text-xs text-left">HADIAH FULL</th>
-							<td class="text-xs text-right link-accent">{win4dnodiskon_bet}x</td>
-							<td class="text-xs text-right link-accent">{win3dnodiskon_bet}x</td>
-							<td class="text-xs text-right link-accent">{win3ddnodiskon_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2dnodiskon_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2ddnodiskon_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2dtnodiskon_bet}x</td>
+							<th class="text-[11px] text-left">HADIAH FULL</th>
+							<td class="text-[11px] text-right link-accent">{win4dnodiskon_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win3dnodiskon_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win3ddnodiskon_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2dnodiskon_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2ddnodiskon_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2dtnodiskon_bet}x</td>
 						</tr>
 						<tr>
-							<th class="text-xs text-left">HADIAH BB JIKA KENA</th>
-							<td class="text-xs text-right link-accent">{win4dbb_kena_bet}x</td>
-							<td class="text-xs text-right link-accent">{win3dbb_kena_bet}x</td>
-							<td class="text-xs text-right link-accent">{win3ddbb_kena_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2dbb_kena_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2ddbb_kena_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2dtbb_kena_bet}x</td>
+							<th class="text-[11px] text-left">HADIAH BB KENA</th>
+							<td class="text-[11px] text-right link-accent">{win4dbb_kena_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win3dbb_kena_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win3ddbb_kena_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2dbb_kena_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2ddbb_kena_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2dtbb_kena_bet}x</td>
 						</tr>
 						<tr>
-							<th class="text-xs text-left">HADIAH BB</th>
-							<td class="text-xs text-right link-accent">{win4dbb_bet}x</td>
-							<td class="text-xs text-right link-accent">{win3dbb_bet}x</td>
-							<td class="text-xs text-right link-accent">{win3ddbb_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2dbb_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2ddbb_bet}x</td>
-							<td class="text-xs text-right link-accent">{win2dtbb_bet}x</td>
+							<th class="text-[11px] text-left">HADIAH BB</th>
+							<td class="text-[11px] text-right link-accent">{win4dbb_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win3dbb_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win3ddbb_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2dbb_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2ddbb_bet}x</td>
+							<td class="text-[11px] text-right link-accent">{win2dtbb_bet}x</td>
 						</tr>
 					</tbody>
 				</table>    

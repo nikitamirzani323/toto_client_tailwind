@@ -101,6 +101,9 @@
         }
         isModalAlert_belanja = false;
     };
+    const handleBetHistory = () => {
+        dispatch("handleBetHistory", "call_bethistory");
+    }
     let class_card_table_keranjang = "mt-5";
     if(client_device == "WEBSITE"){
         class_card_table_keranjang = "mt-5";
@@ -178,15 +181,15 @@
                 </div>
             </h2>
             <div class="overflow-auto scrollbar-hide bg-base-300 h-[350px]">
-                <table class="table table-zebra w-full" >
+                <table class="table table-compact w-full" >
                     <thead>
                         <tr>
-                            <th width="1%" class="text-xs text-center">#</th>
-                            <th width="*" class="text-xs text-center">NOMOR</th>
-                            <th width="10%" class="text-xs text-center">PERMAINAN</th>
-                            <th width="15%" class="text-xs text-right">BET</th>
-                            <th width="15%" class="text-xs text-right">DISKON</th>
-                            <th width="15%" class="text-xs text-right">BAYAR</th>
+                            <th width="1%" class="text-[11px] text-center">#</th>
+                            <th width="*" class="text-[11px] text-center">NOMOR</th>
+                            <th width="10%" class="text-[11px] text-center">PERMAINAN</th>
+                            <th width="15%" class="text-[11px] text-right">BET</th>
+                            <th width="15%" class="text-[11px] text-right">DISKON</th>
+                            <th width="15%" class="text-[11px] text-right">BAYAR</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -201,17 +204,17 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
                                 </th>
-                                <td class="text-xs text-center">{rec.nomor}</td>
-                                <td class="text-xs text-center">{rec.permainan}</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                <td class="text-[11px] text-center">{rec.nomor}</td>
+                                <td class="text-[11px] text-center">{rec.permainan}</td>
+                                <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
+                                <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                             </tr>
                         {/each}
                     </tbody>
                 </table>    
             </div>
-            <div class="bg-base-300 px-2 shadow-lg">
+            <div class="bg-base-300 p-2 shadow-lg">
                 <div class="text-xs">TOTAL LINE : <span class="text-xs link-accent">{count_line}</span></div>
             </div>
         {/if}
@@ -219,30 +222,38 @@
 </div>
 {#if client_device == "MOBILE"}
     <div class="card rounded-none p-0 m-0 bottom-0 fixed z-50">
-        <div class="card-body bg-base-300 m-0 w-full max-w-full p-2">
-            <div class="grid grid-cols-3 justify-center items-center gap-1 mx-2">
-                <button on:click={handleInformation} class="btn btn-md rounded-r-sm gap-2 glass bg-[#bf95f9] hover:bg-[#bf95f9]     ">
-                    <div class="grid grid-rows-2 justify-items-center items-center w-screen max-w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <div class="card-body bg-base-300 m-0 w-screen max-w-full p-2">
+            <div class="flex  justify-center items-center gap-1 ">
+                <button on:click={handleInformation} class="grow btn btn-md rounded-r-sm gap-2  bg-neutral ">
+                    <div class="flex flex-col justify-items-center items-center w-full max-w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                        <div class="text-xs text-[#3f1b71]">INFORMASI</div>
+                        <div class="text-[10px] text-white">INFO</div>
                     </div>
                 </button>
-                <button on:click={handleRemoveKeranjang_all} class="btn btn-md rounded-none gap-2 glass bg-green-700  border-green-500 outline-green-500 text-white">
-                    <div class="grid grid-rows-2 justify-items-center items-center w-screen max-w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <button on:click={handleBetHistory} class="grow btn btn-md rounded-none gap-2 bg-neutral ">
+                    <div class="flex flex-col justify-items-center items-center w-full max-w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                        <div class="text-[10px] text-white whitespace-normal">BET HISTORY</div>
+                    </div>
+                </button>
+                <button on:click={handleRemoveKeranjang_all} class="grow btn btn-md rounded-none gap-2  bg-green-700  border-green-700  text-white">
+                    <div class="flex flex-col justify-items-center items-center w-full max-w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
-                        <div class="text-xs">HAPUS</div>
+                        <div class="text-[10px]">HAPUS</div>
                     </div>
                 </button>
-                <button on:click={handleSave} class="btn btn-md rounded-l-sm gap-2 glass bg-green-700  border-green-500 outline-green-500 text-white">
-                    <div class="grid grid-rows-2 justify-items-center items-center w-screen max-w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <button on:click={handleSave} class="grow btn btn-md rounded-l-sm gap-2  bg-green-700  border-green-700  text-white">
+                    <div class="flex flex-col justify-items-center items-center w-full max-w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        <div class="text-xs">BELI</div>
+                        <div class="text-[10px]">BELI</div>
                     </div>
                 </button>
             </div>
@@ -306,54 +317,59 @@
 {:else}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative max-w-full lg:max-w-xl h-full max-h-full rounded-none lg:rounded-lg p-2 lg:p-4 overflow-auto scrollbar-hide">
-            <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
-            <div class="h-[40rem] mt-4" >
-                <div class="overflow-auto scrollbar-hide">
-                    <table class="table table-compact w-full" >
-                        <tbody>
-                            <tr>
-                                <td class="text-xs text-left">MIN BET</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet)}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-xs text-left">MAX BET</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet)}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-xs text-left">DISKON</td>
-                                <td class="text-xs text-right link-accent">
-                                    {(diskon_bet * 100).toFixed(2)}%
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-xs text-left">HADIAH</td>
-                                <td class="text-xs text-right link-accent">
-                                    {win_bet.toFixed(2)}X
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>    
+        <div class="modal-box relative max-w-full  w-full h-screen  rounded-none  p-0 m-0 overflow-hidden">
+            <div class="border-b-2 border-base-200 p-2 h-11 w-full max-w-full">
+                <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 class="text-xs lg:text-sm font-bold mt-2">INFORMASI: SHIO</h3>
+            </div>
+            <div class="h-full flex flex-col justify-between items-stretch mt-1 ">
+                <div class="flex-1 self-stretch scrollbar-thin scrollbar-thumb-green-300 overflow-auto p-2" >
+                    <div class="overflow-auto">
+                        <table class="table table-compact w-full" >
+                            <tbody>
+                                <tr>
+                                    <td class="text-[11px] text-left">MIN BET</td>
+                                    <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(min_bet)}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-[11px] text-left">MAX BET</td>
+                                    <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max_bet)}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-[11px] text-left">DISKON</td>
+                                    <td class="text-[11px] text-right link-accent">
+                                        {(diskon_bet * 100).toFixed(2)}%
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-[11px] text-left">HADIAH</td>
+                                    <td class="text-[11px] text-right link-accent">
+                                        {win_bet.toFixed(2)}X
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>    
+                    </div>
+                    <p class="mb-20 text-[11px]">
+                        <b>CARA BERMAIN</b>
+                        <br />
+                        Menebak SHIO dari posisi 2D, SHIO merupakan 12 lambang kelahiran dalam penanggalan China. Dalam permainan ini, setiap lambang diwakili dengan satu nomor.
+                        <br />
+                        Struktur ABCD<br /><br />
+    
+                        Analisis I :<br />
+                        Keluar : 4321<br />
+                        Permainan ini hanya memperhatikan posisi 2D, berarti yang dipedomanin = 21<br />
+                        Hasil = 21-12 = 9 (shio disesuaikan dengan tabel diatas)<br />
+                        catatan: nilai yang dikurangi merupakan kelipatan 12.<br /><br />
+    
+                        Jika dilakukan pembelian dengan 100rb dan menang maka:<br />
+                        Menang = 100rb + [Indeks kemenangan untuk SHIO]<br /><br />
+    
+                        NB: Indeks menang dan diskon dapat dilihat di bagian Peraturan
+                    </p>
                 </div>
-                <p class="py-2 text-xs">
-                    <b>CARA BERMAIN</b>
-                    <br />
-                    Menebak SHIO dari posisi 2D, SHIO merupakan 12 lambang kelahiran dalam penanggalan China. Dalam permainan ini, setiap lambang diwakili dengan satu nomor.
-                    <br />
-                    Struktur ABCD<br /><br />
-
-                    Analisis I :<br />
-                    Keluar : 4321<br />
-                    Permainan ini hanya memperhatikan posisi 2D, berarti yang dipedomanin = 21<br />
-                    Hasil = 21-12 = 9 (shio disesuaikan dengan tabel diatas)<br />
-                    catatan: nilai yang dikurangi merupakan kelipatan 12.<br /><br />
-
-                    Jika dilakukan pembelian dengan 100rb dan menang maka:<br />
-                    Menang = 100rb + [Indeks kemenangan untuk SHIO]<br /><br />
-
-                    NB: Indeks menang dan diskon dapat dilihat di bagian Peraturan
-                </p>
+                <div class="h-24  self-stretch "></div>
             </div>
         </div>
     </div>

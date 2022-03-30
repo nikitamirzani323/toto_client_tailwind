@@ -33,6 +33,7 @@
     let totalkeranjang = 0;
     let isModalAlert = false;
     let isModalAlertKeranjang = false;
+    let isModalBetHistory = false;
     let msg_error = "";
     let idcomppasaran = "";
     let idtrxkeluaran = "";
@@ -126,6 +127,11 @@
     const handleKeranjang = (e) => {
         row_keranjang = e.detail.row_keranjang
         totalkeranjang = e.detail.totalkeranjang
+    }
+    const handleBetHistory = (e) => {
+        console.log('PERMAINAN')
+        isModalBetHistory = true;
+        invoicebet("all");
     }
     const handleTabBet = (e) => {
         if(e == "Y"){
@@ -438,221 +444,165 @@
             </div>
         </div>
     {:else}
-        <div class="flex justify-center items-center mx-2 gap-3 bg-base-200 shadow-lg">
-            <div
-                on:click={() => {
-                    handleTabBet("Y");
-                }} 
-                class="{tab_bet_pasangan_class} p-2 text-xs lg:text-sm cursor-pointer">TRANSAKSI</div>
-            <div
-                on:click={() => {
-                    handleTabBet("N");
-                }}
-                class="{tab_bet_history_class} p-2 text-xs lg:text-sm cursor-pointer">BET HISTORY</div>
+        <div class="relative flex {menu_permainan_class}  overflow-x-scroll scrollbar-hide  h-16 cursor-pointer mx-2 -mt-2 ">
+            <ul class="flex items-center select-none gap-2 mx-1">
+                <li>
+                    <span
+                        on:click={() => {
+                            changePermainan("4-3-2");
+                        }} 
+                        class="{permainan_432_class} px-3 py-1.5  whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</span>
+                </li>
+                <li>
+                    <span
+                        on:click={() => {
+                            changePermainan("colok");
+                        }}
+                        class="{permainan_colok_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</span>
+                </li>
+                <li>
+                    <span
+                        on:click={() => {
+                            changePermainan("5050");
+                        }}
+                        class="{permainan_5050_class} transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</span>
+                </li>
+                <li>
+                <span 
+                    on:click={() => {
+                        changePermainan("kombinasi");
+                    }}
+                    class="{permainan_kombinasi_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</span>
+                </li>
+                <li>
+                <span 
+                    on:click={() => {
+                         changePermainan("dasar");
+                    }}
+                    class="{permainan_dasar_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</span>
+                </li>
+                <li>
+                <span 
+                    on:click={() => {
+                        changePermainan("shio");
+                    }}
+                    class="{permainan_shio_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</span>
+                </li>
+            </ul>
         </div>
-        
-        {#if tab_bet_pasangan}
-            <div class="relative flex {menu_permainan_class}  overflow-x-scroll scrollbar-hide  h-16 cursor-pointer mx-2 -mt-2 ">
-				<ul class="flex items-center select-none gap-2 mx-1">
-					<li>
-                        <span
-                            on:click={() => {
-                                changePermainan("4-3-2");
-                            }} 
-                            class="{permainan_432_class} px-3 py-1.5  whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">4D/3D/2D</span>
-					</li>
-					<li>
-                        <span
-                            on:click={() => {
-                                changePermainan("colok");
-                            }}
-                            class="{permainan_colok_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">COLOK</span>
-                    </li>
-					<li>
-                        <span
-                            on:click={() => {
-                                changePermainan("5050");
-                            }}
-                            class="{permainan_5050_class} transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">50-50</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
-							changePermainan("kombinasi");
-						}}
-						class="{permainan_kombinasi_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">KOMBINASI</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
-                             changePermainan("dasar");
-						}}
-						class="{permainan_dasar_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">DASAR</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
-							changePermainan("shio");
-						}}
-						class="{permainan_shio_class} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-xs rounded-md outline outline-1 outline-offset-1 outline-green-600">SHIO</span>
-					</li>
-				</ul>
-			</div>
-            {#if permainan == "4-3-2"}
-                <Form432d
-                    on:handleInvoice={handleInvoice}
-                    on:handleKeranjang={handleKeranjang}
-                    {path_api}
-                    {idcomppasaran}
-                    {idtrxkeluaran}
-                    {client_token}
-                    {client_company}
-                    {client_username}
-                    {client_timezone}
-                    {client_ipaddress}
-                    {client_device}
-                    {pasaran_name}
-                    {pasaran_code}
-                    {pasaran_periode} 
-                    {permainan_title}/>
-            {/if}
-            {#if permainan == "colok"}
-                <Formcolok
-                    on:handleInvoice={handleInvoice}
-                    on:handleKeranjang={handleKeranjang}
-                    {path_api}
-                    {idcomppasaran}
-                    {idtrxkeluaran}
-                    {client_token}
-                    {client_company}
-                    {client_username}
-                    {client_timezone}
-                    {client_ipaddress}
-                    {client_device}
-                    {pasaran_name}
-                    {pasaran_code}
-                    {pasaran_periode} 
-                    {permainan_title}/>
-            {/if}
-            {#if permainan == "5050"}
-                <Form5050
-                    on:handleInvoice={handleInvoice}
-                    on:handleKeranjang={handleKeranjang}
-                    {path_api}
-                    {idcomppasaran}
-                    {idtrxkeluaran}
-                    {client_token}
-                    {client_company}
-                    {client_username}
-                    {client_timezone}
-                    {client_ipaddress}
-                    {client_device}
-                    {pasaran_name}
-                    {pasaran_code}
-                    {pasaran_periode} 
-                    {permainan_title}/>
-            {/if}
-            {#if permainan == "kombinasi"}
-                <Formmacau
-                    on:handleInvoice={handleInvoice}
-                    on:handleKeranjang={handleKeranjang}
-                    {path_api}
-                    {idcomppasaran}
-                    {idtrxkeluaran}
-                    {client_token}
-                    {client_company}
-                    {client_username}
-                    {client_timezone}
-                    {client_ipaddress}
-                    {client_device}
-                    {pasaran_name}
-                    {pasaran_code}
-                    {pasaran_periode} 
-                    {permainan_title}/>
-            {/if}
-            {#if permainan == "dasar"}
-                <Formdasar
-                    on:handleInvoice={handleInvoice}
-                    on:handleKeranjang={handleKeranjang}
-                    {path_api}
-                    {idcomppasaran}
-                    {idtrxkeluaran}
-                    {client_token}
-                    {client_company}
-                    {client_username}
-                    {client_timezone}
-                    {client_ipaddress}
-                    {client_device}
-                    {pasaran_name}
-                    {pasaran_code}
-                    {pasaran_periode} 
-                    {permainan_title}/>
-            {/if}
-            {#if permainan == "shio"}
-                <Formshio
-                    on:handleInvoice={handleInvoice}
-                    on:handleKeranjang={handleKeranjang}
-                    {path_api}
-                    {idcomppasaran}
-                    {idtrxkeluaran}
-                    {client_token}
-                    {client_company}
-                    {client_username}
-                    {client_timezone}
-                    {client_ipaddress}
-                    {client_device}
-                    {pasaran_name}
-                    {pasaran_code}
-                    {pasaran_periode} 
-                    {permainan_title}/>
-            {/if}
-        {:else}
-            <div class="card rounded-md bg-base-200 shadow-xl mt-3 mx-2 h-[800px]" >
-                <div class="card-body p-3 h-[900px]">
-                    <h2 class="card-title text-xs grid grid-cols-2 gap-4">
-                        <div class="place-content-start text-left">
-                            TOTAL BET : <span class="text-xs link-accent">{new Intl.NumberFormat().format(totalbet_invoice)}</span>
-                        </div>
-                        <div class="place-content-end text-right">
-                            TOTAL BAYAR : <span class="text-xs link-accent">{new Intl.NumberFormat().format(totalbayar_invoice)}</span>
-                        </div>
-                    </h2>
-                    <input
-                        bind:value={searchNomor}
-                        class="input w-full max-w-full rounded-sm text-xs lg:text-sm"
-                        placeholder="Search Nomor" 
-                        type="text" name="" id="">
-                        
-                    <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-100 h-[900px]">
-                        <table class="table table-zebra w-full" >
-                            <thead>
-                                <tr>
-                                    <th class="text-xs text-center whitespace-nowrap">NOMOR</th>
-                                    <th class="text-xs text-center whitespace-nowrap">TIPE</th>
-                                    <th class="text-xs text-center whitespace-nowrap">PERMAINAN</th>
-                                    <th class="text-xs text-right whitespace-nowrap">BET</th>
-                                    <th class="text-xs text-right whitespace-nowrap">DISKON(%)</th>
-                                    <th class="text-xs text-right whitespace-nowrap">KEI(%)</th>
-                                    <th class="text-xs text-right whitespace-nowrap">BAYAR</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {#each filterTransaksi as rec}
-                                    <tr>
-                                        <th class="text-xs text-center whitespace-nowrap">{rec.nomor}</th>
-                                        <td class="text-xs text-center whitespace-nowrap">{rec.tipe_betinvoice}</td>
-                                        <td class="text-xs text-center whitespace-nowrap">{rec.permainan}</td>
-                                        <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                        <td class="text-xs text-right link-accent whitespace-nowrap">{rec.diskon.toFixed(2)}</td>
-                                        <td class="text-xs text-right link-accent whitespace-nowrap">{rec.kei.toFixed(2)}</td>
-                                        <td class="text-xs text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bayar)}</td>
-                                    </tr>
-                                {/each}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        {#if permainan == "4-3-2"}
+            <Form432d
+                on:handleInvoice={handleInvoice}
+                on:handleKeranjang={handleKeranjang}
+                on:handleBetHistory={handleBetHistory}
+                {path_api}
+                {idcomppasaran}
+                {idtrxkeluaran}
+                {client_token}
+                {client_company}
+                {client_username}
+                {client_timezone}
+                {client_ipaddress}
+                {client_device}
+                {pasaran_name}
+                {pasaran_code}
+                {pasaran_periode} 
+                {permainan_title}/>
+        {/if}
+        {#if permainan == "colok"}
+            <Formcolok
+                on:handleInvoice={handleInvoice}
+                on:handleKeranjang={handleKeranjang}
+                on:handleBetHistory={handleBetHistory}
+                {path_api}
+                {idcomppasaran}
+                {idtrxkeluaran}
+                {client_token}
+                {client_company}
+                {client_username}
+                {client_timezone}
+                {client_ipaddress}
+                {client_device}
+                {pasaran_name}
+                {pasaran_code}
+                {pasaran_periode} 
+                {permainan_title}/>
+        {/if}
+        {#if permainan == "5050"}
+            <Form5050
+                on:handleInvoice={handleInvoice}
+                on:handleKeranjang={handleKeranjang}
+                on:handleBetHistory={handleBetHistory}
+                {path_api}
+                {idcomppasaran}
+                {idtrxkeluaran}
+                {client_token}
+                {client_company}
+                {client_username}
+                {client_timezone}
+                {client_ipaddress}
+                {client_device}
+                {pasaran_name}
+                {pasaran_code}
+                {pasaran_periode} 
+                {permainan_title}/>
+        {/if}
+        {#if permainan == "kombinasi"}
+            <Formmacau
+                on:handleInvoice={handleInvoice}
+                on:handleKeranjang={handleKeranjang}
+                on:handleBetHistory={handleBetHistory}
+                {path_api}
+                {idcomppasaran}
+                {idtrxkeluaran}
+                {client_token}
+                {client_company}
+                {client_username}
+                {client_timezone}
+                {client_ipaddress}
+                {client_device}
+                {pasaran_name}
+                {pasaran_code}
+                {pasaran_periode} 
+                {permainan_title}/>
+        {/if}
+        {#if permainan == "dasar"}
+            <Formdasar
+                on:handleInvoice={handleInvoice}
+                on:handleKeranjang={handleKeranjang}
+                on:handleBetHistory={handleBetHistory}
+                {path_api}
+                {idcomppasaran}
+                {idtrxkeluaran}
+                {client_token}
+                {client_company}
+                {client_username}
+                {client_timezone}
+                {client_ipaddress}
+                {client_device}
+                {pasaran_name}
+                {pasaran_code}
+                {pasaran_periode} 
+                {permainan_title}/>
+        {/if}
+        {#if permainan == "shio"}
+            <Formshio
+                on:handleInvoice={handleInvoice}
+                on:handleKeranjang={handleKeranjang}
+                on:handleBetHistory={handleBetHistory}
+                {path_api}
+                {idcomppasaran}
+                {idtrxkeluaran}
+                {client_token}
+                {client_company}
+                {client_username}
+                {client_timezone}
+                {client_ipaddress}
+                {client_device}
+                {pasaran_name}
+                {pasaran_code}
+                {pasaran_periode} 
+                {permainan_title}/>
         {/if}
     {/if}
 {:else if statuspasaran == ""}
@@ -729,7 +679,7 @@
 <Modal_alert 
 	modal_id="my-modal-alertkeranjang" 
 	modal_tipe="1" 
-	modal_title="Information" 
+	modal_title="INFORMASI" 
 	modal_title_class="" 
 	modal_p_class="" 
 	modal_widthheight_class=""  
@@ -737,6 +687,61 @@
 		Total Transaksi : <span class='text-xs lg:text-sm link-accent'>{new Intl.NumberFormat().format(totalkeranjang)}</span>
 		Harap selesaikan Transaksi Sebelumnya, Sebelum Mengakses Halaman Lainnya
 	" />
+
+{#if client_device == "MOBILE"}
+<input type="checkbox" id="my-modal-bethistory" class="modal-toggle" bind:checked={isModalBetHistory}>
+    <div class="modal" on:click|self={()=>isModalBetHistory = false}>
+        <div class="modal-box relative max-w-full  w-full h-full max-h-full  rounded-none  p-0 m-0 overflow-hidden">
+            <div class="border-b-2 border-base-200 p-2 h-11 w-full max-w-full">
+                <label for="my-modal-bethistory" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 class="text-xs lg:text-sm font-bold mt-2">
+                    TOTAL BAYAR : <span class="text-xs link-accent">{new Intl.NumberFormat().format(totalbayar_invoice)}</span>
+                </h3>
+            </div>
+            <div class="mx-2">
+                <input
+                    bind:value={searchNomor}
+                    class="input w-full rounded-sm text-xs lg:text-sm"
+                    placeholder="Search Nomor" 
+                    type="text" name="" id="">
+            </div>
+            <div class="h-full  flex flex-col justify-items-stretch items-stretch mt-1 ">
+                <div class="h-full w-full scrollbar-thin scrollbar-thumb-green-300 overflow-auto p-2">
+                    <div class="overflow-auto ">
+                        <table class="table table-compact w-full" >
+                            <thead>
+                                <tr>
+                                    <th class="text-[11px] text-center whitespace-nowrap">NOMOR</th>
+                                    <th class="text-[11px] text-center whitespace-nowrap">TIPE</th>
+                                    <th class="text-[11px] text-center whitespace-nowrap">PERMAINAN</th>
+                                    <th class="text-[11px] text-right whitespace-nowrap">BET</th>
+                                    <th class="text-[11px] text-right whitespace-nowrap">DISKON(%)</th>
+                                    <th class="text-[11px] text-right whitespace-nowrap">KEI(%)</th>
+                                    <th class="text-[11px] text-right whitespace-nowrap">BAYAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {#each filterTransaksi as rec}
+                                    <tr>
+                                        <th class="text-[11px] text-center whitespace-nowrap">{rec.nomor}</th>
+                                        <td class="text-[11px] text-center whitespace-nowrap">{rec.tipe_betinvoice}</td>
+                                        <td class="text-[11px] text-center whitespace-nowrap">{rec.permainan}</td>
+                                        <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                        <td class="text-[11px] text-right link-accent whitespace-nowrap">{rec.diskon.toFixed(2)}</td>
+                                        <td class="text-[11px] text-right link-accent whitespace-nowrap">{rec.kei.toFixed(2)}</td>
+                                        <td class="text-[11px] text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                    </tr>
+                                {/each}
+                            </tbody>
+                        </table> 
+                    </div>
+                </div>
+                <div class="h-20 w-full">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+{/if}
+
 <style>
     .scrollbar-thin::-webkit-scrollbar {
       width: 3px;

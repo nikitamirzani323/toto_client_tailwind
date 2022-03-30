@@ -164,11 +164,14 @@
 		}
     };
     const handleSaveLanjut = (e) => {
-        if(e == "Y"){
+        if(e.detail.action_remove == "Y"){
             dispatch("handleSave", "save");
         }
         isModalAlert_belanja = false;
     };
+    const handleBetHistory = () => {
+        dispatch("handleBetHistory", "call_bethistory");
+    }
     let class_card_table_keranjang = "mt-5";
     if(client_device == "WEBSITE"){
         class_card_table_keranjang = "mt-5";
@@ -250,15 +253,15 @@
                 </div>
             </h2>
             <div class="overflow-auto scrollbar-hide bg-base-300 h-[350px]">
-                <table class="table table-zebra w-full" >
+                <table class="table table-compact w-full" >
                     <thead>
                         <tr>
-                            <th width="1%" class="text-xs text-center">#</th>
-                            <th width="*" class="text-xs text-center">NOMOR</th>
-                            <th width="10%" class="text-xs text-center">PERMAINAN</th>
-                            <th width="15%" class="text-xs text-right">BET</th>
-                            <th width="15%" class="text-xs text-right">DISKON</th>
-                            <th width="15%" class="text-xs text-right">BAYAR</th>
+                            <th width="1%" class="text-[11px] text-center">#</th>
+                            <th width="*" class="text-[11px] text-center">NOMOR</th>
+                            <th width="10%" class="text-[11px] text-center">PERMAINAN</th>
+                            <th width="15%" class="text-[11px] text-right">BET</th>
+                            <th width="15%" class="text-[11px] text-right">DISKON</th>
+                            <th width="15%" class="text-[11px] text-right">BAYAR</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -273,17 +276,17 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
                                 </th>
-                                <td class="text-xs text-center">{rec.nomor}</td>
-                                <td class="text-xs text-center">{rec.permainan}</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                <td class="text-[11px] text-center">{rec.nomor}</td>
+                                <td class="text-[11px] text-center">{rec.permainan}</td>
+                                <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
+                                <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                             </tr>
                         {/each}
                     </tbody>
                 </table>    
             </div>
-            <div class="bg-base-300 px-2 shadow-lg">
+            <div class="bg-base-300 p-2 shadow-lg">
                 <div class="text-xs">TOTAL LINE : <span class="text-xs link-accent">{count_line}</span></div>
             </div>
         {/if}
@@ -292,30 +295,38 @@
 
 {#if client_device == "MOBILE"}
     <div class="card rounded-none p-0 m-0 bottom-0 fixed z-50">
-        <div class="card-body bg-base-300 m-0 w-full max-w-full p-2">
-            <div class="grid grid-cols-3 justify-center items-center gap-1 mx-2">
-                <button on:click={handleInformation} class="btn btn-md rounded-r-sm gap-2 glass bg-[#bf95f9] hover:bg-[#bf95f9]     ">
-                    <div class="grid grid-rows-2 justify-items-center items-center w-screen max-w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <div class="card-body bg-base-300 m-0 w-screen max-w-full p-2">
+            <div class="flex  justify-center items-center gap-1 ">
+                <button on:click={handleInformation} class="grow btn btn-md rounded-r-sm gap-2  bg-neutral ">
+                    <div class="flex flex-col justify-items-center items-center w-full max-w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                        <div class="text-xs text-[#3f1b71]">INFORMASI</div>
+                        <div class="text-[10px] text-white">INFO</div>
                     </div>
                 </button>
-                <button on:click={handleRemoveKeranjang_all} class="btn btn-md rounded-none gap-2 glass bg-green-700  border-green-500 outline-green-500 text-white">
-                    <div class="grid grid-rows-2 justify-items-center items-center w-screen max-w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <button on:click={handleBetHistory} class="grow btn btn-md rounded-none gap-2 bg-neutral ">
+                    <div class="flex flex-col justify-items-center items-center w-full max-w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                        <div class="text-[10px] text-white whitespace-normal">BET HISTORY</div>
+                    </div>
+                </button>
+                <button on:click={handleRemoveKeranjang_all} class="grow btn btn-md rounded-none gap-2  bg-green-700  border-green-700  text-white">
+                    <div class="flex flex-col justify-items-center items-center w-full max-w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
-                        <div class="text-xs">HAPUS</div>
+                        <div class="text-[10px]">HAPUS</div>
                     </div>
                 </button>
-                <button on:click={handleSave} class="btn btn-md rounded-l-sm gap-2 glass bg-green-700  border-green-500 outline-green-500 text-white">
-                    <div class="grid grid-rows-2 justify-items-center items-center w-screen max-w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <button on:click={handleSave} class="grow btn btn-md rounded-l-sm gap-2  bg-green-700  border-green-700  text-white">
+                    <div class="flex flex-col justify-items-center items-center w-full max-w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        <div class="text-xs">BELI</div>
+                        <div class="text-[10px]">BELI</div>
                     </div>
                 </button>
             </div>
@@ -576,251 +587,254 @@
 {:else}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal " on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative max-w-full h-full max-h-full rounded-none lg:rounded-lg p-2 scrollbar-hide ">
-            <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
-            <div class="flex justify-start items-center mt-4 ">
-                <ul class="flex flex-1 gap-2">
-                    <li 
-                        on:click={() => {
-                            handleClickInfoColok("bebas");
-                        }}
-                        class="{tab_colok_bebas} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Bebas</li>
-                    <li 
-                        on:click={() => {
-                            handleClickInfoColok("macau");
-                        }}
-                        class="{tab_colok_macau} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Macau</li>
-                    <li 
-                        on:click={() => {
-                            handleClickInfoColok("naga");
-                        }}
-                        class="{tab_colok_naga} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Naga</li>
-                    <li 
-                        on:click={() => {
-                            handleClickInfoColok("jitu");
-                        }}
-                        class="{tab_colok_jitu} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Jitu</li>
-                </ul>
+        <div class="modal-box relative max-w-full  w-full h-screen  rounded-none  p-0 m-0 overflow-hidden">
+            <div class="border-b-2 border-base-200 p-2 h-11 w-full max-w-full">
+                <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 class="text-xs lg:text-sm font-bold mt-2">INFORMASI: COLOK</h3>
             </div>
-            <div class="h-[32rem] mt-4" >
-                {#if panel_colok_bebas}
-                    <div class="overflow-auto ">
-                        <table class="table table-compact w-full" >
-                            <tbody>
-                                <tr>
-                                    <th class="text-xs text-left">MIN BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokbebas)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">MAX BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokbebas)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">DISKON</th>
-                                    <td class="text-xs text-right link-accent">{(disc_bet_colokbebas * 100).toFixed(2)}%</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH</th>
-                                    <td class="text-xs text-right link-accent">{win_bet_colokbebas}x</td>
-                                </tr>
-                            </tbody>
-                        </table>    
-                    </div>
-                    <p class="py-2 text-xs">
-                        <b>CARA BERMAIN</b>
-                        <br />
-                        Menebak salah satu angka dari 4D. Posisi angka bisa dimana saja
-                        <br />
-                        Struktur ABCD<br /><br />
-                        
-                        Analisis I :<br />
-                        keluar : 4321<br />
-                        Misalnya pembelian Angka 3 dengan nilai taruhan 100rb.<br />
-                        Berarti menang : 100rb + [Indeks kemenangan untuk colok angka]<br /><br />
-                        
-                        Analisis I:<br />
-                        keluar : 4331<br />
-                        Misalnya pembelian Angka 3 dengan nilai taruhan 100rb.<br />
-                        Berarti menang: 100rb + ([Indeks kemenangan untuk colok Angka] x 2)<br /><br />
-                        
-                        Dan seterusnya untuk setiap kembaran yang berhasil ditebak, otomatis mendapat kelipatan [Indeks kemenangan untuk colok angka]
-                    </p>
-				{/if}
-                {#if panel_colok_macau}
-                    <div class="overflow-auto">
-                        <table class="table table-compact w-full" >
-                            <tbody>
-                                <tr>
-                                    <th class="text-xs text-left">MIN BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokmacau)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">MAX BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokmacau)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">DISKON</th>
-                                    <td class="text-xs text-right link-accent">{(disc_bet_colokmacau  * 100).toFixed(2)}%</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH 2 DIGIT</th>
-                                    <td class="text-xs text-right link-accent">{win_bet_colokmacau}x</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH 3 DIGIT</th>
-                                    <td class="text-xs text-right link-accent">{win3_bet_colokmacau}x</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH 4 DIGIT</th>
-                                    <td class="text-xs text-right link-accent">{win4_bet_colokmacau}x</td>
-                                </tr>
-                            </tbody>
-                        </table>    
-                    </div>
-                    <p class="py-2 text-xs">
-                        <b>CARA BERMAIN</b>
-                        <br />
-                        Cara kerja seperti colok angka tapi mesti yang keluar 2 angka dari 4D.
-                        <br />
-                        Struktur ABCD<br /><br />
-                        
-                        Analisis I :<br />
-                        keluar : 4321<br />
-                        Misalnya dibeli 4 dan 2 dengan nilai 100rb.<br />
-                        Berarti menang: 100rb + [Indeks kemenangan untuk Macau, kategori: 2 digit]<br /><br />
-                        
-                        Analisis II :<br />
-                        keluar : 4321<br />
-                        Misalnya dibeli 4 dan 6 dengan nilai 100rb.<br />
-                        Berarti KALAH dan nilai betting tidak dikembalikan)<br /><br />
-                        
-                        Analisis III :<br />
-                        keluar : 4331<br />
-                        Misalnya dibeli 4 dan 3 dengan nilai 100rb.<br />
-                        Berarti menang: 100rb + [Indeks kemenangan untuk Macau, kategori: 3 digit]<br /><br />
-                        
-                        Analisis IV :<br />
-                        keluar : 4334<br />
-                        Misalnya dibeli 4 dan 3 dengan nilai 100rb.<br />
-                        Berarti menang: 100rb + [Indeks kemenangan untuk Macau, kategori: 3 digit]
-                    </p>
-				{/if}
-                {#if panel_colok_naga}
-                    <div class="overflow-auto">
-                        <table class="table table-compact w-full" >
-                            <tbody>
-                                <tr>
-                                    <th class="text-xs text-left">MIN BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_coloknaga)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">MAX BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_coloknaga)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">DISKON</th>
-                                    <td class="text-xs text-right link-accent">{(disc_bet_coloknaga  * 100).toFixed(2)}%</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH 3 DIGIT</th>
-                                    <td class="text-xs text-right link-accent">{win_bet_coloknaga.toFixed(2)}x</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH 4 DIGIT</th>
-                                    <td class="text-xs text-right link-accent">{win4_bet_coloknaga.toFixed(2)}x</td>
-                                </tr>
-                            </tbody>
-                        </table>    
-                    </div>
-                    <p class="py-2 text-xs">
-                        <b>CARA BERMAIN</b>
-                        <br />
-                        Cara kerja seperti colok angka tapi mesti yang keluar 3 angka dari 4D.
-                        <br />
-                        Struktur ABCD<br /><br />
-                        
-                        Analisis I :<br />
-                        keluar : 4321<br />
-                        Misalnya dibeli 4,2 dan 3 dengan nilai 100rb.<br />
-                        Berarti menang: karena keluar 3 digit,angka 4,2 dan 3.<br />
-                        100rb + [Indeks kemenangan untuk colok naga , kategori: 3 digit]<br /><br />
-                        
-                        Analisis II :<br />
-                        keluar : 4321<br />
-                        Misalnya dibeli 4,2 dan 6 dengan nilai 100rb.<br />
-                        karena keluar hanya 2 digit angka 4 dan 2, dan angka 6 tidak muncul berarti kalah<br /><br />
-                        
-                        Analisis III :<br />
-                        keluar : 4331<br />
-                        Misalnya dibeli 4,3 dan 3 dengan nilai 100rb.<br />
-                        Berarti menang: karena keluar 3 digit,angka 4,3 dan 3.<br />
-                        100rb + [Indeks kemenangan untuk colok naga , kategori: 3 digit]<br /><br />
-                        
-                        Analisis IV :<br />
-                        keluar : 4334<br />
-                        Misalnya dibeli 4,3 dan 3 dengan nilai 100rb.<br />
-                        Berarti menang: 100rb + [Indeks kemenangan untuk colok naga, kategori: 4 digit]
-                    </p>
-				{/if}
-                {#if panel_colok_jitu}
-                    <div class="overflow-auto">
-                        <table class="table table-compact w-full" >
-                            <tbody>
-                                <tr>
-                                    <th class="text-xs text-left">MIN BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokjitu)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">MAX BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokjitu)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">DISKON</th>
-                                    <td class="text-xs text-right link-accent">{(disc_bet_colokjitu  * 100).toFixed(2)}%</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH AS</th>
-                                    <td class="text-xs text-right link-accent">{winas_bet_colokjitu.toFixed(2)}x</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH KOP</th>
-                                    <td class="text-xs text-right link-accent">{winkop_bet_colokjitu.toFixed(2)}x</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH KEPALA</th>
-                                    <td class="text-xs text-right link-accent">{winkepala_bet_colokjitu.toFixed(2)}x</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH EKOR</th>
-                                    <td class="text-xs text-right link-accent">{winekor_bet_colokjitu.toFixed(2)}x</td>
-                                </tr>
-                            </tbody>
-                        </table>    
-                    </div>
-                    <p class="py-2 text-xs">
-                        <b>CARA BERMAIN</b>
-                        <br />
-                        Menebak satu angka pada posisi tertentu dari 4D.
-                        <br />
-                        Struktur ABCD<br /><br />
-                        
-                        Analisis I :<br />
-                        keluar : 4321<br />
-                        Misalnya dibeli 4 pada posisi AS dengan nilai 100rb.<br />
-                        Berarti menang: 100rb + [Indeks kemenangan untuk colok jitu]<br /><br />
-                        
-                        Analisis II :<br />
-                        keluar : 4331<br />
-                        Misalnya dibeli 3 pada posisi KOP dengan nilai 100rb.<br />
-                        Berarti menang: 100rb + [Indeks kemenangan untuk colok jitu]. Hasilnya sama dengan analisis I karena hanya memperhatikan posisi yang dipasang.<br /><br />
-                        
-                        Analisis III :<br />
-                        keluar : 4331<br />
-                        Misalnya dibeli 4 pada posisi EKOR dengan nilai 100rb.<br />
-                        Berarti kalah. Biarpun nilai 4 keluar pada posisi AS tapi tidak akan mepengaruhi pemilihan di pososi EKOR
-                    </p>
-				{/if}
+            <ul class="flex justify-center items-center gap-2 mt-1 mx-2">
+                <li 
+                    on:click={() => {
+                        handleClickInfoColok("bebas");
+                    }}
+                    class="{tab_colok_bebas} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Bebas</li>
+                <li 
+                    on:click={() => {
+                        handleClickInfoColok("macau");
+                    }}
+                    class="{tab_colok_macau} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Macau</li>
+                <li 
+                    on:click={() => {
+                        handleClickInfoColok("naga");
+                    }}
+                    class="{tab_colok_naga} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Naga</li>
+                <li 
+                    on:click={() => {
+                        handleClickInfoColok("jitu");
+                    }}
+                    class="{tab_colok_jitu} btn-sm inline-flex items-center  p-2 text-xs text-center cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Jitu</li>
+            </ul>
+            <div class="h-full flex flex-col justify-between items-stretch mt-1 ">
+                <div class="flex-1 self-stretch scrollbar-thin scrollbar-thumb-green-300 overflow-auto p-2 " >
+                    {#if panel_colok_bebas}
+                        <div class="overflow-auto">
+                            <table class="table table-compact w-full" >
+                                <tbody>
+                                    <tr>
+                                        <th class="text-[11px] text-left">MIN BET</th>
+                                        <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokbebas)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">MAX BET</th>
+                                        <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokbebas)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">DISKON</th>
+                                        <td class="text-[11px] text-right link-accent">{(disc_bet_colokbebas * 100).toFixed(2)}%</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH</th>
+                                        <td class="text-[11px] text-right link-accent">{win_bet_colokbebas}x</td>
+                                    </tr>
+                                </tbody>
+                            </table>    
+                        </div>
+                        <p class="text-[11px]">
+                            <b>CARA BERMAIN</b>
+                            <br />
+                            Menebak salah satu angka dari 4D. Posisi angka bisa dimana saja
+                            <br />
+                            Struktur ABCD<br /><br />
+                            
+                            Analisis I :<br />
+                            keluar : 4321<br />
+                            Misalnya pembelian Angka 3 dengan nilai taruhan 100rb.<br />
+                            Berarti menang : 100rb + [Indeks kemenangan untuk colok angka]<br /><br />
+                            
+                            Analisis I:<br />
+                            keluar : 4331<br />
+                            Misalnya pembelian Angka 3 dengan nilai taruhan 100rb.<br />
+                            Berarti menang: 100rb + ([Indeks kemenangan untuk colok Angka] x 2)<br /><br />
+                            
+                            Dan seterusnya untuk setiap kembaran yang berhasil ditebak, otomatis mendapat kelipatan [Indeks kemenangan untuk colok angka]
+                        </p>
+                    {/if}
+                    {#if panel_colok_macau}
+                        <div class="overflow-auto">
+                            <table class="table table-compact w-full" >
+                                <tbody>
+                                    <tr>
+                                        <th class="text-[11px] text-left">MIN BET</th>
+                                        <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokmacau)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">MAX BET</th>
+                                        <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokmacau)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">DISKON</th>
+                                        <td class="text-[11px] text-right link-accent">{(disc_bet_colokmacau  * 100).toFixed(2)}%</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH 2 DIGIT</th>
+                                        <td class="text-[11px] text-right link-accent">{win_bet_colokmacau}x</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH 3 DIGIT</th>
+                                        <td class="text-[11px] text-right link-accent">{win3_bet_colokmacau}x</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH 4 DIGIT</th>
+                                        <td class="text-[11px] text-right link-accent">{win4_bet_colokmacau}x</td>
+                                    </tr>
+                                </tbody>
+                            </table>    
+                        </div>
+                        <p class="text-[11px]">
+                            <b>CARA BERMAIN</b>
+                            <br />
+                            Cara kerja seperti colok angka tapi mesti yang keluar 2 angka dari 4D.
+                            <br />
+                            Struktur ABCD<br /><br />
+                            
+                            Analisis I :<br />
+                            keluar : 4321<br />
+                            Misalnya dibeli 4 dan 2 dengan nilai 100rb.<br />
+                            Berarti menang: 100rb + [Indeks kemenangan untuk Macau, kategori: 2 digit]<br /><br />
+                            
+                            Analisis II :<br />
+                            keluar : 4321<br />
+                            Misalnya dibeli 4 dan 6 dengan nilai 100rb.<br />
+                            Berarti KALAH dan nilai betting tidak dikembalikan)<br /><br />
+                            
+                            Analisis III :<br />
+                            keluar : 4331<br />
+                            Misalnya dibeli 4 dan 3 dengan nilai 100rb.<br />
+                            Berarti menang: 100rb + [Indeks kemenangan untuk Macau, kategori: 3 digit]<br /><br />
+                            
+                            Analisis IV :<br />
+                            keluar : 4334<br />
+                            Misalnya dibeli 4 dan 3 dengan nilai 100rb.<br />
+                            Berarti menang: 100rb + [Indeks kemenangan untuk Macau, kategori: 3 digit]
+                        </p>
+                    {/if}
+                    {#if panel_colok_naga}
+                        <div class="overflow-auto">
+                            <table class="table table-compact w-full" >
+                                <tbody>
+                                    <tr>
+                                        <th class="text-[11px] text-left">MIN BET</th>
+                                        <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(min_bet_coloknaga)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">MAX BET</th>
+                                        <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max_bet_coloknaga)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">DISKON</th>
+                                        <td class="text-[11px] text-right link-accent">{(disc_bet_coloknaga  * 100).toFixed(2)}%</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH 3 DIGIT</th>
+                                        <td class="text-[11px] text-right link-accent">{win_bet_coloknaga.toFixed(2)}x</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH 4 DIGIT</th>
+                                        <td class="text-[11px] text-right link-accent">{win4_bet_coloknaga.toFixed(2)}x</td>
+                                    </tr>
+                                </tbody>
+                            </table>    
+                        </div>
+                        <p class="text-[11px]">
+                            <b>CARA BERMAIN</b>
+                            <br />
+                            Cara kerja seperti colok angka tapi mesti yang keluar 3 angka dari 4D.
+                            <br />
+                            Struktur ABCD<br /><br />
+                            
+                            Analisis I :<br />
+                            keluar : 4321<br />
+                            Misalnya dibeli 4,2 dan 3 dengan nilai 100rb.<br />
+                            Berarti menang: karena keluar 3 digit,angka 4,2 dan 3.<br />
+                            100rb + [Indeks kemenangan untuk colok naga , kategori: 3 digit]<br /><br />
+                            
+                            Analisis II :<br />
+                            keluar : 4321<br />
+                            Misalnya dibeli 4,2 dan 6 dengan nilai 100rb.<br />
+                            karena keluar hanya 2 digit angka 4 dan 2, dan angka 6 tidak muncul berarti kalah<br /><br />
+                            
+                            Analisis III :<br />
+                            keluar : 4331<br />
+                            Misalnya dibeli 4,3 dan 3 dengan nilai 100rb.<br />
+                            Berarti menang: karena keluar 3 digit,angka 4,3 dan 3.<br />
+                            100rb + [Indeks kemenangan untuk colok naga , kategori: 3 digit]<br /><br />
+                            
+                            Analisis IV :<br />
+                            keluar : 4334<br />
+                            Misalnya dibeli 4,3 dan 3 dengan nilai 100rb.<br />
+                            Berarti menang: 100rb + [Indeks kemenangan untuk colok naga, kategori: 4 digit]
+                        </p>
+                    {/if}
+                    {#if panel_colok_jitu}
+                        <div class="overflow-auto">
+                            <table class="table table-compact w-full" >
+                                <tbody>
+                                    <tr>
+                                        <th class="text-[11px] text-left">MIN BET</th>
+                                        <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokjitu)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">MAX BET</th>
+                                        <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokjitu)}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">DISKON</th>
+                                        <td class="text-[11px] text-right link-accent">{(disc_bet_colokjitu  * 100).toFixed(2)}%</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH AS</th>
+                                        <td class="text-[11px] text-right link-accent">{winas_bet_colokjitu.toFixed(2)}x</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH KOP</th>
+                                        <td class="text-[11px] text-right link-accent">{winkop_bet_colokjitu.toFixed(2)}x</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH KEPALA</th>
+                                        <td class="text-[11px] text-right link-accent">{winkepala_bet_colokjitu.toFixed(2)}x</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-[11px] text-left">HADIAH EKOR</th>
+                                        <td class="text-[11px] text-right link-accent">{winekor_bet_colokjitu.toFixed(2)}x</td>
+                                    </tr>
+                                </tbody>
+                            </table>    
+                        </div>
+                        <p class="text-[11px]">
+                            <b>CARA BERMAIN</b>
+                            <br />
+                            Menebak satu angka pada posisi tertentu dari 4D.
+                            <br />
+                            Struktur ABCD<br /><br />
+                            
+                            Analisis I :<br />
+                            keluar : 4321<br />
+                            Misalnya dibeli 4 pada posisi AS dengan nilai 100rb.<br />
+                            Berarti menang: 100rb + [Indeks kemenangan untuk colok jitu]<br /><br />
+                            
+                            Analisis II :<br />
+                            keluar : 4331<br />
+                            Misalnya dibeli 3 pada posisi KOP dengan nilai 100rb.<br />
+                            Berarti menang: 100rb + [Indeks kemenangan untuk colok jitu]. Hasilnya sama dengan analisis I karena hanya memperhatikan posisi yang dipasang.<br /><br />
+                            
+                            Analisis III :<br />
+                            keluar : 4331<br />
+                            Misalnya dibeli 4 pada posisi EKOR dengan nilai 100rb.<br />
+                            Berarti kalah. Biarpun nilai 4 keluar pada posisi AS tapi tidak akan mepengaruhi pemilihan di pososi EKOR
+                        </p>
+                    {/if}
+                </div>
+                <div class="h-28  self-stretch "></div>
             </div>
         </div>
     </div>

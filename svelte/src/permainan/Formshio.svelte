@@ -319,6 +319,9 @@
 			totalkeranjang
 		});
 	}
+	const handleBetHistory = (e) => {
+		dispatch("handleBetHistory", "call_bethistory");
+	};
 </script>
 <div class="card bg-base-200 shadow-xl rounded-md {card_custom}">
   	<div class="card-body p-3">
@@ -465,7 +468,7 @@
 <Modal_alert 
 	modal_id="my-modal-alert" 
 	modal_tipe="1" 
-	modal_title="Information" 
+	modal_title="INFORMASI" 
 	modal_title_class="" 
 	modal_p_class="" 
 	modal_widthheight_class="" 
@@ -492,6 +495,7 @@
   	on:removekeranjang={removekeranjang}
 	on:removekeranjangall={removekeranjangall}
 	on:handleSave={handleSave}
+	on:handleBetHistory={handleBetHistory}
 	{card_custom}
 	{client_device}
 	{keranjang}
