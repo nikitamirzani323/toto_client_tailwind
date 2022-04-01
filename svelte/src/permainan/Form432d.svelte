@@ -3993,7 +3993,7 @@
 							on:keyup={handleKeyboard_number}
 							on:keypress={handleKeyboard_checkenter} 
 							minlength="3"
-							maxlength="{max4d_bet.toString().length}"
+							maxlength="9"
 							type="text" placeholder="Bet" 
 							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
@@ -4702,7 +4702,7 @@
 										bind:value={bet_432}
 										on:keyup={handleKeyboard_number} 
 										minlength="3"
-										maxlength="{max4d_bet.toString().length}"
+										maxlength="9"
 										type="text" placeholder="Bet" 
 										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
