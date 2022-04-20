@@ -1310,7 +1310,7 @@
 							class="select w-full max-w-full {form_font_sizeinput_default}">
 							<option value="">--Pilih--</option>
 							<option value="AS">AS</option>
-							<option value="KECIL">KOP</option>
+							<option value="KOP">KOP</option>
 							<option value="KEPALA">KEPALA</option>
 							<option value="EKOR">EKOR</option>
 					</select> 
@@ -1689,7 +1689,7 @@
 										class="select w-full max-w-full {form_font_sizeinput_default}">
 										<option value="">--Pilih--</option>
 										<option value="AS">AS</option>
-										<option value="KECIL">KOP</option>
+										<option value="KOP">KOP</option>
 										<option value="KEPALA">KEPALA</option>
 										<option value="EKOR">EKOR</option>
 									</select> 

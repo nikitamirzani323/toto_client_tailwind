@@ -245,9 +245,9 @@
 <footer class=" footer footer-center p-4 text-base-content mt-2 text-center">
   <div class="">
     <p class="text-xs lg:text-sm text-center">
-      Copyright © 2022 - Powerby
+      Powerby
     </p>
-    <img class="w-24 lg:w-28" src="https://isbtoto.net/logo-green.svg" alt="SDSB">
+    <img class="w-24 lg:w-28" src="logo-green.svg" alt="SDSB">
   </div>
 </footer>
 {/if}
