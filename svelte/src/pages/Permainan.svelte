@@ -399,7 +399,7 @@
                         type="text" name="" id="">
                     <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-300 h-[950px]">
                         <table class="table table-zebra w-full " >
-                            <thead>
+                            <thead class="sticky top-0">
                                 <tr>
                                     <th class="text-xs text-center tracking-wide whitespace-nowrap">NOMOR</th>
                                     <th class="text-xs text-center tracking-wide whitespace-nowrap">TIPE</th>
@@ -414,7 +414,7 @@
                                 
                                 {#each filterTransaksi as rec}
                                     <tr>
-                                        <th class="text-xs text-center">{rec.nomor}</th>
+                                        <td class="text-xs text-center">{rec.nomor}</td>
                                         <td class="text-xs text-center">{rec.tipe_betinvoice}</td>
                                         <td class="text-xs text-center">{rec.permainan}</td>
                                         <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>

@@ -4400,71 +4400,45 @@
 				</div>
 				<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 			</h2>
-			<div class="relative flex  scrollbar-thin hover:scrollbar-thumb-green-300 overflow-x-scroll  h-16 cursor-pointer">
+			<div class=" flex scrollbar-thin hover:scrollbar-thumb-green-300 overflow-x-scroll  h-16 cursor-pointer">
 				<ul class="flex items-center select-none">
-					<li>
-					<span
-						on:click={() => {
-						changeTabs("432");
+					<li on:click={() => {
+							changeTabs("432");
 						}} 
-						class="{class_tab_432} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">4D/3D/2D</span>
-					</li>
+						class="{class_tab_432} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">4D/3D/2D</li>
 					<li>
-					<span
-						on:click={() => {
-						changeTabs("432SET");
-						}}
-						class="{class_tab_432set} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">4D/3D/2D SET</span>
-					</li>
-					<li>
-					<span
-						on:click={() => {
+					<li on:click={() => {
+							changeTabs("432SET");
+						}} 
+						class="{class_tab_432set} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">4D/3D/2D SET</li>
+					<li on:click={() => {
 							changeTabs("432BOLAKBALIK");
-						}}
-						class="{class_tab_432bolakbalik} transition px-3 py-1.5 whitespace-nowrap inactive  cursor-pointer text-sm">BOLAK BALIK</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
+						}} 
+						class="{class_tab_432bolakbalik} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">BOLAK BALIK</li>
+					<li on:click={() => {
 							changeTabs("432WAP");
-						}}
-						class="{class_tab_432wap} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">WAP</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
-						changeTabs("432POLATARUNG");
-						}}
-						class="{class_tab_432polatarung} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">POLA TARUNG</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
+						}} 
+						class="{class_tab_432wap} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">WAP</li>
+					<li on:click={() => {
+							changeTabs("432POLATARUNG");
+						}} 
+						class="{class_tab_432polatarung} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">POLA TARUNG</li>
+					<li on:click={() => {
 							changeTabs("432QUICK2D");
-						}}
-						class="{class_tab_432quick2d} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">QUICK 2D</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
+						}} 
+						class="{class_tab_432quick2d} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">QUICK 2D</li>
+					<li on:click={() => {
 							changeTabs("4323DD");
-						}}
-						class="{class_tab_4323DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">3DD /3D DEPAN</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
+						}} 
+						class="{class_tab_4323DD} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">3DD /3D DEPAN</li>
+					<li on:click={() => {
 							changeTabs("4322DD");
-						}}
-						class="{class_tab_4322DD} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">2DD /2D DEPAN</span>
-					</li>
-					<li>
-					<span 
-						on:click={() => {
+						}} 
+						class="{class_tab_4322DD} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">2DD /2D DEPAN</li>
+					<li on:click={() => {
 							changeTabs("4322DT");
-						}}
-						class="{class_tab_4322DT} inline-flex items-center transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">2DT /2D TENGAH</span>
-					</li>
+						}} 
+						class="{class_tab_4322DT} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">2DT /2D TENGAH</li>
 				</ul>
 			</div>
         
