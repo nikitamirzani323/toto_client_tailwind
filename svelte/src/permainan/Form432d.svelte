@@ -1455,12 +1455,6 @@
 			sum_2dd = sum_2dd + db_form4d_2dd_sum_temp;
 			sum_2dt = sum_2dt + db_form4d_2dt_sum_temp;
 		}
-		console.log("SUM 4D : ",new Intl.NumberFormat().format(sum_4d))
-		console.log("SUM 3D : ",new Intl.NumberFormat().format(sum_3d))
-		console.log("SUM 3DD : ",new Intl.NumberFormat().format(sum_3dd))
-		console.log("SUM 2D : ",new Intl.NumberFormat().format(sum_2d))
-		console.log("SUM 2DD : ",new Intl.NumberFormat().format(sum_2dd))
-		console.log("SUM 2DT : ",new Intl.NumberFormat().format(sum_2dt))
 	}
   	
 	function check_maxbet(tipe,game,bet){
