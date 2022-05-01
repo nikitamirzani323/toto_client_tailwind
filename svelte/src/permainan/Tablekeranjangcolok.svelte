@@ -12,6 +12,10 @@
     export let count_line_colokmacau = 0;
     export let count_line_coloknaga = 0;
     export let count_line_colokjitu = 0;
+    export let sum_colokbebas = 0;
+	export let sum_colokmacau = 0;
+	export let sum_coloknaga = 0;
+	export let sum_colokjitu = 0;
     export let min_bet_colokbebas = 0;
     export let max_bet_colokbebas = 0;
     export let disc_bet_colokbebas = 0;
@@ -35,6 +39,7 @@
     export let winkepala_bet_colokjitu = 0;
     export let winekor_bet_colokjitu = 0;
     let count_line = 0;
+    let sum_line = 0;
     let isModalInformation = false;
     let isModalAlert = false;
     let isModalAlert2 = false;
@@ -47,7 +52,7 @@
     let temp_bet = 0
     let temp_diskon = 0
     let temp_diskonpercen = 0
-    let tab_colok_bebas = "bg-green-600 text-black"
+    let tab_colok_bebas = "bg-success text-black"
     let tab_colok_macau = ""
     let tab_colok_naga = ""
     let tab_colok_jitu = ""
@@ -62,7 +67,7 @@
     const handleClickInfoColok = (e) => {
         switch(e){
             case "bebas":
-                tab_colok_bebas = "bg-green-600 text-black"
+                tab_colok_bebas = "bg-success text-black"
                 tab_colok_macau = ""
                 tab_colok_naga = ""
                 tab_colok_jitu = ""
@@ -73,7 +78,7 @@
                 break;
             case "macau":
                 tab_colok_bebas = ""
-                tab_colok_macau = "bg-green-600 text-black"
+                tab_colok_macau = "bg-success text-black"
                 tab_colok_naga = ""
                 tab_colok_jitu = ""
                 panel_colok_bebas = false
@@ -84,7 +89,7 @@
             case "naga":
                 tab_colok_bebas = ""
                 tab_colok_macau = ""
-                tab_colok_naga = "bg-green-600 text-black"
+                tab_colok_naga = "bg-success text-black"
                 tab_colok_jitu = ""
                 panel_colok_bebas = false
                 panel_colok_macau = false
@@ -95,7 +100,7 @@
                 tab_colok_bebas = ""
                 tab_colok_macau = ""
                 tab_colok_naga = ""
-                tab_colok_jitu = "bg-green-600 text-black"
+                tab_colok_jitu = "bg-success text-black"
                 panel_colok_bebas = false
                 panel_colok_macau = false
                 panel_colok_naga = false
@@ -178,11 +183,35 @@
     }else{
         class_card_table_keranjang = "mt-2";
     }
-    $: count_line =
+    $: {
+        count_line =
         count_line_colokbebas +
         count_line_colokmacau +
         count_line_coloknaga +
         count_line_colokjitu;
+        
+        sum_line = sum_colokbebas + sum_colokmacau + sum_coloknaga + sum_colokjitu;
+    }
+    let tab_line = "bg-success text-black"
+    let tab_sum = ""
+    let panel_line = true
+    let panel_sum = false
+    const ChangeTabLine = (e) => {
+        switch(e){
+            case "menu_line":
+                tab_line = "bg-success text-black"
+                tab_sum = ""
+                panel_line = true
+                panel_sum = false
+                break;
+            case "menu_sum":
+                tab_line = ""
+                tab_sum = "bg-success text-black"
+                panel_line = false
+                panel_sum = true
+                break;
+        }
+    }
 </script>
 
 <div class="card bg-base-200 shadow-xl {class_card_table_keranjang} rounded-md {card_custom}">
@@ -194,21 +223,21 @@
                 </div>
             </h2>
             <div class="overflow-auto shadow-lg scrollbar-thin scrollbar-thumb-green-100 h-[500px]">
-                <table class="table table-zebra w-full" >
-                    <thead>
+                <table class="table table-zebra w-full shadow-lg">
+                    <thead class="sticky top-0">
                         <tr>
-                            <th width="1%" class="text-xs text-center">#</th>
-                            <th width="*" class="text-xs text-center">NOMOR</th>
-                            <th width="10%" class="text-xs text-center">PERMAINAN</th>
-                            <th width="15%" class="text-xs text-right">BET</th>
-                            <th width="15%" class="text-xs text-right">DISKON</th>
-                            <th width="15%" class="text-xs text-right">BAYAR</th>
+                            <th width="1%" class="text-[11px] lg:text-xs text-center">#</th>
+                            <th width="*" class="text-[11px] lg:text-xs text-center">NOMOR</th>
+                            <th width="10%" class="text-[11px] lg:text-xs text-center">PERMAINAN</th>
+                            <th width="15%" class="text-[11px] lg:text-xs text-right">BET</th>
+                            <th width="15%" class="text-[11px] lg:text-xs text-right">DISKON</th>
+                            <th width="15%" class="text-[11px] lg:text-xs text-right">BAYAR</th>
                         </tr>
                     </thead>
                     <tbody>
                         {#each keranjang as rec (rec)}
                             <tr>
-                                <th 
+                                <td 
                                     class="cursor-pointer"
                                     on:click={() => {
                                         handleRemoveKeranjang(rec.id, rec.bayar,rec.nomor,rec.tipetoto,rec.permainan,rec.bet,rec.diskon,rec.diskonpercen);
@@ -216,12 +245,12 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>
-                                </th>
-                                <td class="text-xs text-center">{rec.nomor}</td>
-                                <td class="text-xs text-center">{rec.permainan}</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
-                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
+                                </td>
+                                <td class="text-[11px] lg:text-xs text-center">{rec.nomor}</td>
+                                <td class="text-[11px] lg:text-xs text-center">{rec.permainan}</td>
+                                <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bet)}</td>
+                                <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format( Math.ceil(rec.diskon))} ({(rec.diskonpercen * 100).toFixed(2)}%)</td>
+                                <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format(rec.bayar)}</td>
                             </tr>
                         {/each}
                     </tbody>
@@ -230,22 +259,49 @@
             <div class="grid grid-cols-3 gap-1">
                 <Button_custom2
                     on:click={handleInformation}
-                    button_block="btn-sm rounded-sm"
+                    button_block="btn-sm rounded-md"
                     button_title="INFORMASI" />
                 <Button_custom1
                     on:click={handleRemoveKeranjang_all}
                     button_tipe="HAPUS"
-                    button_block="btn-sm rounded-sm"
+                    button_block="btn-sm rounded-md"
                     button_title="HAPUS SEMUA" />
                 <Button_custom1
                     on:click={handleSave}
                     button_tipe="BELI"
-                    button_block="btn-sm rounded-sm"
+                    button_block="btn-sm rounded-md"
                     button_title="PEMBAYARAN" />
             </div>
-            <div class="bg-base-200 shadow-lg p-2">
-                <div class="text-sm">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
-            </div>
+            <ul class="flex justify-center items-center gap-3 mt-2">
+                <li on:click={() => {
+                        ChangeTabLine("menu_line");
+                    }} class="items-center {tab_line} px-5 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">LINE</li>
+                <li on:click={() => {
+                    ChangeTabLine("menu_sum");
+                    }} class="items-center {tab_sum} px-5 py-1.5 text-xs lg:text-sm cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">SUM</li>
+            </ul>
+            {#if panel_line}
+                <div class="bg-base-300 shadow-lg p-2">
+                    <div class="text-xs">TOTAL LINE : <span class="text-sm link-accent">{count_line}</span></div>
+                    <div class="grid grid-cols-2">
+                        <div class="basis-1/4 text-xs">COLOK BEBAS : <span class="text-sm link-accent">{count_line_colokbebas}</span></div>
+                        <div class="basis-1/4 text-xs">COLOK MACAU : <span class="text-sm link-accent">{count_line_colokmacau}</span></div>
+                        <div class="basis-1/4 text-xs">COLOK NAGA : <span class="text-sm link-accent">{count_line_coloknaga}</span></div>
+                        <div class="basis-1/4 text-xs">COLOK JITU : <span class="text-sm link-accent">{count_line_colokjitu}</span></div>
+                    </div>
+                </div>
+            {/if}
+            {#if panel_sum}
+                <div class="bg-base-300 shadow-lg p-2">
+                    <div class="text-xs">TOTAL SUM : <span class="text-sm link-accent">{new Intl.NumberFormat().format(sum_line)}</span></div>
+                    <div class="grid grid-cols-2">
+                        <div class="basis-1/4 text-xs">COLOK BEBAS : <span class="text-sm link-accent">{new Intl.NumberFormat().format(sum_colokbebas)}</span></div>
+                        <div class="basis-1/4 text-xs">COLOK MACAU : <span class="text-sm link-accent">{new Intl.NumberFormat().format(sum_colokmacau)}</span></div>
+                        <div class="basis-1/4 text-xs">COLOK NAGA : <span class="text-sm link-accent">{new Intl.NumberFormat().format(sum_coloknaga)}</span></div>
+                        <div class="basis-1/4 text-xs">COLOK JITU : <span class="text-sm link-accent">{new Intl.NumberFormat().format(sum_colokjitu)}</span></div>
+                    </div>
+                </div>
+            {/if}
         {:else}
             <h2 class="card-title text-lg mt-1">
                 <div class="place-content-start text-left text-xs">

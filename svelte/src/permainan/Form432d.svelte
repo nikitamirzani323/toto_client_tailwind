@@ -882,17 +882,11 @@
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 4D<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 4D  : ",tipetoto)
-								console.log("LIMIT TOTAL 4D  : ",limittotal4d_bet)
-								console.log("LIMIT TOTAL 4D + BAYAR : ",(parseInt(maxtotal_bayar4d) + parseInt(bet)))
 							}else{
 								if (parseInt(limittotal4d_fullbb_bet) < (parseInt(maxtotal_bayar4d_fullbb)+parseInt(bet))) {
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 4D FULL/BB<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 4D  : ",tipetoto)
-								console.log("LIMIT TOTAL 4D FULLBB : ",limittotal4d_fullbb_bet)
-								console.log("LIMIT TOTAL 4D FULLBB + BAYAR : ",(parseInt(maxtotal_bayar4d_fullbb) + parseInt(bet)))
 							}
 						}
 
@@ -923,17 +917,11 @@
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 3D<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 3D  : ",tipetoto)
-								console.log("LIMIT TOTAL 3D  : ",limittotal3d_bet)
-								console.log("LIMIT TOTAL 3D + BAYAR : ",(parseInt(maxtotal_bayar3d) + parseInt(bet)))
 							}else{
 								if (parseInt(limittotal3d_fullbb_bet) < (parseInt(maxtotal_bayar3d_fullbb)+parseInt(bet))) {
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 3D FULL/BB<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 3D  : ",tipetoto)
-								console.log("LIMIT TOTAL 3D FULLBB : ",limittotal3d_fullbb_bet)
-								console.log("LIMIT TOTAL 3D FULLBB + BAYAR : ",(parseInt(maxtotal_bayar3d_fullbb) + parseInt(bet)))
 							}
 						}
 
@@ -964,17 +952,11 @@
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 3DD<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 3DD  : ",tipetoto)
-								console.log("LIMIT TOTAL 3DD  : ",limittotal3dd_bet)
-								console.log("LIMIT TOTAL 3DD + BAYAR : ",(parseInt(maxtotal_bayar3dd) + parseInt(bet)))
 							}else{
 								if (parseInt(limittotal3dd_fullbb_bet) < (parseInt(maxtotal_bayar3dd_fullbb)+parseInt(bet))) {
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 3DD FULL/BB<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 3DD  : ",tipetoto)
-								console.log("LIMIT TOTAL 3DD FULLBB : ",limittotal3dd_fullbb_bet)
-								console.log("LIMIT TOTAL 3DD FULLBB + BAYAR : ",(parseInt(maxtotal_bayar3dd_fullbb) + parseInt(bet)))
 							}
 						}
 						if((parseInt(bayar) + parseInt(sum_3dd)) > max3dd_buy){
@@ -1004,17 +986,11 @@
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 2D<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 2D  : ",tipetoto)
-								console.log("LIMIT TOTAL 2D  : ",limittotal2d_bet)
-								console.log("LIMIT TOTAL 2D + BAYAR : ",(parseInt(maxtotal_bayar2d) + parseInt(bet)))
 							}else{
 								if (parseInt(limittotal2d_fullbb_bet) < (parseInt(maxtotal_bayar2d_fullbb)+parseInt(bet))) {
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 2D FULL/BB<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 2D  : ",tipetoto)
-								console.log("LIMIT TOTAL 2D FULLBB : ",limittotal2d_fullbb_bet)
-								console.log("LIMIT TOTAL 2D FULLBB + BAYAR : ",(parseInt(maxtotal_bayar2d_fullbb) + parseInt(bet)))
 							}
 						}
 						
@@ -1045,17 +1021,11 @@
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 2DD<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 2DD  : ",tipetoto)
-								console.log("LIMIT TOTAL 2DD  : ",limittotal2dd_bet)
-								console.log("LIMIT TOTAL 2DD + BAYAR : ",(parseInt(maxtotal_bayar2dd) + parseInt(bet)))
 							}else{
 								if (parseInt(limittotal2dd_fullbb_bet) < (parseInt(maxtotal_bayar2dd_fullbb)+parseInt(bet))) {
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 2DD FULL/BB<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 2DD  : ",tipetoto)
-								console.log("LIMIT TOTAL 2DD FULLBB : ",limittotal2dd_fullbb_bet)
-								console.log("LIMIT TOTAL 2DD FULLBB + BAYAR : ",(parseInt(maxtotal_bayar2dd_fullbb) + parseInt(bet)))
 							}
 						}
 											
@@ -1086,17 +1056,11 @@
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 2DT<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 2DT  : ",tipetoto)
-								console.log("LIMIT TOTAL 2DT  : ",limittotal2dt_bet)
-								console.log("LIMIT TOTAL 2DT + BAYAR : ",(parseInt(maxtotal_bayar2dt) + parseInt(bet)))
 							}else{
 								if (parseInt(limittotal2dt_fullbb_bet) < (parseInt(maxtotal_bayar2dt_fullbb)+parseInt(bet))) {
 									msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 2DT FULL/BB<br />";
 									flag_data = true;
 								}
-								console.log("TIPE 2DT  : ",tipetoto)
-								console.log("LIMIT TOTAL 2DT FULLBB : ",limittotal2dt_fullbb_bet)
-								console.log("LIMIT TOTAL 2DT FULLBB + BAYAR : ",(parseInt(maxtotal_bayar2dt_fullbb) + parseInt(bet)))
 							}
 						}
 						if((parseInt(bayar) + parseInt(sum_2dt)) > max2dt_buy){
@@ -1111,10 +1075,6 @@
 		}else{
 			switch (game) {
 				case "4D":
-					console.log("MAX SUM4D : ",max4d_buy)
-					console.log("BAYAR : ",bayar)
-					console.log("SUM 4D : ",sum_4d)
-					console.log("SUM 4D + BAYAR : ",(parseInt(bayar) + parseInt(sum_4d)))
 					if((parseInt(bayar) + parseInt(sum_4d)) > max4d_buy){
 						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 4D<br />";
 						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
@@ -1123,10 +1083,6 @@
 					}
 					break;
 				case "3D":
-					console.log("MAX SUM3D : ",max3d_buy)
-					console.log("BAYAR : ",bayar)
-					console.log("SUM 3D : ",sum_3d)
-					console.log("SUM 3D + BAYAR : ",(parseInt(bayar) + parseInt(sum_3d)))
 					if((parseInt(bayar) + parseInt(sum_3d)) > max3d_buy){
 						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 3D<br />";
 						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
@@ -1135,10 +1091,6 @@
 					}
 					break;
 				case "3DD":
-					console.log("MAX SUM 3DD : ",max3dd_buy)
-					console.log("BAYAR : ",bayar)
-					console.log("SUM 3DD : ",sum_3dd)
-					console.log("SUM 3DD + BAYAR : ",(parseInt(bayar) + parseInt(sum_3dd)))
 					if((parseInt(bayar) + parseInt(sum_3dd)) > max3dd_buy){
 						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 3DD<br />";
 						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
@@ -1147,10 +1099,6 @@
 					}
 					break;
 				case "2D":
-					console.log("MAX SUM 2D : ",max2d_buy)
-					console.log("BAYAR : ",bayar)
-					console.log("SUM 2D : ",sum_2d)
-					console.log("SUM 2D + BAYAR : ",(parseInt(bayar) + parseInt(sum_2d)))
 					if((parseInt(bayar) + parseInt(sum_2d)) > max2d_buy){
 						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 2D<br />";
 						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
@@ -1159,10 +1107,6 @@
 					}
 					break;
 				case "2DD":
-					console.log("MAX SUM 2DD : ",max2dd_buy)
-					console.log("BAYAR : ",bayar)
-					console.log("SUM 2DD : ",sum_2dd)
-					console.log("SUM 2DD + BAYAR : ",(parseInt(bayar) + parseInt(sum_2dd)))
 					if((parseInt(bayar) + parseInt(sum_2dd)) > max2dd_buy){
 						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 2DD<br />";
 						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
@@ -1171,10 +1115,6 @@
 					}
 					break;
 				case "2DT":
-					console.log("MAX SUM 2DT : ",max2dt_buy)
-					console.log("BAYAR : ",bayar)
-					console.log("SUM 2DT : ",sum_2dt)
-					console.log("SUM 2DT + BAYAR : ",(parseInt(bayar) + parseInt(sum_2dt)))
 					if((parseInt(bayar) + parseInt(sum_2dt)) > max2dt_buy){
 						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 2DT<br />";
 						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
@@ -1268,6 +1208,7 @@
 						}
 						if(parseInt(server_totalbayar) > 0){
 							msg_error += "Data telah berhasil disimpan,<br>Total Transaksi : " +new Intl.NumberFormat().format(server_totalbayar)
+							msg_error += "Total Transaksi : <span class='text-xs lg:text-sm link-accent'>" +new Intl.NumberFormat().format(server_totalbayar) + "</span>"
 						}
 						if(msg_error != ""){
 							isModalAlert = true;
@@ -1298,6 +1239,14 @@
 		count_line_2d = 0;
 		count_line_2dd = 0;
 		count_line_2dt = 0;
+
+		sum_4d = 0;
+		sum_3d = 0;
+		sum_3dd = 0;
+		sum_2d = 0;
+		sum_2dd = 0;
+		sum_2dt = 0;
+
 		limittogel("4-3-2");
 		inittogel_432d("4-3-2");
 	}
@@ -4395,7 +4344,7 @@
   	<div class="card-body p-3">
       	{#if client_device == "WEBSITE"}
 			<h2 class="card-title text-lg grid grid-cols-2 gap-2">
-				<div class="text-left text-xs lg:text-lg md:text-sm">
+				<div class="text-left text-xs lg:text-md md:text-sm">
 					{pasaran_name} - {permainan_title}
 				</div>
 				<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>

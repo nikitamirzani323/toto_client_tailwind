@@ -40,7 +40,7 @@
     let idtrxkeluaran = "";
     let permainan_title = "4D / 3D / 2D";
     let statuspasaran = "";
-    let permainan_432_class = "bg-green-700 grass text-white";
+    let permainan_432_class = "bg-success text-black";
     let permainan_colok_class = "bg-base-200 ";
     let permainan_5050_class = "bg-base-200 ";
     let permainan_kombinasi_class = "bg-base-200 ";
@@ -142,7 +142,7 @@
             switch (e) {
                 case "4-3-2":
                     permainan_title = "4D / 3D / 2D";
-                    permainan_432_class = "bg-green-700 grass text-white";
+                    permainan_432_class = "bg-success text-black";
                     permainan_colok_class = "bg-base-200 ";
                     permainan_5050_class = "bg-base-200 ";
                     permainan_kombinasi_class = "bg-base-200 ";
@@ -152,7 +152,7 @@
                 case "colok":
                     permainan_title = "COLOK";
                     permainan_432_class = "bg-base-200";
-                    permainan_colok_class = "bg-green-700 grass text-white ";
+                    permainan_colok_class = "bg-success text-black ";
                     permainan_5050_class = "bg-base-200 ";
                     permainan_kombinasi_class = "bg-base-200 ";
                     permainan_dasar_class = "bg-base-200 ";
@@ -162,7 +162,7 @@
                     permainan_title = "50 - 50";
                     permainan_432_class = "bg-base-200";
                     permainan_colok_class = "bg-base-200 ";
-                    permainan_5050_class = "bg-green-700 grass text-white ";
+                    permainan_5050_class = "bg-success text-black ";
                     permainan_kombinasi_class = "bg-base-200 ";
                     permainan_dasar_class = "bg-base-200 ";
                     permainan_shio_class = "bg-base-200 ";
@@ -172,7 +172,7 @@
                     permainan_432_class = "bg-base-200";
                     permainan_colok_class = "bg-base-200 ";
                     permainan_5050_class = "bg-base-200 ";
-                    permainan_kombinasi_class = "bg-green-700 grass text-white";
+                    permainan_kombinasi_class = "bg-success text-black";
                     permainan_dasar_class = "bg-base-200 ";
                     permainan_shio_class = "bg-base-200 ";
                     break;
@@ -182,7 +182,7 @@
                     permainan_colok_class = "bg-base-200 ";
                     permainan_5050_class = "bg-base-200 ";
                     permainan_kombinasi_class = "bg-base-200 ";
-                    permainan_dasar_class = "bg-green-700 grass text-white";
+                    permainan_dasar_class = "bg-success text-black";
                     permainan_shio_class = "bg-base-200 ";
                     break;
                 case "shio":
@@ -192,7 +192,7 @@
                     permainan_5050_class = "bg-base-200 ";
                     permainan_kombinasi_class = "bg-base-200 ";
                     permainan_dasar_class = "bg-base-200 ";
-                    permainan_shio_class = "bg-green-700 grass text-white";
+                    permainan_shio_class = "bg-success text-black";
                     break;
             }
         }
@@ -382,7 +382,7 @@
                         {permainan_title}/>
                 {/if}
             </div>
-            <div class="card rounded-md bg-base-200 shadow-xl select-none h-[950px]">
+            <div class="card rounded-md bg-base-200 shadow-xl select-none h-[997px]">
                 <div class="card-body p-3 overflow-hidden h-[950px]">
                     <h2 class="card-title text-sm lg:text-lg grid grid-cols-2 gap-4">
                         <div class="place-content-start text-left">
@@ -398,14 +398,14 @@
                         placeholder="Search Nomor" 
                         type="text" name="" id="">
                     <div class="overflow-auto scrollbar-thin scrollbar-thumb-green-300 h-[950px]">
-                        <table class="table table-zebra w-full " >
+                        <table class="table table-zebra w-full shadow-lg" >
                             <thead class="sticky top-0">
                                 <tr>
                                     <th class="text-xs text-center tracking-wide whitespace-nowrap">NOMOR</th>
                                     <th class="text-xs text-center tracking-wide whitespace-nowrap">TIPE</th>
                                     <th class="text-xs text-center tracking-wide whitespace-nowrap">PERMAINAN</th>
                                     <th class="text-xs text-right tracking-wide whitespace-nowrap">BET</th>
-                                    <th class="text-xs text-right tracking-wide whitespace-nowrap">DISC(%)</th>
+                                    <th class="text-xs text-right tracking-wide whitespace-nowrap">DISKON(%)</th>
                                     <th class="text-xs text-right tracking-wide whitespace-nowrap">KEI(%)</th>
                                     <th class="text-xs text-right tracking-wide whitespace-nowrap">BAYAR</th>
                                 </tr>

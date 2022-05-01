@@ -659,7 +659,7 @@
         <h3 class="text-xs lg:text-sm font-bold mt-1">PASARAN : {nmpasaran}</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
             <table class="table table-zebra w-full">
-                <thead>
+                <thead class="sticky top-0">
                     <tr>
                         <th width="15%" class="text-xs lg:text-sm text-center">TANGGAL</th>
                         <th width="15%" class="text-xs lg:text-sm text-center">PERIODE</th>
@@ -669,7 +669,7 @@
                 <tbody>
                     {#each resulttogel  as rec}
                     <tr>
-                        <th class="text-xs lg:text-sm text-center">{rec.date}</th>
+                        <td class="text-xs lg:text-sm text-center">{rec.date}</td>
                         <td class="text-xs lg:text-sm text-center">{rec.periode}</td>
                         <td class="text-xs lg:text-sm text-center link-accent">{rec.result}</td>
                     </tr>
@@ -1366,7 +1366,7 @@
             <h3 class="text-xs lg:text-sm font-bold -mt-1">INFORMASI</h3>
             <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
                 <table class="table-normal table-zebra  w-full" >
-                    <thead>
+                    <thead class="sticky top-0">
                         <tr>
                             <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
                             <th width="15%" class="text-xs lg:text-sm text-left">NOTE</th>

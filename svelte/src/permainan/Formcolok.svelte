@@ -39,11 +39,13 @@
 
 	let min_bet_colokbebas = 0;
 	let max_bet_colokbebas = 0;
+	let max_buy_colokbebas = 0;
 	let disc_bet_colokbebas = 0;
 	let win_bet_colokbebas = 0;
 	let limittotal_bet_colokbebas = 0;
 	let min_bet_colokmacau = 0;
 	let max_bet_colokmacau = 0;
+	let max_buy_colokmacau = 0;
 	let disc_bet_colokmacau = 0;
 	let win_bet_colokmacau = 0;
 	let win3_bet_colokmacau = 0;
@@ -51,12 +53,14 @@
 	let limittotal_bet_colokmacau = 0;
 	let min_bet_coloknaga = 0;
 	let max_bet_coloknaga = 0;
+	let max_buy_coloknaga = 0;
 	let disc_bet_coloknaga = 0;
 	let win_bet_coloknaga = 0;
 	let win4_bet_coloknaga = 0;
 	let limittotal_bet_coloknaga = 0;
 	let min_bet_colokjitu = 0;
 	let max_bet_colokjitu = 0;
+	let max_buy_colokjitu = 0;
 	let disc_bet_colokjitu = 0;
 	let winas_bet_colokjitu = 0;
 	let winkop_bet_colokjitu = 0;
@@ -72,6 +76,15 @@
 	let db_formcolok_colokmacau_count_temp = 0;
 	let db_formcolok_coloknaga_count_temp = 0;
 	let db_formcolok_colokjitu_count_temp = 0;
+
+	let sum_colokbebas = 0;
+	let sum_colokmacau = 0;
+	let sum_coloknaga = 0;
+	let sum_colokjitu = 0;
+	let db_colokbebas_sum_temp = 0;
+	let db_colokmacau_sum_temp = 0;
+	let db_coloknaga_sum_temp = 0;
+	let db_colokjitu_sum_temp = 0;
 	
 	//COLOK BEBAS - INIT FORM
 	let nomor_colokbebas = "";
@@ -236,70 +249,133 @@
 		bayar,win,kei,kei_percen,tipetoto) {
 		let total_data = keranjang.length;
 		let flag_data = false;
-		for (var i = 0; i < total_data; i++) {
-			switch (game) {
-				case "COLOK_BEBAS":
-					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayarcolokbebas = 0;
-						for (var j = 0; j < keranjang.length; j++) {
-							if ("COLOK_BEBAS" == keranjang[j].permainan) {
-								if (parseInt(nomor) == parseInt(keranjang[j].nomor)) {
-									maxtotal_bayarcolokbebas = parseInt(maxtotal_bayarcolokbebas) + parseInt(keranjang[j].bet);
+		if(total_data > 0){
+			for (var i = 0; i < total_data; i++) {
+				switch (game) {
+					case "COLOK_BEBAS":
+						if (nomor == keranjang[i].nomor.toString()) {
+							let maxtotal_bayarcolokbebas = 0;
+							for (var j = 0; j < keranjang.length; j++) {
+								if ("COLOK_BEBAS" == keranjang[j].permainan) {
+									if (parseInt(nomor) == parseInt(keranjang[j].nomor)) {
+										maxtotal_bayarcolokbebas = parseInt(maxtotal_bayarcolokbebas) + parseInt(keranjang[j].bet);
+									}
 								}
 							}
+							if (parseInt(limittotal_bet_colokbebas) < (parseInt(maxtotal_bayarcolokbebas)+parseInt(bet))) {
+								msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK BEBAS<br />";
+								flag_data = true;
+							}
 						}
-						if (parseInt(limittotal_bet_colokbebas) < (parseInt(maxtotal_bayarcolokbebas)+parseInt(bet))) {
-							msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK BEBAS<br />";
+						if((parseInt(bayar) + parseInt(sum_colokbebas)) > max_buy_colokbebas){
+							msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan COLOK BEBAS<br />";
+							msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+							msg_error += "Maximum Pembelanjaan COLOK BEBAS :"+ new Intl.NumberFormat().format(max_buy_colokbebas) +" <br/>";
 							flag_data = true;
 						}
+						break;
+					case "COLOK_MACAU":
+						if (nomor == keranjang[i].nomor.toString()) {
+							let maxtotal_bayarcolokmacau = 0;
+							for (var j = 0; j < keranjang.length; j++) {
+								if ("COLOK_MACAU" == keranjang[j].permainan) {
+									if (parseInt(nomor) == parseInt(keranjang[j].nomor)) {
+										maxtotal_bayarcolokmacau = parseInt(maxtotal_bayarcolokmacau) + parseInt(keranjang[j].bet);
+									}
+								}
+							}
+							if (parseInt(limittotal_bet_colokmacau) < (parseInt(maxtotal_bayarcolokmacau)+parseInt(bet))) {
+								msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK MACAU<br />";
+								flag_data = true;
+							}
+						}
+						if((parseInt(bayar) + parseInt(sum_colokmacau)) > max_buy_colokmacau){
+							msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan COLOK MACAU<br />";
+							msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+							msg_error += "Maximum Pembelanjaan COLOK MACAU :"+ new Intl.NumberFormat().format(max_buy_colokmacau) +" <br/>";
+							flag_data = true;
+						}
+						break;
+					case "COLOK_NAGA":
+						if (nomor == keranjang[i].nomor.toString()) {
+							let maxtotal_bayarcoloknaga = 0;
+							for (var j = 0; j < keranjang.length; j++) {
+								if ("COLOK_NAGA" == keranjang[j].permainan) {
+									if (parseInt(nomor) == parseInt(keranjang[j].nomor)) {
+										maxtotal_bayarcoloknaga = parseInt(maxtotal_bayarcoloknaga) + parseInt(keranjang[j].bet);
+									}
+								}
+							}
+							if (parseInt(limittotal_bet_coloknaga) < (parseInt(maxtotal_bayarcoloknaga)+parseInt(bet))) {
+								msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK NAGA<br />";
+								flag_data = true;
+							}
+						}
+						if((parseInt(bayar) + parseInt(sum_coloknaga)) > max_buy_coloknaga){
+							msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan COLOK NAGA<br />";
+							msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+							msg_error += "Maximum Pembelanjaan COLOK NAGA :"+ new Intl.NumberFormat().format(max_buy_coloknaga) +" <br/>";
+							flag_data = true;
+						}
+						break;
+					case "COLOK_JITU":
+						if (nomor == keranjang[i].nomor.toString()) {
+							let maxtotal_bayarcolokjitu = 0;
+							for (var j = 0; j < keranjang.length; j++) {
+								if ("COLOK_JITU" == keranjang[j].permainan) {
+									if (nomor == keranjang[j].nomor) {
+										maxtotal_bayarcolokjitu = parseInt(maxtotal_bayarcolokjitu) + parseInt(keranjang[j].bet);
+									}
+								}
+							}
+							if (parseInt(limittotal_bet_colokjitu) < (parseInt(maxtotal_bayarcolokjitu)+parseInt(bet))) {
+								msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK JITU<br />";
+								flag_data = true;
+							}
+						}
+						if((parseInt(bayar) + parseInt(sum_colokjitu)) > max_buy_colokjitu){
+							msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan COLOK JITU<br />";
+							msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+							msg_error += "Maximum Pembelanjaan COLOK JITU :"+ new Intl.NumberFormat().format(max_buy_colokjitu) +" <br/>";
+							flag_data = true;
+						}
+						break;
+				}
+			}
+		}else{
+			switch (game) {
+				case "COLOK_BEBAS":
+					console.log("DB MAX BUY COLOK BEBAS :",max_buy_colokbebas)
+					console.log("SUM COLOK BEBAS :",(parseInt(bayar) + parseInt(sum_colokbebas)))
+					if((parseInt(bayar) + parseInt(sum_colokbebas)) > max_buy_colokbebas){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan COLOK BEBAS<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan COLOK BEBAS :"+ new Intl.NumberFormat().format(max_buy_colokbebas) +" <br/>";
+						flag_data = true;
 					}
 					break;
 				case "COLOK_MACAU":
-					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayarcolokmacau = 0;
-						for (var j = 0; j < keranjang.length; j++) {
-							if ("COLOK_MACAU" == keranjang[j].permainan) {
-								if (parseInt(nomor) == parseInt(keranjang[j].nomor)) {
-									maxtotal_bayarcolokmacau = parseInt(maxtotal_bayarcolokmacau) + parseInt(keranjang[j].bet);
-								}
-							}
-						}
-						if (parseInt(limittotal_bet_colokmacau) < (parseInt(maxtotal_bayarcolokmacau)+parseInt(bet))) {
-							msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK MACAU<br />";
-							flag_data = true;
-						}
+					if((parseInt(bayar) + parseInt(sum_colokmacau)) > max_buy_colokmacau){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan COLOK MACAU<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan COLOK MACAU :"+ new Intl.NumberFormat().format(max_buy_colokmacau) +" <br/>";
+						flag_data = true;
 					}
 					break;
 				case "COLOK_NAGA":
-					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayarcoloknaga = 0;
-						for (var j = 0; j < keranjang.length; j++) {
-							if ("COLOK_NAGA" == keranjang[j].permainan) {
-								if (parseInt(nomor) == parseInt(keranjang[j].nomor)) {
-									maxtotal_bayarcoloknaga = parseInt(maxtotal_bayarcoloknaga) + parseInt(keranjang[j].bet);
-								}
-							}
-						}
-						if (parseInt(limittotal_bet_coloknaga) < (parseInt(maxtotal_bayarcoloknaga)+parseInt(bet))) {
-							msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK NAGA<br />";
-							flag_data = true;
-						}
+					if((parseInt(bayar) + parseInt(sum_coloknaga)) > max_buy_coloknaga){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan COLOK NAGA<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan COLOK NAGA :"+ new Intl.NumberFormat().format(max_buy_coloknaga) +" <br/>";
+						flag_data = true;
 					}
 					break;
 				case "COLOK_JITU":
-					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayarcolokjitu = 0;
-						for (var j = 0; j < keranjang.length; j++) {
-							if ("COLOK_JITU" == keranjang[j].permainan) {
-								if (nomor == keranjang[j].nomor) {
-									maxtotal_bayarcolokjitu = parseInt(maxtotal_bayarcolokjitu) + parseInt(keranjang[j].bet);
-								}
-							}
-						}
-						if (parseInt(limittotal_bet_colokjitu) < (parseInt(maxtotal_bayarcolokjitu)+parseInt(bet))) {
-							msg_error +="Nomor ini : " + nomor +" sudah melebihi LIMIT TOTAL COLOK JITU<br />";
-							flag_data = true;
-						}
+					if((parseInt(bayar) + parseInt(sum_colokjitu)) > max_buy_colokjitu){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan COLOK JITU<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan COLOK JITU :"+ new Intl.NumberFormat().format(max_buy_colokjitu) +" <br/>";
+						flag_data = true;
 					}
 					break;
 			}
@@ -320,6 +396,20 @@
 			};
 			keranjang = [data, ...keranjang];
 			count_keranjang();
+			switch (game) {
+				case "COLOK_BEBAS":
+					sum_colokbebas = sum_colokbebas + bayar;
+					break;
+				case "COLOK_MACAU":
+					sum_colokmacau = sum_colokmacau + bayar;
+					break;
+				case "COLOK_NAGA":
+					sum_coloknaga = sum_coloknaga + bayar;
+					break;
+				case "COLOK_JITU":
+					sum_colokjitu = sum_colokjitu + bayar;
+					break;
+			}
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
 		}
@@ -397,6 +487,14 @@
 		count_line_colokmacau = 0;
 		count_line_coloknaga = 0;
 		count_line_colokjitu = 0;
+
+		sum_colokbebas = 0;
+		sum_colokmacau = 0;
+		sum_coloknaga = 0;
+		sum_colokjitu = 0;
+
+		inittogel_432d("colok");
+		limittogel("colok");
 	}
   	async function inittogel_432d(e) {
 		isSkeleton = true;
@@ -443,8 +541,65 @@
 				winkepala_bet_colokjitu = parseFloat(record[i]["winkepala_bet_colokjitu"]);
 				winekor_bet_colokjitu = parseFloat(record[i]["winekor_bet_colokjitu"]);
 				limittotal_bet_colokjitu = parseInt(record[i]["limittotal_bet_colokjitu"]);
+
+				max_buy_colokbebas = parseInt(record[i]["max_buy_colokbebas"]);
+				max_buy_colokmacau = parseInt(record[i]["max_buy_colokmacau"]);
+				max_buy_coloknaga = parseInt(record[i]["max_buy_coloknaga"]);
+				max_buy_colokjitu = parseInt(record[i]["max_buy_colokjitu"]);
 			}
 			isSkeleton = false;
+		}
+	}
+	async function limittogel(e) {
+		db_formcolok_colokbebas_count_temp = 0;
+		db_formcolok_colokmacau_count_temp = 0;
+		db_formcolok_coloknaga_count_temp = 0;
+		db_formcolok_colokjitu_count_temp = 0;
+
+		db_colokbebas_sum_temp = 0;
+		db_colokmacau_sum_temp = 0;
+		db_coloknaga_sum_temp = 0;
+		db_colokjitu_sum_temp = 0;
+
+		const res = await fetch(path_api+"api/limittogel", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				pasaran_idtransaction: parseInt(idtrxkeluaran),
+				company: client_company,
+				username: client_username,
+				pasaran_code: pasaran_code,
+				pasaran_periode: pasaran_periode,
+				permainan: e,
+			}),
+		});
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			
+			db_formcolok_colokbebas_count_temp = record.total_colokbebas;
+			db_formcolok_colokmacau_count_temp = record.total_colokbebas;
+			db_formcolok_coloknaga_count_temp = record.total_colokbebas;
+			db_formcolok_colokjitu_count_temp = record.total_colokbebas;
+
+			db_colokbebas_sum_temp = record.total_colokbebas_sum;
+			db_colokmacau_sum_temp = record.total_colokmacau_sum;
+			db_coloknaga_sum_temp = record.total_coloknaga_sum;
+			db_colokjitu_sum_temp = record.total_colokjitu_sum;
+
+			sum_colokbebas = sum_colokbebas + db_colokbebas_sum_temp;
+			sum_colokmacau = sum_colokmacau + db_colokmacau_sum_temp;
+			sum_coloknaga = sum_coloknaga + db_coloknaga_sum_temp;
+			sum_colokjitu = sum_colokjitu + db_colokjitu_sum_temp;
+
+			count_line_colokbebas = count_line_colokbebas + db_formcolok_colokbebas_count_temp;
+			count_line_colokmacau = count_line_colokmacau + db_formcolok_colokmacau_count_temp;
+			count_line_coloknaga = count_line_coloknaga + db_formcolok_coloknaga_count_temp;
+			count_line_colokjitu = count_line_colokjitu + db_formcolok_colokjitu_count_temp;
 		}
 	}
   	function count_keranjang() {
@@ -901,6 +1056,7 @@
 		clearField();
 	}
 	inittogel_432d("colok");
+	limittogel("colok");
 	
   	const handleKeyboard_number = (e) => {
     	let numbera;
@@ -1852,6 +2008,10 @@
 	{count_line_colokmacau}
 	{count_line_coloknaga}
 	{count_line_colokjitu}
+	{sum_colokbebas}
+	{sum_colokmacau}
+	{sum_coloknaga}
+	{sum_colokjitu}
 	{keranjang}
 	{totalkeranjang}
 	{min_bet_colokbebas}
