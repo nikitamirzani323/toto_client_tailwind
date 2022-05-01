@@ -110,7 +110,7 @@
     let temp_diskonpercen = 0
     let temp_kei = 0
     let temp_keipercen = 0
-    let tab_5050_umum = "bg-green-600 text-black"
+    let tab_5050_umum = "bg-success text-black"
     let tab_5050_special = ""
     let tab_5050_kombinasi = ""
     let panel_5050_umum = true
@@ -123,7 +123,7 @@
     const handleClickInfoColok = (e) => {
         switch(e){
             case "umum":
-                tab_5050_umum = "bg-green-600 text-black"
+                tab_5050_umum = "bg-success text-black"
                 tab_5050_special = ""
                 tab_5050_kombinasi = ""
                 panel_5050_umum = true
@@ -132,7 +132,7 @@
                 break;
             case "special":
                 tab_5050_umum = ""
-                tab_5050_special = "bg-green-600 text-black"
+                tab_5050_special = "bg-success text-black"
                 tab_5050_kombinasi = ""
                 panel_5050_umum = false
                 panel_5050_special = true
@@ -141,7 +141,7 @@
             case "kombinasi":
                 tab_5050_umum = ""
                 tab_5050_special = ""
-                tab_5050_kombinasi = "bg-green-600 text-black"
+                tab_5050_kombinasi = "bg-success text-black"
                 panel_5050_umum = false
                 panel_5050_special = false
                 panel_5050_kombinasi = true
@@ -386,9 +386,34 @@
                     </tbody>
                 </table>    
             </div>
-            <div class="bg-base-300 p-2 shadow-lg">
-                <div class="text-xs">TOTAL LINE : <span class="text-xs link-accent">{count_line}</span></div>
-            </div>
+            <ul class="flex justify-center items-center gap-3 mt-2">
+                <li on:click={() => {
+                        ChangeTabLine("menu_line");
+                    }} class="items-center {tab_line} px-5 py-1.5 text-[11px] cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">LINE</li>
+                <li on:click={() => {
+                    ChangeTabLine("menu_sum");
+                    }} class="items-center {tab_sum} px-5 py-1.5 text-[11px] cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">SUM</li>
+            </ul>
+            {#if panel_line}
+                <div class="bg-base-300 shadow-lg p-2">
+                    <div class="text-[11px]">TOTAL LINE : <span class="text-[11px] link-accent">{count_line}</span></div>
+                    <div class="grid grid-cols-3">
+                        <div class="basis-1/4 text-[11px]">5050 UMUM : <span class="text-[11px] link-accent">{count_line_5050umum}</span></div>
+                        <div class="basis-1/4 text-[11px]">5050 SPECIAL : <span class="text-[11px] link-accent">{count_line_5050special}</span></div>
+                        <div class="basis-1/4 text-[11px]">5050 KOMBINASI : <span class="text-[11px] link-accent">{count_line_5050kombinasi}</span></div>
+                    </div>
+                </div>
+            {/if}
+            {#if panel_sum}
+                <div class="bg-base-300 shadow-lg p-2">
+                    <div class="text-[11px]">TOTAL SUM : <span class="text-[11px] link-accent">{new Intl.NumberFormat().format(sum_line)}</span></div>
+                    <div class="grid grid-cols-3">
+                        <div class="basis-1/4 text-[11px]">5050 UMUM : <span class="text-[11px] link-accent">{new Intl.NumberFormat().format(sum_5050umum)}</span></div>
+                        <div class="basis-1/4 text-[11px]">5050 SPECIAL : <span class="text-[11px] link-accent">{new Intl.NumberFormat().format(sum_5050special)}</span></div>
+                        <div class="basis-1/4 text-[11px]">5050 KOMBINASI : <span class="text-[11px] link-accent">{new Intl.NumberFormat().format(sum_5050kombinasi)}</span></div>
+                    </div>
+                </div>
+            {/if}
             
         {/if}
     </div>
@@ -414,7 +439,7 @@
                         <div class="text-[10px] text-white whitespace-normal">BET HISTORY</div>
                     </div>
                 </button>
-                <button on:click={handleRemoveKeranjang_all} class="grow btn btn-md rounded-none gap-2  bg-green-700  border-green-700  text-white">
+                <button on:click={handleRemoveKeranjang_all} class="grow btn btn-md rounded-none gap-2   bg-success  text-black border-success active:bg-succes active:text-black hover:bg-success hover:text-black hover:border-success">
                     <div class="flex flex-col justify-items-center items-center w-full max-w-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -422,7 +447,7 @@
                         <div class="text-[10px]">HAPUS</div>
                     </div>
                 </button>
-                <button on:click={handleSave} class="grow btn btn-md rounded-l-sm gap-2  bg-green-700  border-green-700  text-white">
+                <button on:click={handleSave} class="grow btn btn-md rounded-l-sm gap-2   bg-success  text-black border-success active:bg-succes active:text-black hover:bg-success hover:text-black hover:border-success">
                     <div class="flex flex-col justify-items-center items-center w-full max-w-full">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -1026,10 +1051,10 @@
     <slot:template slot="modal_body">
         Nomor : {temp_nomor} <br>
         Permainan : {temp_permainan} <br>
-        Bet : <span class="text-sm link-accent">{new Intl.NumberFormat().format(temp_bet)}</span> <br>
-        Diskon : <span class="text-sm link-accent">{new Intl.NumberFormat().format( Math.ceil(temp_diskon))} ({(temp_diskonpercen * 100).toFixed(2)}%)</span> <br>
-        Kei : <span class="text-sm link-accent">{new Intl.NumberFormat().format( Math.ceil(temp_kei))} ({(temp_keipercen * 100).toFixed(2)}%)</span> <br>
-        Bayar : <span class="text-sm link-accent">{new Intl.NumberFormat().format(temp_bayar)}</span>
+        Bet : <span class="text-xs link-accent">{new Intl.NumberFormat().format(temp_bet)}</span> <br>
+        Diskon : <span class="text-xs link-accent">{new Intl.NumberFormat().format( Math.ceil(temp_diskon))} ({(temp_diskonpercen * 100).toFixed(2)}%)</span> <br>
+        Kei : <span class="text-xs link-accent">{new Intl.NumberFormat().format( Math.ceil(temp_kei))} ({(temp_keipercen * 100).toFixed(2)}%)</span> <br>
+        Bayar : <span class="text-xs link-accent">{new Intl.NumberFormat().format(temp_bayar)}</span>
     </slot:template>
 </Modal_alert_remove>
 <input type="checkbox" id="my-modal-informationalert2" class="modal-toggle" bind:checked={isModalAlert2}>
@@ -1046,6 +1071,6 @@
     modal_title="Apakah Anda Ingin Melanjutkan Transaksi :"
     modal_widthheight_class="max-w-lg">
     <slot:template slot="modal_body">
-        Total Transaksi : <span class="text-sm link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
+        Total Transaksi : <span class="text-xs link-accent">{new Intl.NumberFormat().format(totalkeranjang)}</span>
     </slot:template>
 </Modal_alert_remove>

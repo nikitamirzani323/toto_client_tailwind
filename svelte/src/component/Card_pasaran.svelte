@@ -26,9 +26,9 @@
           {#if card_status == "ONLINE"}
             <span class="relative inline-flex">
               <span class="flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-lg bg-green-500/50 opacity-90"></span>
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-lg bg-success opacity-90"></span>
               </span>
-              <span class="px-2 py-1 rounded-lg border-green-50 bg-green-500/50 text-white text-sm">{card_status}</span>
+              <span class="px-2 py-1 rounded-lg border-green-50 bg-success  text-black text-sm">{card_status}</span>
             </span>
             {:else}
             <div class="badge">{card_status}</div>
@@ -45,9 +45,9 @@
           {#if card_status == "ONLINE"}
             <span class="relative inline-flex">
               <span class="flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-lg bg-green-500/50 opacity-90"></span>
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-lg bg-success   opacity-90"></span>
               </span>
-              <span class="px-2 py-1 rounded-md border-green-50 bg-green-500/50 text-white text-xs">{card_status}</span>
+              <span class="px-2 py-1 rounded-md border-green-50 bg-success  text-black  text-xs">{card_status}</span>
             </span>
             {:else}
             <div class="badge rounded-md text-xs">{card_status}</div>
