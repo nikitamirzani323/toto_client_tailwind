@@ -27,6 +27,7 @@
 
 	let min_bet = 0;
 	let max_bet = 0;
+	let max_buy = 0;
 	let kei_besar_bet = 0;
 	let kei_kecil_bet = 0;
 	let kei_genap_bet = 0;
@@ -37,9 +38,9 @@
 	let disc_ganjil_bet = 0;
 	let limit_total = 0;
 	let count_line_dasar = 0;
-	let count_line_standart = 0;
 	let db_formdasar = 0;
-	let db_formdasar_standart = 0;
+	let sum_line_dasar = 0;
+	let db_formdasar_sum = 0;
 
 	//DASAR - INIT FORM
 	let select_dasar = "";
@@ -73,20 +74,39 @@
 		kei_percen,kei,tipetoto) {
 		let total_data = keranjang.length;
 		let flag_data = false;
-		for (var i = 0; i < total_data; i++) {
-			if (nomor == keranjang[i].nomor.toString()) {
-				let maxtotal_bayardasar = 0;
-				for (var j = 0; j < keranjang.length; j++) {
-					if ("DASAR" == keranjang[j].permainan) {
-						if (nomor == keranjang[j].nomor) {
-							maxtotal_bayardasar =parseInt(maxtotal_bayardasar) + parseInt(keranjang[j].bet);
+		if(total_data > 0){
+			for (var i = 0; i < total_data; i++) {
+				if (nomor == keranjang[i].nomor.toString()) {
+					let maxtotal_bayardasar = 0;
+					for (var j = 0; j < keranjang.length; j++) {
+						if ("DASAR" == keranjang[j].permainan) {
+							if (nomor == keranjang[j].nomor) {
+								maxtotal_bayardasar =parseInt(maxtotal_bayardasar) + parseInt(keranjang[j].bet);
+							}
 						}
 					}
+					if (parseInt(limit_total) < (parseInt(maxtotal_bayardasar)+parseInt(bet))) {
+						msg_error +="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL DASAR<br />";
+						flag_data = true;
+					}
 				}
-				if (parseInt(limit_total) < (parseInt(maxtotal_bayardasar)+parseInt(bet))) {
-					msg_error +="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL DASAR<br />";
+				if((parseInt(bayar) + parseInt(sum_line_dasar)) > max_buy){
+					msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan DASAR<br />";
+					msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+					msg_error += "Maximum Pembelanjaan DASAR :"+ new Intl.NumberFormat().format(max_buy) +" <br/>";
 					flag_data = true;
 				}
+			}
+		}else{
+			switch (game) {
+				case "DASAR":
+					if((parseInt(bayar) + parseInt(sum_line_dasar)) > max_buy){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan DASAR<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan DASAR :"+ new Intl.NumberFormat().format(max_buy) +" <br/>";
+						flag_data = true;
+					}
+					break;
 			}
 		}
 		if (flag_data == false) {
@@ -105,6 +125,11 @@
 			};
 			keranjang = [data, ...keranjang];
 			count_keranjang();
+			switch (game) {
+				case "DASAR":
+					sum_line_dasar = sum_line_dasar + bayar;
+					break;
+			}
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
 		}
@@ -179,8 +204,9 @@
 		group_btn_beli = true;
 		totalkeranjang = 0;
 		count_line_dasar = 0;
-		count_line_standart = 0;
+		sum_line_dasar = 0;
 		inittogel_432d("dasar");
+		limittogel("dasar");
 	}
   	async function inittogel_432d(e) {
 		isSkeleton = true;
@@ -217,7 +243,6 @@
 		}
 	}
   	function count_keranjang() {
-		let count_umum = 0;
 		let count_dasar = 0;
 		for (let i = 0; i < keranjang.length; i++) {
 			switch (keranjang[i].permainan.toString()) {
@@ -227,9 +252,39 @@
 			}
 		}
 		count_line_dasar = count_dasar + db_formdasar;
-		count_line_standart = count_umum + db_formdasar_standart;
 	}
-	
+	async function limittogel(e) {
+		db_formdasar_sum = 0;
+
+		db_formdasar = 0;
+
+		const res = await fetch(path_api+"api/limittogel", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				pasaran_idtransaction: parseInt(idtrxkeluaran),
+				company: client_company,
+				username: client_username,
+				pasaran_code: pasaran_code,
+				pasaran_periode: pasaran_periode,
+				permainan: e,
+			}),
+		});
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			
+			db_formdasar = record.total_dasar;
+			db_formdasar_sum = record.total_dasar_sum;
+
+			sum_line_dasar = sum_line_dasar + db_formdasar;
+			count_line_dasar = count_line_dasar + db_formdasar_sum;
+		}
+	}
 	function formdasar_add() {
 		let flag = true;
 		let nomor = select_dasar;
@@ -305,6 +360,7 @@
 	}
 	
 	inittogel_432d("dasar");
+	limittogel("dasar");
 	
  	
   	const handleKeyboard_number = (e) => {
@@ -530,7 +586,7 @@
 	{keranjang}
 	{totalkeranjang}
 	{count_line_dasar}
-	{count_line_standart}
+	{sum_line_dasar}
 	{min_bet}
 	{max_bet}
 	{kei_besar_bet}

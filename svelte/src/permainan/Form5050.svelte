@@ -35,6 +35,7 @@
 
 	let min_bet_5050umum = 0;
 	let max_bet_5050umum = 0;
+	let max_buy_5050umum = 0;
 	let keibesar_bet_5050umum = 0;
 	let keikecil_bet_5050umum = 0;
 	let keigenap_bet_5050umum = 0;
@@ -50,6 +51,7 @@
 	let limittotal_bet_5050umum = 0;
 	let min_bet_5050special = 0;
 	let max_bet_5050special = 0;
+	let max_buy_5050special = 0;
 	let keiasganjil_bet_5050special = 0;
 	let keiasgenap_bet_5050special = 0;
 	let keiasbesar_bet_5050special = 0;
@@ -85,6 +87,7 @@
 	let limittotal_bet_5050special = 0;
 	let min_bet_5050kombinasi = 0;
 	let max_bet_5050kombinasi = 0;
+	let max_buy_5050kombinasi = 0;
 	let kei_belakangmono_bet_5050kombinasi = 0;
 	let kei_belakangstereo_bet_5050kombinasi = 0;
 	let kei_belakangkembang_bet_5050kombinasi = 0;
@@ -122,6 +125,12 @@
 	let db_form5050_umum_count_temp = 0;
 	let db_form5050_special_count_temp = 0;
 	let db_form5050_kombinasi_count_temp = 0;
+	let sum_5050umum = 0;
+	let sum_5050special = 0;
+	let sum_5050kombinasi = 0;
+	let db_5050umum_sum_temp = 0;
+	let db_5050special_sum_temp = 0;
+	let db_5050kombinasi_sum_temp = 0;
 
 	//5050 UMUM - INIT FORM
 	let select_5050umum = "";
@@ -216,54 +225,101 @@
 	function addKeranjang(nomor,game,bet,diskon_percen,diskon,bayar,win,kei_percen,kei,tipetoto) {
 		let total_data = keranjang.length;
 		let flag_data = false;
-		for (var i = 0; i < total_data; i++) {
-			switch (game) {
-				case "50_50_UMUM":
-					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayar5050umum = 0;
-						for (var j = 0; j < keranjang.length; j++) {
-							if ("50_50_UMUM" == keranjang[j].permainan) {
-								if (nomor == keranjang[j].nomor) {
-									maxtotal_bayar5050umum = parseInt(maxtotal_bayar5050umum) + parseInt(keranjang[j].bet);
+		if(total_data > 0){
+			for (var i = 0; i < total_data; i++) {
+				switch (game) {
+					case "50_50_UMUM":
+						if (nomor == keranjang[i].nomor.toString()) {
+							let maxtotal_bayar5050umum = 0;
+							for (var j = 0; j < keranjang.length; j++) {
+								if ("50_50_UMUM" == keranjang[j].permainan) {
+									if (nomor == keranjang[j].nomor) {
+										maxtotal_bayar5050umum = parseInt(maxtotal_bayar5050umum) + parseInt(keranjang[j].bet);
+									}
 								}
 							}
+							if (parseInt(limittotal_bet_5050umum) < (parseInt(maxtotal_bayar5050umum)+parseInt(bet))) {
+								msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 50-50 UMUM<br />";
+								flag_data = true;
+							}
 						}
-						if (parseInt(limittotal_bet_5050umum) < (parseInt(maxtotal_bayar5050umum)+parseInt(bet))) {
-							msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 50-50 UMUM<br />";
+						if((parseInt(bayar) + parseInt(sum_5050umum)) > max_buy_5050umum){
+							msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 5050 UMUM<br />";
+							msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+							msg_error += "Maximum Pembelanjaan 5050 UMUM :"+ new Intl.NumberFormat().format(max_buy_5050umum) +" <br/>";
 							flag_data = true;
 						}
+						break;
+					case "50_50_SPECIAL":
+						if (nomor == keranjang[i].nomor.toString()) {
+							let maxtotal_bayar5050special = 0;
+							for (var j = 0; j < keranjang.length; j++) {
+								if ("50_50_SPECIAL" == keranjang[j].permainan) {
+									if (nomor == keranjang[j].nomor) {
+										maxtotal_bayar5050special = parseInt(maxtotal_bayar5050special) + parseInt(keranjang[j].bet);
+									}
+								}
+							}
+							if (parseInt(limittotal_bet_5050special) < (parseInt(maxtotal_bayar5050special)+parseInt(bet))) {
+								msg_error += "Nomor ini : " + nomor + " sudah melebihi LIMIT TOTAL 50-50 SPECIAL<br />";
+								flag_data = true;
+							}
+						}
+						if((parseInt(bayar) + parseInt(sum_5050special)) > max_buy_5050special){
+							msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 5050 SPECIAL<br />";
+							msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+							msg_error += "Maximum Pembelanjaan 5050 SPECIAL :"+ new Intl.NumberFormat().format(max_buy_5050special) +" <br/>";
+							flag_data = true;
+						}
+						break;
+					case "50_50_KOMBINASI":
+						if (nomor == keranjang[i].nomor.toString()) {
+							let maxtotal_bayar5050kombinasi = 0;
+							for (var j = 0; j < keranjang.length; j++) {
+								if ("50_50_KOMBINASI" == keranjang[j].permainan) {
+									if (nomor == keranjang[j].nomor) {
+										maxtotal_bayar5050kombinasi =parseInt(maxtotal_bayar5050kombinasi) +parseInt(keranjang[j].bet);
+									}
+								}
+							}
+							if (parseInt(limittotal_bet_5050kombinasi) < (parseInt(maxtotal_bayar5050kombinasi)+parseInt(bet))) {
+								msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 50-50 KOMBINASI<br />";
+								flag_data = true;
+							}
+						}
+						if((parseInt(bayar) + parseInt(sum_5050kombinasi)) > max_buy_5050kombinasi){
+							msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 5050 KOMBINASI<br />";
+							msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+							msg_error += "Maximum Pembelanjaan 5050 KOMBINASI :"+ new Intl.NumberFormat().format(max_buy_5050kombinasi) +" <br/>";
+							flag_data = true;
+						}
+						break;
+				}
+			}
+		}else{
+			switch (game) {
+				case "50_50_UMUM":
+					if((parseInt(bayar) + parseInt(sum_5050umum)) > max_buy_5050umum){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 5050 UMUM<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan 5050 UMUM :"+ new Intl.NumberFormat().format(max_buy_5050umum) +" <br/>";
+						flag_data = true;
 					}
 					break;
 				case "50_50_SPECIAL":
-					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayar5050special = 0;
-						for (var j = 0; j < keranjang.length; j++) {
-							if ("50_50_SPECIAL" == keranjang[j].permainan) {
-								if (nomor == keranjang[j].nomor) {
-									maxtotal_bayar5050special = parseInt(maxtotal_bayar5050special) + parseInt(keranjang[j].bet);
-								}
-							}
-						}
-						if (parseInt(limittotal_bet_5050special) < (parseInt(maxtotal_bayar5050special)+parseInt(bet))) {
-							msg_error += "Nomor ini : " + nomor + " sudah melebihi LIMIT TOTAL 50-50 SPECIAL<br />";
-							flag_data = true;
-						}
+					if((parseInt(bayar) + parseInt(sum_5050special)) > max_buy_5050special){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 5050 SPECIAL<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan 5050 SPECIAL :"+ new Intl.NumberFormat().format(max_buy_5050special) +" <br/>";
+						flag_data = true;
 					}
 					break;
 				case "50_50_KOMBINASI":
-					if (nomor == keranjang[i].nomor.toString()) {
-						let maxtotal_bayar5050kombinasi = 0;
-						for (var j = 0; j < keranjang.length; j++) {
-							if ("50_50_KOMBINASI" == keranjang[j].permainan) {
-								if (nomor == keranjang[j].nomor) {
-									maxtotal_bayar5050kombinasi =parseInt(maxtotal_bayar5050kombinasi) +parseInt(keranjang[j].bet);
-								}
-							}
-						}
-						if (parseInt(limittotal_bet_5050kombinasi) < (parseInt(maxtotal_bayar5050kombinasi)+parseInt(bet))) {
-							msg_error += "Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL 50-50 KOMBINASI<br />";
-							flag_data = true;
-						}
+					if((parseInt(bayar) + parseInt(sum_5050kombinasi)) > max_buy_5050kombinasi){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan 5050 KOMBINASI<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan 5050 KOMBINASI :"+ new Intl.NumberFormat().format(max_buy_5050kombinasi) +" <br/>";
+						flag_data = true;
 					}
 					break;
 			}
@@ -284,6 +340,18 @@
 			};
 			keranjang = [data, ...keranjang];
 			count_keranjang();
+
+			switch (game) {
+				case "50_50_UMUM":
+					sum_5050umum = sum_5050umum + bayar;
+					break;
+				case "50_50_SPECIAL":
+					sum_5050special = sum_5050special + bayar;
+					break;
+				case "50_50_KOMBINASI":
+					sum_5050kombinasi = sum_5050kombinasi + bayar;
+					break;
+			}
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
 		}
@@ -360,7 +428,11 @@
 		count_line_5050umum = 0;
 		count_line_5050special = 0;
 		count_line_5050kombinasi = 0;
+		sum_5050umum = 0;
+		sum_5050special = 0;
+		sum_5050kombinasi = 0;
 		inittogel_432d("5050");
+		limittogel("5050");
 	}
   	async function inittogel_432d(e) {
 		isSkeleton = true;
@@ -464,6 +536,10 @@
 				disc_depankempis_bet_5050kombinasi = parseFloat(record[i]["disc_depankempis_bet_5050kombinasi"]);
 				disc_depankembar_bet_5050kombinasi = parseFloat(record[i]["disc_depankembar_bet_5050kombinasi"]);
 				limittotal_bet_5050kombinasi = parseFloat(record[i]["limittotal_bet_5050kombinasi"]);
+
+				max_buy_5050umum = parseInt(record[i]["max_buy_5050umum"]);
+				max_buy_5050special = parseInt(record[i]["max_buy_5050special"]);
+				max_buy_5050kombinasi = parseInt(record[i]["max_buy_5050kombinasi"]);
 			}
 			isSkeleton = false;
 		}
@@ -489,7 +565,52 @@
 		count_line_5050special = count_special + db_form5050_special_count_temp;
 		count_line_5050kombinasi = count_kombinasi + db_form5050_kombinasi_count_temp;
 	}
-	
+	async function limittogel(e) {
+		db_form5050_umum_count_temp = 0;
+		db_form5050_special_count_temp = 0;
+		db_form5050_kombinasi_count_temp = 0;
+
+		db_5050umum_sum_temp = 0;
+		db_5050special_sum_temp = 0;
+		db_5050kombinasi_sum_temp = 0;
+
+		const res = await fetch(path_api+"api/limittogel", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				pasaran_idtransaction: parseInt(idtrxkeluaran),
+				company: client_company,
+				username: client_username,
+				pasaran_code: pasaran_code,
+				pasaran_periode: pasaran_periode,
+				permainan: e,
+			}),
+		});
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			
+			db_form5050_umum_count_temp = record.total_5050umum;
+			db_form5050_special_count_temp = record.total_5050special;
+			db_form5050_kombinasi_count_temp = record.total_5050kombinasi;
+
+			db_5050umum_sum_temp = record.total_5050umum_sum;
+			db_5050special_sum_temp = record.total_5050special_sum;
+			db_5050kombinasi_sum_temp = record.total_5050kombinasi_sum;
+
+			sum_5050umum = sum_5050umum + db_5050umum_sum_temp;
+			sum_5050special = sum_5050special + db_5050special_sum_temp;
+			sum_5050kombinasi = sum_5050kombinasi + db_5050kombinasi_sum_temp;
+
+			count_line_5050umum = count_line_5050umum + db_form5050_umum_count_temp;
+			count_line_5050special = count_line_5050special + db_form5050_special_count_temp;
+			count_line_5050kombinasi = count_line_5050kombinasi + db_form5050_kombinasi_count_temp;
+		}
+	}
 	function form5050_add() {
 		let flag = true;
 		let nomor = select_5050umum;
@@ -815,6 +936,7 @@
 	}
 	
 	inittogel_432d("5050");
+	limittogel("5050");
 	
  	
   	const handleKeyboard_number = (e) => {
@@ -1373,6 +1495,9 @@
 	{count_line_5050umum}
 	{count_line_5050special}
 	{count_line_5050kombinasi}
+	{sum_5050umum}
+	{sum_5050special}
+	{sum_5050kombinasi}
 	{keranjang}
 	{totalkeranjang}
 	{min_bet_5050umum}

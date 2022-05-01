@@ -30,9 +30,9 @@
 	let diskon_bet = 0;
 	let limit_total = 0;
 	let count_line_shio = 0;
-	let count_line_standart = 0;
 	let db_formshio = 0;
-	let db_formshio_standart = 0;
+	let sum_line_shio = 0;
+	let db_formshio_sum = 0;
 
 	//SHIO - INIT FORM
 	let select_shio = "";
@@ -67,20 +67,39 @@
 		kei_percen,kei,tipetoto) {
 		let total_data = keranjang.length;
 		let flag_data = false;
-		for (var i = 0; i < total_data; i++) {
-			if (nomor == keranjang[i].nomor.toString()) {
-				let maxtotal_bayarshio = 0;
-				for (var j = 0; j < keranjang.length; j++) {
-					if ("SHIO" == keranjang[j].permainan) {
-						if (nomor == keranjang[j].nomor) {
-							maxtotal_bayarshio = parseInt(maxtotal_bayarshio) + parseInt(keranjang[j].bet);
+		if(total_data > 0){
+			for (var i = 0; i < total_data; i++) {
+				if (nomor == keranjang[i].nomor.toString()) {
+					let maxtotal_bayarshio = 0;
+					for (var j = 0; j < keranjang.length; j++) {
+						if ("SHIO" == keranjang[j].permainan) {
+							if (nomor == keranjang[j].nomor) {
+								maxtotal_bayarshio = parseInt(maxtotal_bayarshio) + parseInt(keranjang[j].bet);
+							}
 						}
 					}
+					if (parseInt(limit_total) < (parseInt(maxtotal_bayarshio) + parseInt(bet))) {
+						msg_error +="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL SHIO<br />";
+						flag_data = true;
+					}
 				}
-				if (parseInt(limit_total) < (parseInt(maxtotal_bayarshio) + parseInt(bet))) {
-					msg_error +="Nomor ini : " +nomor +" sudah melebihi LIMIT TOTAL SHIO<br />";
+				if((parseInt(bayar) + parseInt(sum_line_shio)) > max_buy){
+					msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan SHIO<br />";
+					msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+					msg_error += "Maximum Pembelanjaan SHIO :"+ new Intl.NumberFormat().format(max_buy) +" <br/>";
 					flag_data = true;
 				}
+			}
+		}else{
+			switch (game) {
+				case "SHIO":
+					if((parseInt(bayar) + parseInt(sum_line_shio)) > max_buy){
+						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan SHIO<br />";
+						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+						msg_error += "Maximum Pembelanjaan SHIO :"+ new Intl.NumberFormat().format(max_buy) +" <br/>";
+						flag_data = true;
+					}
+					break;
 			}
 		}
 		if (flag_data == false) {
@@ -99,6 +118,11 @@
 			};
 			keranjang = [data, ...keranjang];
 			count_keranjang();
+			switch (game) {
+				case "SHIO":
+					sum_line_shio = sum_line_shio + bayar;
+					break;
+			}
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
 		}
@@ -204,7 +228,6 @@
 		}
 	}
   	function count_keranjang() {
-		let count_umum = 0;
 		let count_shio = 0;
 		for (let i = 0; i < keranjang.length; i++) {
 			switch (keranjang[i].permainan.toString()) {
@@ -214,9 +237,39 @@
 			}
 		}
 		count_line_shio = count_shio + db_formshio;
-		count_line_standart = count_umum + db_formshio_standart;
 	}
-	
+	async function limittogel(e) {
+		db_formshio_sum = 0;
+
+		db_formshio = 0;
+
+		const res = await fetch(path_api+"api/limittogel", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				pasaran_idtransaction: parseInt(idtrxkeluaran),
+				company: client_company,
+				username: client_username,
+				pasaran_code: pasaran_code,
+				pasaran_periode: pasaran_periode,
+				permainan: e,
+			}),
+		});
+		if (!res.ok) {
+			isModalAlertSystem = true;
+		}else{
+			const json = await res.json();
+			let record = json.record;
+			
+			db_formshio = record.total_dasar;
+			db_formshio_sum = record.total_dasar_sum;
+
+			sum_line_shio = sum_line_shio + db_formshio;
+			count_line_shio = count_line_shio + db_formshio_sum;
+		}
+	}
 	function formshio_add() {
 		let flag = true;
 		let nomor = select_shio;
@@ -513,7 +566,7 @@
 	{keranjang}
 	{totalkeranjang}
 	{count_line_shio}
-	{count_line_standart}
+	{sum_line_shio}
 	{min_bet}
 	{max_bet}
 	{win_bet}
