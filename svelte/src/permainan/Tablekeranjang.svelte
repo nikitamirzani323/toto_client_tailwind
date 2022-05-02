@@ -605,13 +605,22 @@
                                     <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(minimal_bet)}</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-[11px] text-left">MAX BET</th>
+                                    <th class="text-[11px] text-left">MAX BET DISKON</th>
                                     <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max4d_bet)}</td>
                                     <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max3d_bet)}</td>
                                     <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max3dd_bet)}</td>
                                     <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max2d_bet)}</td>
                                     <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max2dd_bet)}</td>
                                     <td class="text-[11px] text-right link-accent">{new Intl.NumberFormat().format(max2dt_bet)}</td>
+                                </tr>
+                                <tr>
+                                    <th class="text-[11px] lg:text-xs text-left">MAX BET FULL / BB</th>
+                                    <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format(max4d_fullbb_bet)}</td>
+                                    <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format(max3d_fullbb_bet)}</td>
+                                    <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format(max3dd_fullbb_bet)}</td>
+                                    <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format(max2d_fullbb_bet)}</td>
+                                    <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dd_fullbb_bet)}</td>
+                                    <td class="text-[11px] lg:text-xs text-right link-accent">{new Intl.NumberFormat().format(max2dt_fullbb_bet)}</td>
                                 </tr>
                                 <tr>
                                     <th class="text-[11px] text-left">DISKON</th>

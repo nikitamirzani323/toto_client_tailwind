@@ -72,7 +72,7 @@
     let isModal_invoicedetail = false
     let isModal_detailbyid = false
     let isModal_bukumimpi = false
-    let tab_bookdream_all = "bg-gradient-to-r bg-green-600 text-black"
+    let tab_bookdream_all = "bg-success text-black"
     let tab_bookdream_4d = ""
     let tab_bookdream_3d = ""
     let tab_bookdream_2d = ""
@@ -356,7 +356,7 @@
             case "ALL":
                 tipe = "";
                 searchbukumimpi = "";
-                tab_bookdream_all = "bg-green-600 text-black"
+                tab_bookdream_all = "bg-success text-black"
                 tab_bookdream_4d = ""
                 tab_bookdream_3d = ""
                 tab_bookdream_2d = ""
@@ -365,7 +365,7 @@
                 tipe = "4D";
                 searchbukumimpi = "";
                 tab_bookdream_all = ""
-                tab_bookdream_4d = "bg-green-600 text-black"
+                tab_bookdream_4d = "bg-success text-black"
                 tab_bookdream_3d = ""
                 tab_bookdream_2d = ""
                 break;
@@ -374,7 +374,7 @@
                 searchbukumimpi = "";
                 tab_bookdream_all = ""
                 tab_bookdream_4d = ""
-                tab_bookdream_3d = "bg-green-600 text-black"
+                tab_bookdream_3d = "bg-success text-black"
                 tab_bookdream_2d = ""
                 break;
             case "2D":
@@ -383,7 +383,7 @@
                 tab_bookdream_all = ""
                 tab_bookdream_4d = ""
                 tab_bookdream_3d = ""
-                tab_bookdream_2d = "bg-green-600 text-black"
+                tab_bookdream_2d = "bg-success text-black"
                 break;
         }
         fetch_bukumimpi();
@@ -658,7 +658,7 @@
         <label for="my-modal-resulttogel_bypasaran" class="btn btn-xs lg:btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="text-xs lg:text-sm font-bold mt-1">PASARAN : {nmpasaran}</h3>
         <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
-            <table class="table table-zebra w-full">
+            <table class="table table-zebra w-full" >
                 <thead class="sticky top-0">
                     <tr>
                         <th width="15%" class="text-xs lg:text-sm text-center">TANGGAL</th>
@@ -1365,7 +1365,7 @@
             <label for="my-modal-pasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold -mt-1">INFORMASI</h3>
             <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
-                <table class="table-normal table-zebra  w-full" >
+                <table class="table table-zebra w-full" >
                     <thead class="sticky top-0">
                         <tr>
                             <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
