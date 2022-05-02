@@ -419,7 +419,7 @@
 {#if client_device == "WEBSITE"}
     <input type="checkbox" id="my-modal-information" class="modal-toggle" bind:checked={isModalInformation}>
     <div class="modal" on:click|self={()=>isModalInformation = false}>
-        <div class="modal-box relative w-11/12 max-w-xl h-[600px] overflow-hidden">
+        <div class="modal-box relative w-11/12 max-w-xl h-[720px] overflow-hidden">
             <label for="my-modal-information" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold mt-1">INFORMASI</h3>
             <div class="hidden lg:flex justify-start items-center mt-4 ">
@@ -446,30 +446,28 @@
                         class="{tab_colok_jitu} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm  cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">Colok Jitu</li>
                 </ul>
             </div>
-            <div class="h-[32rem] overflow-auto scrollbar-hide mt-4" >
+            <div class="h-[40rem] overflow-auto scrollbar-hide mt-4" >
                 {#if panel_colok_bebas}
-                    <div class="overflow-auto">
-                        <table class="table table-compact w-full" >
-                            <tbody>
-                                <tr>
-                                    <th class="text-xs text-left">MIN BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokbebas)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">MAX BET</th>
-                                    <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokbebas)}</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">DISKON</th>
-                                    <td class="text-xs text-right link-accent">{(disc_bet_colokbebas * 100).toFixed(2)}%</td>
-                                </tr>
-                                <tr>
-                                    <th class="text-xs text-left">HADIAH</th>
-                                    <td class="text-xs text-right link-accent">{win_bet_colokbebas}x</td>
-                                </tr>
-                            </tbody>
-                        </table>    
-                    </div>
+                    <table class="table table-compact w-full" >
+                        <tbody>
+                            <tr>
+                                <th class="text-xs text-left">MIN BET</th>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(min_bet_colokbebas)}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-xs text-left">MAX BET</th>
+                                <td class="text-xs text-right link-accent">{new Intl.NumberFormat().format(max_bet_colokbebas)}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-xs text-left">DISKON</th>
+                                <td class="text-xs text-right link-accent">{(disc_bet_colokbebas * 100).toFixed(2)}%</td>
+                            </tr>
+                            <tr>
+                                <th class="text-xs text-left">HADIAH</th>
+                                <td class="text-xs text-right link-accent">{win_bet_colokbebas}x</td>
+                            </tr>
+                        </tbody>
+                    </table>    
                     <p class="py-2 text-xs">
                         <b>CARA BERMAIN</b>
                         <br />
