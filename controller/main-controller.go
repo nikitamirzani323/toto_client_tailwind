@@ -12,6 +12,7 @@ import (
 )
 
 const PATH string = config.PATH_API
+const PATH_SAVETRANSAKSI string = config.PATH_APISAVETRANSAKSI
 
 type clientInit struct {
 	Token string `json:"token"`
@@ -710,7 +711,7 @@ func Savetransaksi(c *fiber.Ctx) error {
 			"list4d":          string(client.Data),
 			"hostname":        origin,
 		}).
-		Post(PATH + "api/savetransaksi")
+		Post(PATH_SAVETRANSAKSI + "api/savetransaksi")
 	if err != nil {
 		log.Println(err.Error())
 	}
