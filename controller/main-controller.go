@@ -710,6 +710,7 @@ func Savetransaksi(c *fiber.Ctx) error {
 			"totalbayarbet":   client.Total,
 			"list4d":          string(client.Data),
 			"hostname":        origin,
+			"token":           client.Token,
 		}).
 		Post(PATH_SAVETRANSAKSI + "api/savetransaksi")
 	if err != nil {
