@@ -4344,7 +4344,7 @@
   	<div class="card-body p-3">
       	{#if client_device == "WEBSITE"}
 			<h2 class="card-title text-lg grid grid-cols-2 gap-2">
-				<div class="text-left text-xs lg:text-md md:text-sm">
+				<div class="text-left text-xs lg:text-lg md:text-sm">
 					{pasaran_name} - {permainan_title}
 				</div>
 				<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
