@@ -800,22 +800,21 @@
 <input type="checkbox" id="my-modal-invoicedetail" class="modal-toggle" bind:checked={isModal_invoicedetail}>
 <div class="modal" on:click|self={()=>isModal_invoicedetail = false}>
     {#if client_device == "WEBSITE"}
-        <div class="modal-box relative select-none max-w-full lg:max-w-xl h-full lg:h-4/5 rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
+        <div class="modal-box relative select-none max-w-full lg:max-w-xl h-full lg:h-[600px] rounded-none lg:rounded-lg p-2 lg:p-4 overflow-hidden">
             <label for="my-modal-invoicedetail" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold -mt-1">PASARAN : {detailslipheader}</h3>
             <div class="overflow-auto h-3/4 scrollbar-thin scrollbar-thumb-green-100 mt-4">
                 <table class="table table-zebra w-full" >
                     <thead class="sticky top-0">
                         <tr>
-                            <th width="1%" class="text-xs lg:text-sm text-center">NO</th>
                             <th width="*" class="text-xs lg:text-sm text-left">PERMAINAN</th>
                             <th width="25%" class="text-xs lg:text-sm text-right">BAYAR</th>
                             <th width="25%" class="text-xs lg:text-sm text-right">MENANG</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {#if total4d_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">1</td>
                             <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
@@ -827,125 +826,134 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total4d_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_4d)}</td>
                         </tr>
+                        {/if}
+                        {#if total3d_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">2</td>
-                            <th 
+                            <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "3D",
                                         total3d_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap {total3d_bayar>0 ? 'cursor-pointer underline':''}">3D</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total3d_bayar>0 ? 'cursor-pointer underline':''}">3D</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total3d_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_3d)}</td>
                         </tr>
+                        {/if}
+                        {#if total2d_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">3</td>
-                            <th 
+                            <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "2D",
                                         total2d_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap {total2d_bayar>0 ? 'cursor-pointer underline':''}">2D</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total2d_bayar>0 ? 'cursor-pointer underline':''}">2D</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total2d_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_2d)}</td>
                         </tr>
+                        {/if}
+                        {#if totalcolokbebas_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">4</td>
-                            <th 
+                            <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "COLOK_BEBAS",
                                         totalcolokbebas_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokbebas_bayar>0 ? 'cursor-pointer underline':''}">COLOK BEBAS</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokbebas_bayar>0 ? 'cursor-pointer underline':''}">COLOK BEBAS</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokbebas_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokbebas)}</td>
                         </tr>
+                        {/if}
+                        {#if totalcolokmacau_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">5</td>
-                            <th 
+                            <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "COLOK_MACAU",
                                         totalcolokmacau_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokmacau_bayar>0 ? 'cursor-pointer underline':''}">COLOK MACAU</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokmacau_bayar>0 ? 'cursor-pointer underline':''}">COLOK MACAU</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokmacau_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokmacau)}</td>
                         </tr>
+                        {/if}
+                        {#if totalcoloknaga_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">6</td>
-                            <th 
+                            <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "COLOK_NAGA",
                                         totalcoloknaga_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcoloknaga_bayar>0 ? 'cursor-pointer underline':''}">COLOK NAGA</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcoloknaga_bayar>0 ? 'cursor-pointer underline':''}">COLOK NAGA</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcoloknaga_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_coloknaga)}</td>
                         </tr>
+                        {/if}
+                        {#if totalcolokjitu_bayar>0}
                         <tr>
-                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">7</th>
-                            <th 
+                            <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "COLOK_JITU",
                                         totalcolokjitu_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokjitu_bayar>0 ? 'cursor-pointer underline':''}">COLOK JITU</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {totalcolokjitu_bayar>0 ? 'cursor-pointer underline':''}">COLOK JITU</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalcolokjitu_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_colokjitu)}</td>
                         </tr>
+                        {/if}
+                        {#if total5050umum_bayar>0}
                         <tr>
-                            <th class="text-xs lg:text-sm text-center whitespace-nowrap">8</th>
-                            <th 
+                            <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "50_50_UMUM",
                                         total5050umum_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap {total5050umum_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 UMUM</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total5050umum_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 UMUM</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050umum_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050umum)}</td>
                         </tr>
+                        {/if}
+                        {#if total5050special_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">9</td>
-                            <th 
+                            <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "50_50_SPECIAL",
                                         total5050special_bayar
                                     );
                                 }}
-                                class="text-xs lg:text-sm text-left whitespace-nowrap {total5050special_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 SPECIAL</th>
+                                class="text-xs lg:text-sm text-left whitespace-nowrap {total5050special_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 SPECIAL</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050special_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050special)}</td>
                         </tr>
+                        {/if}
+                        {#if total5050kombinasi_bayar>0}
                         <tr>
-                            <td 
+                            <td  
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
                                         "50_50_KOMBINASI",
                                         total5050kombinasi_bayar
                                     );
-                                }}
-                                class="text-xs lg:text-sm text-center whitespace-nowrap">10</td>
-                            <td class="text-xs lg:text-sm text-left whitespace-nowrap {total5050kombinasi_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 KOMBINASI</td>
+                                }} class="text-xs lg:text-sm text-left whitespace-nowrap {total5050kombinasi_bayar>0 ? 'cursor-pointer underline':''}">50 - 50 KOMBINASI</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(total5050kombinasi_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_5050kombinasi)}</td>
                         </tr>
+                        {/if}
+                        {#if totalmacaukombinasi_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">11</td>
                             <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
@@ -957,8 +965,9 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalmacaukombinasi_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_macaukombinasi)}</td>
                         </tr>
+                        {/if}
+                        {#if totaldasar_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">12</td>
                             <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
@@ -970,8 +979,9 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totaldasar_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_dasar)}</td>
                         </tr>
+                        {/if}
+                        {#if totalshio_bayar>0}
                         <tr>
-                            <td class="text-xs lg:text-sm text-center whitespace-nowrap">13</td>
                             <td 
                                 on:click={() => {
                                     fetch_invoicealldetailpermainan(
@@ -983,6 +993,7 @@
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalshio_bayar)}</td>
                             <td class="text-xs lg:text-sm text-right link-accent whitespace-nowrap">{new Intl.NumberFormat().format(totalwin_shio)}</td>
                         </tr>
+                        {/if}
                     </tbody>
                 </table>
             </div>
@@ -1361,7 +1372,7 @@
 <input type="checkbox" id="my-modal-pasaran" class="modal-toggle">
 <div class="modal">
     {#if client_device == "WEBSITE"}
-        <div class="modal-box relative select-none max-w-2xl h-full lg:h-[500px] rounded-none lg:rounded-lg overflow-hidden" >
+        <div class="modal-box relative select-none max-w-2xl h-full lg:h-[600px] rounded-none lg:rounded-lg overflow-hidden" >
             <label for="my-modal-pasaran" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold -mt-1">INFORMASI</h3>
             <div class="overflow-auto h-[90%] scrollbar-thin scrollbar-thumb-green-100 mt-4">
@@ -1370,9 +1381,9 @@
                         <tr>
                             <th width="*" class="text-xs lg:text-sm text-left">PASARAN</th>
                             <th width="15%" class="text-xs lg:text-sm text-left">NOTE</th>
-                            <th width="15%" class="text-xs lg:text-sm text-center">TUTUP</th>
-                            <th width="15%" class="text-xs lg:text-sm text-center">JADWAL</th>
-                            <th width="15%" class="text-xs lg:text-sm text-center">OPEN</th>
+                            <th width="10%" class="text-xs lg:text-sm text-center">TUTUP</th>
+                            <th width="10%" class="text-xs lg:text-sm text-center">JADWAL</th>
+                            <th width="10%" class="text-xs lg:text-sm text-center">OPEN</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1440,8 +1451,8 @@
         <div class="modal-box relative select-none max-w-xl h-full lg:h-[600px] rounded-none lg:rounded-lg overflow-hidden">
             <label for="my-modal-bukumimpi" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
             <h3 class="text-xs lg:text-sm font-bold -mt-2">BUKU MIMPI</h3>
-            <div class="hidden lg:flex justify-start items-center mt-4 ">
-                <ul class="flex flex-1 gap-2">
+            <div class="hidden lg:flex justify-start items-center mt-4 w-full gap-5">
+                <ul class="flex  gap-2 ">
                     <li 
                         on:click={() => {
                             handleClickBukuMimpi("ALL");
@@ -1463,7 +1474,7 @@
                         }}
                         class="{tab_bookdream_2d} inline-flex items-center  px-2 py-1.5 text-xs lg:text-sm  cursor-pointer rounded-md outline outline-1 outline-offset-1 outline-green-600">2D</li>
                 </ul>
-                <div class="flex flex-1 h-full ">
+                <div class=" h-full w-full">
                     <input
                         bind:value={searchbukumimpi}
                         on:keypress={handleKeyboardbukumimpi_checkenter} 
