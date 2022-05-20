@@ -269,9 +269,9 @@
             </ul>
             {#if panel_line}
                 <div class="bg-base-300 shadow-lg p-2">
-                    <div class="text-[11px]">TOTAL LINE : <span class="text-[11px] link-accent">{count_line_dasar}</span></div>
+                    <div class="text-[11px]">TOTAL LINE : <span class="text-[11px] link-accent">{count_line_shio}</span></div>
                     <div class="grid grid-cols-1">
-                        <div class="basis-1/4 text-[11px]">DASAR : <span class="text-[11px] link-accent">{count_line_dasar}</span></div>
+                        <div class="basis-1/4 text-[11px]">DASAR : <span class="text-[11px] link-accent">{count_line_shio}</span></div>
                     </div>
                 </div>
             {/if}
