@@ -206,7 +206,6 @@
 		group_btn_beli = true;
 		totalkeranjang = 0;
 		count_line_macaukombinasi = 0;
-		count_line_standart = 0;
 		inittogel_432d("macaukombinasi");
 	}
   	async function inittogel_432d(e) {

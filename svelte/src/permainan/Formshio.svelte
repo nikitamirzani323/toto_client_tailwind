@@ -26,6 +26,7 @@
 
 	let min_bet = 0;
 	let max_bet = 0;
+	let max_buy = 0;
 	let win_bet = 0;
 	let diskon_bet = 0;
 	let limit_total = 0;
@@ -196,8 +197,8 @@
 		keranjang = [];
 		totalkeranjang = 0;
 		count_line_shio = 0;
-		count_line_standart = 0;
 		inittogel_432d("shio");
+		limittogel("shio");
 	}
   	async function inittogel_432d(e) {
 		isSkeleton = true;
@@ -220,6 +221,7 @@
 			for (var i = 0; i < record.length; i++) {
 				min_bet = parseInt(record[i]["min_bet"]);
 				max_bet = parseInt(record[i]["max_bet"]);
+				max_buy = parseInt(record[i]["max_buy"]);
 				win_bet = parseFloat(record[i]["win_bet"]);
 				diskon_bet = parseFloat(record[i]["diskon_bet"]);
 				limit_total = parseInt(record[i]["limit_total"]);
@@ -231,7 +233,7 @@
 		let count_shio = 0;
 		for (let i = 0; i < keranjang.length; i++) {
 			switch (keranjang[i].permainan.toString()) {
-				case "DASAR":
+				case "SHIO":
 					count_shio = count_shio + 1;
 					break;
 			}
@@ -263,8 +265,8 @@
 			const json = await res.json();
 			let record = json.record;
 			
-			db_formshio = record.total_dasar;
-			db_formshio_sum = record.total_dasar_sum;
+			db_formshio = record.total_shio;
+			db_formshio_sum = record.total_shio_sum;
 
 			sum_line_shio = sum_line_shio + db_formshio;
 			count_line_shio = count_line_shio + db_formshio_sum;
@@ -326,6 +328,7 @@
 	}
 	
 	inittogel_432d("shio");
+	limittogel("shio");
 	
  	
   	const handleKeyboard_number = (e) => {

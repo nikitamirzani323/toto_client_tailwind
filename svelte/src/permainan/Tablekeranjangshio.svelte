@@ -8,7 +8,7 @@
     export let totalkeranjang = 0;
     export let card_custom = "";
     export let client_device = "";
-    export let count_line_dasar = 0;
+    export let count_line_shio = 0;
     export let sum_line_shio = 0;
     export let min_bet = 0;
     export let max_bet = 0;
@@ -112,7 +112,7 @@
         class_card_table_keranjang = "mt-2";
     }
     $: { 
-        count_line = count_line_dasar;
+        count_line = count_line_shio+0;
         sum_line = sum_line_shio;
     }
     let tab_line = "bg-success text-black"
@@ -205,9 +205,9 @@
             </ul>
             {#if panel_line}
                 <div class="bg-base-300 shadow-lg p-2">
-                    <div class="text-xs">TOTAL LINE : <span class="text-sm link-accent">{count_line_dasar}</span></div>
+                    <div class="text-xs">TOTAL LINE : <span class="text-sm link-accent">{count_line_shio}</span></div>
                     <div class="grid grid-cols-1">
-                        <div class="basis-1/4 text-xs">DASAR : <span class="text-sm link-accent">{count_line_dasar}</span></div>
+                        <div class="basis-1/4 text-xs">SHIO : <span class="text-sm link-accent">{count_line_shio}</span></div>
                     </div>
                 </div>
             {/if}
