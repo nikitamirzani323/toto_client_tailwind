@@ -1453,7 +1453,7 @@
 					}
 				}
 				break;
-			case "2D":
+			case "2DD":
 				if(tipe == "FULL" || tipe == "BB"){
 					if(parseInt(bet) > parseInt(max2dd_fullbb_bet)) {
 						flag_checkmaxbet =  false;
