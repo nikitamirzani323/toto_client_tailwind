@@ -582,9 +582,9 @@
 			let record = json.record;
 			
 			db_formcolok_colokbebas_count_temp = record.total_colokbebas;
-			db_formcolok_colokmacau_count_temp = record.total_colokbebas;
-			db_formcolok_coloknaga_count_temp = record.total_colokbebas;
-			db_formcolok_colokjitu_count_temp = record.total_colokbebas;
+			db_formcolok_colokmacau_count_temp = record.total_colokmacau;
+			db_formcolok_coloknaga_count_temp = record.total_coloknaga;
+			db_formcolok_colokjitu_count_temp = record.total_colokjitu;
 
 			db_colokbebas_sum_temp = record.total_colokbebas_sum;
 			db_colokmacau_sum_temp = record.total_colokmacau_sum;
