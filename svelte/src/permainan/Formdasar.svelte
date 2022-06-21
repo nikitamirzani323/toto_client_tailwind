@@ -98,15 +98,11 @@
 				}
 			}
 		}else{
-			switch (game) {
-				case "DASAR":
-					if((parseInt(bayar) + parseInt(sum_line_dasar)) > max_buy){
-						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan DASAR<br />";
-						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
-						msg_error += "Maximum Pembelanjaan DASAR :"+ new Intl.NumberFormat().format(max_buy) +" <br/>";
-						flag_data = true;
-					}
-					break;
+			if((parseInt(bayar) + parseInt(sum_line_dasar)) > max_buy){
+				msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan DASAR<br />";
+				msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+				msg_error += "Maximum Pembelanjaan DASAR :"+ new Intl.NumberFormat().format(max_buy) +" <br/>";
+				flag_data = true;
 			}
 		}
 		if (flag_data == false) {
@@ -125,11 +121,7 @@
 			};
 			keranjang = [data, ...keranjang];
 			count_keranjang();
-			switch (game) {
-				case "DASAR":
-					sum_line_dasar = sum_line_dasar + bayar;
-					break;
-			}
+			sum_line_dasar = sum_line_dasar + bayar;
 		}else{
 			totalkeranjang = totalkeranjang  - bayar;
 		}
@@ -229,6 +221,7 @@
 			for (var i = 0; i < record.length; i++) {
 				min_bet = parseInt(record[i]["min_bet"]);
 				max_bet = parseInt(record[i]["max_bet"]);
+				max_buy = parseInt(record[i]["max_buy"]);
 				kei_besar_bet = parseFloat(record[i]["kei_besar_bet"]);
 				kei_kecil_bet = parseFloat(record[i]["kei_kecil_bet"]);
 				kei_genap_bet = parseFloat(record[i]["kei_genap_bet"]);
