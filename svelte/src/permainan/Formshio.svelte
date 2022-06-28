@@ -92,15 +92,11 @@
 				}
 			}
 		}else{
-			switch (game) {
-				case "SHIO":
-					if((parseInt(bayar) + parseInt(sum_line_shio)) > max_buy){
-						msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan SHIO<br />";
-						msg_error += "Nomor : "+nomor+" , Status Reject <br />";
-						msg_error += "Maximum Pembelanjaan SHIO :"+ new Intl.NumberFormat().format(max_buy) +" <br/>";
-						flag_data = true;
-					}
-					break;
+			if((parseInt(bayar) + parseInt(sum_line_shio)) > max_buy){
+				msg_error += "Maaf, Anda sudah melebihi Maximum Pembelanjaan SHIO<br />";
+				msg_error += "Nomor : "+nomor+" , Status Reject <br />";
+				msg_error += "Maximum Pembelanjaan SHIO :"+ new Intl.NumberFormat().format(max_buy) +" <br/>";
+				flag_data = true;
 			}
 		}
 		if (flag_data == false) {
@@ -303,10 +299,10 @@
 			msg_error += " Maximal Bet : " + new Intl.NumberFormat().format(max_bet) + "<br>";
 		}
 		if (flag == true) {
-			diskon = bet * diskon_bet;
+			diskon = Math.round(bet * diskon_bet);
 			diskonpercen = diskon_bet;
 			win = win_bet;
-			bayar = parseInt(bet) - parseInt(Math.ceil(diskon));
+			bayar = parseInt(bet) - parseInt(Math.round(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor,

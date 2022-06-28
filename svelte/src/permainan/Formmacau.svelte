@@ -233,6 +233,7 @@
 				win_bet = parseFloat(record[i]["win_bet"]);
 				diskon_bet = parseFloat(record[i]["diskon_bet"]);
 				limit_total = parseInt(record[i]["limit_total"]);
+			
 			}
 			isSkeleton = false;
 		}
@@ -326,10 +327,10 @@
 			msg_error += " Maximal Bet : " + new Intl.NumberFormat().format(max_bet) + "<br>";
 		}
 		if (flag == true) {
-			diskon = bet * diskon_bet;
+			diskon = Math.round(bet * diskon_bet);
 			diskonpercen = diskon_bet;
 			win = win_bet;
-			bayar = parseInt(bet) - parseInt(Math.ceil(diskon));
+			bayar = parseInt(bet) - parseInt(Math.round(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor + "_" + nomor2 + "_" + nomor3,
