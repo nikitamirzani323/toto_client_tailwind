@@ -2144,7 +2144,7 @@
 							win = win4dbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_432 * disc4d_bet);
+							diskon = (bet_432 * disc4d_bet).toFixed(0);
 							diskonpercen = disc4d_bet;
 							win = win4d_bet;
 							break;
@@ -2164,7 +2164,7 @@
 							win = win3dbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_432 * disc3d_bet);
+							diskon = (bet_432 * disc3d_bet).toFixed(0);
 							diskonpercen = disc3d_bet;
 							win = win3d_bet;
 							break;
@@ -2184,7 +2184,7 @@
 							win = win3ddbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_432 * disc3dd_bet);
+							diskon = (bet_432 * disc3dd_bet).toFixed(0);
 							diskonpercen = disc3dd_bet;
 							win = win3dd_bet;
 							break;
@@ -2204,7 +2204,7 @@
 							win = win2dbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_432 * disc2d_bet);
+							diskon = (bet_432 * disc2d_bet).toFixed(0);
 							diskonpercen = disc2d_bet;
 							win = win2d_bet;
 							break;
@@ -2224,7 +2224,7 @@
 							win = win2ddbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_432 * disc2dd_bet);
+							diskon = (bet_432 * disc2dd_bet).toFixed(0);
 							diskonpercen = disc2dd_bet;
 							win = win2dd_bet;
 							break;
@@ -2244,14 +2244,14 @@
 							win = win2dtbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_432 * disc2dt_bet);
+							diskon = (bet_432 * disc2dt_bet).toFixed(0);
 							diskonpercen = disc2dt_bet;
 							win = win2dt_bet;
 							break;
 					}
 					break;
 			}
-			bayar = parseInt(bet_432) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet_432) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor_432,
@@ -2320,12 +2320,12 @@
 								win = win4dbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(betset_1 * disc4d_bet);
+								diskon = (betset_1 * disc4d_bet).toFixed(0);
 								diskonpercen = disc4d_bet;
 								win = win4d_bet;
 								break;
 						}
-						bayar = parseInt(betset_1) - parseInt(Math.round(diskon));
+						bayar = parseInt(betset_1) - parseInt(Math.ceil(diskon));
 						if (checkLimitLine("4D") == true) {
 							nomor = nomorset;
 							totalkeranjang = bayar + totalkeranjang;
@@ -2378,12 +2378,12 @@
 								win = win3dbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(betset_2 * disc3d_bet);
+								diskon = (betset_2 * disc3d_bet).toFixed(0);
 								diskonpercen = disc3d_bet;
 								win = win3d_bet;
 								break;
 						}
-						bayar = parseInt(betset_2) - parseInt(Math.round(diskon));
+						bayar = parseInt(betset_2) - parseInt(Math.ceil(diskon));
 						if (checkLimitLine("3D") == true) {
 							switch(game.toString()){
 								case "4":
@@ -2443,13 +2443,13 @@
 								win = win2dbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(betset_3 * disc2d_bet);
+								diskon = (betset_3 * disc2d_bet).toFixed(0);
 								diskonpercen = disc2d_bet;
 								win = win2d_bet;
 								break;
 						}
 						
-						bayar = parseInt(betset_3) - parseInt(Math.round(diskon));
+						bayar = parseInt(betset_3) - parseInt(Math.ceil(diskon));
 						if (checkLimitLine("2D") == true) {
 							switch(game.toString()){
 								case "4":
@@ -2512,13 +2512,13 @@
 								win = win2ddbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(betset_4 * disc2dd_bet);
+								diskon = (betset_4 * disc2dd_bet).toFixed(0);
 								diskonpercen = disc2dd_bet;
 								win = win2dd_bet;
 								break;
 						}
 						
-						bayar = parseInt(betset_4) - parseInt(Math.round(diskon));
+						bayar = parseInt(betset_4) - parseInt(Math.ceil(diskon));
 						if (checkLimitLine("2DD") == true) {
 							switch(game.toString()){
 								case "4":
@@ -2575,13 +2575,13 @@
 								win = win2dtbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(betset_5 * disc2dt_bet);
+								diskon =(betset_5 * disc2dt_bet).toFixed(0);
 								diskonpercen = disc2dt_bet;
 								win = win2dt_bet;
 								break;
 						}
 						
-						bayar = parseInt(betset_5) - parseInt(Math.round(diskon));
+						bayar = parseInt(betset_5) - parseInt(Math.ceil(diskon));
 						if (checkLimitLine("2DT") == true) {
 							switch(game.toString()){
 								case "4":
@@ -2638,12 +2638,12 @@
 								win = win3ddbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(betset_6 * disc3dd_bet);
+								diskon = (betset_6 * disc3dd_bet).toFixed(0);
 								diskonpercen = disc3dd_bet;
 								win = win3dd_bet;
 								break;
 						}
-						bayar = parseInt(betset_6) - parseInt(Math.round(diskon));
+						bayar = parseInt(betset_6) - parseInt(Math.ceil(diskon));
 						if (checkLimitLine("3DD") == true) {
 							switch(game.toString()){
 								case "4":
@@ -2756,12 +2756,12 @@
 							win = win4dbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_1 * disc4d_bet);
+							diskon = (bet_1 * disc4d_bet).toFixed(0);
 							diskonpercen = disc4d_bet;
 							win = win4d_bet;
 							break;
 					}
-					bayar = parseInt(bet_1) - parseInt(Math.round(diskon));
+					bayar = parseInt(bet_1) - parseInt(Math.ceil(diskon));
 					for (let a = 0; a < data_bbfs.length; a++) {
 						for (let b = 0; b < data_bbfs.length; b++) {
 							for (let c = 0; c < data_bbfs.length; c++) {
@@ -2839,12 +2839,12 @@
 							win = win3dbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_2 * disc3d_bet);
+							diskon = (bet_2 * disc3d_bet).toFixed(0);
 							diskonpercen = disc3d_bet;
 							win = win3d_bet;
 							break;
 					}
-					bayar = parseInt(bet_2) - parseInt(Math.round(diskon));
+					bayar = parseInt(bet_2) - parseInt(Math.ceil(diskon));
 					for (let a = 0; a < data_bbfs.length; a++) {
 						for (let b = 0; b < data_bbfs.length; b++) {
 							for (let c = 0; c < data_bbfs.length; c++) {
@@ -2920,12 +2920,12 @@
 							win = win2dbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_3 * disc2d_bet);
+							diskon = (bet_3 * disc2d_bet).toFixed(0);
 							diskonpercen = disc2d_bet;
 							win = win2d_bet;
 							break;
 					}
-					bayar = parseInt(bet_3) - parseInt(Math.round(diskon));
+					bayar = parseInt(bet_3) - parseInt(Math.ceil(diskon));
 					for (let a = 0; a < data_bbfs.length; a++) {
 						for (let b = 0; b < data_bbfs.length; b++) {
 							let dat = data_bbfs[a] + data_bbfs[b];
@@ -2999,12 +2999,12 @@
 							win = win2ddbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_4 * disc2dd_bet);
+							diskon = (bet_4 * disc2dd_bet).toFixed(0);
 							diskonpercen = disc2dd_bet;
 							win = win2dd_bet;
 							break;
 					}
-					bayar = parseInt(bet_4) - parseInt(Math.round(diskon));
+					bayar = parseInt(bet_4) - parseInt(Math.ceil(diskon));
 					for (let a = 0; a < data_bbfs.length; a++) {
 						for (let b = 0; b < data_bbfs.length; b++) {
 							let dat = data_bbfs[a] + data_bbfs[b];
@@ -3078,12 +3078,12 @@
 							win = win2dtbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_5 * disc2dt_bet);
+							diskon = (bet_5 * disc2dt_bet).toFixed(0);
 							diskonpercen = disc2dt_bet;
 							win = win2dd_bet;
 							break;
 					}
-					bayar = parseInt(bet_5) - parseInt(Math.round(diskon));
+					bayar = parseInt(bet_5) - parseInt(Math.ceil(diskon));
 					for (let a = 0; a < data_bbfs.length; a++) {
 						for (let b = 0; b < data_bbfs.length; b++) {
 							let dat = data_bbfs[a] + data_bbfs[b];
@@ -3157,12 +3157,12 @@
 							win = win3ddbb_kena_bet;
 							break;
 						default:
-							diskon = Math.round(bet_6 * disc3dd_bet);
+							diskon = (bet_6 * disc3dd_bet).toFixed(0);
 							diskonpercen = disc3dd_bet;
 							win = win3dd_bet;
 							break;
 					}
-					bayar = parseInt(bet_6) - parseInt(Math.round(diskon));
+					bayar = parseInt(bet_6) - parseInt(Math.ceil(diskon));
 					for (let a = 0; a < data_bbfs.length; a++) {
 						for (let b = 0; b < data_bbfs.length; b++) {
 							for (let c = 0; c < data_bbfs.length; c++) {
@@ -3333,13 +3333,13 @@
 											win = win2dbb_kena_bet;
 											break;
 										default:
-											diskon = Math.round(bet_tarung * disc2d_bet);
+											diskon = (bet_tarung * disc2d_bet).toFixed(0);
 											diskonpercen = disc2d_bet;
 											win = win2d_bet;
 											break;
 									}
 									
-									bayar = parseInt(bet_tarung) - parseInt(Math.round(diskon));
+									bayar = parseInt(bet_tarung) - parseInt(Math.ceil(diskon));
 									totalkeranjang = bayar + totalkeranjang;
 									addKeranjang(
 										nomor,
@@ -3387,13 +3387,13 @@
 												win = win3dbb_kena_bet;
 												break;
 											default:
-												diskon = Math.round(bet_tarung * disc3d_bet);
+												diskon = (bet_tarung * disc3d_bet).toFixed(0);
 												diskonpercen = disc3d_bet;
 												win = win3d_bet;
 												break;
 										}
 										
-										bayar = parseInt(bet_tarung) - parseInt(Math.round(diskon));
+										bayar = parseInt(bet_tarung) - parseInt(Math.ceil(diskon));
 										totalkeranjang = bayar + totalkeranjang;
 										addKeranjang(
 											nomor,
@@ -3443,13 +3443,13 @@
 													win = win4dbb_kena_bet;
 													break;
 												default:
-													diskon = Math.round(bet_tarung * disc4d_bet);
+													diskon = (bet_tarung * disc4d_bet).toFixed(0);
 													diskonpercen = disc4d_bet;
 													win = win4d_bet;
 													break;
 											}
 											
-											bayar = parseInt(bet_tarung) - parseInt(Math.round(diskon));
+											bayar = parseInt(bet_tarung) - parseInt(Math.ceil(diskon));
 											totalkeranjang = bayar + totalkeranjang;
 											addKeranjang(
 												nomor,
@@ -3607,13 +3607,13 @@
 								win = win2dbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(quick_bet * disc2d_bet);
+								diskon = (quick_bet * disc2d_bet).toFixed(0);
 								diskonpercen = disc2d_bet;
 								win = win2d_bet;
 								break;
 						}
 						
-						bayar = parseInt(quick_bet) - parseInt(Math.round(diskon));
+						bayar = parseInt(quick_bet) - parseInt(Math.ceil(diskon));
 						for (let i = 0; i < data_quick.length; i++) {
 							if (checkLimitLine("2D") == false) {
 								msg_error += "Line 2D sudah melebihi limit<br>";
@@ -3649,13 +3649,13 @@
 								win = win2ddbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(quick_bet * disc2dd_bet);
+								diskon = (quick_bet * disc2dd_bet).toFixed(0);
 								diskonpercen = disc2dd_bet;
 								win = win2dd_bet;
 								break;
 						}
 						
-						bayar = parseInt(quick_bet) - parseInt(Math.round(diskon));
+						bayar = parseInt(quick_bet) - parseInt(Math.ceil(diskon));
 						for (let i = 0; i < data_quick.length; i++) {
 							if (checkLimitLine("2DD") == false) {
 								msg_error += "Line 2DD sudah melebihi limit<br>";
@@ -3703,13 +3703,13 @@
 								win = win2dtbb_kena_bet;
 								break;
 							default:
-								diskon = Math.round(quick_bet * disc2dt_bet);
+								diskon = (quick_bet * disc2dt_bet).toFixed(0);
 								diskonpercen = disc2dt_bet;
 								win = win2dt_bet;
 								break;
 						}
 						
-						bayar = parseInt(quick_bet) - parseInt(Math.round(diskon));
+						bayar = parseInt(quick_bet) - parseInt(Math.ceil(diskon));
 						for (let i = 0; i < data_quick.length; i++) {
 							if (checkLimitLine("2DT") == false) {
 								msg_error += "Line 2DT sudah melebihi limit<br>";
@@ -3805,7 +3805,7 @@
 					win = win3ddbb_kena_bet;
 					break;
 				default:
-					diskon = Math.round(bet_3dd * disc3dd_bet);
+					diskon = (bet_3dd * disc3dd_bet).toFixed(0);
 					diskonpercen = disc3dd_bet;
 					win = win3dd_bet;
 					break;
@@ -3813,7 +3813,7 @@
 			
 			nomor = nomor3dd;
 			bet = bet_3dd;
-			bayar = parseInt(bet_3dd) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet_3dd) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor,
@@ -3899,7 +3899,7 @@
 					win = win2ddbb_kena_bet;
 					break;
 				default:
-					diskon = Math.round(bet_2dd * disc2dd_bet);
+					diskon = (bet_2dd * disc2dd_bet).toFixed(0);
 					diskonpercen = disc2dd_bet;
 					win = win2dd_bet;
 					break;
@@ -3907,7 +3907,7 @@
 			
 			nomor = nomor2dd;
 			bet = bet_2dd;
-			bayar = parseInt(bet_2dd) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet_2dd) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor,
@@ -3992,7 +3992,7 @@
 					win = win2dtbb_kena_bet;
 					break;
 				default:
-					diskon = Math.round(bet_2dt * disc2dt_bet);
+					diskon = (bet_2dt * disc2dt_bet).toFixed(0);
 					diskonpercen = disc2dt_bet;
 					win = win2dt_bet;
 					break;
@@ -4000,7 +4000,7 @@
 			
 			nomor = nomor2dt;
 			bet = bet_2dt;
-			bayar = parseInt(bet_2dt) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet_2dt) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor,

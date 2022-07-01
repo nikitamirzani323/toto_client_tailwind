@@ -330,7 +330,7 @@
 			keipersen = kei;
 			diskonpercen = diskon;
 			kei = Math.round(parseInt(bet) * kei);
-			diskon = Math.round(parseInt(bet) * diskon);
+			diskon = (parseInt(bet) * diskon).toFixed(0);
 			bayar = parseInt(bet) - parseInt(diskon) - parseInt(kei);
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(

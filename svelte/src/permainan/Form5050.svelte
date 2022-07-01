@@ -666,8 +666,8 @@
 			}
 			keipersen = kei;
 			diskonpercen = diskon;
-			kei = parseInt(bet) * kei;
-			diskon = parseInt(bet) * diskon;
+			kei = (parseInt(bet) * kei).toFixed(0);
+			diskon = (parseInt(bet) * diskon).toFixed(0);
 			bayar = parseInt(bet) - parseInt(diskon) - parseInt(kei);
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
@@ -791,8 +791,8 @@
 			}
 			keipersen = kei;
 			diskonpercen = diskon;
-			kei = parseInt(bet) * kei;
-			diskon = parseInt(bet) * diskon;
+			kei = (parseInt(bet) * kei).toFixed(0);
+			diskon = (parseInt(bet) * diskon).toFixed(0);
 			bayar = parseInt(bet) - parseInt(diskon) - parseInt(kei);
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
@@ -912,8 +912,8 @@
 			}
 			keipersen = kei;
 			diskonpercen = diskon;
-			kei = parseInt(bet) * kei;
-			diskon = parseInt(bet) * diskon;
+			kei = (parseInt(bet) * kei).toFixed(0);
+			diskon = (parseInt(bet) * diskon).toFixed(0);
 			bayar = parseInt(bet) - parseInt(diskon) - parseInt(kei);
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(

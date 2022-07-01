@@ -299,10 +299,10 @@
 			msg_error += " Maximal Bet : " + new Intl.NumberFormat().format(max_bet) + "<br>";
 		}
 		if (flag == true) {
-			diskon = Math.round(bet * diskon_bet);
+			diskon = (bet * diskon_bet).toFixed(0);
 			diskonpercen = diskon_bet;
 			win = win_bet;
-			bayar = parseInt(bet) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor,

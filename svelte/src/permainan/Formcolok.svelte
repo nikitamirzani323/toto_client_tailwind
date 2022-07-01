@@ -658,10 +658,10 @@
 			msg_error += "Maximal Bet : " + new Intl.NumberFormat().format(max_bet_colokbebas) + "<br>";
 		}
 		if (flag == true) {
-			diskon = Math.round(bet * disc_bet_colokbebas);
+			diskon = (bet * disc_bet_colokbebas).toFixed(0);
 			diskonpercen = disc_bet_colokbebas;
 			win = win_bet_colokbebas;
-			bayar = parseInt(bet) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor,
@@ -718,10 +718,10 @@
 			msg_error += "Maximal Bet : " + new Intl.NumberFormat().format(max_bet_colokmacau) +"<br>";
 		}
 		if (flag == true) {
-			diskon = Math.round(bet * disc_bet_colokmacau);
+			diskon = (bet * disc_bet_colokmacau).toFixed(0);
 			diskonpercen = disc_bet_colokmacau;
 			win = win_bet_colokmacau;
-			bayar = parseInt(bet) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor + "" + nomor2,
@@ -792,10 +792,10 @@
 			msg_error +=  "Maximal Bet : " + new Intl.NumberFormat().format(max_bet_coloknaga) +"<br>";
 		}
 		if (flag == true) {
-			diskon = Math.round(bet * disc_bet_coloknaga);
+			diskon = (bet * disc_bet_coloknaga).toFixed(0);
 			diskonpercen = disc_bet_coloknaga;
 			win = win_bet_coloknaga;
-			bayar = parseInt(bet) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor + "" + nomor2 + "" + nomor3,
@@ -850,7 +850,7 @@
 			msg_error += "Maximal Bet : " + new Intl.NumberFormat().format(max_bet_colokjitu) + "<br>";
 		}
 		if (flag == true) {
-			diskon = Math.round(bet * disc_bet_colokjitu);
+			diskon = (bet * disc_bet_colokjitu).toFixed(0);
 			diskonpercen = disc_bet_colokjitu;
 			switch (posisi) {
 				case "AS":
@@ -866,7 +866,7 @@
 					win = winekor_bet_colokjitu;
 					break;
 			}
-			bayar = parseInt(bet) - parseInt(Math.round(diskon));
+			bayar = parseInt(bet) - parseInt(Math.ceil(diskon));
 			totalkeranjang = bayar + totalkeranjang;
 			addKeranjang(
 				nomor + "_" + posisi,
@@ -917,10 +917,10 @@
 			}
 			if(flag){
 				for(let i=0;i<nomor_polacolok.length;i++){
-					diskon = Math.round(bet_polacolokbebas * disc_bet_colokbebas);
+					diskon = (bet_polacolokbebas * disc_bet_colokbebas).toFixed(0);
 					diskonpercen = disc_bet_colokbebas;
 					win = win_bet_colokbebas;
-					bayar = parseInt(bet_polacolokbebas) - parseInt(Math.round(diskon));
+					bayar = parseInt(bet_polacolokbebas) - parseInt(Math.ceil(diskon));
 					totalkeranjang = bayar + totalkeranjang;
 					addKeranjang(
 						nomor_polacolok[i],
@@ -966,7 +966,7 @@
 					}
 				}
 				for(let i=0;i<temp2d.length;i++){
-					diskon = bet_polacolokmacau * disc_bet_colokmacau;
+					diskon = (bet_polacolokmacau * disc_bet_colokmacau).toFixed(0);
 					diskonpercen = disc_bet_colokmacau;
 					win = win_bet_colokmacau;
 					bayar = parseInt(bet_polacolokmacau) - parseInt(Math.ceil(diskon));
@@ -1030,7 +1030,7 @@
 					}
 				}
 				for(let i=0;i<temp3d.length;i++){
-					diskon = bet_polacoloknaga * disc_bet_coloknaga;
+					diskon = (bet_polacoloknaga * disc_bet_coloknaga).toFixed(0);
 					diskonpercen = disc_bet_coloknaga;
 					win = win_bet_coloknaga;
 					bayar = parseInt(bet_polacoloknaga) - parseInt(Math.ceil(diskon));
