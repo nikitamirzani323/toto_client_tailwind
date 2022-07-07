@@ -5129,7 +5129,7 @@
 										maxlength="4"
 										type="text" 
 										placeholder="Input 2-4 Digits" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent  {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<label class="label">
@@ -5145,7 +5145,7 @@
 										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_432)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_432)}</span>
 									</label>
 								</div>
 							</div>
@@ -5168,7 +5168,7 @@
 									minlength="4"
 									maxlength="4"
 									type="text" placeholder="Input 2-4 Digit" 
-									class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+									class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 							</div>
 							<div class="mt-1 gap-2 grid grid-cols-2">
@@ -5185,10 +5185,10 @@
 										maxlength="{max4d_bet.toString().length}"
 										type="text" 
 										placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_1)}</span>
+										<span class="label-text-alt text-accent  {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_1)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -5197,17 +5197,17 @@
 										<span class="label-text-alt {form_font_sizelabel_default}">3D Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 									</label>
 									<input 
-									bind:value={betset_2}
-									on:keyup={handleKeyboard_number}
-									on:keypress={handleKeyboard432set_checkenter}
-									minlength="3"
-									maxlength="{max3d_bet.toString().length}"
-									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-									<label class="label">
-										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_2)}</span>
-									</label>
+										bind:value={betset_2}
+										on:keyup={handleKeyboard_number}
+										on:keypress={handleKeyboard432set_checkenter}
+										minlength="3"
+										maxlength="{max3d_bet.toString().length}"
+										type="text" placeholder="Bet" 
+										class="input border-none text-right text-accent  {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										<label class="label">
+											<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+											<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_2)}</span>
+										</label>
 								</div>
 								<div class="form-control">
 									<label class="label">
@@ -5215,17 +5215,17 @@
 										<span class="label-text-alt {form_font_sizelabel_default}">3DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 									</label>
 									<input 
-									bind:value={betset_6}
-									on:keyup={handleKeyboard_number}
-									on:keypress={handleKeyboard432set_checkenter}
-									minlength="3"
-									maxlength="{max3dd_bet.toString().length}"
-									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-									<label class="label">
-										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_6)}</span>
-									</label>
+										bind:value={betset_6}
+										on:keyup={handleKeyboard_number}
+										on:keypress={handleKeyboard432set_checkenter}
+										minlength="3"
+										maxlength="{max3dd_bet.toString().length}"
+										type="text" placeholder="Bet" 
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										<label class="label">
+											<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+											<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_6)}</span>
+										</label>
 								</div>
 								
 								<div class="form-control">
@@ -5243,7 +5243,7 @@
 									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_3)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_3)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -5252,17 +5252,17 @@
 										<span class="label-text-alt {form_font_sizelabel_default}">2DD Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 									</label>
 									<input 
-									bind:value={betset_4}
-									on:keyup={handleKeyboard_number}
-									on:keypress={handleKeyboard432set_checkenter}
-									minlength="3"
-									maxlength="{max2dd_bet.toString().length}"
-									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-									<label class="label">
-										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_4)}</span>
-									</label>
+										bind:value={betset_4}
+										on:keyup={handleKeyboard_number}
+										on:keypress={handleKeyboard432set_checkenter}
+										minlength="3"
+										maxlength="{max2dd_bet.toString().length}"
+										type="text" placeholder="Bet" 
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										<label class="label">
+											<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+											<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_4)}</span>
+										</label>
 								</div>
 								<div class="form-control">
 									<label class="label">
@@ -5270,17 +5270,17 @@
 										<span class="label-text-alt {form_font_sizelabel_default}">2DT Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 									</label>
 									<input 
-									bind:value={betset_5}
-									on:keyup={handleKeyboard_number}
-									on:keypress={handleKeyboard432set_checkenter}
-									minlength="3"
-									maxlength="{max2dt_bet.toString().length}"
-									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-									<label class="label">
-										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_5)}</span>
-									</label>
+										bind:value={betset_5}
+										on:keyup={handleKeyboard_number}
+										on:keypress={handleKeyboard432set_checkenter}
+										minlength="3"
+										maxlength="{max2dt_bet.toString().length}"
+										type="text" placeholder="Bet" 
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										<label class="label">
+											<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+											<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(betset_5)}</span>
+										</label>
 								</div>
 							</div>
 							<Button_custom1 
@@ -5305,7 +5305,7 @@
 									minlength="4"
 									maxlength={bbfs}
 									type="text" placeholder="4D/3D/2D" 
-									class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								</div>
 							</div>
 							<div class="mt-1 gap-2 grid grid-cols-2">
@@ -5322,10 +5322,10 @@
 										maxlength="{max4d_bet.toString().length}"
 										type="text" 
 										placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_1)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_1)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -5341,10 +5341,10 @@
 										maxlength="{max3d_bet.toString().length}"
 										type="text" 
 										placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_2)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_2)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -5360,10 +5360,10 @@
 										maxlength="{max3dd_bet.toString().length}"
 										type="text" 
 										placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_6)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_6)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -5379,10 +5379,10 @@
 										maxlength="{max2d_bet.toString().length}"
 										type="text" 
 										placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_3)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_3)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -5398,10 +5398,10 @@
 										maxlength="{max2dd_bet.toString().length}"
 										type="text" 
 										placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_4)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_4)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -5417,10 +5417,10 @@
 										maxlength="{max2dt_bet.toString().length}"
 										type="text" 
 										placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5)}</span>
 									</label>
 								</div>
 							</div>
@@ -5439,7 +5439,7 @@
 								bind:value={nomorwap}
 								rows="100" cols="100"
 								maxlength=1000  
-								class="textarea textarea-bordered h-24 resize-none" placeholder="Input Format"></textarea>
+								class="textarea textarea-bordered h-24 resize-none text-accent" placeholder="Input Format"></textarea>
 							</div>
 							<div class="form-control mt-1">
 								<Button_custom1 
@@ -5466,7 +5466,7 @@
 										maxlength="4"
 										type="text" 
 										placeholder="AS" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<input
@@ -5477,7 +5477,7 @@
 										maxlength="4"
 										type="text" 
 										placeholder="KOP" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">  
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">  
 								</div>
 								<div class="form-control">
 									<input
@@ -5487,7 +5487,7 @@
 										maxlength="4"
 										type="text" 
 										placeholder="KEPALA" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								</div>
 								<div class="form-control">
 									<input
@@ -5497,7 +5497,7 @@
 										maxlength="4"
 										type="text" 
 										placeholder="EKOR" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								</div>
 							</div>
 							<div class="form-control">
@@ -5514,10 +5514,10 @@
 								maxlength="8"
 								type="text" 
 								placeholder="Bet" 
-								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+								class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_tarung)}</span>
+									<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_tarung)}</span>
 								</label>
 							</div>
 							<Button_custom1 
@@ -5573,10 +5573,10 @@
 									maxlength="8"
 									type="text" 
 									placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(quick_bet)}</span>
+									<span class="label-text-alt {form_font_sizelabel_default} text-accent">{new Intl.NumberFormat().format(quick_bet)}</span>
 								</label>
 							</div>
 							<Button_custom1 
@@ -5599,7 +5599,7 @@
 										maxlength="3"
 										type="text" 
 										placeholder="Input 3 Digit" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 								<label class="label">
@@ -5613,10 +5613,10 @@
 									minlength="3"
 									maxlength="{max3dd_bet.toString().length}"
 									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_3dd)}</span>
+									<span class="label-text-alt {form_font_sizelabel_default} text-accent">{new Intl.NumberFormat().format(bet_3dd)}</span>
 								</label>
 								</div>
 							</div>
@@ -5640,7 +5640,7 @@
 									maxlength="2"
 									type="text" 
 									placeholder="Input 2 Digit" 
-									class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+									class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<label class="label">
@@ -5654,10 +5654,10 @@
 									minlength="3"
 									maxlength="{max2dd_bet.toString().length}"
 									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_2dd)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default} ">{new Intl.NumberFormat().format(bet_2dd)}</span>
 									</label>
 								</div>
 							</div>
@@ -5681,7 +5681,7 @@
 										maxlength="2"
 										type="text" 
 										placeholder="Input 2 Digit" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<label class="label">
@@ -5689,17 +5689,17 @@
 										<span class="label-text-alt {form_font_sizelabel_default}">Bet (min : {new Intl.NumberFormat().format(minimal_bet)})</span>
 									</label>
 									<input
-									bind:value={bet_2dt}
-									on:keyup={handleKeyboard_number}
-									on:keypress={handleKeyboard2dt_checkenter}
-									minlength="3"
-									maxlength="{max2dt_bet.toString().length}"
-									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
-									<label class="label">
-										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_2dt)}</span>
-									</label>
+										bind:value={bet_2dt}
+										on:keyup={handleKeyboard_number}
+										on:keypress={handleKeyboard2dt_checkenter}
+										minlength="3"
+										maxlength="{max2dt_bet.toString().length}"
+										type="text" placeholder="Bet" 
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										<label class="label">
+											<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
+											<span class="label-text-alt text-accent  {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_2dt)}</span>
+										</label>
 								</div>
 							</div>
 							<Button_custom1 
