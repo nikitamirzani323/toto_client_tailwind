@@ -867,7 +867,7 @@
 							let maxtotal_bayar4d = 0;
 							let maxtotal_bayar4d_fullbb = 0;
 							for (var j = 0; j < keranjang.length; j++) {
-								if ("3DD" == keranjang[j].permainan) {
+								if ("4D" == keranjang[j].permainan) {
 									if (nomor == keranjang[j].nomor) {
 										if(keranjang[j].tipetoto == "DISC"){
 											maxtotal_bayar4d = parseInt(maxtotal_bayar4d) + parseInt(keranjang[j].bet);
@@ -902,7 +902,7 @@
 							let maxtotal_bayar3d = 0;
 							let maxtotal_bayar3d_fullbb = 0;
 							for (var j = 0; j < keranjang.length; j++) {
-								if ("3DD" == keranjang[j].permainan) {
+								if ("3D" == keranjang[j].permainan) {
 									if (nomor == keranjang[j].nomor) {
 										if(keranjang[j].tipetoto == "DISC"){
 											maxtotal_bayar3d = parseInt(maxtotal_bayar3d) + parseInt(keranjang[j].bet);
@@ -971,7 +971,7 @@
 							let maxtotal_bayar2d = 0;
 							let maxtotal_bayar2d_fullbb = 0;
 							for (var j = 0; j < keranjang.length; j++) {
-								if ("3DD" == keranjang[j].permainan) {
+								if ("2D" == keranjang[j].permainan) {
 									if (nomor == keranjang[j].nomor) {
 										if(keranjang[j].tipetoto == "DISC"){
 											maxtotal_bayar2d = parseInt(maxtotal_bayar2d) + parseInt(keranjang[j].bet);
@@ -1006,7 +1006,7 @@
 							let maxtotal_bayar2dd = 0;
 							let maxtotal_bayar2dd_fullbb = 0;
 							for (var j = 0; j < keranjang.length; j++) {
-								if ("3DD" == keranjang[j].permainan) {
+								if ("2DD" == keranjang[j].permainan) {
 									if (nomor == keranjang[j].nomor) {
 										if(keranjang[j].tipetoto == "DISC"){
 											maxtotal_bayar2dd = parseInt(maxtotal_bayar2dd) + parseInt(keranjang[j].bet);
@@ -1041,7 +1041,7 @@
 							let maxtotal_bayar2dt = 0;
 							let maxtotal_bayar2dt_fullbb = 0;
 							for (var j = 0; j < keranjang.length; j++) {
-								if ("3DD" == keranjang[j].permainan) {
+								if ("2DT" == keranjang[j].permainan) {
 									if (nomor == keranjang[j].nomor) {
 										if(keranjang[j].tipetoto == "DISC"){
 											maxtotal_bayar2dt = parseInt(maxtotal_bayar2dt) + parseInt(keranjang[j].bet);
@@ -2021,8 +2021,9 @@
 			msg_error += "Minimal Bet : " + new Intl.NumberFormat().format(minimal_bet)+"<br>";
 		}
 		if (game.toString() == "4") {
-			flag = check_maxbet(flag_fulldiskon,"4",parseInt(bet_432))
-			if(!flag){
+			let flag_4d = check_maxbet(flag_fulldiskon,"4",parseInt(bet_432))
+			if(!flag_4d){
+				flag = false;
 				bet_432 = minimal_bet;
 				if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
 					msg_error += "Maximal Bet 4D FULl / BB  : " +new Intl.NumberFormat().format(max4d_fullbb_bet)+"<br>";
@@ -2037,8 +2038,9 @@
 			}
 		}
 		if (game.toString() == "3") {
-			flag = check_maxbet(flag_fulldiskon,"3",parseInt(bet_432))
-			if(!flag){
+			let flag_3d = check_maxbet(flag_fulldiskon,"3",parseInt(bet_432))
+			if(!flag_3d){
+				flag = false;
 				bet_432 = minimal_bet;
 				if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
 					msg_error += "Maximal Bet 3D FULl / BB  : " +new Intl.NumberFormat().format(max3d_fullbb_bet)+"<br>";
@@ -2056,8 +2058,9 @@
 			}
 		}
 		if (game.toString() == "3DD") {
-			flag = check_maxbet(flag_fulldiskon,"3DD",parseInt(bet_432))
-			if(!flag){
+			let flag_3dd = check_maxbet(flag_fulldiskon,"3DD",parseInt(bet_432))
+			if(!flag_3dd){
+				flag = false;
 				bet_432 = minimal_bet;
 				if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
 					msg_error += "Maximal Bet 3DD FULl / BB  : " +new Intl.NumberFormat().format(max3dd_fullbb_bet)+"<br>";
@@ -2075,8 +2078,9 @@
 			}
 		}
 		if (game.toString() == "2") {
-			flag = check_maxbet(flag_fulldiskon,"2",parseInt(bet_432))
-			if(!flag){
+			let flag_2d = check_maxbet(flag_fulldiskon,"2",parseInt(bet_432))
+			if(!flag_2d){
+				flag = false;
 				bet_432 = minimal_bet;
 				if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
 					msg_error += "Maximal Bet 2D FULl / BB  : " +new Intl.NumberFormat().format(max2d_fullbb_bet)+"<br>";
@@ -2094,8 +2098,9 @@
 			}
 		}
 		if (game.toString() == "2DD") {
-			flag = check_maxbet(flag_fulldiskon,"2DD",parseInt(bet_432))
-			if(!flag){
+			let flag_2dd = check_maxbet(flag_fulldiskon,"2DD",parseInt(bet_432))
+			if(!flag_2dd){
+				flag = false;
 				bet_432 = minimal_bet;
 				if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
 					msg_error += "Maximal Bet 2D FULl / BB  : " +new Intl.NumberFormat().format(max2dd_fullbb_bet)+"<br>";
@@ -2114,8 +2119,9 @@
 			}
 		}
 		if (game.toString() == "2DT") {
-			flag = check_maxbet(flag_fulldiskon,"2DT",parseInt(bet_432))
-			if(!flag){
+			let flag_2dt = check_maxbet(flag_fulldiskon,"2DT",parseInt(bet_432))
+			if(!flag_2dt){
+				flag = false;
 				bet_432 = minimal_bet;
 				if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
 					msg_error += "Maximal Bet 2DT FULl / BB  : " +new Intl.NumberFormat().format(max2dt_fullbb_bet)+"<br>";
