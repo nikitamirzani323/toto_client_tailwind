@@ -20,7 +20,7 @@
 	export let pasaran_periode = 0;
 	export let permainan_title = "4D / 3D / 2D";
 
-	let class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+	let class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 	let class_tab_432set = "";
 	let class_tab_432bolakbalik = "";
 	let class_tab_432wap = "";
@@ -42,7 +42,6 @@
   	let keranjang = [];
 	let nomor_global = 0;
 	let totalkeranjang = 0;
-	let group_btn_beli = false;
 	let minimal_bet = 0;
 	let max4d_bet = 0;
 	let max3d_bet = 0;
@@ -238,7 +237,7 @@
 				switch(e){
 					case "432":
 						temp_permainan_tab = "432";
-						class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_432set = "";
 						class_tab_432bolakbalik = "";
 						class_tab_432wap = "";
@@ -260,7 +259,7 @@
 						break;
 					case "432SET":
 						temp_permainan_tab = "432SET";
-						class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_432 = "";
 						class_tab_432bolakbalik = "";
 						class_tab_432wap = "";
@@ -282,7 +281,7 @@
 						break;
 					case "432BOLAKBALIK":
 						temp_permainan_tab = "432BOLAKBALIK";
-						class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						panel_form_432bolakbalik = true;
 						class_tab_432 = "";
 						class_tab_432set = "";
@@ -305,7 +304,7 @@
 						break;
 					case "432WAP":
 						temp_permainan_tab = "432WAP";
-						class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_432 = "";
 						class_tab_432set = "";
 						class_tab_432bolakbalik = "";
@@ -327,7 +326,7 @@
 						break;
 					case "432POLATARUNG":
 						temp_permainan_tab = "432POLATARUNG";
-						class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_432 = "";
 						class_tab_432set = "";
 						class_tab_432bolakbalik = "";
@@ -349,7 +348,7 @@
 						break;
 					case "432QUICK2D":
 						temp_permainan_tab = "432QUICK2D";
-						class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_4323DD = "";
 						class_tab_4322DD = "";
 						class_tab_4322DT = "";
@@ -371,7 +370,7 @@
 						break;
 					case "4323DD":
 						temp_permainan_tab = "4323DD";
-						class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_4322DD = "";
 						class_tab_4322DT = "";
 						class_tab_432polatarung = "";
@@ -393,7 +392,7 @@
 						break;
 					case "4322DD":
 						temp_permainan_tab = "4322DD";
-						class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_4323DD = "";
 						class_tab_4322DT = "";
 						class_tab_432polatarung = "";
@@ -415,7 +414,7 @@
 						break;
 					case "4322DT":
 						temp_permainan_tab = "4322DD";
-						class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_4322DD = "";
 						class_tab_4323DD = "";
 						class_tab_432polatarung = "";
@@ -443,7 +442,7 @@
 			}else{
 				switch(e){
 					case "432":
-						class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432 = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_432set = "";
 						class_tab_432bolakbalik = "";
 						class_tab_432wap = "";
@@ -464,7 +463,7 @@
 						clearField();
 						break;
 					case "432SET":
-						class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432set = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_432 = "";
 						class_tab_432bolakbalik = "";
 						class_tab_432wap = "";
@@ -485,7 +484,7 @@
 						clearField();
 						break;
 					case "432BOLAKBALIK":
-						class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432bolakbalik = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						panel_form_432bolakbalik = true;
 						class_tab_432 = "";
 						class_tab_432set = "";
@@ -507,7 +506,7 @@
 						clearField();
 						break;
 					case "432WAP":
-						class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432wap = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_432 = "";
 						class_tab_432set = "";
 						class_tab_432bolakbalik = "";
@@ -528,7 +527,7 @@
 						clearField();
 						break;
 					case "432POLATARUNG":
-						class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432polatarung = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_432 = "";
 						class_tab_432set = "";
 						class_tab_432bolakbalik = "";
@@ -549,7 +548,7 @@
 						clearField();
 						break;
 					case "432QUICK2D":
-						class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_432quick2d = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_4323DD = "";
 						class_tab_4322DD = "";
 						class_tab_4322DT = "";
@@ -570,7 +569,7 @@
 						clearField();
 						break;
 					case "4323DD":
-						class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4323DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_4322DD = "";
 						class_tab_4322DT = "";
 						class_tab_432polatarung = "";
@@ -591,7 +590,7 @@
 						clearField();
 						break;
 					case "4322DD":
-						class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4322DD = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_4323DD = "";
 						class_tab_4322DT = "";
 						class_tab_432polatarung = "";
@@ -612,7 +611,7 @@
 						clearField();
 						break;
 					case "4322DT":
-						class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+						class_tab_4322DT = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 						class_tab_4322DD = "";
 						class_tab_4323DD = "";
 						class_tab_432polatarung = "";
@@ -4361,7 +4360,7 @@
 				</div>
 				<div class="text-right text-xs lg:text-lg md:text-sm">PERIODE : #{pasaran_periode} - {pasaran_code}</div>
 			</h2>
-			<div class=" flex scrollbar-thin hover:scrollbar-thumb-green-300 overflow-x-scroll  h-16 cursor-pointer">
+			<div class=" flex scrollbar-thin hover:scrollbar-thumb-green-200 overflow-x-scroll  h-16 cursor-pointer">
 				<ul class="flex items-center select-none">
 					<li on:click={() => {
 							changeTabs("432");
