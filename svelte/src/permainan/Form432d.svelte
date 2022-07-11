@@ -5837,17 +5837,17 @@
 			<div class="grid grid-cols-3 gap-1">
 				<button
 					on:click={() => {
-					handlePilihan("DISC");
+						handlePilihan("DISC");
 					}}  
 					class="btn btn-sm bg-[#ff2fa5] hover:bg-[#ff2fa5] border-none  text-[#68073e] rounded-md">DISKON</button>
 				<button
 					on:click={() => {
-					handlePilihan("FULL");
+						handlePilihan("FULL");
 					}} 
 					class="btn btn-sm bg-[#bf95f9] hover:bg-[#bf95f9] border-none text-[#3f1b71] rounded-md">FULL</button>
 				<button
 					on:click={() => {
-					handlePilihan("BB");
+						handlePilihan("BB");
 					}} 
 					class="btn btn-sm bg-[#ffb86b] hover:bg-[#ffb86b] border-none text-[#5d370d] rounded-md">BB</button>
 			</div>
