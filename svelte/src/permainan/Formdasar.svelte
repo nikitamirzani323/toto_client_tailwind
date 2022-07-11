@@ -274,8 +274,8 @@
 			db_formdasar = record.total_dasar;
 			db_formdasar_sum = record.total_dasar_sum;
 
-			sum_line_dasar = sum_line_dasar + db_formdasar;
-			count_line_dasar = count_line_dasar + db_formdasar_sum;
+			sum_line_dasar = sum_line_dasar + db_formdasar_sum;
+			count_line_dasar = count_line_dasar + db_formdasar;
 		}
 	}
 	function formdasar_add() {
@@ -329,7 +329,7 @@
 			}
 			keipersen = kei;
 			diskonpercen = diskon;
-			kei = Math.round(parseInt(bet) * kei);
+			kei = (parseInt(bet) * kei).toFixed(0);;
 			diskon = (parseInt(bet) * diskon).toFixed(0);
 			bayar = parseInt(bet) - parseInt(diskon) - parseInt(kei);
 			totalkeranjang = bayar + totalkeranjang;
@@ -521,10 +521,10 @@
 								minlength="3"
 								maxlength="{max_bet.toString().length}"
 								type="text" placeholder="Bet" 
-								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+								class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
 								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-								<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_dasar)}</span>
+								<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_dasar)}</span>
 							</label>
 						</div>
 						<Button_custom1 

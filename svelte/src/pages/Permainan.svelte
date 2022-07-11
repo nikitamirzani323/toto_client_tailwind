@@ -382,7 +382,7 @@
                         {permainan_title}/>
                 {/if}
             </div>
-            <div class="card rounded-md bg-base-200 shadow-xl select-none h-[997px]">
+            <div class="card rounded-md bg-base-200 shadow-xl  h-[997px]">
                 <div class="card-body p-3 overflow-hidden h-[950px]">
                     <h2 class="card-title text-sm lg:text-lg grid grid-cols-2 gap-4">
                         <div class="place-content-start text-left">
