@@ -20,7 +20,7 @@
 	export let pasaran_periode = 0;
 	export let permainan_title = "4D / 3D / 2D";
 
-	let class_tab_colokbebas = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+	let class_tab_colokbebas = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 	let class_tab_colokmacau = "";
 	let class_tab_coloknaga = "";
 	let class_tab_colokjitu = "";
@@ -135,7 +135,7 @@
 	const changeTabs = (e) => {
 		switch(e){
 			case "colokbebas":
-				class_tab_colokbebas = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_colokbebas = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 				class_tab_colokmacau = "";
 				class_tab_coloknaga = "";
 				class_tab_colokjitu = "";
@@ -149,7 +149,7 @@
 				break;
 			case "colokmacau":
 				class_tab_colokbebas = "";
-				class_tab_colokmacau = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_colokmacau = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 				class_tab_coloknaga = "";
 				class_tab_colokjitu = "";
 				class_tab_polacolok = "";
@@ -163,7 +163,7 @@
 			case "coloknaga":
 				class_tab_colokbebas = "";
 				class_tab_colokmacau = "";
-				class_tab_coloknaga = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_coloknaga = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 				class_tab_colokjitu = "";
 				class_tab_polacolok = "";
 				panel_form_colokbebas = false;
@@ -177,7 +177,7 @@
 				class_tab_colokbebas = "";
 				class_tab_colokmacau = "";
 				class_tab_coloknaga = "p";
-				class_tab_colokjitu = "y-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_colokjitu = "y-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 				class_tab_polacolok = "";
 				panel_form_colokbebas = false;
 				panel_form_colokmacau = false;
@@ -191,7 +191,7 @@
 				class_tab_colokmacau = "";
 				class_tab_coloknaga = "p";
 				class_tab_colokjitu = "";
-				class_tab_polacolok = "y-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_polacolok = "y-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 				panel_form_colokbebas = false;
 				panel_form_colokmacau = false;
 				panel_form_coloknaga = false;
@@ -1237,11 +1237,11 @@
 						class="{class_tab_colokjitu} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">JITU</span>
 					</li>
 					<li>
-					<span 
-						on:click={() => {
-						changeTabs("polacolok");
-						}}
-						class="{class_tab_polacolok} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">POLA COLOK</span>
+						<span 
+							on:click={() => {
+								changeTabs("polacolok");
+							}}
+							class="{class_tab_polacolok} transition px-3 py-1.5 whitespace-nowrap inactive cursor-pointer text-sm">POLA COLOK</span>
 					</li>
 				</ul>
 			</div>
@@ -1262,7 +1262,7 @@
 							maxlength="1"
 							type="text" 
 							placeholder="Input 1 Digit" 
-							class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+							class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 					</div>
 					<div class="form-control">
 						<label class="label">
@@ -1281,10 +1281,10 @@
 							minlength="3"
 							maxlength="{max_bet_colokbebas.toString().length}"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+							class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
 							<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-							<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokbebas)}</span>
+							<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokbebas)}</span>
 						</label>
 					</div>
 				</div>
@@ -1311,7 +1311,7 @@
 							maxlength="1"
 							type="text" 
 							placeholder="Input 1 Digit" 
-							class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+							class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 					</div>
 					<div class="form-control">
 						<label class="label">
@@ -1326,7 +1326,7 @@
 							maxlength="1"
 							type="text" 
 							placeholder="Input 1 Digit" 
-							class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+							class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 					</div>
 				</div>
 				<div class="form-control">
@@ -1346,10 +1346,10 @@
 						minlength="3"
 						maxlength="{max_bet_colokmacau.toString().length}"
 						type="text" placeholder="Bet" 
-						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+						class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
 						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokmacau)}</span>
+						<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokmacau)}</span>
 					</label>
 				</div>
 				<Button_custom1 
@@ -1375,7 +1375,7 @@
 							maxlength="1"
 							type="text" 
 							placeholder="Input 1 Digit" 
-							class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+							class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 					</div>
 					<div class="form-control">
 						<label class="label">
@@ -1390,7 +1390,7 @@
 							maxlength="1"
 							type="text" 
 							placeholder="Input 1 Digit" 
-							class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+							class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 					</div>
 					<div class="form-control">
 						<label class="label">
@@ -1405,7 +1405,7 @@
 							maxlength="1"
 							type="text" 
 							placeholder="Input 1 Digit" 
-							class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+							class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 					</div>
 				</div>
 				<div class="form-control">
@@ -1425,10 +1425,10 @@
 						minlength="3"
 						maxlength="{max_bet_coloknaga.toString().length}"
 						type="text" placeholder="Bet" 
-						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+						class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
 						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_coloknaga)}</span>
+						<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_coloknaga)}</span>
 					</label>
 				</div>
 				<Button_custom1 
@@ -1454,7 +1454,7 @@
 							maxlength="1"
 							type="text" 
 							placeholder="Input 1 Digit" 
-							class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+							class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 					</div>
 					<div class="form-control">
 						<label class="label">
@@ -1489,10 +1489,10 @@
 						minlength="3"
 						maxlength="{max_bet_colokjitu.toString().length}"
 						type="text" placeholder="Bet" 
-						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+						class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
 						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokjitu)}</span>
+						<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokjitu)}</span>
 					</label>
 				</div>
 				<Button_custom1 
@@ -1517,7 +1517,7 @@
 						maxlength="7"
 						type="text" 
 						placeholder="Input 4 - 7 Digit" 
-						class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+						class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 				</div>
 				<div class="gap-2 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3">
 					<div class="form-control">
@@ -1532,10 +1532,10 @@
 							minlength="3"
 							maxlength="{max_bet_colokbebas.toString().length}"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+							class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
 							<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-							<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacolokbebas)}</span>
+							<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacolokbebas)}</span>
 						</label>
 					</div>
 					<div class="form-control">
@@ -1550,10 +1550,10 @@
 							minlength="3"
 							maxlength="{max_bet_colokmacau.toString().length}"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+							class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
 							<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-							<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacolokmacau)}</span>
+							<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacolokmacau)}</span>
 						</label>
 					</div>
 					<div class="form-control">
@@ -1568,10 +1568,10 @@
 							minlength="3"
 							maxlength="{max_bet_coloknaga.toString().length}"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+							class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
 							<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-							<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacoloknaga)}</span>
+							<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacoloknaga)}</span>
 						</label>
 					</div>
 				</div>
@@ -1660,7 +1660,7 @@
 										maxlength="1"
 										type="text" 
 										placeholder="Nomor (0-9)" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<label class="label">
@@ -1679,10 +1679,10 @@
 										minlength="3"
 										maxlength="{max_bet_colokbebas.toString().length}"
 										type="text" placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokbebas)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokbebas)}</span>
 									</label>
 								</div>
 							</div>
@@ -1706,7 +1706,7 @@
 										maxlength="1"
 										type="text" 
 										placeholder="Nomor (0-9)" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<input
@@ -1718,7 +1718,7 @@
 										maxlength="1"
 										type="text" 
 										placeholder="Nomor (0-9)" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 							</div>
 							<div class="form-control">
@@ -1738,10 +1738,10 @@
 									minlength="3"
 									maxlength="{max_bet_colokmacau.toString().length}"
 									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokmacau)}</span>
+									<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokmacau)}</span>
 								</label>
 							</div>
 							<div class="form-control ">
@@ -1766,7 +1766,7 @@
 										maxlength="1"
 										type="text" 
 										placeholder="Nomor (0-9)" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<input
@@ -1778,7 +1778,7 @@
 										maxlength="1"
 										type="text" 
 										placeholder="Nomor (0-9)" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<input
@@ -1790,7 +1790,7 @@
 										maxlength="1"
 										type="text" 
 										placeholder="Nomor (0-9)" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 							</div>
 							<div class="form-control">
@@ -1810,10 +1810,10 @@
 									minlength="3"
 									maxlength="{max_bet_coloknaga.toString().length}"
 									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text text-xs">&nbsp;</span>
-									<span class="label-text-alt text-xs">{new Intl.NumberFormat().format(bet_coloknaga)}</span>
+									<span class="label-text-alt text-xs text-accent">{new Intl.NumberFormat().format(bet_coloknaga)}</span>
 								</label>
 							</div>
 							<Button_custom1 
@@ -1836,7 +1836,7 @@
 										maxlength="1"
 										type="text" 
 										placeholder="Nomor (0-9)" 
-										class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+										class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 								</div>
 								<div class="form-control">
 									<select
@@ -1868,10 +1868,10 @@
 									minlength="3"
 									maxlength="{max_bet_colokjitu.toString().length}"
 									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokjitu)}</span>
+									<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_colokjitu)}</span>
 								</label>
 							</div>
 							<Button_custom1 
@@ -1893,7 +1893,7 @@
 									maxlength="7"
 									type="text" 
 									placeholder="Input 4 - 7 Digit" 
-									class="input border-none text-center {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
+									class="input border-none text-center text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}"> 
 							</div>
 							<div class="mt-1 gap-2 grid grid-cols-3">
 								<div class="form-control">
@@ -1908,10 +1908,10 @@
 										minlength="3"
 										maxlength="{max_bet_colokbebas.toString().length}"
 										type="text" placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacolokbebas)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacolokbebas)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -1926,10 +1926,10 @@
 										minlength="3"
 										maxlength="{max_bet_colokmacau.toString().length}"
 										type="text" placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacolokmacau)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacolokmacau)}</span>
 									</label>
 								</div>
 								<div class="form-control">
@@ -1944,10 +1944,10 @@
 										minlength="3"
 										maxlength="{max_bet_coloknaga.toString().length}"
 										type="text" placeholder="Bet" 
-										class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+										class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 									<label class="label">
 										<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-										<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacoloknaga)}</span>
+										<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_polacoloknaga)}</span>
 									</label>
 								</div>
 							</div>

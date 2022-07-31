@@ -36,18 +36,18 @@
     {#if listkeluaran != ""}
         {#each listkeluaran as rec}
             <Card_pasaran
-            on:click={() => {
-                handleClick(
-                    rec.pasaran_code,
-                    rec.pasaran,
-                    rec.pasaran_periode,
-                    rec.pasaran_status
-                );
-            }}
-            card_title="{rec.pasaran}"
-            card_description="PERIODE: {rec.pasaran_periode} <br>
-            {rec.pasaran_tgl} WIB"
-            card_status="{rec.pasaran_status}"/>
+                on:click={() => {
+                    handleClick(
+                        rec.pasaran_code,
+                        rec.pasaran,
+                        rec.pasaran_periode,
+                        rec.pasaran_status
+                    );
+                }}
+                card_title="{rec.pasaran}"
+                card_description="PERIODE: {rec.pasaran_periode} <br>
+                {rec.pasaran_tgl} WIB"
+                card_status="{rec.pasaran_status}"/>
         {/each}
     {:else}
         <Card_placeholder total_placeholder=12 />

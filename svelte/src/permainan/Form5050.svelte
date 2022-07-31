@@ -20,7 +20,7 @@
 	export let pasaran_periode = 0;
 	export let permainan_title = "4D / 3D / 2D";
 
-	let class_tab_5050umum = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+	let class_tab_5050umum = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 	let class_tab_5050special = "";
 	let class_tab_5050kombinasi = "";
 	let panel_form_5050umum = true;
@@ -167,7 +167,7 @@
 	const changeTabs = (e) => {
 		switch(e){
 			case "umum":
-				class_tab_5050umum = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_5050umum = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 				class_tab_5050special = "";
 				class_tab_5050kombinasi = "";
 				panel_form_5050umum = true;
@@ -177,7 +177,7 @@
 				break;
 			case "special":
 				class_tab_5050umum = "";
-				class_tab_5050special = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_5050special = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 				class_tab_5050kombinasi = "";
 				panel_form_5050umum = false;
 				panel_form_5050special = true;
@@ -187,7 +187,7 @@
 			case "kombinasi":
 				class_tab_5050umum = "";
 				class_tab_5050special = "";
-				class_tab_5050kombinasi = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600";
+				class_tab_5050kombinasi = "py-2 m-2 rounded-md outline outline-1 outline-offset-1 outline-green-600 bg-success text-black";
 				panel_form_5050umum = false;
 				panel_form_5050special = false;
 				panel_form_5050kombinasi = true;
@@ -1095,10 +1095,10 @@
 							minlength="3"
 							maxlength="{max_bet_5050umum.toString().length}"
 							type="text" placeholder="Bet" 
-							class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+							class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 						<label class="label">
 							<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-							<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050umum)}</span>
+							<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050umum)}</span>
 						</label>
 					</div>
 				</div>
@@ -1159,10 +1159,10 @@
 						minlength="3"
 						maxlength="{max_bet_5050special.toString().length}"
 						type="text" placeholder="Bet" 
-						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+						class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
 						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050special)}</span>
+						<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050special)}</span>
 					</label>
 				</div>
 				<Button_custom1 
@@ -1222,10 +1222,10 @@
 						minlength="3"
 						maxlength="{max_bet_5050kombinasi.toString().length}"
 						type="text" placeholder="Bet" 
-						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+						class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
 						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050kombinasi)}</span>
+						<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050kombinasi)}</span>
 					</label>
 				</div>
 				<Button_custom1 
@@ -1319,10 +1319,10 @@
 									minlength="3"
 									maxlength="{max_bet_5050umum.toString().length}"
 									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050umum)}</span>
+									<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050umum)}</span>
 								</label>
 							</div>
 							<Button_custom1 
@@ -1377,10 +1377,10 @@
 									minlength="3"
 									maxlength="{max_bet_5050special.toString().length}"
 									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050special)}</span>
+									<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050special)}</span>
 								</label>
 							</div>
 							<Button_custom1 
@@ -1435,10 +1435,10 @@
 									minlength="3"
 									maxlength="{max_bet_5050kombinasi.toString().length}"
 									type="text" placeholder="Bet" 
-									class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+									class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 								<label class="label">
 									<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-									<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050kombinasi)}</span>
+									<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_5050kombinasi)}</span>
 								</label>
 							</div>
 							<Button_custom1 

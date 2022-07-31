@@ -429,10 +429,10 @@
 						minlength="3"
 						maxlength="{max_bet.toString().length}"
 						type="text" placeholder="Bet" 
-						class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+						class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 					<label class="label">
 						<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-						<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_shio)}</span>
+						<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_shio)}</span>
 					</label>
 				</div>
 			</div>
@@ -508,10 +508,10 @@
 								minlength="3"
 								maxlength="{max_bet.toString().length}"
 								type="text" placeholder="Bet" 
-								class="input border-none text-right {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
+								class="input border-none text-right text-accent {form_font_sizeinput_default} placeholder:{form_font_sizeinput_default}">
 							<label class="label">
 								<span class="label-text {form_font_sizelabel_default}">&nbsp;</span>
-								<span class="label-text-alt {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_shio)}</span>
+								<span class="label-text-alt text-accent {form_font_sizelabel_default}">{new Intl.NumberFormat().format(bet_shio)}</span>
 							</label>
 						</div>
 						<Button_custom1 
