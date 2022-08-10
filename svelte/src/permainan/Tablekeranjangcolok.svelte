@@ -123,10 +123,12 @@
         if(e.detail.action_remove == 'Y'){
             let idkeranjang = temp_idkeranjang 
             let bayar = temp_bayar 
+            let permainan = temp_permainan 
             isModalAlert = false;
             dispatch("removekeranjang", {
                 idkeranjang,
                 bayar,
+                permainan,
             });
         }else{
             isModalAlert = false;

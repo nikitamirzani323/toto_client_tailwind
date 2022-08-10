@@ -421,6 +421,20 @@
 		);
 		totalkeranjang = totalkeranjang - e.detail.bayar;
 		count_keranjang();
+		switch(e.detail.permainan){
+			case "COLOK_BEBAS":
+				sum_colokbebas = sum_colokbebas - e.detail.bayar;
+				break;
+			case "COLOK_MACAU":
+				sum_colokmacau = sum_colokmacau - e.detail.bayar;
+				break;
+			case "COLOK_NAGA":
+				sum_coloknaga = sum_coloknaga - e.detail.bayar;
+				break;
+			case "COLOK_JITU":
+				sum_colokjitu = sum_colokjitu - e.detail.bayar;
+				break;
+		}
 	};
 
   	const removekeranjangall = (e) => {
