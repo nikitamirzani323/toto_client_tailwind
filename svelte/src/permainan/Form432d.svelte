@@ -2321,16 +2321,18 @@
 					flag_4D = false;
 					msg_error += "Minimal Bet 4D : " +new Intl.NumberFormat().format(minimal_bet)+"<br>";
 				}
-
-				flag_4D = check_maxbet(flag_fulldiskon,"4",parseInt(betset_1))
-				if(!flag_4D){
-					betset_1 = minimal_bet;
-					if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
-						msg_error += "Maximal Bet 4D FULl / BB  : " +new Intl.NumberFormat().format(max4d_fullbb_bet)+"<br>";
-					}else{
-						msg_error += "Maximal Bet 4D : " +new Intl.NumberFormat().format(max4d_bet)+"<br>";
+				if(flag_4D){
+					flag_4D = check_maxbet(flag_fulldiskon,"4",parseInt(betset_1))
+					if(!flag_4D){
+						betset_1 = minimal_bet;
+						if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
+							msg_error += "Maximal Bet 4D FULl / BB  : " +new Intl.NumberFormat().format(max4d_fullbb_bet)+"<br>";
+						}else{
+							msg_error += "Maximal Bet 4D : " +new Intl.NumberFormat().format(max4d_bet)+"<br>";
+						}
 					}
 				}
+				
 				if (flag_4D) {
 					if (game.toString() == "4") {
 						switch(flag_fulldiskon){
@@ -2380,13 +2382,15 @@
 					flag_3D = false;
 					msg_error += "Minimal Bet 3D : " +new Intl.NumberFormat().format(minimal_bet)+"<br>";
 				}
-				flag_3D = check_maxbet(flag_fulldiskon,"3",parseInt(betset_2))
-				if(!flag_3D){
-					betset_2 = minimal_bet;
-					if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
-						msg_error += "Maximal Bet 3D FULl / BB  : " +new Intl.NumberFormat().format(max3d_fullbb_bet)+"<br>";
-					}else{
-						msg_error += "Maximal Bet 3D : " +new Intl.NumberFormat().format(max3d_bet)+"<br>";
+				if(flag_3D){
+					flag_3D = check_maxbet(flag_fulldiskon,"3",parseInt(betset_2))
+					if(!flag_3D){
+						betset_2 = minimal_bet;
+						if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
+							msg_error += "Maximal Bet 3D FULl / BB  : " +new Intl.NumberFormat().format(max3d_fullbb_bet)+"<br>";
+						}else{
+							msg_error += "Maximal Bet 3D : " +new Intl.NumberFormat().format(max3d_bet)+"<br>";
+						}
 					}
 				}
 				if (flag_3D) {
@@ -2445,13 +2449,15 @@
 					flag_2D = false;
 					msg_error += "Minimal Bet 2D : " +new Intl.NumberFormat().format(minimal_bet)+"<br>";
 				}
-				flag_2D = check_maxbet(flag_fulldiskon,"2",parseInt(betset_3))
-				if(!flag_2D){
-					betset_3 = minimal_bet;
-					if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
-						msg_error += "Maximal Bet 2D FULl / BB  : " +new Intl.NumberFormat().format(max2d_fullbb_bet)+"<br>";
-					}else{
-						msg_error += "Maximal Bet 2D : " +new Intl.NumberFormat().format(max2d_bet)+"<br>";
+				if(flag_2D){
+					flag_2D = check_maxbet(flag_fulldiskon,"2",parseInt(betset_3))
+					if(!flag_2D){
+						betset_3 = minimal_bet;
+						if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
+							msg_error += "Maximal Bet 2D FULl / BB  : " +new Intl.NumberFormat().format(max2d_fullbb_bet)+"<br>";
+						}else{
+							msg_error += "Maximal Bet 2D : " +new Intl.NumberFormat().format(max2d_bet)+"<br>";
+						}
 					}
 				}
 				if (flag_2D) {
@@ -2514,15 +2520,18 @@
 					flag_2DD = false;
 					msg_error += "Minimal Bet 2DD : " +new Intl.NumberFormat().format(minimal_bet)+"<br>";
 				}
-				flag_2DD = check_maxbet(flag_fulldiskon,"2DD",parseInt(betset_4))
-				if(!flag_2DD){
-					betset_4 = minimal_bet;
-					if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
-						msg_error += "Maximal Bet 2DD FULl / BB  : " +new Intl.NumberFormat().format(max2dd_fullbb_bet)+"<br>";
-					}else{
-						msg_error += "Maximal Bet 2DD : " +new Intl.NumberFormat().format(max2dd_bet)+"<br>";
+				if(flag_2DD){
+					flag_2DD = check_maxbet(flag_fulldiskon,"2DD",parseInt(betset_4))
+					if(!flag_2DD){
+						betset_4 = minimal_bet;
+						if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
+							msg_error += "Maximal Bet 2DD FULl / BB  : " +new Intl.NumberFormat().format(max2dd_fullbb_bet)+"<br>";
+						}else{
+							msg_error += "Maximal Bet 2DD : " +new Intl.NumberFormat().format(max2dd_bet)+"<br>";
+						}
 					}
 				}
+				
 				if (flag_2DD) {
 					if (game.toString() == "4") {
 						switch(flag_fulldiskon){
@@ -2577,13 +2586,15 @@
 					flag_2DT = false;
 					msg_error += "Minimal Bet 2DT : " +new Intl.NumberFormat().format(minimal_bet)+"<br>";
 				}
-				flag_2DT = check_maxbet(flag_fulldiskon,"2DT",parseInt(betset_5))
-				if(!flag_2DT){
-					betset_5 = minimal_bet;
-					if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
-						msg_error += "Maximal Bet 2DT FULl / BB  : " +new Intl.NumberFormat().format(max2dt_fullbb_bet)+"<br>";
-					}else{
-						msg_error += "Maximal Bet 2DT : " +new Intl.NumberFormat().format(max2dt_bet)+"<br>";
+				if(flag_2DT){
+					flag_2DT = check_maxbet(flag_fulldiskon,"2DT",parseInt(betset_5))
+					if(!flag_2DT){
+						betset_5 = minimal_bet;
+						if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
+							msg_error += "Maximal Bet 2DT FULl / BB  : " +new Intl.NumberFormat().format(max2dt_fullbb_bet)+"<br>";
+						}else{
+							msg_error += "Maximal Bet 2DT : " +new Intl.NumberFormat().format(max2dt_bet)+"<br>";
+						}
 					}
 				}
 				if (flag_2DT) {
@@ -2640,15 +2651,18 @@
 					flag_3DD = false;
 					msg_error += "Minimal Bet 3DD : " +new Intl.NumberFormat().format(minimal_bet)+"<br>";
 				}
-				flag_3DD = check_maxbet(flag_fulldiskon,"3DD",parseInt(betset_6))
-				if(!flag_3DD){
-					betset_6 = minimal_bet;
-					if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
-						msg_error += "Maximal Bet 3DD FULl / BB  : " +new Intl.NumberFormat().format(max3dd_fullbb_bet)+"<br>";
-					}else{
-						msg_error += "Maximal Bet 3DD : " +new Intl.NumberFormat().format(max3dd_bet)+"<br>";
+				if(flag_3DD){
+					flag_3DD = check_maxbet(flag_fulldiskon,"3DD",parseInt(betset_6))
+					if(!flag_3DD){
+						betset_6 = minimal_bet;
+						if(flag_fulldiskon == "FULL" || flag_fulldiskon == "BB"){
+							msg_error += "Maximal Bet 3DD FULl / BB  : " +new Intl.NumberFormat().format(max3dd_fullbb_bet)+"<br>";
+						}else{
+							msg_error += "Maximal Bet 3DD : " +new Intl.NumberFormat().format(max3dd_bet)+"<br>";
+						}
 					}
 				}
+				
 				if (flag_3DD) {
 					if (game.toString() == "4") {
 						switch(flag_fulldiskon){

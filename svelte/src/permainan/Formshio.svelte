@@ -194,6 +194,7 @@
 		keranjang = [];
 		totalkeranjang = 0;
 		count_line_shio = 0;
+		sum_line_shio = 0;
 		inittogel_432d("shio");
 		limittogel("shio");
 	}
