@@ -104,9 +104,11 @@
             isModalAlert = false;
             let idkeranjang = temp_idkeranjang 
             let bayar = temp_bayar 
+            let permainan = temp_permainan
             dispatch("removekeranjang", {
                 idkeranjang,
                 bayar,
+                permainan,
             });
         }else{
             isModalAlert = false;

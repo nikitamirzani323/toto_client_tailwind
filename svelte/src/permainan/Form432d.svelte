@@ -1173,6 +1173,26 @@
 		);
 		totalkeranjang = totalkeranjang - e.detail.bayar;
 		count_keranjang();
+		switch(e.detail.permainan){
+			case "4D":
+				sum_4d = sum_4d - e.detail.bayar;
+				break;
+			case "3D":
+				sum_3d = sum_3d - e.detail.bayar;
+				break;
+			case "3DD":
+				sum_3dd = sum_3dd - e.detail.bayar;
+				break;
+			case "2D":
+				sum_2d = sum_2d - e.detail.bayar;
+				break;
+			case "2DD":
+				sum_2dd = sum_2dd - e.detail.bayar;
+				break;
+			case "2DT":
+				sum_2dt = sum_2dt - e.detail.bayar;
+				break;
+		}
 	};
   	const removekeranjangall = (e) => {
 		if (keranjang.length > 0) {
