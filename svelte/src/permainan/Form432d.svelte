@@ -1927,7 +1927,7 @@
   
 	function checkdata_432d(nomor, game, money) {
 		let flag = true;
-		if (money == undefined) {
+		if (money == undefined || money == "") {
 			flag = false;
 		} else {
 			if (parseInt(money) < parseInt(minimal_bet)) {
