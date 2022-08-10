@@ -132,6 +132,7 @@
 			(keranjang) => keranjang.id != e.detail.idkeranjang
 		);
 		totalkeranjang = totalkeranjang - e.detail.bayar;
+		sum_line_dasar = sum_line_dasar - e.detail.bayar;
 		count_keranjang();
 	};
 

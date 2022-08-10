@@ -142,6 +142,7 @@
 			(keranjang) => keranjang.id != e.detail.idkeranjang
 		);
 		totalkeranjang = totalkeranjang - e.detail.bayar;
+		sum_line_macaukombinasi = sum_line_macaukombinasi - e.detail.bayar;
 		count_keranjang();
 	};
 
@@ -206,6 +207,7 @@
 		group_btn_beli = true;
 		totalkeranjang = 0;
 		count_line_macaukombinasi = 0;
+		sum_line_macaukombinasi = 0;
 		inittogel_432d("macaukombinasi");
 	}
   	async function inittogel_432d(e) {

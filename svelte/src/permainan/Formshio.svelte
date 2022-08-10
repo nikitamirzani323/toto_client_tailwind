@@ -130,6 +130,7 @@
 			(keranjang) => keranjang.id != e.detail.idkeranjang
 		);
 		totalkeranjang = totalkeranjang - e.detail.bayar;
+		sum_line_shio = sum_line_shio - e.detail.bayar;
 		count_keranjang();
 	};
 
