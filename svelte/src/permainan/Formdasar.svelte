@@ -275,8 +275,8 @@
 			db_formdasar = record.total_dasar;
 			db_formdasar_sum = record.total_dasar_sum;
 
-			sum_line_dasar = sum_line_dasar + db_formdasar;
-			count_line_dasar = count_line_dasar + db_formdasar_sum;
+			sum_line_dasar = sum_line_dasar + db_formdasar_sum;
+			count_line_dasar = count_line_dasar + db_formdasar;
 		}
 	}
 	function formdasar_add() {

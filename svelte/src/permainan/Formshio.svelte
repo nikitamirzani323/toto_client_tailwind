@@ -266,8 +266,8 @@
 			db_formshio = record.total_shio;
 			db_formshio_sum = record.total_shio_sum;
 
-			sum_line_shio = sum_line_shio + db_formshio;
-			count_line_shio = count_line_shio + db_formshio_sum;
+			sum_line_shio = sum_line_shio + db_formshio_sum;
+			count_line_shio = count_line_shio + db_formshio;
 		}
 	}
 	function formshio_add() {
